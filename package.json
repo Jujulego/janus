@@ -1,0 +1,11 @@
+{
+  "name": "janus",
+  "private": true,
+  "license": "MIT",
+  "workspaces": [
+    "apps/*"
+  ],
+  "devDependencies": {
+    "@nestjs/cli": "^7.6.0"
+  }
+}

@@ -1,0 +1,7 @@
+proxy:
+  port: 3000
+
+services:
+  janus-api:
+    url: '/'
+    target: 'http://localhost:5000'

@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "$id": "Janus proxy config file",
+  "type": "object",
+  "additionalProperties": false,
+  "definitions": {
+    "service": {
+      "$id": "#service",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "target": {
+          "type": "string"
+        }
+      },
+      "required": ["url", "target"]
+    }
+  },
+  "properties": {
+    "proxy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "port": {
+          "type": "number",
+          "default": 3000
+        }
+      }
+    },
+    "server": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "port": {
+          "type": "number",
+          "default": 5000
+        }
+      }
+    },
+    "services": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#service"
+      },
+      "minProperties": 1
+    }
+  },
+  "required": ["services"]
+}

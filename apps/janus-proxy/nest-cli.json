@@ -3,6 +3,7 @@
   "sourceRoot": "src",
   "compilerOptions": {
     "webpack": true,
-    "deleteOutDir": true
+    "deleteOutDir": true,
+    "assets": ["src/janus-config.schema.json"]
   }
 }

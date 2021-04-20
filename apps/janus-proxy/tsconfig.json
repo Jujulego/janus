@@ -3,6 +3,8 @@
   "compilerOptions": {
     "incremental": true,
     "removeComments": true,
-    "outDir": "./dist"
+    "outDir": "./dist",
+    "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "resolveJsonModule": true
   }
 }

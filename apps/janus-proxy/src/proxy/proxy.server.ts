@@ -2,12 +2,17 @@ import { Injectable, Logger, OnApplicationBootstrap, OnApplicationShutdown } fro
 import http from 'http';
 import httpProxy from 'http-proxy';
 
+import { ConfigService } from '../config/config.service';
+
 // Service
 @Injectable()
 export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdown {
   // Attributes
   private readonly proxy = httpProxy.createProxyServer();
   private readonly server = http.createServer((req, res) => this._redirect(req, res));
+
+  // Constructor
+  constructor(private readonly config: ConfigService) {}
 
   // Lifecycle
   async onApplicationBootstrap(): Promise<void> {
@@ -25,8 +30,8 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
   }
 
   async listen() {
-    await this.server.listen(3000, () => {
-      Logger.log("Proxy listening at http://localhost:3000");
+    await this.server.listen(this.config.proxy.port, () => {
+      Logger.log(`Proxy listening at http://localhost:${this.config.proxy.port}`);
     });
   }
 

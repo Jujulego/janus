@@ -731,6 +731,7 @@ __metadata:
     eslint: ^7.22.0
     eslint-config-prettier: ^8.1.0
     eslint-plugin-prettier: ^3.3.1
+    express: ^4.17.1
     http-proxy: ^1.18.1
     jest: ^26.6.3
     prettier: ^2.2.1
@@ -3356,7 +3357,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:4.17.1":
+"express@npm:4.17.1, express@npm:^4.17.1":
   version: 4.17.1
   resolution: "express@npm:4.17.1"
   dependencies:

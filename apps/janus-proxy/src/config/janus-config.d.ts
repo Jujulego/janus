@@ -12,6 +12,10 @@ export interface JanusService {
   target: string;
 }
 
+export interface JanusServiceWithName extends JanusService {
+  name: string;
+}
+
 export interface JanusConfig {
   proxy?: JanusProxyConfig;
   server?: JanusServerConfig;

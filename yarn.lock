@@ -719,7 +719,6 @@ __metadata:
     "@nestjs/platform-express": ^7.6.15
     "@nestjs/schematics": ^7.3.0
     "@nestjs/testing": ^7.6.15
-    "@types/express": ^4.17.11
     "@types/http-proxy": ^1.17.5
     "@types/jest": ^26.0.22
     "@types/node": ^14.14.36
@@ -731,7 +730,6 @@ __metadata:
     eslint: ^7.22.0
     eslint-config-prettier: ^8.1.0
     eslint-plugin-prettier: ^3.3.1
-    express: ^4.17.1
     http-proxy: ^1.18.1
     jest: ^26.6.3
     prettier: ^2.2.1
@@ -743,6 +741,7 @@ __metadata:
     ts-node: ^9.1.1
     tsconfig-paths: ^3.9.0
     typescript: ^4.2.3
+    url-router: ^13.0.0
     webpack: ^5.34.0
     webpack-pnp-externals: ^1.1.0
     yaml: ^1.10.2
@@ -1011,25 +1010,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/body-parser@npm:*":
-  version: 1.19.0
-  resolution: "@types/body-parser@npm:1.19.0"
-  dependencies:
-    "@types/connect": "*"
-    "@types/node": "*"
-  checksum: 4576f3fde5980c1219cadbc7c523bdb1cefc3713300e18bf47ff37bb9b8176342a1dc7519008311fd8fc11413cf188a83931b9b59051aa1c2f095c1e10459369
-  languageName: node
-  linkType: hard
-
-"@types/connect@npm:*":
-  version: 3.4.34
-  resolution: "@types/connect@npm:3.4.34"
-  dependencies:
-    "@types/node": "*"
-  checksum: 6f712a0408ed119a42037bcbc38c12e053d3ffe11337221a3966c9e29a21c8455e331fe2116c426361c0b2c0e44cb3fb1f83594326e42ba34ce4723d726b7d30
-  languageName: node
-  linkType: hard
-
 "@types/cookiejar@npm:*":
   version: 2.1.2
   resolution: "@types/cookiejar@npm:2.1.2"
@@ -1068,29 +1048,6 @@ __metadata:
   version: 0.0.46
   resolution: "@types/estree@npm:0.0.46"
   checksum: 69fcf647706f5b6a475ec2f9aacf73b40866f577eef6c6f33de95cc3b4897381c2a8257646f13cd5d91fffc5debfe6289b6864ba29ad349ae68703f8b993c9f6
-  languageName: node
-  linkType: hard
-
-"@types/express-serve-static-core@npm:^4.17.18":
-  version: 4.17.19
-  resolution: "@types/express-serve-static-core@npm:4.17.19"
-  dependencies:
-    "@types/node": "*"
-    "@types/qs": "*"
-    "@types/range-parser": "*"
-  checksum: b6c8c357c5d093303c681616b7a80d6a044b47c4161a3459c65e451137832b29a485a8f8708414205f427dade6b4ff5ef799d51715d12f92da3468cf41a2cf06
-  languageName: node
-  linkType: hard
-
-"@types/express@npm:^4.17.11":
-  version: 4.17.11
-  resolution: "@types/express@npm:4.17.11"
-  dependencies:
-    "@types/body-parser": "*"
-    "@types/express-serve-static-core": ^4.17.18
-    "@types/qs": "*"
-    "@types/serve-static": "*"
-  checksum: 2818120a0fd8b7982215864929cdc6cd14942dd44849f93054fe2a90b4233dff67aadc34c73b5937922a02c688b0263d00a4807aa2e59307ac859a1458d73669
   languageName: node
   linkType: hard
 
@@ -1161,13 +1118,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/mime@npm:^1":
-  version: 1.3.2
-  resolution: "@types/mime@npm:1.3.2"
-  checksum: c354bc135628c2f4ab64801ca3867c3acbd4050611579c4c9f5bdfecfb70db71bb8540bf8611b4319f5ef44139c5f7c5af81254369add5ed59e7e02ce929b96f
-  languageName: node
-  linkType: hard
-
 "@types/node@npm:*, @types/node@npm:^14.14.36":
   version: 14.14.41
   resolution: "@types/node@npm:14.14.41"
@@ -1193,30 +1143,6 @@ __metadata:
   version: 2.2.3
   resolution: "@types/prettier@npm:2.2.3"
   checksum: b7e80288f9f776caca84391a7a217b8baac6b4fce00bb9701af69299d465cb8faf17466f0af0803970c74d2c191767ca729a6d21a2f7e2ce552d1ef6cc0d653a
-  languageName: node
-  linkType: hard
-
-"@types/qs@npm:*":
-  version: 6.9.6
-  resolution: "@types/qs@npm:6.9.6"
-  checksum: a5f3c4f6ad6de2692e710302f5f82fe8db3ec0de1a75ada02a432f75f64025a6e38d28fcc4ed146d3145017e1312cc5cb3d81a0f41a798ec0463b5f47f017963
-  languageName: node
-  linkType: hard
-
-"@types/range-parser@npm:*":
-  version: 1.2.3
-  resolution: "@types/range-parser@npm:1.2.3"
-  checksum: 092fabae0ecbd728d3e4debc938cd043e97cb9f210cfec1c56ff6065c6e91666f376eb586591825d6757a058fd1a1dc4831d34e04ecfbb0800f35b8d86d38635
-  languageName: node
-  linkType: hard
-
-"@types/serve-static@npm:*":
-  version: 1.13.9
-  resolution: "@types/serve-static@npm:1.13.9"
-  dependencies:
-    "@types/mime": ^1
-    "@types/node": "*"
-  checksum: f261127514057b5c038d76259128d7b765dd92bfeaf769d05b8ddf5f254d066ce6142a935e2fc707bb3009d6544a979591852f0d135d0ed4d0c56db08738df6b
   languageName: node
   linkType: hard
 
@@ -3357,7 +3283,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"express@npm:4.17.1, express@npm:^4.17.1":
+"express@npm:4.17.1":
   version: 4.17.1
   resolution: "express@npm:4.17.1"
   dependencies:
@@ -8202,6 +8128,13 @@ typescript@^4.2.3:
   version: 0.1.0
   resolution: "urix@npm:0.1.0"
   checksum: 6bdfca4e7fb7d035537068a47a04ace1bacfa32e6b1aaf54c5a0340c83125a186d59109a19b9a3a1c1f986d3eb718b82faf9ad03d53cb99cf868068580b15b3b
+  languageName: node
+  linkType: hard
+
+"url-router@npm:^13.0.0":
+  version: 13.0.0
+  resolution: "url-router@npm:13.0.0"
+  checksum: aabc6ded4778b4fa95387d117393672ff4214afdf8d72934a1451ee3db55dc879831c36cac760c851ecd024275a1c99937f1ea6ed11d03255f3950b4279a071d
   languageName: node
   linkType: hard
 

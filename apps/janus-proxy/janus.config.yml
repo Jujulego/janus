@@ -3,5 +3,9 @@ proxy:
 
 services:
   janus-api:
-    url: '/'
+    url: '/api'
     target: 'http://localhost:5000'
+
+  janus-api-ii:
+    url: '/api/(.*)'
+    target: 'http://localhost:4555'

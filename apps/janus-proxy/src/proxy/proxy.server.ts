@@ -1,28 +1,22 @@
 import { Injectable, Logger, OnApplicationBootstrap, OnApplicationShutdown } from '@nestjs/common';
-import express from 'express';
 import http from 'http';
 import httpProxy from 'http-proxy';
 
 import { ConfigService } from '../config/config.service';
-import { RoutesService } from '../routes/routes.service';
-import { IRoute } from '../routes/route';
+import { ResolverService } from '../routes/resolver.service';
 
 // Service
 @Injectable()
 export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdown {
   // Attributes
   private readonly _proxy = httpProxy.createProxyServer();
-  private readonly _router = express();
-  private readonly _server = http.createServer(this._router);
+  private readonly _server = http.createServer((req, res) => this._redirect(req, res));
 
   // Constructor
   constructor(
     private readonly _config: ConfigService,
-    private readonly _routes: RoutesService
-  ) {
-    // Submit to routes updates
-    _routes.$routes.subscribe((route) => this._registerRoute(route));
-  }
+    private readonly _resolver: ResolverService
+  ) {}
 
   // Lifecycle
   async onApplicationBootstrap(): Promise<void> {
@@ -34,22 +28,54 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
   }
 
   // Methods
-  private _registerRoute(route: IRoute) {
-    Logger.verbose(`New route ${route.name}: ${route.url} => ${route.targets}`);
-    this._router.all(route.url, (req, res) => this._redirect(req, res, route.name));
+  private _send(res: http.ServerResponse, status: number, body: unknown) {
+    res.statusCode = status;
+    res.setHeader('Content-Type', 'application/json');
+    res.write(JSON.stringify(body));
+    res.end();
   }
 
-  private _redirect(req: express.Request, res: express.Response, name: string) {
-    const route = this._routes.get(name);
+  private _redirect(req: http.IncomingMessage, res: http.ServerResponse) {
+    try {
+      const route = req.url && this._resolver.resolve(req.url);
 
-    if (!route) {
-      res.status(504);
-      res.send();
-    } else {
-      const target = route.targets[0];
+      if (!route) {
+        Logger.verbose(`${req.url} => unresolved`);
 
-      Logger.verbose(`${req.url} => ${target}`);
-      this._proxy.web(req, res, { target });
+        this._send(res, 404, {
+          statusCode: 404,
+          error: 'Not Found',
+          message: `No route found for ${req.url}`
+        });
+      } else {
+        const target = route.targets[0];
+
+        Logger.verbose(`${req.url} => ${target}`);
+        this._proxy.web(req, res, { target }, (error) => {
+          if ((error as any).code === 'ECONNREFUSED') {
+            Logger.warn(`${target} is not responding ...`);
+            this._send(res, 504, {
+              statusCode: 504,
+              error: 'Gateway Timeout',
+            });
+          } else {
+            Logger.error(error.message);
+            this._send(res, 500, {
+              statusCode: 500,
+              error: 'Server Error',
+              message: error.message
+            });
+          }
+        });
+      }
+    } catch (error) {
+      Logger.error(error.message);
+
+      this._send(res, 500, {
+        statusCode: 500,
+        error: 'Server Error',
+        message: error.message
+      });
     }
   }
 

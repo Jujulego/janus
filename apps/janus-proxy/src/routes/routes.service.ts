@@ -37,16 +37,22 @@ export class RoutesService implements OnApplicationBootstrap, OnApplicationShutd
   }
 
   add(name: string, data: IAddRoute): void {
-    const route: IRoute = this.get(name) || {
-      name,
-      url: data.url,
-      targets: []
-    };
+    // Get or create
+    let route = this.get(name);
 
+    if (!route) {
+      route = {
+        name,
+        url: data.url,
+        targets: []
+      };
+    }
+
+    // Add route
     route.targets.push(data.target);
 
     // Store and emit
     this._index.set(name, route);
-    this._routes.next(route)
+    this._routes.next(route);
   }
 }

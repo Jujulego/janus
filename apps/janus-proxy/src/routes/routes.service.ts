@@ -1,9 +1,9 @@
-import { Injectable, OnApplicationBootstrap, OnApplicationShutdown } from '@nestjs/common';
+import { Injectable, NotFoundException, OnApplicationBootstrap, OnApplicationShutdown } from '@nestjs/common';
 import { Subject } from 'rxjs';
 
 import { ConfigService } from '../config/config.service';
 
-import { IAddRoute, IRoute } from './route';
+import { AddRoute, IRoute, UpdateRoute } from './route';
 
 // Service
 @Injectable()
@@ -32,11 +32,15 @@ export class RoutesService implements OnApplicationBootstrap, OnApplicationShutd
   }
 
   // Methods
+  list(): IRoute[] {
+    return Array.from(this._index.values());
+  }
+
   get(name: string): IRoute | null {
     return this._index.get(name) || null;
   }
 
-  add(name: string, data: IAddRoute): void {
+  add(name: string, data: AddRoute): IRoute {
     // Get or create
     let route = this.get(name);
 
@@ -49,10 +53,30 @@ export class RoutesService implements OnApplicationBootstrap, OnApplicationShutd
     }
 
     // Add route
-    route.targets.push(data.target);
+    route.targets.unshift(data.target);
 
     // Store and emit
     this._index.set(name, route);
     this._routes.next(route);
+
+    return route;
+  }
+
+  update(name: string, data: UpdateRoute): IRoute {
+    // Get or create
+    let route = this.get(name);
+
+    if (!route) {
+      throw new NotFoundException();
+    }
+
+    // Add route
+    route.targets.unshift(data.target);
+
+    // Store and emit
+    this._index.set(name, route);
+    this._routes.next(route);
+
+    return route;
   }
 }

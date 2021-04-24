@@ -6,6 +6,7 @@
         <entryData>
           <resourceRoots>
             <path value="file://$PROJECT_DIR$/apps/janus-proxy/src" />
+            <path value="file://$PROJECT_DIR$/libs/janus-gate/src" />
           </resourceRoots>
         </entryData>
       </entry>

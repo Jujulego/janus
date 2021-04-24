@@ -709,6 +709,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jujulego/janus-gate@workspace:libs/janus-gate":
+  version: 0.0.0-use.local
+  resolution: "@jujulego/janus-gate@workspace:libs/janus-gate"
+  dependencies:
+    axios: ^0.21.1
+    typescript: ^4.2.3
+  languageName: unknown
+  linkType: soft
+
 "@jujulego/janus-proxy@workspace:apps/janus-proxy":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-proxy@workspace:apps/janus-proxy"
@@ -1826,7 +1835,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:0.21.1":
+"axios@npm:0.21.1, axios@npm:^0.21.1":
   version: 0.21.1
   resolution: "axios@npm:0.21.1"
   dependencies:

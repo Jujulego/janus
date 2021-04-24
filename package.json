@@ -3,7 +3,8 @@
   "private": true,
   "license": "MIT",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "libs/*"
   ],
   "devDependencies": {
     "@nestjs/cli": "^7.6.0"

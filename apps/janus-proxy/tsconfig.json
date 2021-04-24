@@ -3,10 +3,10 @@
   "compilerOptions": {
     "incremental": true,
     "removeComments": true,
-    "rootDir": "./",
+    "rootDir": "./src",
     "outDir": "./dist",
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
-    "baseUrl": "./",
+    "baseUrl": "./src",
     "resolveJsonModule": true
   }
 }

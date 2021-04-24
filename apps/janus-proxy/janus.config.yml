@@ -2,6 +2,14 @@ proxy:
   port: 3000
 
 services:
-  janus-api:
-    url: '/api'
-    target: 'http://localhost:5000'
+  lucifer-api:
+    url: '/'
+    gates:
+      local:
+        target: 'http://localhost:3333/'
+
+      preprod:
+        target: 'https://lucifer-api.herokuapp.com/'
+        enabled: true
+        changeOrigin: true
+        secure: true

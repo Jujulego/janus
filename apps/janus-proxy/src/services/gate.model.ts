@@ -4,10 +4,13 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 @ObjectType()
 export class Gate {
   // Attributes
-  @Field({ description: 'Target URL' })
+  @Field()
+  name: string;
+
+  @Field()
   target: string;
 
-  @Field({ description: 'Enable the gate' })
+  @Field()
   enabled: boolean;
 
   @Field(() => Int,{ description: 'The gate with the lowest priority will be chosen' })

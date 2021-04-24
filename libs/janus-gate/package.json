@@ -1,7 +1,8 @@
 {
   "name": "@jujulego/janus-gate",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.2",
   "license": "MIT",
+  "main": "dist/src/index.js",
   "scripts": {
     "build": "tsc"
   },

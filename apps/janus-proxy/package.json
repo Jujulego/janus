@@ -1,8 +1,11 @@
 {
   "name": "@jujulego/janus-proxy",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.2",
   "license": "MIT",
-  "main": "dist/main.js",
+  "main": "./dist/main.js",
+  "bin": {
+    "janus": "./dist/main.js"
+  },
   "scripts": {
     "build": "nest build",
     "start": "nest start --watch",

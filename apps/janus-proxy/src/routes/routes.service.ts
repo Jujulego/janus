@@ -22,7 +22,7 @@ export class RoutesService implements OnApplicationBootstrap, OnApplicationShutd
     for (const service of this._config.services()) {
       this.add(service.name, {
         url: service.url,
-        target: service.target
+        target: 'http://localhost:3333'// service.target
       });
     }
   }

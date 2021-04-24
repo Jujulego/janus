@@ -1,4 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { plainToClass } from 'class-transformer';
+
+import { ConfigGate } from '../janus-config';
 
 // Model
 @ObjectType()
@@ -24,4 +27,17 @@ export class Gate {
 
   @Field({ description: 'Enable WebSocket support' })
   ws: boolean;
+
+  // Statics
+  static fromConfig(name: string, index: number, config: ConfigGate): Gate {
+    return plainToClass(Gate, {
+      name:         name,
+      target:       config.target,
+      enabled:      config.enabled ?? false,
+      priority:     index,
+      changeOrigin: config.changeOrigin ?? false,
+      secure:       config.secure ?? false,
+      ws:           config.ws ?? false
+    });
+  }
 }

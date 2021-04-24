@@ -11,6 +11,6 @@ export class JanusGate {
 
   // Methods
   async addTarget(name: string, target: string): Promise<void> {
-    await this.axios.put<IRoute>(`/route/${name}`, { target });
+    await this.axios.put<IRoute>(`/routes/${name}`, { target });
   }
 }

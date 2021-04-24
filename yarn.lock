@@ -756,6 +756,8 @@ __metadata:
     webpack: ^5.34.0
     webpack-pnp-externals: ^1.1.0
     yaml: ^1.10.2
+  bin:
+    janus: ./dist/main.js
   languageName: unknown
   linkType: soft
 

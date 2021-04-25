@@ -3,7 +3,7 @@ import http from 'http';
 import httpProxy from 'http-proxy';
 
 import { ConfigService } from '../config/config.service';
-import { ResolverService } from '../routes/resolver.service';
+import { ResolverService } from '../services/resolver.service';
 
 // Service
 @Injectable()
@@ -37,9 +37,9 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
 
   private _redirect(req: http.IncomingMessage, res: http.ServerResponse) {
     try {
-      const route = req.url && this._resolver.resolve(req.url);
+      const gate = req.url && this._resolver.resolve(req.url);
 
-      if (!route) {
+      if (!gate) {
         Logger.verbose(`${req.url} => unresolved`);
 
         this._send(res, 404, {
@@ -48,12 +48,17 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
           message: `No route found for ${req.url}`
         });
       } else {
-        const target = route.targets[0];
+        const options: httpProxy.ServerOptions = {
+          target: gate.target,
+          changeOrigin: gate.changeOrigin,
+          secure: gate.secure,
+          ws: gate.ws
+        };
 
-        Logger.verbose(`${req.url} => ${target}`);
-        this._proxy.web(req, res, { target }, (error) => {
+        Logger.verbose(`${req.url} => ${gate.target}`);
+        this._proxy.web(req, res, options, (error) => {
           if ((error as any).code === 'ECONNREFUSED') {
-            Logger.warn(`${target} is not responding ...`);
+            Logger.warn(`${gate.target} is not responding ...`);
             this._send(res, 504, {
               statusCode: 504,
               error: 'Gateway Timeout',

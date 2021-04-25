@@ -1,0 +1,48 @@
+name: "Publish"
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    environment: npm
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 14.x
+
+      - uses: actions/cache@v2.1.4
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Install
+        run: yarn install
+
+      - name: Build
+        run: yarn workspaces foreach --no-private run build
+
+      - name: Apply version update
+        run: yarn version apply --all
+
+      - name: Commit
+        run: |
+          git config --global user.name 'Boobrie'
+          git config --global user.email 'boobrie@users.noreply.github.com'
+
+          git commit -am "update(workspace): update version numbers"
+
+      - name: Publish
+        run: yarn workspaces foreach --no-private npm publish --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: Push
+        run: git push

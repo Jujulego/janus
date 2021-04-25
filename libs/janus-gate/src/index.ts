@@ -1,16 +1,35 @@
-import axios from 'axios';
-
-import { IRoute } from './route';
+import { gql, GraphQLClient } from 'graphql-request';
 
 // Class
 export class JanusGate {
   // Attributes
-  private readonly axios = axios.create({
-    baseURL: 'http://localhost:5000'
-  });
+  private readonly client = new GraphQLClient('http://localhost:5000/graphql');
+
+  // Constructor
+  constructor(readonly service: string, readonly name: string) {}
 
   // Methods
-  async addTarget(name: string, target: string): Promise<void> {
-    await this.axios.put<IRoute>(`/routes/${name}`, { target });
+  async enable(): Promise<void> {
+    const { enableGate: data } = await this.client.request<{ enableGate?: { enabled: boolean } }, { service: string, gate: string }>(
+      gql`
+        mutation EnableGate($service: String!, $gate: String!) {
+            enableGate(service: $service, gate: $gate) {
+                enabled
+            }
+        }
+      `,
+      {
+        service: this.service,
+        gate: this.name
+      }
+    );
+
+    if (!data) {
+      throw new Error(`Gate ${this.service}.${this.name} not found`);
+    }
+
+    if (!data.enabled) {
+      throw new Error(`Gate ${this.service}.${this.name} not enabled`);
+    }
   }
 }

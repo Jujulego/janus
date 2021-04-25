@@ -4,6 +4,33 @@
   "type": "object",
   "additionalProperties": false,
   "definitions": {
+    "gate": {
+      "$id": "#gate",
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "target": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "changeOrigin": {
+          "type": "boolean",
+          "default": false
+        },
+        "secure": {
+          "type": "boolean",
+          "default": false
+        },
+        "ws": {
+          "type": "boolean",
+          "default": false
+        }
+      },
+      "required": ["target"]
+    },
     "service": {
       "$id": "#service",
       "type": "object",
@@ -12,11 +39,15 @@
         "url": {
           "type": "string"
         },
-        "target": {
-          "type": "string"
+        "gates": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#gate"
+          }
         }
       },
-      "required": ["url", "target"]
+      "required": ["url", "gates"]
     }
   },
   "properties": {

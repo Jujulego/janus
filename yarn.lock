@@ -1692,7 +1692,10 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-gate@workspace:libs/janus-gate"
   dependencies:
-    axios: ^0.21.1
+    "@types/node": ^14.14.41
+    graphql: ^15.5.0
+    graphql-request: ^3.4.0
+    ts-node: ^9.1.1
     typescript: ^4.2.3
   languageName: unknown
   linkType: soft
@@ -2423,7 +2426,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^14.14.36":
+"@types/node@npm:*, @types/node@npm:^14.14.36, @types/node@npm:^14.14.41":
   version: 14.14.41
   resolution: "@types/node@npm:14.14.41"
   checksum: 37dfb639644c8ee9b9846106834983f590d494b855e74645a4f169ea24199f7559366d25f6e72e83ba940b59eb6370e002bd53963d098d6d9fdf935a37011417
@@ -3502,7 +3505,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"axios@npm:0.21.1, axios@npm:^0.21.1":
+"axios@npm:0.21.1":
   version: 0.21.1
   resolution: "axios@npm:0.21.1"
   dependencies:
@@ -4408,7 +4411,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cross-fetch@npm:3.1.4, cross-fetch@npm:^3.0.4":
+"cross-fetch@npm:3.1.4, cross-fetch@npm:^3.0.4, cross-fetch@npm:^3.0.6":
   version: 3.1.4
   resolution: "cross-fetch@npm:3.1.4"
   dependencies:
@@ -5850,6 +5853,19 @@ __metadata:
   peerDependencies:
     graphql: ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
   checksum: d40fe8769a6a3d5f99af43c3a2b6eecab5cfa2ccb2bcd4f7a613880ce422f96095034e20d34bd900fbe8bc7b269d6d129c2f898c18b04d3085c3aa8f526d4123
+  languageName: node
+  linkType: hard
+
+"graphql-request@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "graphql-request@npm:3.4.0"
+  dependencies:
+    cross-fetch: ^3.0.6
+    extract-files: ^9.0.0
+    form-data: ^3.0.0
+  peerDependencies:
+    graphql: 14.x || 15.x
+  checksum: d564874ff42ad63f1555ec18f582bfef5a0ca36160cfc4bf20e22211eca6cf5beabb65961ef734817db441508eee81a9332d4d88fe19c335e39342e20f9f303a
   languageName: node
   linkType: hard
 

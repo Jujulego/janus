@@ -10,7 +10,7 @@ import { ServicesModule } from './services/services.module';
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      autoSchemaFile: './schema.gql',
+      autoSchemaFile: true,
     }),
 
     ConfigModule,

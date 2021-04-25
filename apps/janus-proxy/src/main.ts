@@ -1,26 +1,15 @@
-import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
+import { hideBin } from 'yargs/helpers';
+import yargs from 'yargs';
 
-import { AppModule } from './app.module';
-import { ConfigService } from './config/config.service';
-
-// Bootstrap
+// Commands
 (async function() {
   try {
-    // Create Nest app
-    const app = await NestFactory.create(AppModule);
-    app.enableShutdownHooks();
-
-    // Load configuration
-    const config = app.get(ConfigService);
-    await config.load('janus.config.yml');
-
-    // Start control serveur
-    await app.listen(config.server.port, () => {
-      Logger.log(`Server listening at http://localhost:${config.server.port}`);
-    });
+    yargs(hideBin(process.argv))
+      .commandDir('commands')
+      .help()
+      .parse();
   } catch (error) {
-    Logger.error(error);
+    console.error(error);
     process.exit(1);
   }
 })();

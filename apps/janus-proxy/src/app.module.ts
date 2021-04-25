@@ -3,6 +3,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 
 import { AppController } from './app.controller';
 import { ConfigModule } from './config/config.module';
+import { ProxyModule } from './proxy/proxy.module';
 import { ServicesModule } from './services/services.module';
 
 // Module
@@ -13,6 +14,7 @@ import { ServicesModule } from './services/services.module';
     }),
 
     ConfigModule,
+    ProxyModule,
     ServicesModule
   ],
   controllers: [AppController],

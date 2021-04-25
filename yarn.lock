@@ -1741,7 +1741,7 @@ __metadata:
     webpack-pnp-externals: ^1.1.0
     yaml: ^1.10.2
   bin:
-    janus: ./dist/main.js
+    janus: ./bin/janus.js
   languageName: unknown
   linkType: soft
 

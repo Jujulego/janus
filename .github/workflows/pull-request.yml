@@ -34,7 +34,21 @@ jobs:
           workspace: ${{ matrix.package }}
           base: master
 
+      - name: Use Node.js 14.x
+        if: steps.affected.outputs.affected
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 14.x
+
+      - uses: actions/cache@v2.1.4
+        if: steps.affected.outputs.affected
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
       - name: Install
+        if: steps.affected.outputs.affected
         run: yarn install
 
       - name: Build

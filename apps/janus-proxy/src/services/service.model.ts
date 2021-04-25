@@ -27,4 +27,9 @@ export class Service {
       gates: Object.keys(config.gates).map((name, i) => Gate.fromConfig(name, i, config.gates[name]))
     });
   }
+
+  // Methods
+  getGate(name: string): Gate | null {
+    return this.gates.find(g => g.name === name) || null;
+  }
 }

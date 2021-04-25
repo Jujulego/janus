@@ -1,9 +1,9 @@
-import { Args, Query, Resolver } from '@nestjs/graphql';
+import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
 
-import { Gate } from './gate.model';
 import { Service } from './service.model';
 import { GatesService } from './gates.service';
 import { ResolverService } from './resolver.service';
+import { Gate } from './gate.model';
 
 // Resolver
 @Resolver(() => Service)
@@ -15,15 +15,24 @@ export class ServiceResolver {
   ) {}
 
   // Queries
+  @Query(() => Service, { nullable: true })
+  service(
+    @Args('name') name: string
+  ): Service | null {
+    return this._service.getService(name);
+  }
+
   @Query(() => [Service])
   services(): Service[] {
     return this._service.listServices();
   }
 
-  @Query(() => Gate, { nullable: true })
-  resolve(
-    @Args('url') url: string
+  // Resolvers
+  @ResolveField(() => Gate, { nullable: true })
+  gate(
+    @Parent() service: Service,
+    @Args('name') name: string
   ): Gate | null {
-    return this._resolver.resolve(url);
+    return service.gates.find(gate => gate.name === name) || null;
   }
 }

@@ -1,0 +1,3 @@
+releases:
+  "@jujulego/janus-gate": prerelease
+  "@jujulego/janus-proxy": prerelease

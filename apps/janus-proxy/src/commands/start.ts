@@ -7,6 +7,7 @@ import { ConfigService } from '../config/config.service';
 // Command
 export const command = 'start';
 export const aliases = ['$0'];
+export const describe = 'Starts the proxy server';
 
 export async function handler() {
   // Create Nest app
@@ -17,7 +18,7 @@ export async function handler() {
   const config = app.get(ConfigService);
   await config.load('janus.config.yml');
 
-  // Start control serveur
+  // Start control server
   await app.listen(config.server.port, () => {
     Logger.log(`Server listening at http://localhost:${config.server.port}`);
   });

@@ -4,7 +4,9 @@ import yargs from 'yargs';
 // Commands
 (async function() {
   try {
-    yargs(hideBin(process.argv))
+    await yargs(hideBin(process.argv))
+      .scriptName('janus')
+      .usage('Usage: $0 [command] [options]')
       .commandDir('commands')
       .help()
       .parse();

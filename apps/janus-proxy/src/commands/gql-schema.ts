@@ -7,7 +7,7 @@ import { ServiceResolver } from '../services/service.resolver';
 
 // Command
 export const command = 'gql-schema';
-export const description = 'Prints the control server GraphQL schema';
+export const describe = 'Prints the control server GraphQL schema';
 
 export async function handler() {
   const app = await NestFactory.create(GraphQLSchemaBuilderModule, { logger: false });

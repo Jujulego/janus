@@ -10,13 +10,19 @@ export const command = 'gql-schema';
 export const describe = 'Prints the control server GraphQL schema';
 
 export async function handler() {
-  const app = await NestFactory.create(GraphQLSchemaBuilderModule, { logger: false });
-  await app.init();
+  try {
+    const app = await NestFactory.create(GraphQLSchemaBuilderModule, { logger: false });
+    await app.init();
 
-  const gqlSchemaFactory = app.get(GraphQLSchemaFactory);
-  const schema = await gqlSchemaFactory.create(
-    [GateResolver, ServiceResolver]
-  );
+    const gqlSchemaFactory = app.get(GraphQLSchemaFactory);
+    const schema = await gqlSchemaFactory.create(
+      [GateResolver, ServiceResolver]
+    );
 
-  console.log(printSchema(schema));
+    console.log(printSchema(schema));
+    process.exit(0);
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
+  }
 }

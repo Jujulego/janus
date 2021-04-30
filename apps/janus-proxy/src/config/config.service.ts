@@ -7,9 +7,6 @@ import { Config } from '../janus-config';
 import configSchema from '../janus-config.schema.json';
 import { Service } from '../services/service.model';
 
-// Setup
-const ajv = new Ajv();
-
 // Service
 @Injectable()
 export class ConfigService {
@@ -19,19 +16,46 @@ export class ConfigService {
 
   // Methods
   async load(filename: string): Promise<void> {
-    // Read file
-    const str = await fs.readFile(filename, 'utf-8');
-    const data = yaml.parse(str) as Config;
+    try {
+      // Check if is file
+      const stat = await fs.stat(filename);
 
-    // Validate file
-    const validate = ajv.compile(configSchema);
+      if (!stat.isFile()) {
+        throw new Error(`File ${filename} does not exists or is not a file`);
+      }
 
-    if (!validate(data)) {
-      throw new Error('Invalid config file');
+      // Read file
+      const str = await fs.readFile(filename, 'utf-8');
+      const data = yaml.parse(str) as Config;
+
+      // Validate file
+      const ajv = new Ajv({ allErrors: true, useDefaults: true, logger: this._logger });
+      const validate = ajv.compile(configSchema);
+
+      if (!validate(data)) {
+        if (validate.errors) {
+          this._logger.error('Errors in config file:');
+
+          for (const err of validate.errors) {
+            this._logger.error(`- ${err.instancePath} ${err.message}`);
+          }
+        }
+
+        throw new Error(`Invalid config file ${filename}`)
+      }
+
+      this._config = data;
+      this._logger.log(`Config file ${filename} loaded`);
+
+    } catch (error) {
+      this._logger.error('Failed to load config file');
+
+      if (error.code === 'ENOENT') {
+        throw new Error(`File ${filename} does not exists`);
+      }
+
+      throw error;
     }
-
-    this._config = data;
-    this._logger.log('Configuration file loaded');
   }
 
   *services(): Generator<Service> {

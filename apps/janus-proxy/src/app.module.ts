@@ -2,10 +2,9 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
 import { ConfigModule } from './config/config.module';
+import { ControlModule } from './control/control.module';
 import { ProxyModule } from './proxy/proxy.module';
 import { ServicesModule } from './services/services.module';
-import { ServerService } from './server.service';
-import { ServerResolver } from './server.resolver';
 
 // Module
 @Module({
@@ -15,12 +14,9 @@ import { ServerResolver } from './server.resolver';
     }),
 
     ConfigModule,
+    ControlModule,
     ProxyModule,
     ServicesModule
-  ],
-  providers: [
-    ServerService,
-    ServerResolver
   ],
 })
 export class AppModule {}

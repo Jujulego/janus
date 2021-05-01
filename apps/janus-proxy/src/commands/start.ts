@@ -1,15 +1,17 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { spawn } from 'child_process';
 import { exhaustMap, filter, tap } from 'rxjs/operators';
 import { CommandBuilder } from 'yargs';
 
 import { AppModule } from '../app.module';
 import { ConfigService } from '../config/config.service';
-import { ServerService } from '../server.service';
+import { ServerService } from '../control/server.service';
 
 // Types
 export interface StartArgs {
   config: string;
+  daemon: string;
 }
 
 // Command
@@ -20,8 +22,13 @@ export const describe = 'Starts the proxy server';
 export const builder: CommandBuilder = {
   config: {
     alias: 'c',
+    type: 'string',
     description: 'Path to the configuration file',
     default: 'janus.config.yml'
+  },
+  daemon: {
+    alias: 'd',
+    type: 'boolean'
   }
 };
 

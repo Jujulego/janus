@@ -1,10 +1,11 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
-import { AppController } from './app.controller';
 import { ConfigModule } from './config/config.module';
 import { ProxyModule } from './proxy/proxy.module';
 import { ServicesModule } from './services/services.module';
+import { ServerService } from './server.service';
+import { ServerResolver } from './server.resolver';
 
 // Module
 @Module({
@@ -17,7 +18,9 @@ import { ServicesModule } from './services/services.module';
     ProxyModule,
     ServicesModule
   ],
-  controllers: [AppController],
-  providers: [],
+  providers: [
+    ServerService,
+    ServerResolver
+  ],
 })
 export class AppModule {}

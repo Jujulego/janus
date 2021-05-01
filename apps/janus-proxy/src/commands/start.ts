@@ -1,9 +1,11 @@
 import { Logger } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
+import { exhaustMap, filter, tap } from 'rxjs/operators';
 import { CommandBuilder } from 'yargs';
 
 import { AppModule } from '../app.module';
 import { ConfigService } from '../config/config.service';
+import { ServerService } from '../server.service';
 
 // Types
 export interface StartArgs {
@@ -36,9 +38,21 @@ export async function handler(args: StartArgs) {
     // Start control server
     await app.listen(config.server.port, () => {
       Logger.log(`Server listening at http://localhost:${config.server.port}`);
-    });
 
-    process.exit(0);
+      // Listen for close events
+      const server = app.get(ServerService);
+
+      server.$events
+        .pipe(
+          filter(event => event.action === 'shutdown'),
+          tap(() => Logger.log('Shutdown requested')),
+          exhaustMap(() => app.close())
+        )
+        .subscribe(() => {
+          Logger.log('Server stopped');
+          process.exit(0);
+        });
+    });
   } catch (error) {
     console.error(error);
     process.exit(1);

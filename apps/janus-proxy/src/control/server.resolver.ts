@@ -1,12 +1,12 @@
 import { Mutation, Resolver } from '@nestjs/graphql';
-import { ServerService } from './server.service';
+import { ControlService } from './control.service';
 
 // Resolver
 @Resolver()
 export class ServerResolver {
   // Constructor
   constructor(
-    private readonly server: ServerService
+    private readonly server: ControlService
   ) {}
 
   // Mutations

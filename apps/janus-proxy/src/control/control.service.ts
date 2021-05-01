@@ -4,7 +4,7 @@ import { Event } from '../event';
 
 // Service
 @Injectable()
-export class ServerService {
+export class ControlService {
   // Attributes
   private readonly _events = new Subject<Event<null, 'shutdown'>>()
 

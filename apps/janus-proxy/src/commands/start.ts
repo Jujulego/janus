@@ -1,17 +1,10 @@
-import { Logger } from '@nestjs/common';
-import { NestFactory } from '@nestjs/core';
-import { spawn } from 'child_process';
-import { exhaustMap, filter, tap } from 'rxjs/operators';
 import { CommandBuilder } from 'yargs';
 
-import { AppModule } from '../app.module';
-import { ConfigService } from '../config/config.service';
-import { ServerService } from '../control/server.service';
+import { JanusServer } from '../server';
 
 // Types
 export interface StartArgs {
   config: string;
-  daemon: string;
 }
 
 // Command
@@ -25,41 +18,20 @@ export const builder: CommandBuilder = {
     type: 'string',
     description: 'Path to the configuration file',
     default: 'janus.config.yml'
-  },
-  daemon: {
-    alias: 'd',
-    type: 'boolean'
   }
 };
 
 export async function handler(args: StartArgs) {
   try {
-    // Create Nest app
-    const app = await NestFactory.create(AppModule);
-    app.enableShutdownHooks();
+    // Create server
+    const server = await JanusServer.createServer();
 
-    // Load configuration
-    const config = app.get(ConfigService);
-    await config.load(args.config);
+    // Prepare shutdown
+    server.$shutdown
+      .subscribe(() => process.exit(0))
 
-    // Start control server
-    await app.listen(config.server.port, () => {
-      Logger.log(`Server listening at http://localhost:${config.server.port}`);
-
-      // Listen for close events
-      const server = app.get(ServerService);
-
-      server.$events
-        .pipe(
-          filter(event => event.action === 'shutdown'),
-          tap(() => Logger.log('Shutdown requested')),
-          exhaustMap(() => app.close())
-        )
-        .subscribe(() => {
-          Logger.log('Server stopped');
-          process.exit(0);
-        });
-    });
+    // Start server
+    await server.start(args.config);
   } catch (error) {
     console.error(error);
     process.exit(1);

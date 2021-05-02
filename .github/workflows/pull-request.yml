@@ -47,4 +47,4 @@ jobs:
 
       - name: Build
         if: steps.affected.outputs.affected
-        run: yarn workspaces foreach -pt --no-private ${{ matrix.package }} build
+        run: yarn workspace ${{ matrix.package }} workspaces foreach -pRtv run build

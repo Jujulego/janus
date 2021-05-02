@@ -1700,9 +1700,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-proxy@^1.0.0-alpha.5, @jujulego/janus-proxy@workspace:apps/janus-proxy":
+"@jujulego/janus-proxy@^1.0.0-alpha.5, @jujulego/janus-proxy@workspace:libs/janus-proxy":
   version: 0.0.0-use.local
-  resolution: "@jujulego/janus-proxy@workspace:apps/janus-proxy"
+  resolution: "@jujulego/janus-proxy@workspace:libs/janus-proxy"
   dependencies:
     "@nestjs/cli": ^7.6.0
     "@nestjs/common": ^7.6.15

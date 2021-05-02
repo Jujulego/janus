@@ -19,6 +19,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
 
+    strategy:
+      matrix:
+        package:
+          - "@jujulego/janus"
+          - "@jujulego/janus-gate"
+          - "@jujulego/janus-proxy"
+
     steps:
       - uses: actions/checkout@v2
 

@@ -14,7 +14,7 @@ export interface ConfigService {
   gates: Record<string, ConfigGate>;
 }
 
-export interface Config {
+export interface JanusConfig {
   // Attributes
   proxy?: {
     port?: number;

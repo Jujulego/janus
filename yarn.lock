@@ -1752,6 +1752,7 @@ __metadata:
     "@types/yargs": ^16
     chalk: ^4.1.1
     graphql: ^15.5.0
+    graphql-request: ^3.4.0
     ora: ^5.4.0
     ts-node: ^9.1.1
     typescript: ^4.2.3

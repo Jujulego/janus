@@ -2,28 +2,16 @@ import { CommandBuilder } from 'yargs';
 
 import { JanusServer } from '@jujulego/janus-proxy';
 
-import { commandWrapper } from '../helpers';
-
-// Types
-export interface StartArgs {
-  config: string;
-}
+import { commandWrapper, CommonArgs } from '../helpers';
 
 // Command
 export const command = 'start';
 export const aliases = ['$0'];
 export const describe = 'Starts the proxy server';
 
-export const builder: CommandBuilder = {
-  config: {
-    alias: 'c',
-    type: 'string',
-    description: 'Path to the configuration file',
-    default: 'janus.config.yml'
-  }
-};
+export const builder: CommandBuilder = {};
 
-export const handler = commandWrapper<StartArgs>(async (args) => {
+export const handler = commandWrapper(async (args: CommonArgs) => {
   try {
     // Create server
     const server = await JanusServer.createServer();

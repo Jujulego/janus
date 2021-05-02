@@ -135,6 +135,6 @@ export class JanusServer {
   }
 
   private get control(): ControlService {
-    return this.app.get(ConfigService);
+    return this.app.get(ControlService);
   }
 }

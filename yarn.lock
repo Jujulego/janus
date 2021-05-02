@@ -1700,7 +1700,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-proxy@workspace:apps/janus-proxy":
+"@jujulego/janus-proxy@^1.0.0-alpha.5, @jujulego/janus-proxy@workspace:apps/janus-proxy":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-proxy@workspace:apps/janus-proxy"
   dependencies:
@@ -1716,7 +1716,6 @@ __metadata:
     "@types/node": ^14.14.36
     "@types/supertest": ^2.0.10
     "@types/yaml": ^1
-    "@types/yargs": ^16
     "@typescript-eslint/eslint-plugin": ^4.19.0
     "@typescript-eslint/parser": ^4.19.0
     ajv: ^8.1.0
@@ -1741,6 +1740,21 @@ __metadata:
     typescript: ^4.2.3
     url-router: ^13.0.0
     yaml: ^1.10.2
+  languageName: unknown
+  linkType: soft
+
+"@jujulego/janus@workspace:apps/janus":
+  version: 0.0.0-use.local
+  resolution: "@jujulego/janus@workspace:apps/janus"
+  dependencies:
+    "@jujulego/janus-proxy": ^1.0.0-alpha.5
+    "@types/node": ^14.14.36
+    "@types/yargs": ^16
+    chalk: ^4.1.1
+    graphql: ^15.5.0
+    ora: ^5.4.0
+    ts-node: ^9.1.1
+    typescript: ^4.2.3
     yargs: ^16.2.0
   bin:
     janus: ./bin/janus.js
@@ -3987,6 +4001,16 @@ __metadata:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: f860285b419f9e925c2db0f45ffa88aa8794c14b80cc5d01ff30930bcfc384996606362706f0829cf557f6d36152a5fb2d227ad63c4bc90e2ec9e9dbed4a3c07
+  languageName: node
+  linkType: hard
+
+"chalk@npm:^4.1.1":
+  version: 4.1.1
+  resolution: "chalk@npm:4.1.1"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: 445c12db7aeed0046500a1e4184d31209a77d165654c885a789c41c8598a6a95bd2392180987cac572c967b93a2a730dda778bb7f87fa06ca63fd8592f8cc59f
   languageName: node
   linkType: hard
 
@@ -8420,7 +8444,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ora@npm:5.4.0":
+"ora@npm:5.4.0, ora@npm:^5.4.0":
   version: 5.4.0
   resolution: "ora@npm:5.4.0"
   dependencies:

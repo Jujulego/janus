@@ -1,0 +1,25 @@
+{
+  "name": "@jujulego/janus",
+  "version": "1.0.0-alpha.1",
+  "license": "MIT",
+  "main": "./dist/main.js",
+  "types": "./dist/main.d.ts",
+  "bin": "./bin/janus.js",
+  "scripts": {
+    "start": "ts-node src/main.ts",
+    "build": "tsc -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "@jujulego/janus-proxy": "^1.0.0-alpha.5",
+    "chalk": "^4.1.1",
+    "graphql": "^15.5.0",
+    "ora": "^5.4.0",
+    "yargs": "^16.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.36",
+    "@types/yargs": "^16",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.2.3"
+  }
+}

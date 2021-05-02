@@ -7,7 +7,7 @@
     "libs/*"
   ],
   "scripts": {
-    "janus": "yarn workspace @jujulego/janus-proxy nest start --"
+    "janus": "yarn workspace @jujulego/janus start"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.6.0"

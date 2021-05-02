@@ -1,6 +1,6 @@
 import { printSchema } from 'graphql';
 
-import { JanusServer } from '../server';
+import { JanusServer } from '@jujulego/janus-proxy';
 
 // Command
 export const command = 'gql-schema';

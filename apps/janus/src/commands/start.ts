@@ -1,6 +1,8 @@
 import { CommandBuilder } from 'yargs';
 
-import { JanusServer } from '../server';
+import { JanusServer } from '@jujulego/janus-proxy';
+
+import { commandWrapper } from '../helpers';
 
 // Types
 export interface StartArgs {
@@ -21,7 +23,7 @@ export const builder: CommandBuilder = {
   }
 };
 
-export async function handler(args: StartArgs) {
+export const handler = commandWrapper<StartArgs>(async (args) => {
   try {
     // Create server
     const server = await JanusServer.createServer();
@@ -36,4 +38,4 @@ export async function handler(args: StartArgs) {
     console.error(error);
     process.exit(1);
   }
-}
+});

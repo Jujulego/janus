@@ -1,15 +1,17 @@
-import { hideBin } from 'yargs/helpers';
-import yargs from 'yargs';
+import { JanusServer } from './server';
 
-// Commands
+// Bootstrap
 (async function() {
   try {
-    await yargs(hideBin(process.argv))
-      .scriptName('janus')
-      .usage('Usage: $0 [command] [options]')
-      .commandDir('commands')
-      .help()
-      .parse();
+    // Create server
+    const server = await JanusServer.createServer();
+
+    // Prepare shutdown
+    server.$shutdown
+      .subscribe(() => process.exit(0))
+
+    // Start server
+    await server.start('janus.config.yml');
   } catch (error) {
     console.error(error);
     process.exit(1);

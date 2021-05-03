@@ -112,8 +112,8 @@ export class JanusServer {
     // Start server
     this.app.enableShutdownHooks();
 
-    await this.app.listen(this.config.server.port, () => {
-      Logger.log(`Server listening at http://localhost:${this.config.server.port}`);
+    await this.app.listen(this.config.control.port, () => {
+      Logger.log(`Server listening at http://localhost:${this.config.control.port}`);
 
       // Listen for shutdown events
       this.control.$events

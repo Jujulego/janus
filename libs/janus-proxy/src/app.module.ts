@@ -10,7 +10,7 @@ import { ServicesModule } from './services/services.module';
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      autoSchemaFile: process.env.NODE_ENV === 'production' || 'schema.gql',
+      autoSchemaFile: process.env.NODE_ENV !== 'local' || 'schema.gql',
     }),
 
     ConfigModule,

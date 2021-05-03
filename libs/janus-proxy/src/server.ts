@@ -21,6 +21,9 @@ import configSchema from './janus-config.schema.json';
 // Server
 export class JanusServer {
   // Attributes
+  private readonly _started = new Subject<void>();
+  readonly $started = this._started.asObservable();
+
   private readonly _shutdown = new Subject<void>();
   readonly $shutdown = this._shutdown.asObservable();
 
@@ -114,6 +117,7 @@ export class JanusServer {
 
     await this.app.listen(this.config.control.port, () => {
       Logger.log(`Server listening at http://localhost:${this.config.control.port}`);
+      this._started.next();
 
       // Listen for shutdown events
       this.control.$events

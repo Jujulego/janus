@@ -1,0 +1,15 @@
+proxy:
+  port: 3000
+
+services:
+  lucifer-api:
+    url: '/'
+    gates:
+      local:
+        target: 'http://localhost:3333/'
+
+      preprod:
+        target: 'https://lucifer-api.herokuapp.com/'
+        enabled: true
+        changeOrigin: true
+        secure: true

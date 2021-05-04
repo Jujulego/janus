@@ -1692,7 +1692,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-gate@workspace:libs/janus-gate"
   dependencies:
-    "@jujulego/janus-proxy": ^1.0.0-alpha.5
+    "@jujulego/janus-proxy": ^1.0.0-alpha.6
     "@types/node": ^14.14.41
     graphql: ^15.5.0
     graphql-request: ^3.4.0
@@ -1702,7 +1702,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-proxy@^1.0.0-alpha.5, @jujulego/janus-proxy@workspace:libs/janus-proxy":
+"@jujulego/janus-proxy@^1.0.0-alpha.6, @jujulego/janus-proxy@workspace:libs/janus-proxy":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-proxy@workspace:libs/janus-proxy"
   dependencies:
@@ -1749,7 +1749,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus@workspace:apps/janus"
   dependencies:
-    "@jujulego/janus-proxy": ^1.0.0-alpha.5
+    "@jujulego/janus-proxy": ^1.0.0-alpha.6
     "@types/node": ^14.14.36
     "@types/yargs": ^16
     chalk: ^4.1.1

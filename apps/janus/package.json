@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus",
-  "version": "1.0.0-alpha.0",
+  "version": "1.0.0-alpha.1",
   "license": "MIT",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
@@ -10,7 +10,7 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
-    "@jujulego/janus-proxy": "^1.0.0-alpha.5",
+    "@jujulego/janus-proxy": "^1.0.0-alpha.6",
     "chalk": "^4.1.1",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",

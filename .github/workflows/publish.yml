@@ -28,7 +28,7 @@ jobs:
         run: yarn install
 
       - name: Build
-        run: yarn workspaces foreach --no-private run build
+        run: yarn workspaces foreach --no-private -ptv run build
 
       - name: Apply version update
         run: yarn version apply --all

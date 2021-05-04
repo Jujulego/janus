@@ -7,7 +7,10 @@ import yargs from 'yargs';
     await yargs(hideBin(process.argv))
       .scriptName('janus')
       .usage('Usage: $0 [command] [options]')
-      .commandDir('commands')
+      .option('config', { alias: 'c', description: 'Path to the configuration file', default: 'janus.config.yml' })
+      .command(require('./commands/start'))
+      .command(require('./commands/stop'))
+      .command(require('./commands/gql-schema'))
       .help()
       .parse();
   } catch (error) {

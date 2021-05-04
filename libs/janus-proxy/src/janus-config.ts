@@ -1,3 +1,7 @@
+// Constants
+export const DEFAULT_CONTROL_PORT = 5000;
+export const DEFAULT_PROXY_PORT = 3000;
+
 // Interfaces
 export interface ConfigGate {
   // Attributes
@@ -14,13 +18,13 @@ export interface ConfigService {
   gates: Record<string, ConfigGate>;
 }
 
-export interface Config {
+export interface JanusConfig {
   // Attributes
   proxy?: {
     port?: number;
   };
 
-  server?: {
+  control?: {
     port?: number;
   };
 

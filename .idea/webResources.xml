@@ -5,8 +5,9 @@
       <entry url="file://$PROJECT_DIR$">
         <entryData>
           <resourceRoots>
-            <path value="file://$PROJECT_DIR$/apps/janus-proxy/src" />
             <path value="file://$PROJECT_DIR$/libs/janus-gate/src" />
+            <path value="file://$PROJECT_DIR$/apps/janus/src" />
+            <path value="file://$PROJECT_DIR$/libs/janus-proxy/src" />
           </resourceRoots>
         </entryData>
       </entry>

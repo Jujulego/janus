@@ -1,4 +1,5 @@
-import { Args, Mutation, Query, Resolver } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
+import { PubSub } from 'graphql-subscriptions';
 
 import { Gate } from './gate.model';
 import { GatesService } from './gates.service';
@@ -9,6 +10,7 @@ import { ResolverService } from './resolver.service';
 export class GateResolver {
   // Constructor
   constructor(
+    private readonly _pubsub: PubSub,
     private readonly _service: GatesService,
     private readonly _resolver: ResolverService
   ) {}
@@ -31,30 +33,44 @@ export class GateResolver {
 
   // Mutation
   @Mutation(() => Gate, { nullable: true })
-  enableGate(
+  async enableGate(
     @Args('service') service: string,
     @Args('gate') name: string
-  ): Gate | null {
+  ): Promise<Gate | null> {
     const gate = this.gate(service, name);
 
     if (gate) {
       gate.enabled = true;
+      await this._pubsub.publish(`${service}.gates`, { gate });
     }
 
     return gate;
   }
 
   @Mutation(() => Gate, { nullable: true })
-  disableGate(
+  async disableGate(
     @Args('service') service: string,
     @Args('gate') name: string
-  ): Gate | null {
+  ): Promise<Gate | null> {
     const gate = this.gate(service, name);
 
     if (gate) {
       gate.enabled = false;
+      await this._pubsub.publish(`${service}.gates`, { gate });
     }
 
     return gate;
+  }
+
+  // Subscriptions
+  @Subscription(() => Gate, {
+    name: 'gate',
+    filter: (payload: Gate, variables) => payload.name === variables.name
+  })
+  gateSubscription(
+    @Args('service') service: string,
+    @Args('gate') name: string
+  ) {
+    return this._pubsub.asyncIterator<Gate>(`${service}.gates`);
   }
 }

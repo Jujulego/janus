@@ -1,7 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { plainToClass, Type } from 'class-transformer';
 
-import { ConfigService } from '../janus-config';
+import { IServiceConfig } from '@jujulego/janus-config';
 
 import { Gate } from './gate.model';
 
@@ -20,7 +20,7 @@ export class Service {
   gates: Gate[];
 
   // Statics
-  static fromConfig(name: string, config: ConfigService): Service {
+  static fromConfig(name: string, config: IServiceConfig): Service {
     return plainToClass(Service, {
       name:  name,
       url:   config.url,

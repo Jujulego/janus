@@ -4,9 +4,8 @@ import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphq
 import { GraphQLSchema } from 'graphql';
 import { Subject } from 'rxjs';
 import { exhaustMap, filter } from 'rxjs/operators';
-import Ajv from 'ajv';
-import fs from 'fs/promises';
-import yaml from 'yaml';
+
+import { JanusConfig } from '@jujulego/janus-config';
 
 import { AppModule } from './app.module';
 import { ServerResolver } from './control/server.resolver';
@@ -14,9 +13,6 @@ import { GateResolver } from './services/gate.resolver';
 import { ServiceResolver } from './services/service.resolver';
 import { ConfigService } from './config/config.service';
 import { ControlService } from './control/control.service';
-import { JanusConfig } from './janus-config';
-
-import configSchema from './janus-config.schema.json';
 
 // Server
 export class JanusServer {
@@ -36,49 +32,6 @@ export class JanusServer {
   static async createServer(): Promise<JanusServer> {
     const app = await NestFactory.create(AppModule);
     return new JanusServer(app);
-  }
-
-  static async loadConfigFile(file: string): Promise<JanusConfig> {
-    try {
-      // Check if is file
-      const stat = await fs.stat(file);
-
-      if (!stat.isFile()) {
-        throw new Error(`File ${file} does not exists or is not a file`);
-      }
-
-      // Read file
-      const str = await fs.readFile(file, 'utf-8');
-      const data = yaml.parse(str) as JanusConfig;
-
-      // Validate file
-      const ajv = new Ajv({ allErrors: true, useDefaults: true, logger: Logger });
-      const validate = ajv.compile(configSchema);
-
-      if (!validate(data)) {
-        if (validate.errors) {
-          Logger.error('Errors in config file:');
-
-          for (const err of validate.errors) {
-            Logger.error(`- ${err.instancePath} ${err.message}`);
-          }
-        }
-
-        throw new Error(`Invalid config file ${file}`)
-      }
-
-      Logger.log(`Config file ${file} loaded`);
-      return data;
-
-    } catch (error) {
-      Logger.error('Failed to load config file');
-
-      if (error.code === 'ENOENT') {
-        throw new Error(`File ${file} does not exists`);
-      }
-
-      throw error;
-    }
   }
 
   static async generateGQLSchema(): Promise<GraphQLSchema> {
@@ -107,7 +60,7 @@ export class JanusServer {
   async start(config: string | JanusConfig): Promise<void> {
     // Load configuration
     if (typeof config === 'string') {
-      config = await JanusServer.loadConfigFile(config);
+      config = await JanusConfig.loadFile(config);
     }
 
     this.config.config = config;

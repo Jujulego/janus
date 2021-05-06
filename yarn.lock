@@ -1688,10 +1688,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jujulego/janus-config@^1.0.0-alpha.0, @jujulego/janus-config@workspace:libs/janus-config":
+  version: 0.0.0-use.local
+  resolution: "@jujulego/janus-config@workspace:libs/janus-config"
+  dependencies:
+    "@types/node": ^14.14.41
+    "@types/yaml": ^1
+    ajv: ^8.2.0
+    typescript: ^4.2.4
+    yaml: ^1.10.2
+  languageName: unknown
+  linkType: soft
+
 "@jujulego/janus-gate@workspace:libs/janus-gate":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-gate@workspace:libs/janus-gate"
   dependencies:
+    "@jujulego/janus-config": ^1.0.0-alpha.0
     "@jujulego/janus-proxy": ^1.0.0-alpha.6
     "@types/node": ^14.14.41
     graphql: ^15.5.0
@@ -1706,6 +1719,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-proxy@workspace:libs/janus-proxy"
   dependencies:
+    "@jujulego/janus-config": ^1.0.0-alpha.0
     "@nestjs/cli": ^7.6.0
     "@nestjs/common": ^7.6.15
     "@nestjs/core": ^7.6.15
@@ -1717,10 +1731,8 @@ __metadata:
     "@types/jest": ^26.0.22
     "@types/node": ^14.14.36
     "@types/supertest": ^2.0.10
-    "@types/yaml": ^1
     "@typescript-eslint/eslint-plugin": ^4.19.0
     "@typescript-eslint/parser": ^4.19.0
-    ajv: ^8.1.0
     apollo-server-core: ^2.23.0
     apollo-server-express: ^2.23.0
     class-transformer: ^0.4.0
@@ -1741,7 +1753,6 @@ __metadata:
     tsconfig-paths: ^3.9.0
     typescript: ^4.2.3
     url-router: ^13.0.0
-    yaml: ^1.10.2
   languageName: unknown
   linkType: soft
 
@@ -1749,6 +1760,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus@workspace:apps/janus"
   dependencies:
+    "@jujulego/janus-config": ^1.0.0-alpha.0
     "@jujulego/janus-proxy": ^1.0.0-alpha.6
     "@types/node": ^14.14.36
     "@types/yargs": ^16
@@ -3013,7 +3025,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.0.1, ajv@npm:^8.1.0":
+"ajv@npm:^8.0.1":
   version: 8.1.0
   resolution: "ajv@npm:8.1.0"
   dependencies:
@@ -3022,6 +3034,18 @@ __metadata:
     require-from-string: ^2.0.2
     uri-js: ^4.2.2
   checksum: d946a17d0f44418863d23282868ce79c51ba3a3ca9cca4eb9a0e66151c9f8cf790febb4a1ffe5a831a52d21639d3e140586736406cdde177a804aebacd45f2ca
+  languageName: node
+  linkType: hard
+
+"ajv@npm:^8.2.0":
+  version: 8.2.0
+  resolution: "ajv@npm:8.2.0"
+  dependencies:
+    fast-deep-equal: ^3.1.1
+    json-schema-traverse: ^1.0.0
+    require-from-string: ^2.0.2
+    uri-js: ^4.2.2
+  checksum: 949f891686134c49c9c98c401d29ccd9e0cbd5d2c76163edd21c3c6bea694a4f7e5108fdc0c55b4cc90de85c93a9356fc30b3a7fab222721db3e38c585c61053
   languageName: node
   linkType: hard
 
@@ -10594,7 +10618,7 @@ typescript@4.2.3:
   languageName: node
   linkType: hard
 
-typescript@^4.2.3:
+"typescript@^4.2.3, typescript@^4.2.4":
   version: 4.2.4
   resolution: "typescript@npm:4.2.4"
   bin:
@@ -10614,7 +10638,7 @@ typescript@^4.2.3:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.2.3#builtin<compat/typescript>":
+"typescript@patch:typescript@^4.2.3#builtin<compat/typescript>, typescript@patch:typescript@^4.2.4#builtin<compat/typescript>":
   version: 4.2.4
   resolution: "typescript@patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"
   bin:

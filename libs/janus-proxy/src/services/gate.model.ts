@@ -1,7 +1,7 @@
 import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { plainToClass } from 'class-transformer';
 
-import { ConfigGate } from '../janus-config';
+import { IGateConfig } from '@jujulego/janus-config';
 
 // Model
 @ObjectType()
@@ -29,7 +29,7 @@ export class Gate {
   ws: boolean;
 
   // Statics
-  static fromConfig(name: string, index: number, config: ConfigGate): Gate {
+  static fromConfig(name: string, index: number, config: IGateConfig): Gate {
     return plainToClass(Gate, {
       name:         name,
       target:       config.target,

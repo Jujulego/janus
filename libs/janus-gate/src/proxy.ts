@@ -1,4 +1,5 @@
-import { JanusServer, JanusConfig } from '@jujulego/janus-proxy';
+import { IJanusConfig, JanusConfig } from '@jujulego/janus-config';
+import { JanusServer } from '@jujulego/janus-proxy';
 
 // Bootstrap
 (async () => {
@@ -14,8 +15,8 @@ import { JanusServer, JanusConfig } from '@jujulego/janus-proxy';
       .subscribe(() => process.send?.('started'))
 
     // Start server
-    process.once('message', async (config: JanusConfig) => {
-      await server.start(config);
+    process.once('message', async (config: IJanusConfig) => {
+      await server.start(new JanusConfig(config));
     });
   } catch (error) {
     process.send?.(error);

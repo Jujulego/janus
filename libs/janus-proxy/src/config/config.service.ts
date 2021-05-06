@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 
-import { DEFAULT_CONTROL_PORT, DEFAULT_PROXY_PORT, JanusConfig } from '../janus-config';
+import { JanusConfig } from '@jujulego/janus-config';
+
 import { Service } from '../services/service.model';
 
 // Service
@@ -24,14 +25,10 @@ export class ConfigService {
   }
 
   get proxy() {
-    return {
-      port: this._config.proxy?.port || DEFAULT_PROXY_PORT
-    };
+    return this.config.proxy;
   }
 
   get control() {
-    return {
-      port: this._config.control?.port || DEFAULT_CONTROL_PORT
-    };
+    return this.config.control;
   }
 }

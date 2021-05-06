@@ -1,19 +1,19 @@
 import { fork } from 'child_process';
 import { gql, GraphQLClient } from 'graphql-request';
 
-import { DEFAULT_CONTROL_PORT, JanusConfig, JanusServer } from '@jujulego/janus-proxy';
+import { JanusConfig } from "@jujulego/janus-config";
 
 // Class
 export class JanusGate {
   // Attributes
-  private readonly client = new GraphQLClient(`http://localhost:${this.config.control?.port || DEFAULT_CONTROL_PORT}/graphql`);
+  private readonly client = new GraphQLClient(`http://localhost:${this.config.control.port}/graphql`);
 
   // Constructor
   constructor(readonly service: string, readonly name: string, readonly config: JanusConfig) {}
 
   // Statics
   static async fromConfigFile(service: string, name: string, config: string): Promise<JanusGate> {
-    return new JanusGate(service, name, await JanusServer.loadConfigFile(config));
+    return new JanusGate(service, name, await JanusConfig.loadFile(config));
   }
 
   // Methods
@@ -46,7 +46,7 @@ export class JanusGate {
         }
       });
 
-      child.send(this.config);
+      child.send(this.config.config);
     });
   }
 

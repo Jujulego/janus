@@ -13,11 +13,11 @@
     "test:e2e": "jest -c jest.config.e2e.json"
   },
   "dependencies": {
+    "@jujulego/janus-config": "^1.0.0-alpha.0",
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
     "@nestjs/graphql": "^7.10.6",
     "@nestjs/platform-express": "^7.6.15",
-    "ajv": "^8.1.0",
     "apollo-server-core": "^2.23.0",
     "apollo-server-express": "^2.23.0",
     "class-transformer": "^0.4.0",
@@ -27,8 +27,7 @@
     "http-proxy": "^1.18.1",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.6",
-    "url-router": "^13.0.0",
-    "yaml": "^1.10.2"
+    "url-router": "^13.0.0"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.6.0",
@@ -38,7 +37,6 @@
     "@types/jest": "^26.0.22",
     "@types/node": "^14.14.36",
     "@types/supertest": "^2.0.10",
-    "@types/yaml": "^1",
     "@typescript-eslint/eslint-plugin": "^4.19.0",
     "@typescript-eslint/parser": "^4.19.0",
     "eslint": "^7.22.0",

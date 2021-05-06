@@ -1688,7 +1688,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/janus-config@^1.0.0-alpha.0, @jujulego/janus-config@workspace:libs/janus-config":
+"@jujulego/janus-config@^1.0.0-alpha.1, @jujulego/janus-config@workspace:libs/janus-config":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-config@workspace:libs/janus-config"
   dependencies:
@@ -1704,8 +1704,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-gate@workspace:libs/janus-gate"
   dependencies:
-    "@jujulego/janus-config": ^1.0.0-alpha.0
-    "@jujulego/janus-proxy": ^1.0.0-alpha.6
+    "@jujulego/janus-config": ^1.0.0-alpha.1
+    "@jujulego/janus-proxy": ^1.0.0-alpha.7
     "@types/node": ^14.14.41
     graphql: ^15.5.0
     graphql-request: ^3.4.0
@@ -1715,11 +1715,11 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-proxy@^1.0.0-alpha.6, @jujulego/janus-proxy@workspace:libs/janus-proxy":
+"@jujulego/janus-proxy@^1.0.0-alpha.7, @jujulego/janus-proxy@workspace:libs/janus-proxy":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-proxy@workspace:libs/janus-proxy"
   dependencies:
-    "@jujulego/janus-config": ^1.0.0-alpha.0
+    "@jujulego/janus-config": ^1.0.0-alpha.1
     "@nestjs/cli": ^7.6.0
     "@nestjs/common": ^7.6.15
     "@nestjs/core": ^7.6.15
@@ -1760,8 +1760,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus@workspace:apps/janus"
   dependencies:
-    "@jujulego/janus-config": ^1.0.0-alpha.0
-    "@jujulego/janus-proxy": ^1.0.0-alpha.6
+    "@jujulego/janus-config": ^1.0.0-alpha.1
+    "@jujulego/janus-proxy": ^1.0.0-alpha.7
     "@types/node": ^14.14.36
     "@types/yargs": ^16
     chalk: ^4.1.1

@@ -23,6 +23,7 @@ jobs:
       matrix:
         package:
           - "@jujulego/janus"
+          - "@jujulego/janus-config"
           - "@jujulego/janus-gate"
           - "@jujulego/janus-proxy"
 

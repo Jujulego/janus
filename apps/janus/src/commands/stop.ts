@@ -1,7 +1,7 @@
 import { gql, GraphQLClient } from 'graphql-request';
 import { CommandBuilder } from 'yargs';
 
-import { DEFAULT_CONTROL_PORT, JanusServer } from '@jujulego/janus-proxy';
+import { JanusConfig } from '@jujulego/janus-config';
 
 import { commandWrapper, CommonArgs } from '../helpers';
 
@@ -14,10 +14,10 @@ export const builder: CommandBuilder = {};
 export const handler = commandWrapper(async (args: CommonArgs) => {
   try {
     // Load config
-    const config = await JanusServer.loadConfigFile(args.config);
+    const config = await JanusConfig.loadFile(args.config);
 
     // Shutdown
-    const client = new GraphQLClient(`http://localhost:${config.control?.port || DEFAULT_CONTROL_PORT}/graphql`)
+    const client = new GraphQLClient(`http://localhost:${config.control.port}/graphql`)
     await client.request(gql`
       mutation Shutdown {
           shutdown

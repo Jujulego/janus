@@ -21,7 +21,7 @@ export class GateResolver {
     @Args('service') service: string,
     @Args('gate') name: string
   ): Gate | null {
-    return this._service.getService(service)?.getGate(name) || null;
+    return this._service.getGate(service, name);
   }
 
   @Query(() => Gate, { nullable: true })
@@ -37,14 +37,7 @@ export class GateResolver {
     @Args('service') service: string,
     @Args('gate') name: string
   ): Promise<Gate | null> {
-    const gate = this.gate(service, name);
-
-    if (gate) {
-      gate.enabled = true;
-      await this._pubsub.publish(`${service}.gates`, { gate });
-    }
-
-    return gate;
+    return this._service.enableGate(service, name);
   }
 
   @Mutation(() => Gate, { nullable: true })
@@ -52,14 +45,7 @@ export class GateResolver {
     @Args('service') service: string,
     @Args('gate') name: string
   ): Promise<Gate | null> {
-    const gate = this.gate(service, name);
-
-    if (gate) {
-      gate.enabled = false;
-      await this._pubsub.publish(`${service}.gates`, { gate });
-    }
-
-    return gate;
+    return this._service.disableGate(service, name);
   }
 
   // Subscriptions

@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus-proxy",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@jujulego/janus-config": "^1.0.0-alpha.1",
-    "@jujulego/janus-types": "^1.0.0-alpha.0",
+    "@jujulego/janus-types": "^1.0.0-alpha.1",
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
     "@nestjs/graphql": "^7.10.6",

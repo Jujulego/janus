@@ -1,12 +1,16 @@
 import { fork } from 'child_process';
 import { gql, GraphQLClient } from 'graphql-request';
+import { Observable, SubscriptionClient } from 'subscriptions-transport-ws';
+import WebSocket from 'ws';
 
-import { JanusConfig } from "@jujulego/janus-config";
+import { JanusConfig } from '@jujulego/janus-config';
 
 // Class
 export class JanusGate {
   // Attributes
-  private readonly client = new GraphQLClient(`http://localhost:${this.config.control.port}/graphql`);
+  private readonly _endpoint = `http://localhost:${this.config.control.port}/graphql`;
+  private readonly _qclient = new GraphQLClient(this._endpoint);
+  private readonly _sclient = new SubscriptionClient(this._endpoint, { lazy: true, reconnect: true }, WebSocket);
 
   // Constructor
   constructor(readonly service: string, readonly name: string, readonly config: JanusConfig) {}
@@ -52,7 +56,7 @@ export class JanusGate {
 
   async enable(): Promise<void> {
     return await this.autoStart(async () => {
-      const { enableGate: data } = await this.client.request<{ enableGate?: { enabled: boolean } }>(
+      const { enableGate: data } = await this._qclient.request<{ enableGate?: { enabled: boolean } }>(
         gql`
             mutation EnableGate($service: String!, $gate: String!) {
                 enableGate(service: $service, gate: $gate) {
@@ -72,6 +76,24 @@ export class JanusGate {
 
       if (!data.enabled) {
         throw new Error(`Gate ${this.service}.${this.name} not enabled`);
+      }
+    });
+  }
+
+  // Properties
+  get gate$(): Observable<unknown> {
+    return this._sclient.request({
+      query: gql`
+        subscription Gate($service: String!, $gate: String!) {
+            gate(service: $service, gate: $gate) {
+                name
+                enabled
+            }
+        }
+      `,
+      variables: {
+        service: this.service,
+        gate: this.name
       }
     });
   }

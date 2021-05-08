@@ -1707,11 +1707,14 @@ __metadata:
     "@jujulego/janus-config": ^1.0.0-alpha.1
     "@jujulego/janus-proxy": ^1.0.0-alpha.7
     "@types/node": ^14.14.41
+    "@types/ws": ^7
     graphql: ^15.5.0
     graphql-request: ^3.4.0
     rxjs: ^7.0.0
+    subscriptions-transport-ws: ^0.9.18
     ts-node: ^9.1.1
     typescript: ^4.2.3
+    ws: ^7.4.5
   languageName: unknown
   linkType: soft
 
@@ -2553,6 +2556,15 @@ __metadata:
   dependencies:
     "@types/node": "*"
   checksum: d826bdc282b78ef5ad60610dbb87674034c21978d86f00f5a8bff5096ff2ad5d1720c7e0eea0cc9c35987f214b20b7c5af6ae8b353ab2be07c1ba2c31cab284b
+  languageName: node
+  linkType: hard
+
+"@types/ws@npm:^7":
+  version: 7.4.2
+  resolution: "@types/ws@npm:7.4.2"
+  dependencies:
+    "@types/node": "*"
+  checksum: 29fc34b61cc039c0f51e835ff8746faf7b98186e6bf785fb099c9fb006ae79825312e62a0c1e856b405543ae6302e196d1a1d372753dbcdce59ab5b72011a9f2
   languageName: node
   linkType: hard
 
@@ -10045,7 +10057,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"subscriptions-transport-ws@npm:^0.9.11, subscriptions-transport-ws@npm:^0.9.16":
+"subscriptions-transport-ws@npm:^0.9.11, subscriptions-transport-ws@npm:^0.9.16, subscriptions-transport-ws@npm:^0.9.18":
   version: 0.9.18
   resolution: "subscriptions-transport-ws@npm:0.9.18"
   dependencies:
@@ -11131,7 +11143,7 @@ typescript@4.2.3:
   languageName: node
   linkType: hard
 
-"ws@npm:7.4.5, ws@npm:^7.4.4":
+"ws@npm:7.4.5, ws@npm:^7.4.4, ws@npm:^7.4.5":
   version: 7.4.5
   resolution: "ws@npm:7.4.5"
   peerDependencies:

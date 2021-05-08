@@ -11,12 +11,13 @@ import { ServicesModule } from './services/services.module';
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: process.env.NODE_ENV !== 'local' || 'schema.gql',
+      installSubscriptionHandlers: true
     }),
 
     ConfigModule,
     ControlModule,
     ProxyModule,
     ServicesModule
-  ],
+  ]
 })
 export class AppModule {}

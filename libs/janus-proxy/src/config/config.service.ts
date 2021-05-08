@@ -25,10 +25,10 @@ export class ConfigService {
   }
 
   get proxy() {
-    return this.config.proxy;
+    return this._config.proxy;
   }
 
   get control() {
-    return this.config.control;
+    return this._config.control;
   }
 }

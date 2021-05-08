@@ -2,10 +2,11 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { plainToClass } from 'class-transformer';
 
 import { IGateConfig } from '@jujulego/janus-config';
+import { IGate } from '@jujulego/janus-types';
 
 // Model
 @ObjectType()
-export class Gate {
+export class Gate implements IGate {
   // Attributes
   @Field()
   name: string;

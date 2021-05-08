@@ -9,6 +9,7 @@
             <path value="file://$PROJECT_DIR$/apps/janus/src" />
             <path value="file://$PROJECT_DIR$/libs/janus-proxy/src" />
             <path value="file://$PROJECT_DIR$/libs/janus-config/src" />
+            <path value="file://$PROJECT_DIR$/libs/janus-types/src" />
           </resourceRoots>
         </entryData>
       </entry>

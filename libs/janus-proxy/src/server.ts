@@ -60,7 +60,7 @@ export class JanusServer {
   async start(config: string | JanusConfig): Promise<void> {
     // Load configuration
     if (typeof config === 'string') {
-      config = await JanusConfig.loadFile(config);
+      config = await JanusConfig.loadFile(config, { logger: Logger });
     }
 
     this.config.config = config;

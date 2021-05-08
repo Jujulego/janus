@@ -1711,6 +1711,7 @@ __metadata:
     "@types/ws": ^7
     graphql: ^15.5.0
     graphql-request: ^3.4.0
+    graphql-tag: ^2.12.4
     rxjs: ^7.0.0
     subscriptions-transport-ws: ^0.9.18
     ts-node: ^9.1.1

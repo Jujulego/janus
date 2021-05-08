@@ -1706,6 +1706,7 @@ __metadata:
   dependencies:
     "@jujulego/janus-config": ^1.0.0-alpha.1
     "@jujulego/janus-proxy": ^1.0.0-alpha.7
+    "@jujulego/janus-types": ^1.0.0-alpha.0
     "@types/node": ^14.14.41
     "@types/ws": ^7
     graphql: ^15.5.0
@@ -1723,6 +1724,7 @@ __metadata:
   resolution: "@jujulego/janus-proxy@workspace:libs/janus-proxy"
   dependencies:
     "@jujulego/janus-config": ^1.0.0-alpha.1
+    "@jujulego/janus-types": ^1.0.0-alpha.0
     "@nestjs/cli": ^7.6.0
     "@nestjs/common": ^7.6.15
     "@nestjs/core": ^7.6.15
@@ -1760,11 +1762,13 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-types@workspace:libs/janus-types":
+"@jujulego/janus-types@^1.0.0-alpha.0, @jujulego/janus-types@workspace:libs/janus-types":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-types@workspace:libs/janus-types"
   dependencies:
     "@types/node": ^14.14.41
+    graphql: ^15.5.0
+    graphql-tag: ^2.12.4
     typescript: ^4.2.3
   languageName: unknown
   linkType: soft
@@ -5944,6 +5948,17 @@ __metadata:
   peerDependencies:
     graphql: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
   checksum: ab3a7cdf57fa213d4f9efd1229476042f7d640376c0389656be43f32d34201f5ed90e60c3a54bcdb12712688136d6d9637bd45964b63f94a9a2c131b0fa78ef5
+  languageName: node
+  linkType: hard
+
+"graphql-tag@npm:^2.12.4":
+  version: 2.12.4
+  resolution: "graphql-tag@npm:2.12.4"
+  dependencies:
+    tslib: ^2.1.0
+  peerDependencies:
+    graphql: ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0
+  checksum: 01623ede3509a46becd80cdcff81b63248f3bc5dc44b4e7df54730b5c77101c5b44d49ed7d1fbb83a5de0ad21fda59fca33f0f2d9ea5c0d95884aba6d15aeab9
   languageName: node
   linkType: hard
 

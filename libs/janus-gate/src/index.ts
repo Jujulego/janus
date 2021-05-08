@@ -1,9 +1,12 @@
 import { fork } from 'child_process';
 import { gql, GraphQLClient } from 'graphql-request';
-import { Observable, SubscriptionClient } from 'subscriptions-transport-ws';
+import { SubscriptionClient } from 'subscriptions-transport-ws';
+import { Observable, Subject } from 'rxjs';
 import WebSocket from 'ws';
 
 import { JanusConfig } from '@jujulego/janus-config';
+import { IGate, GateFragment } from '@jujulego/janus-types';
+import { map } from 'rxjs/operators';
 
 // Class
 export class JanusGate {
@@ -81,20 +84,45 @@ export class JanusGate {
   }
 
   // Properties
-  get gate$(): Observable<unknown> {
-    return this._sclient.request({
+  get gate$(): Observable<IGate> {
+    // Request
+    const obs = this._sclient.request({
       query: gql`
         subscription Gate($service: String!, $gate: String!) {
             gate(service: $service, gate: $gate) {
-                name
-                enabled
+                ...Gate
             }
         }
+        
+        ${GateFragment}
       `,
       variables: {
         service: this.service,
         gate: this.name
       }
     });
+
+    // Build observable
+    const sub = new Subject<IGate>();
+
+    obs.subscribe({
+      next(value) {
+        sub.next(value.data as IGate);
+      },
+      error(error) {
+        sub.error(error);
+      },
+      complete() {
+        sub.complete();
+      }
+    });
+
+    return sub.asObservable();
+  }
+
+  get enabled$(): Observable<boolean> {
+    return this.gate$.pipe(
+      map(gate => gate.enabled)
+    );
   }
 }

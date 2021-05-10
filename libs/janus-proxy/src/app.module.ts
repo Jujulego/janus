@@ -5,6 +5,7 @@ import { ConfigModule } from './config/config.module';
 import { ControlModule } from './control/control.module';
 import { ProxyModule } from './proxy/proxy.module';
 import { ServicesModule } from './services/services.module';
+import { FrontModule } from './front.module';
 
 // Module
 @Module({
@@ -16,6 +17,7 @@ import { ServicesModule } from './services/services.module';
 
     ConfigModule,
     ControlModule,
+    FrontModule.forRoot(),
     ProxyModule,
     ServicesModule
   ]

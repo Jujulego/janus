@@ -43,7 +43,7 @@ jobs:
         with:
           node-version: 14.x
 
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2.1.5
         if: steps.affected.outputs.affected
         with:
           path: .yarn/cache

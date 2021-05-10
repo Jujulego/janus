@@ -12,6 +12,7 @@
       <excludeFolder url="file://$MODULE_DIR$/libs/janus-proxy/dist" />
       <excludeFolder url="file://$MODULE_DIR$/libs/janus-config/dist" />
       <excludeFolder url="file://$MODULE_DIR$/libs/janus-types/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/libs/janus-front/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

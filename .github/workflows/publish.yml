@@ -10,7 +10,7 @@ jobs:
     environment: npm
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v2.3.4
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2.1.5
@@ -18,7 +18,7 @@ jobs:
           node-version: 14.x
           registry-url: https://registry.npmjs.org
 
-      - uses: actions/cache@v2.1.4
+      - uses: actions/cache@v2.1.5
         with:
           path: .yarn/cache
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
@@ -28,7 +28,7 @@ jobs:
         run: yarn install
 
       - name: Build
-        run: yarn workspaces foreach --no-private -ptv run build
+        run: yarn workspaces foreach -pv --no-private --topological-dev run build
 
       - name: Apply version update
         run: yarn version apply --all
@@ -38,7 +38,12 @@ jobs:
           git config --global user.name 'Boobrie'
           git config --global user.email 'boobrie@users.noreply.github.com'
 
-          git commit -am "update(workspace): update version numbers"
+          if `git diff --quiet --exit-code`
+          then
+            echo "::warning::Nothing changed !"
+          else
+            git commit -am "update(workspace): update version numbers"
+          fi
 
       - name: Publish
         run: yarn workspaces foreach --no-private npm publish --access public --tolerate-republish

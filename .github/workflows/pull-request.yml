@@ -56,4 +56,4 @@ jobs:
 
       - name: Build
         if: steps.affected.outputs.affected
-        run: yarn workspace ${{ matrix.package }} workspaces foreach -pRtv run build
+        run: yarn workspace ${{ matrix.package }} workspaces foreach -pvR --topological-dev run build

@@ -9,6 +9,11 @@ import WebSocket from 'ws';
 import { JanusConfig } from '@jujulego/janus-config';
 import { IGate, GateFragment } from '@jujulego/janus-types';
 
+// Types
+interface JanusGateOptions {
+  autoStart?: boolean;
+}
+
 // Class
 export class JanusGate {
   // Attributes
@@ -17,11 +22,16 @@ export class JanusGate {
   private readonly _sclient = new SubscriptionClient(this._endpoint, { lazy: true, reconnect: true }, WebSocket);
 
   // Constructor
-  constructor(readonly service: string, readonly name: string, readonly config: JanusConfig) {}
+  constructor(
+    readonly service: string,
+    readonly name: string,
+    readonly config: JanusConfig,
+    readonly options: JanusGateOptions = {}
+  ) {}
 
   // Statics
-  static async fromConfigFile(service: string, name: string, config: string): Promise<JanusGate> {
-    return new JanusGate(service, name, await JanusConfig.loadFile(config));
+  static async fromConfigFile(service: string, name: string, config: string, options?: JanusGateOptions): Promise<JanusGate> {
+    return new JanusGate(service, name, await JanusConfig.loadFile(config), options);
   }
 
   // Methods
@@ -29,7 +39,7 @@ export class JanusGate {
     try {
       return await fun();
     } catch (error) {
-      if (error.errno === 'ECONNREFUSED') {
+      if (error.errno === 'ECONNREFUSED' && (this.options.autoStart ?? false)) {
         await this.start();
         return await fun();
       }
@@ -39,6 +49,7 @@ export class JanusGate {
   }
 
   start(): Promise<void> {
+    console.log('Starting proxy server ...');
     return new Promise((resolve, reject) => {
       const child = fork('./proxy.js', [], {
         cwd: __dirname,
@@ -46,11 +57,12 @@ export class JanusGate {
         stdio: 'ignore'
       });
 
-      child.on('message', (msg: string | Error) => {
+      child.on('message', (msg: 'started' | Error) => {
         if (msg === 'started') {
+          console.log('Proxy server started');
           resolve();
         } else {
-          reject(msg);
+          reject(new Error(msg.message));
         }
       });
 

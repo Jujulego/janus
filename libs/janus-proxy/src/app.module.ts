@@ -11,7 +11,7 @@ import { FrontModule } from './front.module';
 @Module({
   imports: [
     GraphQLModule.forRoot({
-      autoSchemaFile: process.env.NODE_ENV !== 'local' || 'schema.gql',
+      autoSchemaFile: process.env.NODE_ENV !== 'development' || 'schema.gql',
       installSubscriptionHandlers: true
     }),
 

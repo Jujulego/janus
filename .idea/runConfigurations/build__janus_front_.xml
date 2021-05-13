@@ -5,6 +5,7 @@
     <scripts>
       <script value="build" />
     </scripts>
+    <arguments value="--watch" />
     <node-interpreter value="project" />
     <envs />
     <method v="2" />

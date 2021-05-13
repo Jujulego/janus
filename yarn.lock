@@ -6964,6 +6964,7 @@ __metadata:
   resolution: "janus@workspace:."
   dependencies:
     "@nestjs/cli": ^7.6.0
+    "@nestjs/schematics": ^7.3.0
   languageName: unknown
   linkType: soft
 

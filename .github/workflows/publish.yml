@@ -38,7 +38,12 @@ jobs:
           git config --global user.name 'Boobrie'
           git config --global user.email 'boobrie@users.noreply.github.com'
 
-          git commit -am "update(workspace): update version numbers"
+          if `git diff --quiet --exit-code`
+          then
+            echo "::warning::Nothing changed !"
+          else
+            git commit -am "update(workspace): update version numbers"
+          fi
 
       - name: Publish
         run: yarn workspaces foreach --no-private npm publish --access public --tolerate-republish

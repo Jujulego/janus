@@ -4,6 +4,7 @@ import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphq
 import { GraphQLSchema } from 'graphql';
 import { Subject } from 'rxjs';
 import { exhaustMap, filter } from 'rxjs/operators';
+import morgan from 'morgan';
 
 import { JanusConfig } from '@jujulego/janus-config';
 
@@ -67,6 +68,8 @@ export class JanusServer {
 
     // Start server
     this.app.enableShutdownHooks();
+
+    this.app.use(morgan('dev'));
 
     await this.app.listen(this.config.control.port, () => {
       Logger.log(`Server listening at http://localhost:${this.config.control.port}`);

@@ -1,10 +1,10 @@
-// import React from 'react';
+import { Typography } from '@material-ui/core';
 import { NextPage } from 'next';
 
 // Page
 const Home: NextPage = () => {
   return (
-    <h1>Hello, world!</h1>
+    <Typography variant="h1">Hello, world!</Typography>
   );
 };
 

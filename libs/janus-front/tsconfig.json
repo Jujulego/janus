@@ -10,6 +10,6 @@
     "resolveJsonModule": true
   },
   "exclude": [
-    "src/app/**/*.ts"
+    "app"
   ]
 }

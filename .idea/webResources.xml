@@ -12,6 +12,7 @@
             <path value="file://$PROJECT_DIR$/libs/janus-types/src" />
             <path value="file://$PROJECT_DIR$/libs/janus-front/src" />
             <path value="file://$PROJECT_DIR$/libs/janus-gate/scripts" />
+            <path value="file://$PROJECT_DIR$/libs/janus-front/app" />
           </resourceRoots>
         </entryData>
       </entry>

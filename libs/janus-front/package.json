@@ -5,7 +5,9 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "scripts": {
-    "build": "nest build && next build src/app",
+    "build": "yarn build:front && yarn build:server",
+    "build:front": "next build app",
+    "build:server": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test:unit": "jest -c jest.config.unit.json",

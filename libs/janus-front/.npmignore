@@ -2,6 +2,10 @@
 /src
 /tests
 /node_modules
+/app/*
+!/app/.next
+!/app/next.config.js
+!/app/public
 
 # Logs
 logs

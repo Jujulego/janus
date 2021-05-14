@@ -2,10 +2,9 @@
   "extends": "./tsconfig.json",
   "exclude": [
     "node_modules",
+    "app",
     "test",
     "dist",
-    "**/*spec.ts",
-    "src/app/**/*.ts",
-    "src/app/**/*.tsx"
+    "**/*spec.ts"
   ]
 }

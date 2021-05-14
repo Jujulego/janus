@@ -1,5 +1,7 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { filter } from 'rxjs/operators';
+
+import { Logger } from '../logger';
 
 import { GatesService } from './gates.service';
 import { Service } from './service.model';

@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { INestApplication, Logger } from '@nestjs/common';
+import { INestApplication } from '@nestjs/common';
 import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphql';
 import { GraphQLSchema } from 'graphql';
 import { Subject } from 'rxjs';
@@ -13,6 +13,7 @@ import { GateResolver } from './services/gate.resolver';
 import { ServiceResolver } from './services/service.resolver';
 import { ConfigService } from './config/config.service';
 import { ControlService } from './control/control.service';
+import { Logger } from './logger';
 
 // Server
 export class JanusServer {
@@ -30,7 +31,7 @@ export class JanusServer {
 
   // Statics
   static async createServer(): Promise<JanusServer> {
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule, { logger: new Logger() });
     return new JanusServer(app);
   }
 

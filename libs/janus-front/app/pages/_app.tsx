@@ -6,6 +6,7 @@ import createCache from '@emotion/cache';
 import Head from 'next/head';
 
 import { theme } from '../src/theme';
+import { Navbar } from '../src/layout/Navbar';
 
 // Emotion cache
 export const cache = createCache({ key: 'css', prepend: true });
@@ -32,7 +33,9 @@ export default function App(props: AppProps) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <Navbar>
+          <Component {...pageProps} />
+        </Navbar>
       </ThemeProvider>
     </CacheProvider>
   );

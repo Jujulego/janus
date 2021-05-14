@@ -60,7 +60,7 @@ export default class MyDocument extends Document {
   // Methods
   render() {
     return (
-      <Html lang="en">
+      <Html lang="fr">
         <Head>
           <meta name="theme-color" content={theme.palette.primary.main} />
           <link

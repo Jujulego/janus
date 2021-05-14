@@ -7,15 +7,19 @@ export const theme = createTheme({
   palette: {
     primary: amber,
     secondary: blue,
-    // type: dark ? 'dark' : 'light',
+    mode: "dark"
   },
-  // props: {
-  //   MuiCardHeader: {
-  //     titleTypographyProps: { variant: "h6" }
-  //   },
-  //   MuiDialog: {
-  //     maxWidth: "xs",
-  //     fullWidth: true
-  //   }
-  // }
+  components: {
+    MuiCardHeader: {
+      defaultProps: {
+        titleTypographyProps: { variant: "h6" }
+      }
+    },
+    MuiDialog: {
+      defaultProps: {
+        maxWidth: 'xs',
+        fullWidth: true
+      }
+    }
+  }
 }, frFR);

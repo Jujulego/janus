@@ -66,11 +66,21 @@ export class JanusServer {
 
     this.config.config = config;
 
-    // Start server
+    // Setup
     this.app.enableShutdownHooks();
 
-    this.app.use(morgan('dev'));
+    if (process.env.NODE_ENV === 'development') {
+      // Log access requests
+      this.app.use(morgan('dev', {
+        stream: {
+          write(str: string) {
+            Logger.log(str.trim());
+          }
+        }
+      }));
+    }
 
+    // Start server
     await this.app.listen(this.config.control.port, () => {
       Logger.log(`Server listening at http://localhost:${this.config.control.port}`);
       this._started.next();

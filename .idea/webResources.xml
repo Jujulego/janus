@@ -5,14 +5,12 @@
       <entry url="file://$PROJECT_DIR$">
         <entryData>
           <resourceRoots>
-            <path value="file://$PROJECT_DIR$/libs/janus-gate/src" />
-            <path value="file://$PROJECT_DIR$/apps/janus/src" />
-            <path value="file://$PROJECT_DIR$/libs/janus-proxy/src" />
-            <path value="file://$PROJECT_DIR$/libs/janus-config/src" />
-            <path value="file://$PROJECT_DIR$/libs/janus-front/src" />
-            <path value="file://$PROJECT_DIR$/libs/janus-gate/scripts" />
-            <path value="file://$PROJECT_DIR$/libs/janus-front/app" />
-            <path value="file://$PROJECT_DIR$/libs/janus-common/src" />
+            <path value="file://$PROJECT_DIR$/apps/janus" />
+            <path value="file://$PROJECT_DIR$/libs/janus-common" />
+            <path value="file://$PROJECT_DIR$/libs/janus-config" />
+            <path value="file://$PROJECT_DIR$/libs/janus-front" />
+            <path value="file://$PROJECT_DIR$/libs/janus-gate" />
+            <path value="file://$PROJECT_DIR$/libs/janus-proxy" />
           </resourceRoots>
         </entryData>
       </entry>

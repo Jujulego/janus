@@ -1908,9 +1908,12 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-common@workspace:libs/janus-common"
   dependencies:
+    "@nestjs/common": ^7.6.15
     "@types/node": ^14.14.41
     graphql: ^15.5.0
     graphql-tag: ^2.12.4
+    reflect-metadata: ^0.1.13
+    rxjs: ^6.6.6
     typescript: ^4.2.3
   languageName: unknown
   linkType: soft
@@ -1935,6 +1938,7 @@ __metadata:
     "@emotion/react": ^11.4.0
     "@emotion/server": ^11.4.0
     "@emotion/styled": ^11.3.0
+    "@jujulego/janus-common": ^1.0.0-alpha.0
     "@material-ui/core": ^5.0.0-alpha.33
     "@material-ui/icons": ^5.0.0-alpha.29
     "@material-ui/styles": ^5.0.0-alpha.33

@@ -1,5 +1,7 @@
 import { Module } from '@nestjs/common';
 
+import { PluginDataService } from '@jujulego/janus-common';
+
 import { ConfigModule } from '../config/config.module';
 import { PubSubModule } from '../pubsub.module';
 
@@ -19,10 +21,13 @@ import { ServiceResolver } from './service.resolver';
     ResolverService,
 
     GateResolver,
-    ServiceResolver
+    ServiceResolver,
+
+    { provide: PluginDataService, useExisting: GatesService }
   ],
   exports: [
-    ResolverService
+    ResolverService,
+    PluginDataService
   ]
 })
-export class ServicesModule {}
+export class GatesModule {}

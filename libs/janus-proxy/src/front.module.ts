@@ -1,17 +1,19 @@
 import { DynamicModule, Logger, Module } from '@nestjs/common';
 
+import { GatesModule } from './gates/gates.module';
+
 // Module
 @Module({})
 export class FrontModule {
   // Methods
   static async forRoot(): Promise<DynamicModule> {
     try {
-      const { JanusFrontModule } = await import('@jujulego/janus-front');
+      const { default: JanusFrontModule } = await import('@jujulego/janus-front');
 
       return {
         module: FrontModule,
         imports: [
-          JanusFrontModule
+          JanusFrontModule.forRoot(GatesModule)
         ]
       };
     } catch (error) {

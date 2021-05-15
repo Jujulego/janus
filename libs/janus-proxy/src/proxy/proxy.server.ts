@@ -3,7 +3,7 @@ import http from 'http';
 import httpProxy from 'http-proxy';
 
 import { ConfigService } from '../config/config.service';
-import { ResolverService } from '../services/resolver.service';
+import { ResolverService } from '../gates/resolver.service';
 
 // Service
 @Injectable()

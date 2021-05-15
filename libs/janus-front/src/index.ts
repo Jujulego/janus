@@ -1,1 +1,3 @@
-export { JanusFrontModule } from './janus-front.module';
+import { JanusFrontModule } from './janus-front.module';
+
+export default JanusFrontModule;

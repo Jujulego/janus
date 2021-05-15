@@ -10,8 +10,8 @@ import { JanusConfig } from '@jujulego/janus-config';
 
 import { AppModule } from './app.module';
 import { ServerResolver } from './control/server.resolver';
-import { GateResolver } from './services/gate.resolver';
-import { ServiceResolver } from './services/service.resolver';
+import { GateResolver } from './gates/gate.resolver';
+import { ServiceResolver } from './gates/service.resolver';
 import { ConfigService } from './config/config.service';
 import { ControlService } from './control/control.service';
 

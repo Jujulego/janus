@@ -1,4 +1,6 @@
-import { Module } from '@nestjs/common';
+import { DynamicModule, Module } from '@nestjs/common';
+
+import { PluginModule } from '@jujulego/janus-common';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -12,4 +14,14 @@ import { AppService } from './app.service';
     AppService
   ]
 })
-export class JanusFrontModule {}
+export class JanusFrontModule extends PluginModule {
+  // Statics
+  static forRoot(DataModule: any): DynamicModule {
+    return {
+      module: JanusFrontModule,
+      imports: [
+        DataModule
+      ]
+    };
+  }
+}

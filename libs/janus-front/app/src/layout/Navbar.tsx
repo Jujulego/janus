@@ -8,7 +8,10 @@ const useStyles = makeStyles({
     flex: 1,
   },
   content: {
-    minHeight: '100vh'
+    minHeight: '100vh',
+
+    display: 'flex',
+    flexDirection: 'column'
   }
 });
 

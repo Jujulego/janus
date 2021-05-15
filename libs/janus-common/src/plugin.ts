@@ -4,7 +4,7 @@ import { IService } from './service';
 
 // Service
 @Injectable()
-export abstract class PluginDataService {
+export abstract class DataService {
   // Methods
   abstract listServices(): IService[];
 }

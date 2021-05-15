@@ -1,8 +1,10 @@
 import { Typography } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
+import { useEffect } from 'react';
 
 import { IService } from '@jujulego/janus-common';
-import { useEffect } from 'react';
+
+import { getDataService } from '../src/data';
 
 // Props
 export interface HomeProps {
@@ -10,7 +12,7 @@ export interface HomeProps {
 }
 
 export const getServerSideProps: GetServerSideProps<HomeProps> = async (ctx) => {
-  const data = (ctx.req as any).data;
+  const data = getDataService(ctx);
 
   return {
     props: {

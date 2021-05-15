@@ -1,12 +1,12 @@
 import { createTheme } from '@material-ui/core';
-import { amber, blue } from '@material-ui/core/colors';
+import { amber, indigo } from '@material-ui/core/colors';
 import { frFR } from '@material-ui/core/locale';
 
 // Themes
 export const theme = createTheme({
   palette: {
-    primary: amber,
-    secondary: blue,
+    primary: indigo,
+    secondary: amber,
     mode: "dark"
   },
   components: {

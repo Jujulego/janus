@@ -13,8 +13,8 @@
     "test:e2e": "jest -c jest.config.e2e.json"
   },
   "dependencies": {
+    "@jujulego/janus-common": "^1.0.0-alpha.0",
     "@jujulego/janus-config": "^1.0.0-alpha.1",
-    "@jujulego/janus-types": "^1.0.0-alpha.1",
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
     "@nestjs/graphql": "^7.10.6",

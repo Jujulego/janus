@@ -23,11 +23,11 @@ jobs:
       matrix:
         package:
           - "@jujulego/janus"
+          - "@jujulego/janus-common"
           - "@jujulego/janus-config"
           - "@jujulego/janus-front"
           - "@jujulego/janus-gate"
           - "@jujulego/janus-proxy"
-          - "@jujulego/janus-types"
 
     steps:
       - uses: actions/checkout@v2.3.4

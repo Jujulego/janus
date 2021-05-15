@@ -2,7 +2,7 @@ import { Field, Int, ObjectType } from '@nestjs/graphql';
 import { plainToClass } from 'class-transformer';
 
 import { IGateConfig } from '@jujulego/janus-config';
-import { IGate } from '@jujulego/janus-types';
+import { IGate } from '../../../janus-common';
 
 // Model
 @ObjectType()

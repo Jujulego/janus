@@ -5,7 +5,7 @@ import { AppInterceptor } from './app.interceptor';
 import { AppService } from './app.service';
 
 // Controller
-@Controller('/app')
+@Controller()
 @UseInterceptors(AppInterceptor)
 export class AppController {
   // Constructor
@@ -19,7 +19,7 @@ export class AppController {
     await this.app.server.render(req, res, '/', query);
   }
 
-  @Get('*')
+  @Get('/_next/*')
   async statics(@Req() req: Request, @Res() res: Response): Promise<void> {
     const handler = this.app.server.getRequestHandler();
     await handler(req, res);

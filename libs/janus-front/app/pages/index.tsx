@@ -25,7 +25,7 @@ const Home: NextPage<HomeProps> = (props) => {
           }
         >
           { services.map((service) => (
-            <ListItem button>
+            <ListItem button key={service.name}>
               <ListItemText
                 primary={service.name}
                 secondary={service.url}

@@ -11,7 +11,7 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
   // Methods
   async onModuleInit(): Promise<void> {
     this._server = next({
-      dev: process.env.NODE_ENV === 'development',
+      dev: process.env.JANUS_FRONT_DEV_MODE === 'true',
       dir: path.join(__dirname, '../app')
     });
     await this._server.prepare();

@@ -1,18 +1,28 @@
-import { Divider, Grid, List, ListItem, ListItemText, ListSubheader, Typography } from '@material-ui/core';
+import { Divider, Grid, List, ListItem, ListItemText, ListSubheader, makeStyles, Typography } from '@material-ui/core';
 import { classToPlain } from 'class-transformer';
 import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { useMemo } from 'react';
 
 import { IService } from '@jujulego/janus-common';
 
 import { getDataService } from '../src/data';
-import { useMemo } from 'react';
 
 // Page
 export interface HomeProps {
   services: IService[];
 }
+
+const useStyles = makeStyles(({ palette }) => ({
+  url: {
+    padding: 2,
+    borderRadius: 2,
+
+    background: `${palette.primary.light}80`,
+    color: palette.getContrastText(palette.primary.light),
+  }
+}));
 
 const Home: NextPage<HomeProps> = (props) => {
   const { services } = props;
@@ -26,6 +36,8 @@ const Home: NextPage<HomeProps> = (props) => {
   }, [services, router.query]);
 
   // Render
+  const styles = useStyles();
+
   return (
     <Grid container sx={{ flex: 1 }}>
       <Grid item xs={2}>
@@ -42,7 +54,9 @@ const Home: NextPage<HomeProps> = (props) => {
               <ListItem button component="a">
                 <ListItemText
                   primary={service.name}
-                  secondary={service.url}
+                  secondary={(
+                    <span className={styles.url}>{ service.url }</span>
+                  )}
                 />
               </ListItem>
             </Link>

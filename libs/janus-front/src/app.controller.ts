@@ -19,7 +19,7 @@ export class AppController {
     await this.app.server.render(req, res, '/', query);
   }
 
-  @Get('/_next/*')
+  @Get(['/_next/*', '/__nextjs_original-stack-frame'])
   async statics(@Req() req: Request, @Res() res: Response): Promise<void> {
     const handler = this.app.server.getRequestHandler();
     await handler(req, res);

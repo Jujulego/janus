@@ -1,4 +1,4 @@
-import { Divider, Grid, List, ListItem, ListItemText, ListSubheader, makeStyles, Typography } from '@material-ui/core';
+import { Divider, Grid, List, ListItem, ListItemText, ListSubheader, makeStyles, Paper } from '@material-ui/core';
 import { classToPlain } from 'class-transformer';
 import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
@@ -8,12 +8,14 @@ import { useMemo } from 'react';
 import { IService } from '@jujulego/janus-common';
 
 import { getDataService } from '../src/data';
+import { ServiceHeader } from '../src/services/ServiceHeader';
 
-// Page
+// Types
 export interface HomeProps {
   services: IService[];
 }
 
+// Styles
 const useStyles = makeStyles(({ palette }) => ({
   url: {
     padding: 2,
@@ -24,6 +26,7 @@ const useStyles = makeStyles(({ palette }) => ({
   }
 }));
 
+// Page
 const Home: NextPage<HomeProps> = (props) => {
   const { services } = props;
 
@@ -41,33 +44,34 @@ const Home: NextPage<HomeProps> = (props) => {
   return (
     <Grid container sx={{ flex: 1 }}>
       <Grid item xs={2}>
-        <List
-          component="nav"
-          subheader={
-            <ListSubheader component="span">
-              Services
-            </ListSubheader>
-          }
-        >
-          { services.map((service) => (
-            <Link key={service.name} href={`/?service=${service.name}`} shallow passHref>
-              <ListItem button component="a">
-                <ListItemText
-                  primary={service.name}
-                  secondary={(
-                    <span className={styles.url}>{ service.url }</span>
-                  )}
-                />
-              </ListItem>
-            </Link>
-          )) }
-        </List>
+        <Paper square sx={{ height: '100%' }}>
+          <List
+            component="nav"
+            subheader={
+              <ListSubheader component="span" sx={{ bgcolor: 'transparent' }}>
+                Services
+              </ListSubheader>
+            }
+          >
+            { services.map((service) => (
+              <Link key={service.name} href={`/?service=${service.name}`} shallow passHref>
+                <ListItem button component="a">
+                  <ListItemText
+                    primary={service.name}
+                    secondary={service.url}
+                    secondaryTypographyProps={{ color: 'primary.light' }}
+                  />
+                </ListItem>
+              </Link>
+            )) }
+          </List>
+        </Paper>
       </Grid>
-      <Divider orientation="vertical" flexItem />
-      <Grid item xs>
-        <Typography>{ service?.name }</Typography>
-        <Typography>{ service?.url }</Typography>
-      </Grid>
+      { service && (
+        <Grid item xs p={2}>
+          <ServiceHeader service={service} />
+        </Grid>
+      ) }
     </Grid>
   );
 };

@@ -1,4 +1,14 @@
-import { Divider, Grid, List, ListItem, ListItemText, ListSubheader, makeStyles, Paper } from '@material-ui/core';
+import {
+  Divider,
+  Grid,
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader,
+  makeStyles,
+  NoSsr,
+  Paper
+} from '@material-ui/core';
 import { classToPlain } from 'class-transformer';
 import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
@@ -9,6 +19,7 @@ import { IService } from '@jujulego/janus-common';
 
 import { getDataService } from '../src/data';
 import { ServiceHeader } from '../src/services/ServiceHeader';
+import { ServiceGraph } from '../src/services/ServiceGraph';
 
 // Types
 export interface HomeProps {
@@ -68,8 +79,18 @@ const Home: NextPage<HomeProps> = (props) => {
         </Paper>
       </Grid>
       { service && (
-        <Grid item xs p={2}>
-          <ServiceHeader service={service} />
+        <Grid
+          item xs
+          container direction="column"
+          p={2}
+        >
+          <Grid item xs="auto">
+            <ServiceHeader service={service} />
+          </Grid>
+
+          <Grid item xs>
+            <ServiceGraph service={service} />
+          </Grid>
         </Grid>
       ) }
     </Grid>

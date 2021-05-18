@@ -9,6 +9,13 @@ export interface ServiceGraphProps {
   service: IService;
 }
 
+interface IData {
+  name: string;
+  enabled: boolean;
+
+  children?: IData[];
+}
+
 // Styles
 const useStyles = makeStyles(({ palette }) => ({
   graph: {
@@ -22,7 +29,11 @@ const useStyles = makeStyles(({ palette }) => ({
   link: {
     fill: 'none',
     stroke: palette.primary.dark,
-    strokeWidth: '1px'
+    strokeWidth: '1px',
+
+    '&:not(.enabled)': {
+      strokeDasharray: '5'
+    }
   }
 }));
 
@@ -34,11 +45,16 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ service }) => {
   const graph = useRef<SVGSVGElement>(null);
 
   // Memos
-  const hierarchy = useMemo(() => d3.hierarchy({
+  const hierarchy = useMemo(() => d3.hierarchy<IData>({
     name: service.name,
-    children: service.gates.map((gate) => ({
-      name: gate.name
-    }))
+    enabled: true,
+
+    children: service.gates
+      .sort((a, b) => b.priority - a.priority)
+      .map((gate) => ({
+        name: gate.name,
+        enabled: gate.enabled,
+      }))
   }), [service]);
 
   // Effects
@@ -46,43 +62,50 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ service }) => {
     if (!graph.current) return;
 
     // Build graph
-    const layout = d3.tree()
-      .size([graph.current.clientWidth - 10, graph.current.clientHeight - 10]);
+    const h = graph.current.clientHeight - 10;
+    const w = graph.current.clientWidth - 10;
+
+    const layout = d3.tree<IData>()
+      .size([h, w / 3]);
 
     // Render graph
     const svg = d3.select(graph.current);
     const root = layout(hierarchy);
 
     // - nodes
-    const nodes = svg.select('g.nodes')
-      .selectAll('circle')
-      .data(root.descendants());
-
-    nodes.enter()
-      .append('circle')
-      .classed(styles.node, true)
-      .attr('cx', (d) => d.x)
-      .attr('cy', (d) => d.y)
-      .attr('r', 4);
-
-    nodes.exit()
-      .remove();
+    svg.select('g.nodes').selectAll('circle')
+      .data(root.descendants())
+      .join('circle')
+        .classed(styles.node, true)
+        .attr('cx', (d) => d.y + w / 3)
+        .attr('cy', (d) => d.x)
+        .attr('r', 4);
 
     // - links
-    const links = svg.select('g.links')
-      .selectAll('line')
-      .data(root.links());
+    svg.select('g.links').selectAll('path')
+      .data(root.links())
+      .join('path')
+        .classed(styles.link, true)
+        .classed('enabled', (d) => d.target.data.enabled)
+        .attr('d', (d) => {
+          // coords
+          const { x: sx, y: sy } = d.source;
+          const { x: tx, y: ty } = d.target;
 
-    links.enter()
-      .append('line')
-      .classed(styles.link, true)
-      .attr('x1', (d) => d.source.x)
-      .attr('y1', (d) => d.source.y)
-      .attr('x2', (d) => d.target.x)
-      .attr('y2', (d) => d.target.y);
+          const my = (sy + ty) / 2;
+          const r = 25;
 
-    links.exit()
-      .remove();
+          // path
+          const ctx = d3.path();
+          ctx.moveTo(sy + w / 3, sx);
+          ctx.lineTo(my - r + w / 3, sx);
+          ctx.arcTo(my + w / 3, sx, my + w / 3, sx + (sx > tx ? -r : r), r);
+          ctx.lineTo(my + w / 3, tx - (sx > tx ? -r : r));
+          ctx.arcTo(my + w / 3, tx, my + r + w / 3, tx, r);
+          ctx.lineTo(ty + w / 3, tx);
+
+          return ctx.toString();
+        });
   }, [hierarchy, styles]);
 
   // Render

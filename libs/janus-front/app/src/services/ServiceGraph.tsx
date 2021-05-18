@@ -21,18 +21,43 @@ const useStyles = makeStyles(({ palette }) => ({
   graph: {
     height: '100%',
     width: '100%',
+    minWidth: 500
   },
   node: {
-    fill: palette.primary.main,
-    stoke: 'none',
+    '& text': {
+      fill: palette.text.primary,
+      dominantBaseline: 'central'
+    },
+    '& rect': {
+      fill: palette.background.paper,
+      stroke: palette.warning.main,
+      strokeWidth: 1,
+
+      '&.enabled': {
+        stroke: palette.success.main
+      }
+    },
+    '& circle': {
+      fill: palette.warning.main,
+      stoke: 'none',
+
+      '&.enabled': {
+        fill: palette.success.main
+      }
+    }
   },
   link: {
     fill: 'none',
-    stroke: palette.primary.dark,
-    strokeWidth: '1px',
+    stroke: palette.warning.main,
+    strokeWidth: 1,
 
     '&:not(.enabled)': {
       strokeDasharray: '5'
+    },
+
+    '&.enabled': {
+      stroke: palette.success.main,
+      strokeWidth: 2,
     }
   }
 }));
@@ -47,10 +72,10 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ service }) => {
   // Memos
   const hierarchy = useMemo(() => d3.hierarchy<IData>({
     name: service.name,
-    enabled: true,
+    enabled: service.gates.some((gate) => gate.enabled),
 
     children: service.gates
-      .sort((a, b) => b.priority - a.priority)
+      .sort((a, b) => a.priority - b.priority)
       .map((gate) => ({
         name: gate.name,
         enabled: gate.enabled,
@@ -65,21 +90,42 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ service }) => {
     const h = graph.current.clientHeight - 10;
     const w = graph.current.clientWidth - 10;
 
+    const nw = Math.max(w / 5, 200);
+    const lw = Math.min(w - nw * 2, 300);
+    const ml = Math.max((w - lw) / 2 - nw, 0);
+
     const layout = d3.tree<IData>()
-      .size([h, w / 3]);
+      .size([h, w - ml * 2]);
 
     // Render graph
     const svg = d3.select(graph.current);
     const root = layout(hierarchy);
 
     // - nodes
-    svg.select('g.nodes').selectAll('circle')
+    const nodes = svg.select('g.nodes').selectAll('g')
       .data(root.descendants())
-      .join('circle')
-        .classed(styles.node, true)
-        .attr('cx', (d) => d.y + w / 3)
-        .attr('cy', (d) => d.x)
-        .attr('r', 4);
+      .join('g')
+        .classed(styles.node, true);
+
+    nodes.append('circle')
+      .classed('enabled', (d) => d.data.enabled)
+      .attr('cx', (d) => ml + d.y + (d.depth === 0 ? nw : -nw))
+      .attr('cy', (d) => d.x)
+      .attr('r', 4);
+
+    nodes.append('rect')
+      .classed('enabled', (d) => d.data.enabled)
+      .attr('x', (d) => ml + d.y + (d.depth === 0 ? 0 : -nw))
+      .attr('y', (d) => d.x - 20)
+      .attr('rx', 7.5)
+      .attr('ry', 7.5)
+      .attr('width', nw)
+      .attr('height', 40);
+
+    nodes.append('text')
+      .attr('x', (d) => ml + d.y + (d.depth === 0 ? 0 : -nw) + 10)
+      .attr('y', (d) => d.x)
+      .text((d) => d.data.name);
 
     // - links
     svg.select('g.links').selectAll('path')
@@ -89,20 +135,20 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ service }) => {
         .classed('enabled', (d) => d.target.data.enabled)
         .attr('d', (d) => {
           // coords
-          const { x: sx, y: sy } = d.source;
-          const { x: tx, y: ty } = d.target;
+          const sx = d.source.x;
+          const sy = d.source.y + nw;
+          const tx = d.target.x;
+          const ty = d.target.y - nw;
 
           const my = (sy + ty) / 2;
-          const r = 25;
+          const r = (ty - sy) / 3;
 
           // path
           const ctx = d3.path();
-          ctx.moveTo(sy + w / 3, sx);
-          ctx.lineTo(my - r + w / 3, sx);
-          ctx.arcTo(my + w / 3, sx, my + w / 3, sx + (sx > tx ? -r : r), r);
-          ctx.lineTo(my + w / 3, tx - (sx > tx ? -r : r));
-          ctx.arcTo(my + w / 3, tx, my + r + w / 3, tx, r);
-          ctx.lineTo(ty + w / 3, tx);
+          ctx.moveTo(ml + sy, sx);
+          ctx.lineTo(ml + my - r, sx);
+          ctx.bezierCurveTo(ml + my, sx, ml + my, tx, ml + my + r, tx);
+          ctx.lineTo(ml + ty, tx);
 
           return ctx.toString();
         });

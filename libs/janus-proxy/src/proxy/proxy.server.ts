@@ -1,9 +1,17 @@
-import { Injectable, Logger, OnApplicationBootstrap, OnApplicationShutdown } from '@nestjs/common';
+import {
+  HttpException,
+  Injectable,
+  Logger,
+  NotFoundException,
+  OnApplicationBootstrap,
+  OnApplicationShutdown
+} from '@nestjs/common';
 import http from 'http';
 import httpProxy from 'http-proxy';
 
 import { ConfigService } from '../config/config.service';
 import { ResolverService } from '../services/resolver.service';
+import { Gate } from '../services/gate.model';
 
 // Service
 @Injectable()
@@ -38,50 +46,57 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
 
   private _redirect(req: http.IncomingMessage, res: http.ServerResponse) {
     try {
-      const gate = req.url && this._resolver.resolve(req.url);
+      const gate = this._resolve(req);
 
-      if (!gate) {
-        this._logger.verbose(`${req.url} => unresolved`);
+      const options: httpProxy.ServerOptions = {
+        target: gate.target,
+        changeOrigin: gate.changeOrigin,
+        secure: gate.secure,
+        ws: gate.ws
+      };
 
-        this._send(res, 404, {
-          statusCode: 404,
-          error: 'Not Found',
-          message: `No route found for ${req.url}`
-        });
+      this._logger.verbose(`${req.url} => ${gate.target}`);
+      this._proxy.web(req, res, options, (error) => {
+        if ((error as any).code === 'ECONNREFUSED') {
+          this._logger.warn(`${gate.target} is not responding ...`);
+          this._send(res, 504, {
+            statusCode: 504,
+            error: 'Gateway Timeout',
+            message: `${gate.target} is not responding ...`
+          });
+        } else {
+          this._logger.error(error.message);
+          this._send(res, 500, {
+            statusCode: 500,
+            error: 'Server Error',
+            message: error.message
+          });
+        }
+      });
+    } catch (error) {
+      if (error instanceof HttpException) {
+        this._send(res, error.getStatus(), error.getResponse());
       } else {
-        const options: httpProxy.ServerOptions = {
-          target: gate.target,
-          changeOrigin: gate.changeOrigin,
-          secure: gate.secure,
-          ws: gate.ws
-        };
+        this._logger.error(error.message);
 
-        this._logger.verbose(`${req.url} => ${gate.target}`);
-        this._proxy.web(req, res, options, (error) => {
-          if ((error as any).code === 'ECONNREFUSED') {
-            this._logger.warn(`${gate.target} is not responding ...`);
-            this._send(res, 504, {
-              statusCode: 504,
-              error: 'Gateway Timeout',
-            });
-          } else {
-            this._logger.error(error.message);
-            this._send(res, 500, {
-              statusCode: 500,
-              error: 'Server Error',
-              message: error.message
-            });
-          }
+        this._send(res, 500, {
+          statusCode: 500,
+          error: 'Server Error',
+          message: error.message
         });
       }
-    } catch (error) {
-      this._logger.error(error.message);
+    }
+  }
 
-      this._send(res, 500, {
-        statusCode: 500,
-        error: 'Server Error',
-        message: error.message
-      });
+  private _resolve(req: http.IncomingMessage): Gate {
+    const gate = req.url && this._resolver.resolve(req.url);
+
+    if (!gate) {
+      this._logger.verbose(`${req.url} => unresolved`);
+      throw new NotFoundException(`No route found for ${req.url}`);
+    } else {
+      this._logger.verbose(`${req.url} => ${gate.target}`);
+      return gate;
     }
   }
 

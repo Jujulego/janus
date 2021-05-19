@@ -1,6 +1,0 @@
-releases:
-  "@jujulego/janus-proxy": prerelease
-
-declined:
-  - "@jujulego/janus"
-  - "@jujulego/janus-gate"

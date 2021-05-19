@@ -1,0 +1,6 @@
+services:
+  sample-api:
+    url: '/api-sample'
+    gates:
+      local:
+        target: 'http://localhost:3001/'

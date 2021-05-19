@@ -11,6 +11,7 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
   // Attributes
   private readonly _proxy = httpProxy.createProxyServer();
   private readonly _server = http.createServer((req, res) => this._redirect(req, res));
+  private readonly _logger = new Logger(ProxyServer.name);
 
   // Constructor
   constructor(
@@ -40,7 +41,7 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
       const gate = req.url && this._resolver.resolve(req.url);
 
       if (!gate) {
-        Logger.verbose(`${req.url} => unresolved`);
+        this._logger.verbose(`${req.url} => unresolved`);
 
         this._send(res, 404, {
           statusCode: 404,
@@ -55,16 +56,16 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
           ws: gate.ws
         };
 
-        Logger.verbose(`${req.url} => ${gate.target}`);
+        this._logger.verbose(`${req.url} => ${gate.target}`);
         this._proxy.web(req, res, options, (error) => {
           if ((error as any).code === 'ECONNREFUSED') {
-            Logger.warn(`${gate.target} is not responding ...`);
+            this._logger.warn(`${gate.target} is not responding ...`);
             this._send(res, 504, {
               statusCode: 504,
               error: 'Gateway Timeout',
             });
           } else {
-            Logger.error(error.message);
+            this._logger.error(error.message);
             this._send(res, 500, {
               statusCode: 500,
               error: 'Server Error',
@@ -74,7 +75,7 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
         });
       }
     } catch (error) {
-      Logger.error(error.message);
+      this._logger.error(error.message);
 
       this._send(res, 500, {
         statusCode: 500,
@@ -86,12 +87,12 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
 
   async listen() {
     await this._server.listen(this._config.proxy.port, () => {
-      Logger.log(`Proxy listening at http://localhost:${this._config.proxy.port}`);
+      this._logger.log(`Proxy listening at http://localhost:${this._config.proxy.port}`);
     });
   }
 
   async stop() {
     await this._server.close();
-    Logger.log("Proxy stopped");
+    this._logger.log('Proxy stopped');
   }
 }

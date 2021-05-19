@@ -28,7 +28,7 @@ jobs:
         run: yarn install
 
       - name: Build
-        run: yarn workspaces foreach -pv --no-private --topological-dev run build
+        run: yarn build
 
       - name: Apply version update
         run: yarn version apply --all

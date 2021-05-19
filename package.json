@@ -8,6 +8,7 @@
     "samples/*"
   ],
   "scripts": {
+    "build": "yarn workspaces foreach -pvi --no-private --topological-dev run build",
     "janus": "yarn workspace @jujulego/janus start"
   },
   "devDependencies": {

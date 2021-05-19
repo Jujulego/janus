@@ -22,6 +22,7 @@ import { ServiceResolver } from './service.resolver';
     ServiceResolver
   ],
   exports: [
+    GatesService,
     ResolverService
   ]
 })

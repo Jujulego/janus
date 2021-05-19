@@ -4,7 +4,10 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
-    "start": "nodemon --watch src/** --exec 'yarn ts-node -r tsconfig-paths/register ./src/main.ts'"
+    "start": "nodemon --watch src/** --exec 'yarn ts-node -r tsconfig-paths/register ./src/main.ts'",
+    "start:local1": "nodemon --watch src/** --exec 'yarn ts-node -r tsconfig-paths/register ./src/main.ts local1'",
+    "start:local2": "nodemon --watch src/** --exec 'yarn ts-node -r tsconfig-paths/register ./src/main.ts local2'",
+    "start:local3": "nodemon --watch src/** --exec 'yarn ts-node -r tsconfig-paths/register ./src/main.ts local3'"
   },
   "dependencies": {
     "@jujulego/janus-gate": "^1.0.0-alpha.10",

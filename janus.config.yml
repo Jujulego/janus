@@ -2,5 +2,11 @@ services:
   sample-api:
     url: '/api-sample'
     gates:
-      local:
+      local1:
         target: 'http://localhost:3001/'
+
+      local2:
+        target: 'http://localhost:3002/'
+
+      local3:
+        target: 'http://localhost:3003/'

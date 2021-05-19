@@ -1,17 +1,22 @@
 import {
+  GatewayTimeoutException,
   HttpException,
-  Injectable,
+  Injectable, InternalServerErrorException,
   Logger,
   NotFoundException,
   OnApplicationBootstrap,
   OnApplicationShutdown
 } from '@nestjs/common';
+import { Subject } from 'rxjs';
+import { map, tap } from 'rxjs/operators';
 import http from 'http';
 import httpProxy from 'http-proxy';
 
 import { ConfigService } from '../config/config.service';
 import { ResolverService } from '../services/resolver.service';
 import { Gate } from '../services/gate.model';
+import { GatesService } from '../services/gates.service';
+import { Service } from '../services/service.model';
 
 // Service
 @Injectable()
@@ -24,7 +29,8 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
   // Constructor
   constructor(
     private readonly _config: ConfigService,
-    private readonly _resolver: ResolverService
+    private readonly _resolver: ResolverService,
+    private readonly _gateService: GatesService,
   ) {}
 
   // Lifecycle
@@ -37,67 +43,73 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
   }
 
   // Methods
-  private _send(res: http.ServerResponse, status: number, body: unknown) {
-    res.statusCode = status;
+  private _sendError(res: http.ServerResponse, error: HttpException) {
+    res.statusCode = error.getStatus();
     res.setHeader('Content-Type', 'application/json');
-    res.write(JSON.stringify(body));
+    res.write(JSON.stringify(error.getResponse()));
     res.end();
   }
 
   private _redirect(req: http.IncomingMessage, res: http.ServerResponse) {
-    try {
-      const gate = this._resolve(req);
+    const $req = new Subject<http.IncomingMessage>();
 
-      const options: httpProxy.ServerOptions = {
-        target: gate.target,
-        changeOrigin: gate.changeOrigin,
-        secure: gate.secure,
-        ws: gate.ws
-      };
+    $req.asObservable()
+      .pipe(
+        map((req) => this._resolveGate(req)),
+        tap(([service, gate]) => this._logger.verbose(`${req.url} => ${gate.target} (service: ${service.name})`)),
+      )
+      .subscribe(
+        ([service, gate]) => {
+          const options = this._buildOptions(gate);
 
-      this._logger.verbose(`${req.url} => ${gate.target}`);
-      this._proxy.web(req, res, options, (error) => {
-        if ((error as any).code === 'ECONNREFUSED') {
-          this._logger.warn(`${gate.target} is not responding ...`);
-          this._send(res, 504, {
-            statusCode: 504,
-            error: 'Gateway Timeout',
-            message: `${gate.target} is not responding ...`
+          this._proxy.web(req, res, options, (error) => {
+            // Handle proxy error
+            if ((error as any).code === 'ECONNREFUSED') {
+              this._logger.warn(`${options.target} is not responding ...`);
+
+              // Disable gate and try again
+              this._gateService.disableGate(service.name, gate.name);
+              $req.next(req);
+            } else {
+              this._logger.error(error.message);
+              this._sendError(res, new InternalServerErrorException(error.message))
+            }
           });
-        } else {
-          this._logger.error(error.message);
-          this._send(res, 500, {
-            statusCode: 500,
-            error: 'Server Error',
-            message: error.message
-          });
+        },
+        (error) => {
+          if (error instanceof HttpException) {
+            this._sendError(res, error);
+          } else {
+            this._logger.error(error.message);
+            this._sendError(res, new InternalServerErrorException(error.message));
+          }
         }
-      });
-    } catch (error) {
-      if (error instanceof HttpException) {
-        this._send(res, error.getStatus(), error.getResponse());
-      } else {
-        this._logger.error(error.message);
+      );
 
-        this._send(res, 500, {
-          statusCode: 500,
-          error: 'Server Error',
-          message: error.message
-        });
-      }
-    }
+    $req.next(req);
   }
 
-  private _resolve(req: http.IncomingMessage): Gate {
-    const gate = req.url && this._resolver.resolve(req.url);
+  private _resolveGate(req: http.IncomingMessage): [Service, Gate] {
+    const [service, gate] = this._resolver.resolve(req.url || '');
 
-    if (!gate) {
-      this._logger.verbose(`${req.url} => unresolved`);
+    if (!service) {
+      this._logger.warn(`${req.url} => unresolved`);
       throw new NotFoundException(`No route found for ${req.url}`);
-    } else {
-      this._logger.verbose(`${req.url} => ${gate.target}`);
-      return gate;
+    } else if (!gate) {
+      this._logger.warn(`${req.url} => unresolved (service: ${service.name})`)
+      throw new GatewayTimeoutException(`No gates available for ${req.url} (service: ${service.name})`);
     }
+
+    return [service, gate];
+  }
+
+  private _buildOptions(gate: Gate): httpProxy.ServerOptions {
+    return {
+      target: gate.target,
+      changeOrigin: gate.changeOrigin,
+      secure: gate.secure,
+      ws: gate.ws
+    };
   }
 
   async listen() {

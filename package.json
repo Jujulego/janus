@@ -4,7 +4,8 @@
   "license": "MIT",
   "workspaces": [
     "apps/*",
-    "libs/*"
+    "libs/*",
+    "samples/*"
   ],
   "scripts": {
     "janus": "yarn workspace @jujulego/janus start"

@@ -47,6 +47,7 @@
     "baseUrl": "./",                                /* Base directory to resolve non-absolute module names. */
     "paths": {                                      /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
       "@jujulego/janus-config": ["./libs/janus-config/dist/index.d.ts"],
+      "@jujulego/janus-gate": ["./libs/janus-gate/dist/index.d.ts"],
       "@jujulego/janus-proxy": ["./libs/janus-proxy/dist/index.d.ts"],
       "@jujulego/janus-types": ["./libs/janus-types/dist/index.d.ts"]
     },

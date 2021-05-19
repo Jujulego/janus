@@ -18,6 +18,8 @@ import { ControlService } from './control/control.service';
 // Server
 export class JanusServer {
   // Attributes
+  private readonly _logger = new Logger(JanusServer.name);
+
   private readonly _started = new Subject<void>();
   readonly $started = this._started.asObservable();
 
@@ -50,10 +52,10 @@ export class JanusServer {
 
   // Methods
   private async handleShutdown(): Promise<void> {
-    Logger.log('Shutdown requested');
+    this._logger.log('Shutdown requested');
     await this.app.close();
 
-    Logger.log('Server stopped');
+    this._logger.log('Server stopped');
     this._shutdown.next();
     this._shutdown.complete();
   }
@@ -61,7 +63,7 @@ export class JanusServer {
   async start(config: string | JanusConfig): Promise<void> {
     // Load configuration
     if (typeof config === 'string') {
-      config = await JanusConfig.loadFile(config, { logger: Logger });
+      config = await JanusConfig.loadFile(config, { logger: this._logger });
     }
 
     this.config.config = config;
@@ -82,7 +84,7 @@ export class JanusServer {
 
     // Start server
     await this.app.listen(this.config.control.port, () => {
-      Logger.log(`Server listening at http://localhost:${this.config.control.port}`);
+      this._logger.log(`Server listening at http://localhost:${this.config.control.port}`);
       this._started.next();
 
       // Listen for shutdown events

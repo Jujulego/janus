@@ -1,4 +1,4 @@
-import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
+import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { PubSub } from 'graphql-subscriptions';
 import { Subject } from 'rxjs';
 
@@ -16,6 +16,7 @@ export class GatesService extends DataService implements OnApplicationBootstrap 
   // Attributes
   private readonly _services = new Map<string, Service>();
   private readonly _events = new Subject<Event<Service, 'add'>>();
+  private readonly _logger = new Logger(GatesService.name);
 
   readonly $events = this._events.asObservable();
 
@@ -58,6 +59,7 @@ export class GatesService extends DataService implements OnApplicationBootstrap 
     if (gate && !gate.enabled) {
       gate.enabled = true;
       this._pubsub.publish(`${service}.gates`, { gate });
+      this._logger.log(`Gate ${service}.${name} enabled`);
     }
 
     return gate;
@@ -69,6 +71,7 @@ export class GatesService extends DataService implements OnApplicationBootstrap 
     if (gate?.enabled) {
       gate.enabled = false;
       this._pubsub.publish(`${service}.gates`, { gate });
+      this._logger.log(`Gate ${service}.${name} disabled`);
     }
 
     return gate;

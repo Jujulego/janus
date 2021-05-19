@@ -14,6 +14,7 @@
       <excludeFolder url="file://$MODULE_DIR$/libs/janus-front/dist" />
       <excludeFolder url="file://$MODULE_DIR$/libs/janus-front/app/.next" />
       <excludeFolder url="file://$MODULE_DIR$/libs/janus-common/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/samples/express-api/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

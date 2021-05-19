@@ -11,7 +11,7 @@ import { JanusServer } from './server';
       .subscribe(() => process.exit(0))
 
     // Start server
-    await server.start('janus.config.yml');
+    await server.start('../../janus.config.yml');
   } catch (error) {
     console.error(error);
     process.exit(1);

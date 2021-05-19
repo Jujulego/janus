@@ -28,7 +28,7 @@ export class GateResolver {
   resolve(
     @Args('url') url: string
   ): Gate | null {
-    return this._resolver.resolve(url);
+    return this._resolver.resolve(url)[1];
   }
 
   // Mutation

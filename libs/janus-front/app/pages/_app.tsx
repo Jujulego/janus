@@ -5,8 +5,8 @@ import { useEffect } from 'react';
 import createCache from '@emotion/cache';
 import Head from 'next/head';
 
-import { theme } from '../src/theme';
-import { Navbar } from '../src/layout/Navbar';
+import { theme } from '../theme';
+import { Navbar } from '../layout/Navbar';
 
 // Emotion cache
 export const cache = createCache({ key: 'css', prepend: true });

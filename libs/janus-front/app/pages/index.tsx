@@ -1,12 +1,10 @@
 import {
-  Divider,
   Grid,
   List,
   ListItem,
   ListItemText,
   ListSubheader,
   makeStyles,
-  NoSsr,
   Paper
 } from '@material-ui/core';
 import { classToPlain } from 'class-transformer';
@@ -17,12 +15,12 @@ import { useMemo } from 'react';
 
 import { IService } from '@jujulego/janus-common';
 
-import { getDataService } from '../src/data';
-import { ServiceHeader } from '../src/services/ServiceHeader';
-import { ServiceGraph } from '../src/services/ServiceGraph';
+import { getDataService } from '../data';
+import { ServiceHeader } from '../services/ServiceHeader';
+import { ServiceGraph } from '../services/ServiceGraph';
 
 // Types
-export interface HomeProps {
+export interface HomePageProps {
   services: IService[];
 }
 
@@ -38,7 +36,7 @@ const useStyles = makeStyles(({ palette }) => ({
 }));
 
 // Page
-const Home: NextPage<HomeProps> = (props) => {
+const HomePage: NextPage<HomePageProps> = (props) => {
   const { services } = props;
 
   // Contexts
@@ -97,10 +95,10 @@ const Home: NextPage<HomeProps> = (props) => {
   );
 };
 
-export default Home;
+export default HomePage;
 
 // Props
-export const getServerSideProps: GetServerSideProps<HomeProps> = async (ctx) => {
+export const getServerSideProps: GetServerSideProps<HomePageProps> = async (ctx) => {
   const data = getDataService(ctx);
 
   return {

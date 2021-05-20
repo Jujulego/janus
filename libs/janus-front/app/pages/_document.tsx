@@ -5,7 +5,7 @@ import { ServerStyleSheets } from '@material-ui/styles';
 import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
 import { Children } from 'react';
 
-import { theme } from '../src/theme';
+import { theme } from '../theme';
 
 // Emotion cache
 const getCache = () => {

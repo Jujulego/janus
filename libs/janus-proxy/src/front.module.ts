@@ -1,7 +1,5 @@
 import { DynamicModule, Logger, Module } from '@nestjs/common';
 
-import { PluginModule } from './plugin.module';
-
 // Module
 @Module({})
 export class FrontModule {
@@ -13,7 +11,7 @@ export class FrontModule {
       return {
         module: FrontModule,
         imports: [
-          JanusFrontModule.forRoot(PluginModule)
+          JanusFrontModule
         ]
       };
     } catch (error) {

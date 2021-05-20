@@ -2,8 +2,6 @@ import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { PubSub } from 'graphql-subscriptions';
 import { Subject } from 'rxjs';
 
-import { DataService } from '@jujulego/janus-common';
-
 import { ConfigService } from '../config/config.service';
 import { Event } from '../event';
 
@@ -12,7 +10,7 @@ import { Gate } from './gate.model';
 
 // Service
 @Injectable()
-export class GatesService extends DataService implements OnApplicationBootstrap {
+export class GatesService implements OnApplicationBootstrap {
   // Attributes
   private readonly _services = new Map<string, Service>();
   private readonly _events = new Subject<Event<Service, 'add'>>();
@@ -24,9 +22,7 @@ export class GatesService extends DataService implements OnApplicationBootstrap 
   constructor(
     private readonly _pubsub: PubSub,
     private readonly _config: ConfigService
-  ) {
-    super();
-  }
+  ) {}
 
   // Lifecycle
   onApplicationBootstrap(): void {

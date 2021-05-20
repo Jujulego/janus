@@ -1,12 +1,10 @@
 import { Controller, Get, Query, Req, Res, UseInterceptors } from '@nestjs/common';
 import { Request, Response } from 'express';
 
-import { AppInterceptor } from './app.interceptor';
 import { AppService } from './app.service';
 
 // Controller
 @Controller()
-@UseInterceptors(AppInterceptor)
 export class AppController {
   // Constructor
   constructor(

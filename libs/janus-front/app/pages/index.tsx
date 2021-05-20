@@ -1,43 +1,32 @@
-import {
-  Grid,
-  List,
-  ListItem,
-  ListItemText,
-  ListSubheader,
-  makeStyles,
-  Paper
-} from '@material-ui/core';
-import { classToPlain } from 'class-transformer';
-import { GetServerSideProps, NextPage } from 'next';
+import { gql, useQuery } from '@apollo/client';
+import { Grid, List, ListItem, ListItemText, ListSubheader, Paper } from '@material-ui/core';
+import { NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
 
-import { IService } from '@jujulego/janus-common';
+import { GateFragment, IService, ServiceFragment } from '@jujulego/janus-common';
 
-import { getDataService } from '../data';
 import { ServiceHeader } from '../services/ServiceHeader';
 import { ServiceGraph } from '../services/ServiceGraph';
 
-// Types
-export interface HomePageProps {
-  services: IService[];
-}
-
-// Styles
-const useStyles = makeStyles(({ palette }) => ({
-  url: {
-    padding: 2,
-    borderRadius: 2,
-
-    background: `${palette.primary.light}80`,
-    color: palette.getContrastText(palette.primary.light),
-  }
-}));
-
 // Page
-const HomePage: NextPage<HomePageProps> = (props) => {
-  const { services } = props;
+const HomePage: NextPage = () => {
+  // GraphQL
+  const { data: { services } = { services: [] } } = useQuery<{ services: IService[] }>(gql`
+      query HomePage {
+          services {
+              ...Service
+      
+              gates {
+                  ...Gate
+              }
+          }
+      }
+      
+      ${ServiceFragment}
+      ${GateFragment}
+  `);
 
   // Contexts
   const router = useRouter();
@@ -48,8 +37,6 @@ const HomePage: NextPage<HomePageProps> = (props) => {
   }, [services, router.query]);
 
   // Render
-  const styles = useStyles();
-
   return (
     <Grid container sx={{ flex: 1 }}>
       <Grid item xs={2}>
@@ -96,14 +83,3 @@ const HomePage: NextPage<HomePageProps> = (props) => {
 };
 
 export default HomePage;
-
-// Props
-export const getServerSideProps: GetServerSideProps<HomePageProps> = async (ctx) => {
-  const data = getDataService(ctx);
-
-  return {
-    props: {
-      services: classToPlain(data.listServices()) as IService[]
-    }
-  };
-};

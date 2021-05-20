@@ -15,6 +15,7 @@
     "test:e2e": "jest -c jest.config.e2e.json"
   },
   "dependencies": {
+    "@apollo/client": "^3.3.19",
     "@emotion/cache": "^11.4.0",
     "@emotion/react": "^11.4.0",
     "@emotion/server": "^11.4.0",
@@ -29,6 +30,7 @@
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "d3": "^6.7.0",
+    "graphql": "^15.5.0",
     "next": "^10.2.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",

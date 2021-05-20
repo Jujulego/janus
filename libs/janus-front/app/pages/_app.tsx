@@ -1,10 +1,12 @@
+import { ApolloProvider } from '@apollo/client';
+import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import type { AppProps } from 'next/app';
-import { useEffect } from 'react';
-import createCache from '@emotion/cache';
 import Head from 'next/head';
+import { useEffect } from 'react';
 
+import { client } from '../apollo-client';
 import { theme } from '../theme';
 import { Navbar } from '../layout/Navbar';
 
@@ -31,12 +33,14 @@ export default function App(props: AppProps) {
         <title>Janus Proxy</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ThemeProvider theme={theme}>
-        <CssBaseline />
-        <Navbar>
-          <Component {...pageProps} />
-        </Navbar>
-      </ThemeProvider>
+      <ApolloProvider client={client}>
+        <ThemeProvider theme={theme}>
+          <CssBaseline />
+          <Navbar>
+            <Component {...pageProps} />
+          </Navbar>
+        </ThemeProvider>
+      </ApolloProvider>
     </CacheProvider>
   );
 };

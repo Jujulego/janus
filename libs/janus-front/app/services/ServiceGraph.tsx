@@ -1,8 +1,9 @@
+import { gql, useQuery } from '@apollo/client';
 import { makeStyles, Paper } from '@material-ui/core';
 import { FC, useEffect, useMemo, useRef } from 'react';
 import * as d3 from 'd3';
 
-import { IService } from '@jujulego/janus-common';
+import { IService, ServiceFragment, GateFragment } from '@jujulego/janus-common';
 
 // Types
 export interface ServiceGraphProps {
@@ -63,8 +64,30 @@ const useStyles = makeStyles(({ palette }) => ({
 }));
 
 // Component
-export const ServiceGraph: FC<ServiceGraphProps> = ({ service }) => {
+export const ServiceGraph: FC<ServiceGraphProps> = (props) => {
   const styles = useStyles();
+
+  // GraphQL
+  const { data: { service } = props } = useQuery<{ service: IService }>(
+    gql`
+        query ServiceGraph($service: String!) {
+            service(name: $service) {
+                ...Service
+
+                gates {
+                    ...Gate
+                }
+            }
+        }
+
+        ${ServiceFragment}
+        ${GateFragment}
+    `,
+    {
+      variables: { service: props.service.name },
+      pollInterval: 1000
+    }
+  );
 
   // Refs
   const graph = useRef<SVGSVGElement>(null);
@@ -75,7 +98,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ service }) => {
     enabled: service.gates.some((gate) => gate.enabled),
 
     children: service.gates
-      .sort((a, b) => a.priority - b.priority)
+      // .sort((a, b) => a.priority - b.priority)
       .map((gate) => ({
         name: gate.name,
         enabled: gate.enabled,

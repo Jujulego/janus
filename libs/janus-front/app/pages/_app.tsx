@@ -7,8 +7,8 @@ import Head from 'next/head';
 import { useEffect } from 'react';
 
 import { client } from '../apollo-client';
-import { theme } from '../theme';
 import { Navbar } from '../layout/Navbar';
+import { theme } from '../theme';
 
 // Emotion cache
 export const cache = createCache({ key: 'css', prepend: true });

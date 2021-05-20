@@ -1,6 +1,6 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql } from '@apollo/client';
 import { Grid, List, ListItem, ListItemText, ListSubheader, Paper } from '@material-ui/core';
-import { NextPage } from 'next';
+import { GetServerSideProps, NextPage } from 'next';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useMemo } from 'react';
@@ -9,25 +9,15 @@ import { GateFragment, IService, ServiceFragment } from '@jujulego/janus-common'
 
 import { ServiceHeader } from '../services/ServiceHeader';
 import { ServiceGraph } from '../services/ServiceGraph';
+import { client } from '../apollo-client';
+
+// Types
+export interface HomePageData {
+  services: IService[];
+}
 
 // Page
-const HomePage: NextPage = () => {
-  // GraphQL
-  const { data: { services } = { services: [] } } = useQuery<{ services: IService[] }>(gql`
-      query HomePage {
-          services {
-              ...Service
-      
-              gates {
-                  ...Gate
-              }
-          }
-      }
-      
-      ${ServiceFragment}
-      ${GateFragment}
-  `);
-
+const HomePage: NextPage<HomePageData> = ({ services }) => {
   // Contexts
   const router = useRouter();
 
@@ -83,3 +73,25 @@ const HomePage: NextPage = () => {
 };
 
 export default HomePage;
+
+// Server Side
+export const getServerSideProps: GetServerSideProps<HomePageData> = async (ctx) => {
+  const { data } = await client.query<HomePageData>({
+    query: gql`
+        query HomePage {
+            services {
+                ...Service
+
+                gates {
+                    ...Gate
+                }
+            }
+        }
+
+        ${ServiceFragment}
+        ${GateFragment}
+    `
+  });
+
+  return { props: data };
+};

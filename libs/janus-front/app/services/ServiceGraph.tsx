@@ -6,7 +6,7 @@ import * as d3 from 'd3';
 import { IService, ServiceFragment, GateFragment } from '@jujulego/janus-common';
 
 // Types
-export interface ServiceGraphProps {
+export interface ServiceGraphData {
   service: IService;
 }
 
@@ -64,11 +64,11 @@ const useStyles = makeStyles(({ palette }) => ({
 }));
 
 // Component
-export const ServiceGraph: FC<ServiceGraphProps> = (props) => {
+export const ServiceGraph: FC<ServiceGraphData> = (props) => {
   const styles = useStyles();
 
   // GraphQL
-  const { data: { service } = props } = useQuery<{ service: IService }>(
+  const { data: { service } = props, stopPolling } = useQuery<ServiceGraphData>(
     gql`
         query ServiceGraph($service: String!) {
             service(name: $service) {
@@ -85,7 +85,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = (props) => {
     `,
     {
       variables: { service: props.service.name },
-      pollInterval: 1000
+      pollInterval: 10000
     }
   );
 
@@ -106,6 +106,10 @@ export const ServiceGraph: FC<ServiceGraphProps> = (props) => {
   }), [service]);
 
   // Effects
+  useEffect(() => {
+    return () => stopPolling();
+  }, []);
+
   useEffect(() => {
     if (!graph.current) return;
 

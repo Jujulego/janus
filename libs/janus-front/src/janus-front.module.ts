@@ -1,9 +1,11 @@
 import { DynamicModule, Module } from '@nestjs/common';
+import { APP_FILTER } from '@nestjs/core';
 
 import { PluginModule } from '@jujulego/janus-common';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { FallbackRouteFilter } from './fallback-route.filter';
 
 // Module
 @Module({
@@ -11,7 +13,8 @@ import { AppService } from './app.service';
     AppController
   ],
   providers: [
-    AppService
+    AppService,
+    { provide: APP_FILTER, useClass: FallbackRouteFilter }
   ]
 })
 export class JanusFrontModule extends PluginModule {

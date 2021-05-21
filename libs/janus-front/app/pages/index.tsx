@@ -9,7 +9,7 @@ import { GateFragment, IService, ServiceFragment } from '@jujulego/janus-common'
 
 import { ServiceHeader } from '../services/ServiceHeader';
 import { ServiceGraph } from '../services/ServiceGraph';
-import { getSSRClient } from '../utils/ssr-client';
+import { createClient } from '../apollo-client';
 
 // Types
 export interface HomePageData {
@@ -76,7 +76,7 @@ export default HomePage;
 
 // Server Side
 export const getServerSideProps: GetServerSideProps<HomePageData> = async (ctx) => {
-  const { data } = await getSSRClient(ctx).query<HomePageData>({
+  const { data } = await createClient(ctx).query<HomePageData>({
     query: gql`
         query HomePage {
             services {

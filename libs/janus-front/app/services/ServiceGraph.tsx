@@ -1,12 +1,12 @@
-import { gql, useQuery } from '@apollo/client';
+import { gql, useSubscription } from '@apollo/client';
 import { makeStyles, Paper } from '@material-ui/core';
 import { FC, useEffect, useMemo, useRef } from 'react';
 import * as d3 from 'd3';
 
-import { IService, ServiceFragment, GateFragment } from '@jujulego/janus-common';
+import { GateFragment, IService, ServiceFragment } from '@jujulego/janus-common';
 
 // Types
-export interface ServiceGraphData {
+export interface ServiceGraphProps {
   service: IService;
 }
 
@@ -64,16 +64,16 @@ const useStyles = makeStyles(({ palette }) => ({
 }));
 
 // Component
-export const ServiceGraph: FC<ServiceGraphData> = (props) => {
+export const ServiceGraph: FC<ServiceGraphProps> = (props) => {
   const styles = useStyles();
 
   // GraphQL
-  const { data: { service } = props, stopPolling } = useQuery<ServiceGraphData>(
+  const { data: { service } = props } = useSubscription<ServiceGraphProps>(
     gql`
-        query ServiceGraph($service: String!) {
+        subscription ServiceGraph($service: String!) {
             service(name: $service) {
                 ...Service
-
+                
                 gates {
                     ...Gate
                 }
@@ -85,7 +85,6 @@ export const ServiceGraph: FC<ServiceGraphData> = (props) => {
     `,
     {
       variables: { service: props.service.name },
-      pollInterval: 10000
     }
   );
 
@@ -97,8 +96,8 @@ export const ServiceGraph: FC<ServiceGraphData> = (props) => {
     name: service.name,
     enabled: service.gates.some((gate) => gate.enabled),
 
-    children: service.gates
-      // .sort((a, b) => a.priority - b.priority)
+    children: [...service.gates]
+      .sort((a, b) => a.priority - b.priority)
       .map((gate) => ({
         name: gate.name,
         enabled: gate.enabled,
@@ -106,10 +105,6 @@ export const ServiceGraph: FC<ServiceGraphData> = (props) => {
   }), [service]);
 
   // Effects
-  useEffect(() => {
-    return () => stopPolling();
-  }, []);
-
   useEffect(() => {
     if (!graph.current) return;
 
@@ -179,7 +174,7 @@ export const ServiceGraph: FC<ServiceGraphData> = (props) => {
 
           return ctx.toString();
         });
-  }, [hierarchy, styles]);
+  }, [hierarchy, styles, graph.current]);
 
   // Render
   return (

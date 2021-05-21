@@ -4,9 +4,9 @@ import { CacheProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useEffect } from 'react';
+import { useEffect, useRef } from 'react';
 
-import { client } from '../apollo-client';
+import { createClient } from '../apollo-client';
 import { Navbar } from '../layout/Navbar';
 import { theme } from '../theme';
 
@@ -26,6 +26,9 @@ export default function App(props: AppProps) {
     }
   }, []);
 
+  // Refs
+  const client = useRef(createClient());
+
   // Render
   return (
     <CacheProvider value={cache}>
@@ -33,7 +36,7 @@ export default function App(props: AppProps) {
         <title>Janus Proxy</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ApolloProvider client={client}>
+      <ApolloProvider client={client.current}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
           <Navbar>

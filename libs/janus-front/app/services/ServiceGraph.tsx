@@ -126,16 +126,28 @@ export const ServiceGraph: FC<ServiceGraphProps> = (props) => {
     // - nodes
     const nodes = svg.select('g.nodes').selectAll('g')
       .data(root.descendants())
-      .join('g')
+      .join(
+        (ent) => {
+          const node = ent.append('g');
+
+          node.append('circle');
+          node.append('rect');
+          node.append('text');
+
+          return node;
+        },
+        (upd) => upd,
+        (ext) => ext.remove()
+      )
         .classed(styles.node, true);
 
-    nodes.append('circle')
+    nodes.select('circle')
       .classed('enabled', (d) => d.data.enabled)
       .attr('cx', (d) => ml + d.y + (d.depth === 0 ? nw : -nw))
       .attr('cy', (d) => d.x)
       .attr('r', 4);
 
-    nodes.append('rect')
+    nodes.select('rect')
       .classed('enabled', (d) => d.data.enabled)
       .attr('x', (d) => ml + d.y + (d.depth === 0 ? 0 : -nw))
       .attr('y', (d) => d.x - 20)
@@ -144,7 +156,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = (props) => {
       .attr('width', nw)
       .attr('height', 40);
 
-    nodes.append('text')
+    nodes.select('text')
       .attr('x', (d) => ml + d.y + (d.depth === 0 ? 0 : -nw) + 10)
       .attr('y', (d) => d.x)
       .text((d) => d.data.name);

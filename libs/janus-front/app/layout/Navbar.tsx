@@ -11,7 +11,8 @@ import {
 } from '@material-ui/core';
 import { Attractions as AttractionsIcon, ChevronLeft as ChevronLeftIcon, Menu as MenuIcon } from '@material-ui/icons';
 import { default as NextLink } from 'next/link';
-import { FC, useState } from 'react';
+import { useRouter } from 'next/router';
+import { FC, useEffect, useState } from 'react';
 
 import { IService } from '@jujulego/janus-common';
 import { gql, useQuery } from '@apollo/client';
@@ -53,12 +54,20 @@ export const Navbar: FC = ({ children }) => {
   // Data
   const { data } = useQuery<NavbarData>(NAVBAR_QUERY);
 
+  // Contexts
+  const router = useRouter();
+
+  // Effects
+  useEffect(() => {
+    setOpen(false);
+  }, [router.pathname]);
+
   // Handlers
   const handleOpen  = () => { setOpen(true); };
   const handleClose = () => { setOpen(false); };
 
   // Render
-  const small = !useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('md'));
+  const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('md'));
   const styles = useStyles();
 
   return (

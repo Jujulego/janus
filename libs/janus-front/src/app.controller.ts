@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Req, Res } from '@nestjs/common';
+import { Controller, Get, Param, Query, Req, Res } from '@nestjs/common';
 import { Request, Response } from 'express';
 
 import { AppService } from './app.service';
@@ -12,6 +12,16 @@ export class AppController {
   ) {}
 
   // Endpoints
+  @Get('/:name')
+  async service(
+    @Param('name') name: string,
+    @Req() req: Request,
+    @Res() res: Response,
+    @Query() query: any
+  ): Promise<void> {
+    await this.app.server.render(req, res, `/${name}`, query);
+  }
+
   @Get()
   async home(@Req() req: Request, @Res() res: Response, @Query() query: any): Promise<void> {
     await this.app.server.render(req, res, '/', query);

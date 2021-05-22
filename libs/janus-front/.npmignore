@@ -30,13 +30,7 @@ lerna-debug.log*
 *.launch
 .settings/
 *.sublime-workspace
-
-# IDE - VSCode
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
 
 # Configs
 .eslintrc
@@ -47,3 +41,7 @@ nest-cli.json
 tsconfig.*.json
 tsconfig.json
 webpack.config.js
+
+# Others
+/dist/*.js.map
+/dist/*.d.ts.map

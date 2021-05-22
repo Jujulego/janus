@@ -2,7 +2,7 @@ import { gql } from '@apollo/client';
 import { Grid } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
 
-import { GateFragment, IService, ServiceFragment } from '@jujulego/janus-common';
+import { IService, ServiceFragment } from '@jujulego/janus-common';
 
 import { ServiceHeader } from '../services/ServiceHeader';
 import { ServiceGraph } from '../services/ServiceGraph';
@@ -41,15 +41,10 @@ export const getServerSideProps: GetServerSideProps<ServicePageData> = async (ct
         query ServicePage($name: String!) {
             service(name: $name) {
                 ...Service
-
-                gates {
-                    ...Gate
-                }
             }
         }
 
         ${ServiceFragment}
-        ${GateFragment}
     `,
     variables: { name }
   });

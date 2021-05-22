@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
 
-import { IGate } from './gate';
+import { GateFragment, IGate } from './gate';
 
 // Model
 export interface IService {
@@ -15,5 +15,11 @@ export const ServiceFragment = gql`
     fragment Service on Service {
         name
         url
+        
+        gates {
+            ...Gate
+        }
     }
+    
+    ${GateFragment}
 `;

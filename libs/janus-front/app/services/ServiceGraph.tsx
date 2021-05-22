@@ -3,7 +3,7 @@ import { makeStyles, Paper } from '@material-ui/core';
 import { FC, useEffect, useMemo, useRef } from 'react';
 import * as d3 from 'd3';
 
-import { GateFragment, IService, ServiceFragment } from '@jujulego/janus-common';
+import { IService, ServiceFragment } from '@jujulego/janus-common';
 
 // Types
 export interface ServiceGraphProps {
@@ -73,15 +73,10 @@ export const ServiceGraph: FC<ServiceGraphProps> = (props) => {
         subscription ServiceGraph($service: String!) {
             service(name: $service) {
                 ...Service
-                
-                gates {
-                    ...Gate
-                }
             }
         }
 
         ${ServiceFragment}
-        ${GateFragment}
     `,
     {
       variables: { service: props.service.name },

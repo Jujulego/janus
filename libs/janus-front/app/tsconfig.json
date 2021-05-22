@@ -11,6 +11,7 @@
     "jsx": "preserve",
     "allowJs": true,
     "declaration": false,
+    "declarationMap": false,
     "sourceMap": false,
     "noEmit": true,
     "isolatedModules": true,

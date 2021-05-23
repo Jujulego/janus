@@ -4,6 +4,7 @@ services:
     gates:
       local1:
         target: 'http://localhost:3001/'
+        ws: true
 
       local2:
         target: 'http://localhost:3002/'

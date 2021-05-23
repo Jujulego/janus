@@ -1,13 +1,13 @@
-import { gql } from '@apollo/client';
+import { gql, useMutation } from '@apollo/client';
 import { Grid } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
 
-import { IGate, IService, ServiceFragment } from '@jujulego/janus-common';
+import { GateFragment, IGate, IService, ServiceFragment } from '@jujulego/janus-common';
 
 import { ServiceHeader } from '../services/ServiceHeader';
 import { ServiceGraph } from '../services/ServiceGraph';
 import { createClient } from '../apollo-client';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { GateDetails } from '../gates/GateDetails';
 
 // Types
@@ -15,16 +15,54 @@ export interface ServicePageData {
   service: IService;
 }
 
+// Queries
+const ENABLE_GATE_MUT = gql`
+    mutation EnableGate($service: String!, $gate: String!) {
+        enableGate(service: $service, gate: $gate) {
+            ...Gate
+        }
+    }
+    
+    ${GateFragment}
+`;
+
+const DISABLE_GATE_MUT = gql`
+    mutation DisableGate($service: String!, $gate: String!) {
+        disableGate(service: $service, gate: $gate) {
+            ...Gate
+        }
+    }
+    
+    ${GateFragment}
+`;
+
 // Page
-const ServicePage: NextPage<ServicePageData> = ({ service }) => {
+const ServicePage: NextPage<ServicePageData> = (props) => {
   // State
-  const [gate, setGate] = useState<IGate | null>(null);
+  const [service, setService] = useState(props.service);
+  const [selected, setSelected] = useState<string>("");
+
+  // Memos
+  const gate = useMemo(() => service.gates.find(g => g.name === selected), [selected, service])
+
+  // Queries
+  const [enableGate] = useMutation<{ enableGate: IGate }>(ENABLE_GATE_MUT);
+  const [disableGate] = useMutation<{ disableGate: IGate }>(DISABLE_GATE_MUT);
 
   // Callbacks
-  const handleSelect = useCallback((name: string) => {
-    const gate = service.gates.find(g => g.name === name);
-    setGate(gate || null);
-  }, [service, setGate]);
+  const handleToggle = useCallback(async (gate: IGate) => {
+    let res: IGate;
+
+    if (gate.enabled) {
+      const { data } = await disableGate({ variables: { service: service.name, gate: gate.name }});
+      res = data!.disableGate;
+    } else {
+      const { data } = await enableGate({ variables: { service: service.name, gate: gate.name } });
+      res = data!.enableGate;
+    }
+
+    setService((srv) => ({ ...srv, gates: srv.gates.map((g) => g.name === gate.name ? res : g) }));
+  }, [service, setService]);
 
   // Render
   return (
@@ -38,12 +76,12 @@ const ServicePage: NextPage<ServicePageData> = ({ service }) => {
 
       <Grid item container spacing={2} xs>
         <Grid item xs>
-          <ServiceGraph service={service} onSelect={handleSelect} />
+          <ServiceGraph service={service} onSelect={setSelected} />
         </Grid>
 
         { gate && (
           <Grid item xs="auto" lg={2} minWidth={300}>
-            <GateDetails gate={gate} />
+            <GateDetails gate={gate} onToggle={handleToggle} />
           </Grid>
         ) }
       </Grid>

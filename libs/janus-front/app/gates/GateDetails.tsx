@@ -1,16 +1,59 @@
-import { Paper } from '@material-ui/core';
-import { FC } from 'react';
+import { Box, Chip, Divider, Grid, Paper, Stack, Switch, Typography } from '@material-ui/core';
+import { FC, useCallback } from 'react';
 
 import { IGate } from '@jujulego/janus-common';
 
 // Props
 export interface GateDetailsProps {
   gate: IGate;
+  onToggle: (gate: IGate) => void;
 }
 
-// Component
-export const GateDetails: FC<GateDetailsProps> = ({ gate }) => (
-  <Paper variant="outlined" sx={{ height: '100%', p: 2 }}>
-    { gate.name }
-  </Paper>
+// Utils
+const OptionChip: FC<{ label: string, active: boolean }> = ({ label, active }) => (
+  <Chip
+    label={label} size="small"
+    variant={active ? 'filled' : 'outlined'}
+    color={active ? 'primary' : 'default'}
+  />
 );
+
+// Component
+export const GateDetails: FC<GateDetailsProps> = ({ gate, onToggle }) => {
+  // Callbacks
+  const handleToggle = useCallback(() => {
+    onToggle(gate);
+  }, [gate]);
+
+  // Render
+  return (
+    <Paper variant="outlined" sx={{ height: '100%' }}>
+      <Grid container sx={{ p: 2 }}>
+        <Grid item xs>
+          <Typography variant="caption" color="text.secondary">Gate</Typography>
+          <Typography>{ gate.name }</Typography>
+        </Grid>
+        <Grid item xs="auto" alignSelf="center">
+          <Switch checked={gate.enabled} onChange={handleToggle}/>
+        </Grid>
+      </Grid>
+      <Divider orientation="horizontal" />
+      <Box mt={2} px={2}>
+        <Typography variant="caption" color="text.secondary">Target</Typography>
+        <Typography>{ gate.target }</Typography>
+      </Box>
+      <Box mt={2} px={2}>
+        <Typography variant="caption" color="text.secondary">Priority</Typography>
+        <Typography>{ gate.priority }</Typography>
+      </Box>
+      <Box mt={2} px={2}>
+        <Typography variant="caption" color="text.secondary">Options</Typography>
+        <Stack direction="row" spacing={1}>
+          <OptionChip label="changeOrigin" active={gate.changeOrigin} />
+          <OptionChip label="secure" active={gate.secure} />
+          <OptionChip label="ws" active={gate.ws} />
+        </Stack>
+      </Box>
+    </Paper>
+  );
+};

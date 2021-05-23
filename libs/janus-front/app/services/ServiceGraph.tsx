@@ -1,10 +1,10 @@
 import { gql, useSubscription } from '@apollo/client';
-import { makeStyles, Paper } from '@material-ui/core';
-import { FC, useEffect, useMemo, useRef } from 'react';
+import { makeStyles, Paper, useTheme } from '@material-ui/core';
+import { FC, useEffect, useMemo, useRef, useState } from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
 import * as d3 from 'd3';
 
 import { IService, ServiceFragment } from '@jujulego/janus-common';
-import { IGate } from '../../../janus-common/src';
 
 // Query
 export interface ServiceGraphData {
@@ -35,29 +35,38 @@ export interface ServiceGraphProps extends ServiceGraphData {
 }
 
 // Styles
-const useStyles = makeStyles(({ palette }) => ({
+const useStyles = makeStyles(({ palette, transitions }) => ({
   graph: {
     height: '100%',
-    width: '100%',
-    minWidth: 500
+    width: '100%'
   },
   node: {
+    cursor: 'pointer',
+
+    '&:hover rect': {
+      fill: palette.action.hover
+    },
+
     '& text': {
       fill: palette.text.primary,
       dominantBaseline: 'central'
     },
+
     '& rect': {
-      fill: palette.background.paper,
+      fill: 'transparent',
       stroke: palette.warning.main,
       strokeWidth: 1,
+
+      transition: transitions.create('fill', { duration: transitions.duration.shortest }),
 
       '&.enabled': {
         stroke: palette.success.main
       }
     },
+
     '& circle': {
       fill: palette.warning.main,
-      stoke: 'none',
+      stroke: 'none',
 
       '&.enabled': {
         fill: palette.success.main
@@ -82,12 +91,16 @@ const useStyles = makeStyles(({ palette }) => ({
 
 // Component
 export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, ...data }) => {
+  const theme = useTheme();
   const styles = useStyles();
 
   // GraphQL
   const { data: { service } = data } = useSubscription<ServiceGraphData>(SERVICE_SUBSCRIPTION, {
     variables: { service: data.service.name },
   });
+
+  // State
+  const [count, refresh] = useState(0);
 
   // Refs
   const graph = useRef<SVGSVGElement>(null);
@@ -107,22 +120,40 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, ...data }) => {
 
   // Effects
   useEffect(() => {
+    const obs = new ResizeObserver(() => {
+      refresh((old) => old + 1);
+    });
+
+    if (graph.current?.parentElement) {
+      obs.observe(graph.current.parentElement);
+    }
+
+    return () => {
+      obs.disconnect();
+    }
+  }, [graph.current, refresh]);
+
+  useEffect(() => {
     if (!graph.current) return;
 
     // Build graph
     const h = graph.current.clientHeight - 10;
-    const w = graph.current.clientWidth - 10;
+    const w = Math.max(graph.current.clientWidth - 10, 750);
+    const rw = Math.min((graph.current.clientWidth - 10) / 750, 1);
 
-    const nw = Math.max(w / 5, 200);
-    const lw = Math.min(w - nw * 2, 300);
-    const ml = Math.max((w - lw) / 2 - nw, 0);
+    const nw = 200;                                   // node width
+    const lw = w / 3;                                 // link width => space between nodes
+    const ml = Math.max((w - lw) / 2 - nw, 0); // left margin
 
     const layout = d3.tree<IData>()
-      .size([h, w - ml * 2]);
+      .size([h / rw, w - ml * 2]);
 
     // Render graph
     const svg = d3.select(graph.current);
     const root = layout(hierarchy);
+
+    svg.select('g.root')
+      .attr('transform', `translate(5, 5) scale(${rw})`);
 
     // - nodes
     const nodes = svg.select('g.nodes').selectAll('g')
@@ -147,7 +178,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, ...data }) => {
       .classed('enabled', (d) => d.data.enabled)
       .attr('cx', (d) => ml + d.y + (d.depth === 0 ? nw : -nw))
       .attr('cy', (d) => d.x)
-      .attr('r', 4);
+      .attr('r', theme.shape.borderRadius);
 
     nodes.select('rect')
       .classed('enabled', (d) => d.data.enabled)
@@ -177,24 +208,24 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, ...data }) => {
           const ty = d.target.y - nw;
 
           const my = (sy + ty) / 2;
-          const r = (ty - sy) / 3;
+          const sw = (ty - sy) / 7; // width of strait line
 
           // path
           const ctx = d3.path();
           ctx.moveTo(ml + sy, sx);
-          ctx.lineTo(ml + my - r, sx);
-          ctx.bezierCurveTo(ml + my, sx, ml + my, tx, ml + my + r, tx);
+          ctx.lineTo(ml + sy + sw, sx);
+          ctx.bezierCurveTo(ml + my, sx, ml + my, tx, ml + ty - sw, tx);
           ctx.lineTo(ml + ty, tx);
 
           return ctx.toString();
         });
-  }, [hierarchy, styles, graph.current, onSelect]);
+  }, [count, hierarchy, styles, theme, graph.current, onSelect]);
 
   // Render
   return (
     <Paper variant="outlined" sx={{ height: '100%' }}>
       <svg className={styles.graph} ref={graph}>
-        <g transform="translate(5, 5)">
+        <g className="root" transform="translate(5, 5)">
           <g className="links" />
           <g className="nodes" />
         </g>

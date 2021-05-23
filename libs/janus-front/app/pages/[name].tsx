@@ -33,7 +33,7 @@ const ServicePage: NextPage<ServicePageData> = ({ service }) => {
       flexGrow={1} p={2}
     >
       <Grid item xs="auto">
-        <ServiceHeader service={service}/>
+        <ServiceHeader service={service} />
       </Grid>
 
       <Grid item container spacing={2} xs>
@@ -42,7 +42,7 @@ const ServicePage: NextPage<ServicePageData> = ({ service }) => {
         </Grid>
 
         { gate && (
-          <Grid item xs="auto">
+          <Grid item xs="auto" lg={2} minWidth={300}>
             <GateDetails gate={gate} />
           </Grid>
         ) }

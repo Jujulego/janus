@@ -10,7 +10,7 @@ export interface GateDetailsProps {
 
 // Component
 export const GateDetails: FC<GateDetailsProps> = ({ gate }) => (
-  <Paper variant="outlined" sx={{ height: '100%', width: 300, p: 2 }}>
+  <Paper variant="outlined" sx={{ height: '100%', p: 2 }}>
     { gate.name }
   </Paper>
 );

@@ -43,49 +43,64 @@ const useStyles = makeStyles(({ palette, transitions }) => ({
   node: {
     cursor: 'pointer',
 
-    '&:hover rect': {
-      fill: palette.action.hover
-    },
-
     '& text': {
       fill: palette.text.primary,
       dominantBaseline: 'central'
     },
 
     '& rect': {
-      fill: 'transparent',
+      fill: palette.background.paper,
       stroke: palette.warning.main,
-      strokeWidth: 1,
+      strokeWidth: 2,
 
       transition: transitions.create('fill', { duration: transitions.duration.shortest }),
-
-      '&.enabled': {
-        stroke: palette.success.main
-      }
     },
 
     '& circle': {
       fill: palette.warning.main,
       stroke: 'none',
+    },
 
-      '&.enabled': {
-        fill: palette.success.main
-      }
-    }
+    '&:hover rect': {
+      fill: '#252525'
+    },
+
+    '&.used': {
+      '& rect': {
+        stroke: palette.primary.main,
+      },
+
+      '& circle': {
+        fill: palette.primary.main,
+      },
+    },
+
+    '&.enabled': {
+      '& rect': {
+        stroke: palette.success.main,
+      },
+
+      '& circle': {
+        fill: palette.success.main,
+      },
+    },
   },
   link: {
     fill: 'none',
     stroke: palette.warning.main,
-    strokeWidth: 1,
-
-    '&:not(.enabled)': {
-      strokeDasharray: '5'
-    },
+    strokeWidth: 2,
+    strokeDasharray: '5',
 
     '&.enabled': {
       stroke: palette.success.main,
-      strokeWidth: 2,
-    }
+      strokeDasharray: '0'
+    },
+
+    '&.used': {
+      stroke: palette.primary.main,
+      strokeWidth: 3,
+      strokeDasharray: '0'
+    },
   }
 }));
 
@@ -136,6 +151,9 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, ...data }) => {
   useEffect(() => {
     if (!graph.current) return;
 
+    // Used gate
+    const used = hierarchy.children!.find((d) => d.data.enabled);
+
     // Build graph
     const h = graph.current.clientHeight - 10;
     const w = Math.max(graph.current.clientWidth - 10, 750);
@@ -172,13 +190,15 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, ...data }) => {
         (ext) => ext.remove()
       )
         .classed(styles.node, true)
+        .classed('enabled', (d) => d.data.enabled)
+        .classed('used', (d) => used?.data?.name === d.data.name)
         .on('click', (e, d) => onSelect(d.data.name));
 
     nodes.select('circle')
       .classed('enabled', (d) => d.data.enabled)
       .attr('cx', (d) => ml + d.y + (d.depth === 0 ? nw : -nw))
       .attr('cy', (d) => d.x)
-      .attr('r', theme.shape.borderRadius);
+      .attr('r', 6);
 
     nodes.select('rect')
       .classed('enabled', (d) => d.data.enabled)
@@ -200,6 +220,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, ...data }) => {
       .join('path')
         .classed(styles.link, true)
         .classed('enabled', (d) => d.target.data.enabled)
+        .classed('used', (d) => used?.data?.name === d.target.data.name)
         .attr('d', (d) => {
           // coords
           const sx = d.source.x;

@@ -4,17 +4,34 @@ import { FC, useEffect, useMemo, useRef } from 'react';
 import * as d3 from 'd3';
 
 import { IService, ServiceFragment } from '@jujulego/janus-common';
+import { IGate } from '../../../janus-common/src';
 
-// Types
-export interface ServiceGraphProps {
+// Query
+export interface ServiceGraphData {
   service: IService;
 }
 
+const SERVICE_SUBSCRIPTION = gql`
+    subscription ServiceGraph($service: String!) {
+        service(name: $service) {
+            ...Service
+        }
+    }
+
+    ${ServiceFragment}
+`;
+
+// Types
 interface IData {
   name: string;
   enabled: boolean;
 
   children?: IData[];
+}
+
+// Props
+export interface ServiceGraphProps extends ServiceGraphData {
+  onSelect(selected: string): void;
 }
 
 // Styles
@@ -64,24 +81,13 @@ const useStyles = makeStyles(({ palette }) => ({
 }));
 
 // Component
-export const ServiceGraph: FC<ServiceGraphProps> = (props) => {
+export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, ...data }) => {
   const styles = useStyles();
 
   // GraphQL
-  const { data: { service } = props } = useSubscription<ServiceGraphProps>(
-    gql`
-        subscription ServiceGraph($service: String!) {
-            service(name: $service) {
-                ...Service
-            }
-        }
-
-        ${ServiceFragment}
-    `,
-    {
-      variables: { service: props.service.name },
-    }
-  );
+  const { data: { service } = data } = useSubscription<ServiceGraphData>(SERVICE_SUBSCRIPTION, {
+    variables: { service: data.service.name },
+  });
 
   // Refs
   const graph = useRef<SVGSVGElement>(null);
@@ -134,7 +140,8 @@ export const ServiceGraph: FC<ServiceGraphProps> = (props) => {
         (upd) => upd,
         (ext) => ext.remove()
       )
-        .classed(styles.node, true);
+        .classed(styles.node, true)
+        .on('click', (e, d) => onSelect(d.data.name));
 
     nodes.select('circle')
       .classed('enabled', (d) => d.data.enabled)
@@ -181,7 +188,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = (props) => {
 
           return ctx.toString();
         });
-  }, [hierarchy, styles, graph.current]);
+  }, [hierarchy, styles, graph.current, onSelect]);
 
   // Render
   return (

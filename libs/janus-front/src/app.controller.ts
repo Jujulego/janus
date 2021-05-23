@@ -12,6 +12,11 @@ export class AppController {
   ) {}
 
   // Endpoints
+  @Get()
+  async home(@Req() req: Request, @Res() res: Response, @Query() query: any): Promise<void> {
+    await this.app.server.render(req, res, '/', query);
+  }
+
   @Get('/:name')
   async service(
     @Param('name') name: string,
@@ -20,11 +25,6 @@ export class AppController {
     @Query() query: any
   ): Promise<void> {
     await this.app.server.render(req, res, `/${name}`, query);
-  }
-
-  @Get()
-  async home(@Req() req: Request, @Res() res: Response, @Query() query: any): Promise<void> {
-    await this.app.server.render(req, res, '/', query);
   }
 
   @Get(['/_next/*', '/__nextjs_original-stack-frame'])

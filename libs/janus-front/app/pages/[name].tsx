@@ -2,11 +2,13 @@ import { gql } from '@apollo/client';
 import { Grid } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
 
-import { IService, ServiceFragment } from '@jujulego/janus-common';
+import { IGate, IService, ServiceFragment } from '@jujulego/janus-common';
 
 import { ServiceHeader } from '../services/ServiceHeader';
 import { ServiceGraph } from '../services/ServiceGraph';
 import { createClient } from '../apollo-client';
+import { useCallback, useState } from 'react';
+import { GateDetails } from '../gates/GateDetails';
 
 // Types
 export interface ServicePageData {
@@ -14,21 +16,40 @@ export interface ServicePageData {
 }
 
 // Page
-const ServicePage: NextPage<ServicePageData> = ({ service }) => (
-  <Grid
-    container direction="column"
-    p={2}
-    flexGrow={1}
-  >
-    <Grid item xs="auto">
-      <ServiceHeader service={service} />
-    </Grid>
+const ServicePage: NextPage<ServicePageData> = ({ service }) => {
+  // State
+  const [gate, setGate] = useState<IGate | null>(null);
 
-    <Grid item xs>
-      <ServiceGraph service={service} />
+  // Callbacks
+  const handleSelect = useCallback((name: string) => {
+    const gate = service.gates.find(g => g.name === name);
+    setGate(gate || null);
+  }, [service, setGate]);
+
+  // Render
+  return (
+    <Grid
+      container direction="column"
+      flexGrow={1} p={2}
+    >
+      <Grid item xs="auto">
+        <ServiceHeader service={service}/>
+      </Grid>
+
+      <Grid item container spacing={2} xs>
+        <Grid item xs>
+          <ServiceGraph service={service} onSelect={handleSelect} />
+        </Grid>
+
+        { gate && (
+          <Grid item xs="auto">
+            <GateDetails gate={gate} />
+          </Grid>
+        ) }
+      </Grid>
     </Grid>
-  </Grid>
-);
+  );
+};
 
 export default ServicePage;
 

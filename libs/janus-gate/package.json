@@ -8,8 +8,8 @@
     "build": "tsc -p tsconfig.build.json"
   },
   "dependencies": {
+    "@jujulego/janus-common": "^1.0.0-alpha.0",
     "@jujulego/janus-config": "^1.0.0-alpha.1",
-    "@jujulego/janus-types": "^1.0.0-alpha.1",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "graphql-tag": "^2.12.4",

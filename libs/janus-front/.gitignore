@@ -1,7 +1,8 @@
-# Sources
-/src
-/tests
+# compiled output
+/dist
+/app/.next
 /node_modules
+schema.gql
 
 # Logs
 logs
@@ -26,18 +27,10 @@ lerna-debug.log*
 *.launch
 .settings/
 *.sublime-workspace
+
+# IDE - VSCode
 .vscode/*
-
-# Configs
-.eslintrc
-.prettierrc
-.janus.config.yml
-jest.config.*.json
-nest-cli.json
-tsconfig.*.json
-tsconfig.json
-webpack.config.js
-
-# Others
-/dist/*.js.map
-/dist/*.d.ts.map
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json

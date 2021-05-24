@@ -4,13 +4,14 @@ import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphq
 import { GraphQLSchema } from 'graphql';
 import { Subject } from 'rxjs';
 import { exhaustMap, filter } from 'rxjs/operators';
+import morgan from 'morgan';
 
 import { JanusConfig } from '@jujulego/janus-config';
 
 import { AppModule } from './app.module';
 import { ServerResolver } from './control/server.resolver';
-import { GateResolver } from './services/gate.resolver';
-import { ServiceResolver } from './services/service.resolver';
+import { GateResolver } from './gates/gate.resolver';
+import { ServiceResolver } from './gates/service.resolver';
 import { ConfigService } from './config/config.service';
 import { ControlService } from './control/control.service';
 
@@ -67,9 +68,21 @@ export class JanusServer {
 
     this.config.config = config;
 
-    // Start server
+    // Setup
     this.app.enableShutdownHooks();
 
+    if (process.env.NODE_ENV === 'development') {
+      // Log access requests
+      this.app.use(morgan('dev', {
+        stream: {
+          write(str: string) {
+            Logger.log(str.trim());
+          }
+        }
+      }));
+    }
+
+    // Start server
     await this.app.listen(this.config.control.port, () => {
       this._logger.log(`Server listening at http://localhost:${this.config.control.port}`);
       this._started.next();

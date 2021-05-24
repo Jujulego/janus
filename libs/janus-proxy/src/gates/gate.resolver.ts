@@ -49,14 +49,11 @@ export class GateResolver {
   }
 
   // Subscriptions
-  @Subscription(() => Gate, {
-    name: 'gate',
-    filter: (payload: Gate, variables) => payload.name === variables.name
-  })
-  gateSubscription(
+  @Subscription(() => Gate, { name: 'gate' })
+  gateSub(
     @Args('service') service: string,
     @Args('gate') name: string
   ) {
-    return this._pubsub.asyncIterator<Gate>(`${service}.gates`);
+    return this._pubsub.asyncIterator<Gate>(`${service}.${name}`);
   }
 }

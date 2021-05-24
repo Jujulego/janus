@@ -26,4 +26,4 @@ import { ServiceResolver } from './service.resolver';
     ResolverService
   ]
 })
-export class ServicesModule {}
+export class GatesModule {}

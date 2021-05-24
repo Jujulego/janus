@@ -1,4 +1,5 @@
-import { Args, Parent, Query, ResolveField, Resolver } from '@nestjs/graphql';
+import { Args, Parent, Query, ResolveField, Resolver, Subscription } from '@nestjs/graphql';
+import { PubSub } from 'graphql-subscriptions';
 
 import { Service } from './service.model';
 import { GatesService } from './gates.service';
@@ -10,6 +11,7 @@ import { Gate } from './gate.model';
 export class ServiceResolver {
   // Constructor
   constructor(
+    private readonly _pubsub: PubSub,
     private readonly _service: GatesService,
     private readonly _resolver: ResolverService
   ) {}
@@ -34,5 +36,13 @@ export class ServiceResolver {
     @Args('name') name: string
   ): Gate | null {
     return service.gates.find(gate => gate.name === name) || null;
+  }
+
+  // Subscriptions
+  @Subscription(() => Service, { name: 'service' })
+  serviceSub(
+    @Args('name') name: string
+  ) {
+    return this._pubsub.asyncIterator<Service>(name);
   }
 }

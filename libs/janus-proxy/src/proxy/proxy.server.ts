@@ -13,10 +13,10 @@ import http from 'http';
 import httpProxy from 'http-proxy';
 
 import { ConfigService } from '../config/config.service';
-import { ResolverService } from '../services/resolver.service';
-import { Gate } from '../services/gate.model';
-import { GatesService } from '../services/gates.service';
-import { Service } from '../services/service.model';
+import { ResolverService } from '../gates/resolver.service';
+import { GatesService } from '../gates/gates.service';
+import { Gate } from '../gates/gate.model';
+import { Service } from '../gates/service.model';
 
 // Service
 @Injectable()

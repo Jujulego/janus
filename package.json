@@ -8,9 +8,11 @@
     "samples/*"
   ],
   "scripts": {
+    "build": "yarn workspaces foreach -pvi --no-private --topological-dev run build",
     "janus": "yarn workspace @jujulego/janus start"
   },
   "devDependencies": {
-    "@nestjs/cli": "^7.6.0"
+    "@nestjs/cli": "^7.6.0",
+    "@nestjs/schematics": "^7.3.0"
   }
 }

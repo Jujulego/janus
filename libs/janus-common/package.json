@@ -1,6 +1,6 @@
 {
-  "name": "@jujulego/janus-types",
-  "version": "1.0.0-alpha.1",
+  "name": "@jujulego/janus-common",
+  "version": "1.0.0-alpha.0",
   "license": "MIT",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",

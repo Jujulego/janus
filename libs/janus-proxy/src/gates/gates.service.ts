@@ -50,11 +50,15 @@ export class GatesService implements OnApplicationBootstrap {
   }
 
   enableGate(service: string, name: string): Gate | null {
-    const gate = this.getGate(service, name);
+    const srv = this.getService(service);
+    const gate = srv?.getGate(name) || null;
 
     if (gate && !gate.enabled) {
       gate.enabled = true;
-      this._pubsub.publish(`${service}.gates`, { gate });
+
+      this._pubsub.publish(service, { service: srv });
+      this._pubsub.publish(`${service}.${name}`, { gate });
+
       this._logger.log(`Gate ${service}.${name} enabled`);
     }
 
@@ -62,11 +66,15 @@ export class GatesService implements OnApplicationBootstrap {
   }
 
   disableGate(service: string, name: string): Gate | null {
-    const gate = this.getGate(service, name);
+    const srv = this.getService(service);
+    const gate = srv?.getGate(name) || null;
 
     if (gate?.enabled) {
       gate.enabled = false;
-      this._pubsub.publish(`${service}.gates`, { gate });
+
+      this._pubsub.publish(service, { service: srv });
+      this._pubsub.publish(`${service}.${name}`, { gate });
+
       this._logger.log(`Gate ${service}.${name} disabled`);
     }
 

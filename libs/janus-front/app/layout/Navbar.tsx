@@ -5,7 +5,7 @@ import {
   List, ListItem, ListItemText, ListSubheader,
   makeStyles,
   Theme,
-  Toolbar,
+  Toolbar, Tooltip,
   Typography,
   useMediaQuery
 } from '@material-ui/core';
@@ -83,10 +83,14 @@ export const Navbar: FC = ({ children }) => {
               <MenuIcon />
             </IconButton>
           ) }
-          <Typography variant="h6" sx={{ flex: 1 }}>Janus Proxy</Typography>
-          <IconButton component={Link} href="/graphql" color="inherit">
-            <AttractionsIcon />
-          </IconButton>
+          <NextLink href="/" passHref>
+            <Typography component="a" variant="h6" sx={{ flex: 1, color: 'text.primary', textDecoration: 'none' }}>Janus Proxy</Typography>
+          </NextLink>
+          <Tooltip title="GraphQL Playground">
+            <IconButton component={Link} href="/graphql" color="inherit">
+              <AttractionsIcon />
+            </IconButton>
+          </Tooltip>
         </Toolbar>
       </AppBar>
       <Drawer
@@ -97,7 +101,9 @@ export const Navbar: FC = ({ children }) => {
         open={open} onClose={handleClose}
       >
         <Toolbar>
-          <Typography variant="h6" sx={{ flex: 1 }}>Janus Proxy</Typography>
+          <NextLink href="/" passHref>
+            <Typography component="a" variant="h6" sx={{ flex: 1, color: 'text.primary', textDecoration: 'none' }}>Janus Proxy</Typography>
+          </NextLink>
           <IconButton
             color="inherit" edge="end"
             onClick={handleClose}
@@ -120,7 +126,7 @@ export const Navbar: FC = ({ children }) => {
                 <ListItemText
                   primary={service.name}
                   secondary={service.url}
-                  secondaryTypographyProps={{ color: 'primary.light' }}
+                  secondaryTypographyProps={{ variant: 'body2', color: 'primary.light' }}
                 />
               </ListItem>
             </NextLink>

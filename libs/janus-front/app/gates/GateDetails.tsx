@@ -28,7 +28,7 @@ export const GateDetails: FC<GateDetailsProps> = ({ gate, onToggle }) => {
   // Render
   return (
     <Paper variant="outlined" sx={{ height: '100%' }}>
-      <Grid container sx={{ p: 2 }}>
+      <Grid container sx={{ px: 2, pt: 1.5 }}>
         <Grid item xs>
           <Typography variant="caption" color="text.secondary">Gate</Typography>
           <Typography>{ gate.name }</Typography>
@@ -37,16 +37,16 @@ export const GateDetails: FC<GateDetailsProps> = ({ gate, onToggle }) => {
           <Switch checked={gate.enabled} onChange={handleToggle}/>
         </Grid>
       </Grid>
-      <Divider orientation="horizontal" />
-      <Box mt={2} px={2}>
+      <Divider orientation="horizontal" sx={{ mt: 1.5 }} />
+      <Box mt={1.5} px={2}>
         <Typography variant="caption" color="text.secondary">Target</Typography>
         <Typography>{ gate.target }</Typography>
       </Box>
-      <Box mt={2} px={2}>
+      <Box mt={1.5} px={2}>
         <Typography variant="caption" color="text.secondary">Priority</Typography>
         <Typography>{ gate.priority }</Typography>
       </Box>
-      <Box mt={2} px={2}>
+      <Box mt={1.5} px={2}>
         <Typography variant="caption" color="text.secondary">Options</Typography>
         <Stack direction="row" spacing={1}>
           <OptionChip label="changeOrigin" active={gate.changeOrigin} />

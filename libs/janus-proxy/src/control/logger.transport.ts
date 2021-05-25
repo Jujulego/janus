@@ -11,7 +11,7 @@ import { Log } from './log.model';
 @Injectable()
 export class LoggerTransport extends Transport implements OnApplicationBootstrap {
   // Attributes
-  readonly history: Log[];
+  readonly history: Log[] = [];
 
   // Constructor
   constructor(private readonly _pubsub: PubSub) {
@@ -46,7 +46,7 @@ export class LoggerTransport extends Transport implements OnApplicationBootstrap
       log.json = info[Symbol.for('message')];
 
       this._save(log);
-      await this._pubsub.publish('logs', { log });
+      await this._pubsub.publish('logs', { logs: log });
 
       this.emit('logged', info);
     } catch (error) {

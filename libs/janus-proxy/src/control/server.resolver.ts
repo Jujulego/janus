@@ -1,4 +1,4 @@
-import { Mutation, Resolver, Subscription } from '@nestjs/graphql';
+import { Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
 import { PubSub } from 'graphql-subscriptions';
 
 import { ControlService } from './control.service';
@@ -15,8 +15,8 @@ export class ServerResolver {
     private readonly _transport: LoggerTransport
   ) {}
 
-  // Resolvers
-  @Resolver(() => [Log])
+  // Queries
+  @Query(() => [Log])
   logs(): Log[] {
     return this._transport.history;
   }

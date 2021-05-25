@@ -11,7 +11,7 @@
     // "checkJs": true,                             /* Report errors in .js files. */
     // "jsx": "preserve",                           /* Specify JSX code generation: 'preserve', 'react-native', 'react', 'react-jsx' or 'react-jsxdev'. */
     "declaration": true,                            /* Generates corresponding '.d.ts' file. */
-    // "declarationMap": true,                      /* Generates a sourcemap for each corresponding '.d.ts' file. */
+    "declarationMap": true,                         /* Generates a sourcemap for each corresponding '.d.ts' file. */
     "sourceMap": true,                              /* Generates corresponding '.map' file. */
     // "outFile": "./",                             /* Concatenate and emit output to single file. */
     // "outDir": "./",                              /* Redirect output structure to the directory. */
@@ -46,9 +46,10 @@
     "moduleResolution": "node",                     /* Specify module resolution strategy: 'node' (Node.js) or 'classic' (TypeScript pre-1.6). */
     "baseUrl": "./",                                /* Base directory to resolve non-absolute module names. */
     "paths": {                                      /* A series of entries which re-map imports to lookup locations relative to the 'baseUrl'. */
+      "@jujulego/janus-common": ["./libs/janus-common/dist/index.d.ts"],
       "@jujulego/janus-config": ["./libs/janus-config/dist/index.d.ts"],
-      "@jujulego/janus-proxy": ["./libs/janus-proxy/dist/index.d.ts"],
-      "@jujulego/janus-types": ["./libs/janus-types/dist/index.d.ts"]
+      "@jujulego/janus-gate": ["./libs/janus-gate/dist/index.d.ts"],
+      "@jujulego/janus-proxy": ["./libs/janus-proxy/dist/index.d.ts"]
     },
     // "rootDirs": [],                              /* List of root folders whose combined content represents the structure of the project at runtime. */
     // "typeRoots": [],                             /* List of folders to include type definitions from. */

@@ -4,13 +4,14 @@ import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphq
 import { GraphQLSchema } from 'graphql';
 import { Subject } from 'rxjs';
 import { exhaustMap, filter } from 'rxjs/operators';
+import morgan from 'morgan';
 
 import { JanusConfig } from '@jujulego/janus-config';
 
 import { AppModule } from './app.module';
 import { ServerResolver } from './control/server.resolver';
-import { GateResolver } from './services/gate.resolver';
-import { ServiceResolver } from './services/service.resolver';
+import { GateResolver } from './gates/gate.resolver';
+import { ServiceResolver } from './gates/service.resolver';
 import { ConfigService } from './config/config.service';
 import { ControlService } from './control/control.service';
 import { Logger } from './logger';
@@ -18,6 +19,8 @@ import { Logger } from './logger';
 // Server
 export class JanusServer {
   // Attributes
+  private readonly _logger = new Logger(JanusServer.name);
+
   private readonly _started = new Subject<void>();
   readonly $started = this._started.asObservable();
 
@@ -50,10 +53,10 @@ export class JanusServer {
 
   // Methods
   private async handleShutdown(): Promise<void> {
-    Logger.log('Shutdown requested');
+    this._logger.log('Shutdown requested');
     await this.app.close();
 
-    Logger.log('Server stopped');
+    this._logger.log('Server stopped');
     this._shutdown.next();
     this._shutdown.complete();
   }
@@ -61,16 +64,28 @@ export class JanusServer {
   async start(config: string | JanusConfig): Promise<void> {
     // Load configuration
     if (typeof config === 'string') {
-      config = await JanusConfig.loadFile(config, { logger: Logger });
+      config = await JanusConfig.loadFile(config, { logger: this._logger });
     }
 
     this.config.config = config;
 
-    // Start server
+    // Setup
     this.app.enableShutdownHooks();
 
+    if (process.env.NODE_ENV === 'development') {
+      // Log access requests
+      this.app.use(morgan('dev', {
+        stream: {
+          write(str: string) {
+            Logger.log(str.trim());
+          }
+        }
+      }));
+    }
+
+    // Start server
     await this.app.listen(this.config.control.port, () => {
-      Logger.log(`Server listening at http://localhost:${this.config.control.port}`);
+      this._logger.log(`Server listening at http://localhost:${this.config.control.port}`);
       this._started.next();
 
       // Listen for shutdown events

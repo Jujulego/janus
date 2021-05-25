@@ -33,7 +33,7 @@ export class ResolverService {
     this._routes.push([service.url, service.name]);
   }
 
-  resolve(url: string): Gate | null {
+  resolve(url: string): [Service | null, Gate | null] {
     for (const [route, name] of this._routes) {
       if (url.startsWith(route)) {
         const service = this._gates.getService(name);
@@ -52,11 +52,13 @@ export class ResolverService {
         }
 
         if (gate) {
-          return gate;
+          return [service, gate];
+        } else {
+          return [service, null];
         }
       }
     }
 
-    return null;
+    return [null, null];
   }
 }

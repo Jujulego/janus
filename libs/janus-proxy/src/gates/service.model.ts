@@ -1,13 +1,14 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 import { plainToClass, Type } from 'class-transformer';
 
+import { IService } from '@jujulego/janus-common';
 import { IServiceConfig } from '@jujulego/janus-config';
 
 import { Gate } from './gate.model';
 
 // Model
 @ObjectType()
-export class Service {
+export class Service implements IService {
   // Attributes
   @Field()
   name: string;

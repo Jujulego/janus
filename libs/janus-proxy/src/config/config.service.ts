@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common';
 
 import { JanusConfig } from '@jujulego/janus-config';
 
-import { Service } from '../services/service.model';
+import { Service } from '../gates/service.model';
 
 // Service
 @Injectable()

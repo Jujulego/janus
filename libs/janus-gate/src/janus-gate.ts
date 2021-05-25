@@ -1,13 +1,13 @@
 import { fork } from 'child_process';
 import { GraphQLClient } from 'graphql-request';
+import gql from 'graphql-tag';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import gql from 'graphql-tag';
 import WebSocket from 'ws';
 
+import { IGate, GateFragment } from '@jujulego/janus-common';
 import { JanusConfig } from '@jujulego/janus-config';
-import { IGate, GateFragment } from '@jujulego/janus-types';
 
 // Types
 interface JanusGateOptions {

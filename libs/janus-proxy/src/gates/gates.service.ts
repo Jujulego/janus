@@ -1,4 +1,4 @@
-import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
+import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
 import { PubSub } from 'graphql-subscriptions';
 import { Subject } from 'rxjs';
 
@@ -14,6 +14,7 @@ export class GatesService implements OnApplicationBootstrap {
   // Attributes
   private readonly _services = new Map<string, Service>();
   private readonly _events = new Subject<Event<Service, 'add'>>();
+  private readonly _logger = new Logger(GatesService.name);
 
   readonly $events = this._events.asObservable();
 
@@ -49,22 +50,32 @@ export class GatesService implements OnApplicationBootstrap {
   }
 
   enableGate(service: string, name: string): Gate | null {
-    const gate = this.getGate(service, name);
+    const srv = this.getService(service);
+    const gate = srv?.getGate(name) || null;
 
     if (gate && !gate.enabled) {
       gate.enabled = true;
-      this._pubsub.publish(`${service}.gates`, { gate });
+
+      this._pubsub.publish(service, { service: srv });
+      this._pubsub.publish(`${service}.${name}`, { gate });
+
+      this._logger.log(`Gate ${service}.${name} enabled`);
     }
 
     return gate;
   }
 
   disableGate(service: string, name: string): Gate | null {
-    const gate = this.getGate(service, name);
+    const srv = this.getService(service);
+    const gate = srv?.getGate(name) || null;
 
     if (gate?.enabled) {
       gate.enabled = false;
-      this._pubsub.publish(`${service}.gates`, { gate });
+
+      this._pubsub.publish(service, { service: srv });
+      this._pubsub.publish(`${service}.${name}`, { gate });
+
+      this._logger.log(`Gate ${service}.${name} disabled`);
     }
 
     return gate;

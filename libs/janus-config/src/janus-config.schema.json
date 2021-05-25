@@ -61,7 +61,7 @@
         }
       }
     },
-    "server": {
+    "control": {
       "type": "object",
       "additionalProperties": false,
       "properties": {

@@ -28,7 +28,7 @@ export class GateResolver {
   resolve(
     @Args('url') url: string
   ): Gate | null {
-    return this._resolver.resolve(url);
+    return this._resolver.resolve(url)[1];
   }
 
   // Mutation
@@ -49,14 +49,11 @@ export class GateResolver {
   }
 
   // Subscriptions
-  @Subscription(() => Gate, {
-    name: 'gate',
-    filter: (payload: Gate, variables) => payload.name === variables.name
-  })
-  gateSubscription(
+  @Subscription(() => Gate, { name: 'gate' })
+  gateSub(
     @Args('service') service: string,
     @Args('gate') name: string
   ) {
-    return this._pubsub.asyncIterator<Gate>(`${service}.gates`);
+    return this._pubsub.asyncIterator<Gate>(`${service}.${name}`);
   }
 }

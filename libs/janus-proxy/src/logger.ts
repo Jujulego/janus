@@ -9,18 +9,21 @@ export class Logger implements LoggerService {
 
   // Constructor
   constructor(context?: string) {
-    this._logger = Logger._root.child({ context });
+    this._logger = Logger.root.child({ context });
   }
 
   // Statics
-  private static _root = winston.createLogger({
+  static readonly root = winston.createLogger({
     level: 'debug',
-    format: winston.format.json(),
+    format: format.json(),
     transports: [
       new winston.transports.Console({
         format: format.combine(
           format.timestamp({ format: () => new Date().toLocaleString() }),
-          format.printf(({ context, message, timestamp }) => context ? chalk`[Nest] ${process.pid} - {white ${timestamp}} {grey [${context}]} ${message}` : chalk`[Nest] ${process.pid} - {white ${timestamp}} ${message}`),
+          format.printf(({ context, message, timestamp }) => context
+            ? chalk`[Nest] ${process.pid} - {white ${timestamp}} {grey [${context}]} ${message}`
+            : chalk`[Nest] ${process.pid} - {white ${timestamp}} ${message}`
+          ),
           format.colorize({ all: true }),
         ),
       })
@@ -28,23 +31,23 @@ export class Logger implements LoggerService {
   });
 
   static error(message: any, trace?: string, context?: string): void {
-    this._root.error({ message, context });
+    this.root.error({ message, context });
   }
 
   static warn(message: any, context?: string): void {
-    this._root.warn({ message, context });
+    this.root.warn({ message, context });
   }
 
   static log(message: any, context?: string): void {
-    this._root.info({ message, context });
+    this.root.info({ message, context });
   }
 
   static verbose(message: any, context?: string): void {
-    this._root.verbose({ message, context });
+    this.root.verbose({ message, context });
   }
 
   static debug(message: any, context?: string): void {
-    this._root.debug({ message, context });
+    this.root.debug({ message, context });
   }
 
   // Methods

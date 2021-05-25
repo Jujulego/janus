@@ -2090,6 +2090,7 @@ __metadata:
     typescript: ^4.2.3
     url-router: ^13.0.0
     winston: ^3.3.3
+    winston-transport: ^4.4.0
   peerDependencies:
     "@jujulego/janus-front": 1.0.0-alpha.2
   peerDependenciesMeta:

@@ -31,7 +31,8 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^6.6.6",
     "url-router": "^13.0.0",
-    "winston": "^3.3.3"
+    "winston": "^3.3.3",
+    "winston-transport": "^4.4.0"
   },
   "devDependencies": {
     "@jujulego/janus-front": "1.0.0-alpha.2",

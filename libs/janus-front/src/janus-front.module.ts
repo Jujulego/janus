@@ -1,9 +1,7 @@
 import { Module } from '@nestjs/common';
-import { APP_FILTER } from '@nestjs/core';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { FallbackRouteFilter } from './fallback-route.filter';
 
 // Module
 @Module({
@@ -11,8 +9,7 @@ import { FallbackRouteFilter } from './fallback-route.filter';
     AppController
   ],
   providers: [
-    AppService,
-    { provide: APP_FILTER, useClass: FallbackRouteFilter }
+    AppService
   ]
 })
 export class JanusFrontModule {}

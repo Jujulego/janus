@@ -27,11 +27,9 @@ export default class MyDocument extends Document {
     const { extractCriticalToChunks } = createEmotionServer(cache);
 
     ctx.renderPage = () => renderPage({
-      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
-      // Take precedence over the CacheProvider in our custom _app.tsx
-      enhanceComponent: (Component) => (props) => (
+      enhanceApp: (App) => (props) => sheets.collect(
         <CacheProvider value={cache}>
-          <Component {...props} />
+          <App {...props} />
         </CacheProvider>
       )
     });

@@ -29,7 +29,7 @@ const HomePage: NextPage<HomePageData> = ({ services }) => (
               subheaderTypographyProps={{ variant: 'body2', color: 'primary.light' }}
 
               action={
-                <NextLink href={`/${service.name}`} passHref>
+                <NextLink href={`/services/${service.name}`} passHref>
                   <IconButton component="a">
                     <ShareIcon />
                   </IconButton>

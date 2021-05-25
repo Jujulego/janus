@@ -1,5 +1,7 @@
 import { IJanusConfig, JanusConfig } from '@jujulego/janus-config';
 
+process.env.NODE_ENV='production'
+
 // Utils
 async function importProxy() {
   try {

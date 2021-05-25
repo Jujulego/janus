@@ -121,7 +121,7 @@ export const Navbar: FC = ({ children }) => {
           }
         >
           { data?.services?.map((service) => (
-            <NextLink key={service.name} href={`/${service.name}`} passHref>
+            <NextLink key={service.name} href={`/services/${service.name}`} passHref>
               <ListItem button component="a">
                 <ListItemText
                   primary={service.name}

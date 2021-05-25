@@ -1,14 +1,14 @@
 import { gql, useMutation } from '@apollo/client';
 import { Grid } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
+import { useCallback, useMemo, useState } from 'react';
 
 import { GateFragment, IGate, IService, ServiceFragment } from '@jujulego/janus-common';
 
-import { ServiceHeader } from '../services/ServiceHeader';
-import { ServiceGraph } from '../services/ServiceGraph';
-import { createClient } from '../apollo-client';
-import { useCallback, useMemo, useState } from 'react';
-import { GateDetails } from '../gates/GateDetails';
+import { ServiceHeader } from '../../services/ServiceHeader';
+import { ServiceGraph } from '../../services/ServiceGraph';
+import { createClient } from '../../apollo-client';
+import { GateDetails } from '../../gates/GateDetails';
 
 // Types
 export interface ServicePageData {

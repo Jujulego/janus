@@ -11,3 +11,13 @@ services:
 
       local3:
         target: 'http://localhost:3003/'
+
+  sample-api-ii:
+    url: '/api-sample-ii'
+    gates:
+      local1:
+        target: 'http://localhost:3001/'
+        ws: true
+
+      local3:
+        target: 'http://localhost:3003/'

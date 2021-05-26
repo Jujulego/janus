@@ -32,14 +32,16 @@ const NAVBAR_QUERY = gql`
 `;
 
 // Styles
-const useStyles = makeStyles(({ zIndex }) => ({
+const useStyles = makeStyles(({ spacing, zIndex }) => ({
   drawerPaper: {
     width: 300,
     zIndex: zIndex.drawer
   },
   content: {
-    minHeight: '100vh',
     flexGrow: 1,
+    minHeight: '100vh',
+
+    padding: spacing(2),
 
     display: 'flex',
     flexDirection: 'column'

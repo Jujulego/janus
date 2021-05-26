@@ -10,8 +10,8 @@ export interface ServiceHeaderProps {
 
 // Component
 export const ServiceHeader: FC<ServiceHeaderProps> = ({ service }) => (
-  <Paper variant="outlined">
-    <Grid container px={2} pt={1} pb={2} spacing={2}>
+  <Paper variant="outlined" sx={{ px: 2, pt: 1, pb: 2 }}>
+    <Grid container spacing={2}>
       <Grid item xs={4}>
         <Typography variant="caption" color="text.secondary">Service</Typography>
         <Typography>{ service.name }</Typography>

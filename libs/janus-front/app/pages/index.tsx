@@ -1,5 +1,5 @@
 import { gql } from '@apollo/client';
-import { Box, Card, CardHeader, Grid, IconButton, Typography } from '@material-ui/core';
+import { Card, CardHeader, Grid, IconButton, Typography } from '@material-ui/core';
 import { Share as ShareIcon } from '@material-ui/icons';
 import { GetServerSideProps, NextPage } from 'next';
 import NextLink from 'next/link';
@@ -15,8 +15,9 @@ export interface HomePageData {
 
 // Page
 const HomePage: NextPage<HomePageData> = ({ services }) => (
-  <Box p={2}>
+  <>
     <Typography variant="h5" mb={2}>Services</Typography>
+
     <Grid container spacing={2}>
       { services.map((service) => (
         <Grid key={service.name} item xs={4} md={3} xl={2}>
@@ -40,7 +41,7 @@ const HomePage: NextPage<HomePageData> = ({ services }) => (
         </Grid>
       )) }
     </Grid>
-  </Box>
+  </>
 );
 
 export default HomePage;

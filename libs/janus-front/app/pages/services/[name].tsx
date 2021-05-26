@@ -1,7 +1,7 @@
 import { gql, useMutation } from '@apollo/client';
 import { Grid } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
-import { useCallback, useMemo, useState } from 'react';
+import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { GateFragment, IGate, IService, ServiceFragment } from '@jujulego/janus-common';
 
@@ -64,28 +64,28 @@ const ServicePage: NextPage<ServicePageData> = (props) => {
     setService((srv) => ({ ...srv, gates: srv.gates.map((g) => g.name === gate.name ? res : g) }));
   }, [service, setService]);
 
+  // Effects
+  useEffect(() => {
+    setService(props.service);
+  }, [props.service]);
+
   // Render
   return (
-    <Grid
-      container direction="column"
-      flexGrow={1} p={2}
-    >
-      <Grid item xs="auto">
-        <ServiceHeader service={service} />
-      </Grid>
+    <>
+      <ServiceHeader service={service} />
 
-      <Grid item container spacing={2} xs>
+      <Grid container xs mt={2} flexGrow={1}>
         <Grid item xs>
           <ServiceGraph service={service} onSelect={setSelected} />
         </Grid>
 
         { gate && (
-          <Grid item xs="auto" lg={2} minWidth={300}>
+          <Grid item lg={2} minWidth={300} ml={2}>
             <GateDetails gate={gate} onToggle={handleToggle} />
           </Grid>
         ) }
       </Grid>
-    </Grid>
+    </>
   );
 };
 

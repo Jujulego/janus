@@ -1,0 +1,5 @@
+releases:
+  "@jujulego/janus-front": prerelease
+
+declined:
+  - "@jujulego/janus-proxy"

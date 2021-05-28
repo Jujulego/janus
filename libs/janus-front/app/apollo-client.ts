@@ -2,10 +2,10 @@ import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, NormalizedCacheObjec
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { SchemaLink } from '@apollo/client/link/schema';
-import { GetServerSidePropsContext } from 'next';
-import { useMemo } from 'react';
 import merge from 'deepmerge';
 import isEqual from 'lodash/isEqual';
+import { GetServerSidePropsContext } from 'next';
+import { useMemo } from 'react';
 
 // Constants
 export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';

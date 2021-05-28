@@ -1,4 +1,4 @@
-import { gql, useMutation, useSubscription } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import { Grid } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -16,7 +16,31 @@ export interface ServicePageData {
   service: IService;
 }
 
+export interface ServicePageProps {
+  name: string;
+}
+
 // Queries
+const SERVICE_QRY = gql`
+    query ServiceGraph($name: String!) {
+        service(name: $name) {
+            ...Service
+        }
+    }
+
+    ${ServiceFragment}
+`;
+
+const SERVICE_SUB = gql`
+    subscription ServiceGraph($name: String!) {
+        service(name: $name) {
+            ...Service
+        }
+    }
+
+    ${ServiceFragment}
+`;
+
 const ENABLE_GATE_MUT = gql`
     mutation EnableGate($service: String!, $gate: String!) {
         enableGate(service: $service, gate: $gate) {
@@ -37,56 +61,52 @@ const DISABLE_GATE_MUT = gql`
     ${GateFragment}
 `;
 
-const SERVICE_SUB = gql`
-    subscription ServiceGraph($service: String!) {
-        service(name: $service) {
-            ...Service
-        }
-    }
-
-    ${ServiceFragment}
-`;
-
 // Page
-const ServicePage: NextPage<ServicePageData> = (props) => {
+const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
   // State
-  const [service, setService] = useState(props.service);
   const [selected, setSelected] = useState<string>("");
 
-  // Memos
-  const gate = useMemo(() => service.gates.find(g => g.name === selected), [selected, service])
-
   // Queries
-  useSubscription<ServicePageData>(SERVICE_SUB, {
-    variables: { service: props.service.name },
-    onSubscriptionData: ({ subscriptionData }) => subscriptionData.data && setService(subscriptionData.data.service)
+  const { data, subscribeToMore } = useQuery<ServicePageData>(SERVICE_QRY, {
+    variables: { name },
   });
 
   const [enableGate] = useMutation<{ enableGate: IGate }>(ENABLE_GATE_MUT);
   const [disableGate] = useMutation<{ disableGate: IGate }>(DISABLE_GATE_MUT);
 
+  // Memos
+  const gate = useMemo(() => data && data.service.gates.find(g => g.name === selected), [selected, data]);
+
   // Callbacks
   const handleToggle = useCallback(async (gate: IGate) => {
     if (gate.enabled) {
-      await disableGate({ variables: { service: service.name, gate: gate.name }});
+      await disableGate({ variables: { service: name, gate: gate.name } });
     } else {
-      await enableGate({ variables: { service: service.name, gate: gate.name } });
+      await enableGate({ variables: { service: name, gate: gate.name } });
     }
-  }, [service, setService]);
+  }, [name]);
 
   // Effects
   useEffect(() => {
-    setService(props.service);
-  }, [props.service]);
+    subscribeToMore({
+      document: SERVICE_SUB,
+      variables: { name },
+      updateQuery: (prev, { subscriptionData }) => {
+        return subscriptionData.data;
+      }
+    });
+  }, [subscribeToMore, name]);
 
   // Render
+  if (!data) return <></>;
+
   return (
     <Navbar>
-      <ServiceHeader service={service} />
+      <ServiceHeader service={data.service} />
 
       <Grid container mt={2} flexGrow={1}>
         <Grid item xs>
-          <ServiceGraph service={service} onSelect={setSelected} />
+          <ServiceGraph service={data.service} onSelect={setSelected} />
         </Grid>
 
         { gate && (
@@ -102,22 +122,15 @@ const ServicePage: NextPage<ServicePageData> = (props) => {
 export default ServicePage;
 
 // Server Side
-export const getServerSideProps: GetServerSideProps<ServicePageData> = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const client = createApolloClient(ctx);
   const { name } = ctx.params!;
 
-  const { data } = await client.query<ServicePageData>({
-    query: gql`
-        query ServicePage($name: String!) {
-            service(name: $name) {
-                ...Service
-            }
-        }
-
-        ${ServiceFragment}
-    `,
+  // Request name
+  await client.query<ServicePageData>({
+    query: SERVICE_QRY,
     variables: { name }
   });
 
-  return { props: addApolloState(client, data) };
+  return { props: addApolloState(client, { name }) };
 };

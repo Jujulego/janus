@@ -5,7 +5,7 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { GateFragment, IGate, IService, ServiceFragment } from '@jujulego/janus-common';
 
-import { createClient } from '../../apollo-client';
+import { addApolloState, createApolloClient } from '../../apollo-client';
 import { GateDetails } from '../../gates/GateDetails';
 import { Navbar } from '../../layout/Navbar';
 import { ServiceHeader } from '../../services/ServiceHeader';
@@ -103,9 +103,10 @@ export default ServicePage;
 
 // Server Side
 export const getServerSideProps: GetServerSideProps<ServicePageData> = async (ctx) => {
+  const client = createApolloClient(ctx);
   const { name } = ctx.params!;
 
-  const { data } = await createClient(ctx).query<ServicePageData>({
+  const { data } = await client.query<ServicePageData>({
     query: gql`
         query ServicePage($name: String!) {
             service(name: $name) {
@@ -118,5 +119,5 @@ export const getServerSideProps: GetServerSideProps<ServicePageData> = async (ct
     variables: { name }
   });
 
-  return { props: data };
+  return { props: addApolloState(client, data) };
 };

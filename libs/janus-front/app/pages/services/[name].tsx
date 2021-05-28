@@ -5,10 +5,11 @@ import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { GateFragment, IGate, IService, ServiceFragment } from '@jujulego/janus-common';
 
-import { ServiceHeader } from '../../services/ServiceHeader';
-import { ServiceGraph } from '../../services/ServiceGraph';
 import { createClient } from '../../apollo-client';
 import { GateDetails } from '../../gates/GateDetails';
+import { Navbar } from '../../layout/Navbar';
+import { ServiceHeader } from '../../services/ServiceHeader';
+import { ServiceGraph } from '../../services/ServiceGraph';
 
 // Types
 export interface ServicePageData {
@@ -80,7 +81,7 @@ const ServicePage: NextPage<ServicePageData> = (props) => {
 
   // Render
   return (
-    <>
+    <Navbar>
       <ServiceHeader service={service} />
 
       <Grid container mt={2} flexGrow={1}>
@@ -94,7 +95,7 @@ const ServicePage: NextPage<ServicePageData> = (props) => {
           </Grid>
         ) }
       </Grid>
-    </>
+    </Navbar>
   );
 };
 

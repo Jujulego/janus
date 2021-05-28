@@ -7,6 +7,7 @@ import NextLink from 'next/link';
 import { IService } from '@jujulego/janus-common';
 
 import { createClient } from '../apollo-client';
+import { Navbar } from '../layout/Navbar';
 
 // Types
 export interface HomePageData {
@@ -15,7 +16,7 @@ export interface HomePageData {
 
 // Page
 const HomePage: NextPage<HomePageData> = ({ services }) => (
-  <>
+  <Navbar>
     <Typography variant="h5" mb={2}>Services</Typography>
 
     <Grid container spacing={2}>
@@ -41,7 +42,7 @@ const HomePage: NextPage<HomePageData> = ({ services }) => (
         </Grid>
       )) }
     </Grid>
-  </>
+  </Navbar>
 );
 
 export default HomePage;

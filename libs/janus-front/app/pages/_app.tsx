@@ -7,7 +7,6 @@ import Head from 'next/head';
 import { useEffect, useRef } from 'react';
 
 import { createClient } from '../apollo-client';
-import { Navbar } from '../layout/Navbar';
 import { theme } from '../theme';
 
 // Emotion cache
@@ -39,9 +38,7 @@ export default function App(props: AppProps) {
       <ApolloProvider client={client.current}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Navbar>
-            <Component {...pageProps} />
-          </Navbar>
+          <Component {...pageProps} />
         </ThemeProvider>
       </ApolloProvider>
     </>

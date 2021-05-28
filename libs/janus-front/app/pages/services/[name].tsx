@@ -1,4 +1,4 @@
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation, useSubscription } from '@apollo/client';
 import { Grid } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
@@ -36,6 +36,16 @@ const DISABLE_GATE_MUT = gql`
     ${GateFragment}
 `;
 
+const SERVICE_SUB = gql`
+    subscription ServiceGraph($service: String!) {
+        service(name: $service) {
+            ...Service
+        }
+    }
+
+    ${ServiceFragment}
+`;
+
 // Page
 const ServicePage: NextPage<ServicePageData> = (props) => {
   // State
@@ -46,22 +56,21 @@ const ServicePage: NextPage<ServicePageData> = (props) => {
   const gate = useMemo(() => service.gates.find(g => g.name === selected), [selected, service])
 
   // Queries
+  useSubscription<ServicePageData>(SERVICE_SUB, {
+    variables: { service: props.service.name },
+    onSubscriptionData: ({ subscriptionData }) => subscriptionData.data && setService(subscriptionData.data.service)
+  });
+
   const [enableGate] = useMutation<{ enableGate: IGate }>(ENABLE_GATE_MUT);
   const [disableGate] = useMutation<{ disableGate: IGate }>(DISABLE_GATE_MUT);
 
   // Callbacks
   const handleToggle = useCallback(async (gate: IGate) => {
-    let res: IGate;
-
     if (gate.enabled) {
-      const { data } = await disableGate({ variables: { service: service.name, gate: gate.name }});
-      res = data!.disableGate;
+      await disableGate({ variables: { service: service.name, gate: gate.name }});
     } else {
-      const { data } = await enableGate({ variables: { service: service.name, gate: gate.name } });
-      res = data!.enableGate;
+      await enableGate({ variables: { service: service.name, gate: gate.name } });
     }
-
-    setService((srv) => ({ ...srv, gates: srv.gates.map((g) => g.name === gate.name ? res : g) }));
   }, [service, setService]);
 
   // Effects
@@ -74,7 +83,7 @@ const ServicePage: NextPage<ServicePageData> = (props) => {
     <>
       <ServiceHeader service={service} />
 
-      <Grid container xs mt={2} flexGrow={1}>
+      <Grid container mt={2} flexGrow={1}>
         <Grid item xs>
           <ServiceGraph service={service} onSelect={setSelected} />
         </Grid>

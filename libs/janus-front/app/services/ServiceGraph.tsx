@@ -1,25 +1,9 @@
-import { gql, useSubscription } from '@apollo/client';
 import { makeStyles, Paper, useTheme } from '@material-ui/core';
 import { FC, useEffect, useMemo, useRef, useState } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
 import * as d3 from 'd3';
 
-import { IService, ServiceFragment } from '@jujulego/janus-common';
-
-// Query
-export interface ServiceGraphData {
-  service: IService;
-}
-
-const SERVICE_SUBSCRIPTION = gql`
-    subscription ServiceGraph($service: String!) {
-        service(name: $service) {
-            ...Service
-        }
-    }
-
-    ${ServiceFragment}
-`;
+import { IService } from '@jujulego/janus-common';
 
 // Types
 interface IData {
@@ -30,7 +14,8 @@ interface IData {
 }
 
 // Props
-export interface ServiceGraphProps extends ServiceGraphData {
+export interface ServiceGraphProps {
+  service: IService;
   onSelect(selected: string): void;
 }
 
@@ -105,14 +90,9 @@ const useStyles = makeStyles(({ palette, transitions }) => ({
 }));
 
 // Component
-export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, ...data }) => {
+export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
   const theme = useTheme();
   const styles = useStyles();
-
-  // GraphQL
-  const { data: { service } = data } = useSubscription<ServiceGraphData>(SERVICE_SUBSCRIPTION, {
-    variables: { service: data.service.name },
-  });
 
   // State
   const [count, refresh] = useState(0);

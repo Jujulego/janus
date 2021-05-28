@@ -19,5 +19,8 @@ services:
         target: 'http://localhost:3001/'
         ws: true
 
+      local2:
+        target: 'http://localhost:3002/'
+
       local3:
         target: 'http://localhost:3003/'

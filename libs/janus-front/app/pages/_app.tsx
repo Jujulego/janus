@@ -29,8 +29,8 @@ export default function App(props: AppProps) {
   const client = useRef(createClient());
 
   // Render
-  const content = (
-    <>
+  return (
+    <CacheProvider value={cache}>
       <Head>
         <title>Janus Proxy</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
@@ -41,16 +41,6 @@ export default function App(props: AppProps) {
           <Component {...pageProps} />
         </ThemeProvider>
       </ApolloProvider>
-    </>
-  );
-
-  if (typeof window === 'undefined') {
-    return content;
-  }
-
-  return (
-    <CacheProvider value={cache}>
-      { content }
     </CacheProvider>
   );
 };

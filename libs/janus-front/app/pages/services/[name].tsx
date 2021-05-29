@@ -1,21 +1,46 @@
-import { gql, useMutation } from '@apollo/client';
+import { gql, useMutation, useQuery } from '@apollo/client';
 import { Grid } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
 import { GateFragment, IGate, IService, ServiceFragment } from '@jujulego/janus-common';
 
+import { addApolloState, createApolloClient } from '../../apollo-client';
+import { GateDetails } from '../../gates/GateDetails';
+import { Navbar } from '../../layout/Navbar';
 import { ServiceHeader } from '../../services/ServiceHeader';
 import { ServiceGraph } from '../../services/ServiceGraph';
-import { createClient } from '../../apollo-client';
-import { GateDetails } from '../../gates/GateDetails';
 
 // Types
 export interface ServicePageData {
   service: IService;
 }
 
+export interface ServicePageProps {
+  name: string;
+}
+
 // Queries
+const SERVICE_QRY = gql`
+    query ServiceGraph($name: String!) {
+        service(name: $name) {
+            ...Service
+        }
+    }
+
+    ${ServiceFragment}
+`;
+
+const SERVICE_SUB = gql`
+    subscription ServiceGraph($name: String!) {
+        service(name: $name) {
+            ...Service
+        }
+    }
+
+    ${ServiceFragment}
+`;
+
 const ENABLE_GATE_MUT = gql`
     mutation EnableGate($service: String!, $gate: String!) {
         enableGate(service: $service, gate: $gate) {
@@ -37,76 +62,77 @@ const DISABLE_GATE_MUT = gql`
 `;
 
 // Page
-const ServicePage: NextPage<ServicePageData> = (props) => {
+const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
   // State
-  const [service, setService] = useState(props.service);
   const [selected, setSelected] = useState<string>("");
 
-  // Memos
-  const gate = useMemo(() => service.gates.find(g => g.name === selected), [selected, service])
-
   // Queries
+  const { data, subscribeToMore } = useQuery<ServicePageData>(SERVICE_QRY, {
+    variables: { name },
+  });
+
   const [enableGate] = useMutation<{ enableGate: IGate }>(ENABLE_GATE_MUT);
   const [disableGate] = useMutation<{ disableGate: IGate }>(DISABLE_GATE_MUT);
 
+  // Memos
+  const gate = useMemo(() => data && data.service.gates.find(g => g.name === selected), [selected, data]);
+
   // Callbacks
   const handleToggle = useCallback(async (gate: IGate) => {
-    let res: IGate;
-
     if (gate.enabled) {
-      const { data } = await disableGate({ variables: { service: service.name, gate: gate.name }});
-      res = data!.disableGate;
+      await disableGate({ variables: { service: name, gate: gate.name } });
     } else {
-      const { data } = await enableGate({ variables: { service: service.name, gate: gate.name } });
-      res = data!.enableGate;
+      await enableGate({ variables: { service: name, gate: gate.name } });
     }
-
-    setService((srv) => ({ ...srv, gates: srv.gates.map((g) => g.name === gate.name ? res : g) }));
-  }, [service, setService]);
+  }, [name]);
 
   // Effects
   useEffect(() => {
-    setService(props.service);
-  }, [props.service]);
+    subscribeToMore({
+      document: SERVICE_SUB,
+      variables: { name },
+      updateQuery: (prev, { subscriptionData }) => {
+        return subscriptionData.data;
+      }
+    });
+  }, [subscribeToMore, name]);
 
   // Render
   return (
-    <>
-      <ServiceHeader service={service} />
+    <Navbar>
+      { data && (
+        <>
+          <ServiceHeader service={data.service} />
 
-      <Grid container xs mt={2} flexGrow={1}>
-        <Grid item xs>
-          <ServiceGraph service={service} onSelect={setSelected} />
-        </Grid>
+          <Grid container mt={2} flexGrow={1}>
+            <Grid item xs>
+              <ServiceGraph service={data.service} onSelect={setSelected} />
+            </Grid>
 
-        { gate && (
-          <Grid item lg={2} minWidth={300} ml={2}>
-            <GateDetails gate={gate} onToggle={handleToggle} />
+            { gate && (
+              <Grid item lg={2} minWidth={300} ml={2}>
+                <GateDetails gate={gate} onToggle={handleToggle} />
+              </Grid>
+            ) }
           </Grid>
-        ) }
-      </Grid>
-    </>
+        </>
+      ) }
+    </Navbar>
   );
 };
 
 export default ServicePage;
 
 // Server Side
-export const getServerSideProps: GetServerSideProps<ServicePageData> = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const client = createApolloClient(ctx);
   const { name } = ctx.params!;
 
-  const { data } = await createClient(ctx).query<ServicePageData>({
-    query: gql`
-        query ServicePage($name: String!) {
-            service(name: $name) {
-                ...Service
-            }
-        }
-
-        ${ServiceFragment}
-    `,
+  // Request service
+  await client.query<ServicePageData>({
+    query: SERVICE_QRY,
     variables: { name }
   });
 
-  return { props: data };
+  return { props: addApolloState(client, { name }) };
 };

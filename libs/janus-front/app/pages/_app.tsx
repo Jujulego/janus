@@ -4,18 +4,20 @@ import { CacheProvider } from '@emotion/react';
 import { CssBaseline, ThemeProvider } from '@material-ui/core';
 import type { AppProps } from 'next/app';
 import Head from 'next/head';
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 
-import { createClient } from '../apollo-client';
-import { Navbar } from '../layout/Navbar';
+import { useApolloClient } from '../apollo-client';
 import { theme } from '../theme';
 
 // Emotion cache
-export const cache = createCache({ key: 'css', prepend: true });
+const cache = createCache({ key: 'css', prepend: true });
 
 // App
 export default function App(props: AppProps) {
   const { Component, pageProps } = props;
+
+  // Memo
+  const client = useApolloClient(pageProps);
 
   // Effects
   useEffect(() => {
@@ -26,34 +28,19 @@ export default function App(props: AppProps) {
     }
   }, []);
 
-  // Refs
-  const client = useRef(createClient());
-
   // Render
-  const content = (
-    <>
+  return (
+    <CacheProvider value={cache}>
       <Head>
         <title>Janus Proxy</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </Head>
-      <ApolloProvider client={client.current}>
+      <ApolloProvider client={client}>
         <ThemeProvider theme={theme}>
           <CssBaseline />
-          <Navbar>
-            <Component {...pageProps} />
-          </Navbar>
+          <Component {...pageProps} />
         </ThemeProvider>
       </ApolloProvider>
-    </>
-  );
-
-  if (typeof window === 'undefined') {
-    return content;
-  }
-
-  return (
-    <CacheProvider value={cache}>
-      { content }
     </CacheProvider>
   );
 };

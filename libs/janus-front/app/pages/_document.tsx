@@ -27,9 +27,10 @@ export default class MyDocument extends Document {
     const { extractCriticalToChunks } = createEmotionServer(cache);
 
     ctx.renderPage = () => renderPage({
-      enhanceApp: (App) => (props) => sheets.collect(
+      enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+      enhanceComponent: (Component) => (props) => (
         <CacheProvider value={cache}>
-          <App {...props} />
+          <Component {...props} />
         </CacheProvider>
       )
     });

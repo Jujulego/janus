@@ -25,7 +25,7 @@ export interface HomePageData {
 }
 
 // Page
-const HomePage: NextPage<HomePageData> = ({ services }) => {
+const HomePage: NextPage = () => {
   // Queries
   const { data } = useQuery<HomePageData>(HOME_PAGE_QRY);
 
@@ -64,12 +64,13 @@ const HomePage: NextPage<HomePageData> = ({ services }) => {
 export default HomePage;
 
 // Server Side
-export const getServerSideProps: GetServerSideProps<HomePageData> = async (ctx) => {
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const client = createApolloClient(ctx);
 
-  const { data } = await client.query<HomePageData>({
+  // Request services data
+  await client.query<HomePageData>({
     query: HOME_PAGE_QRY
   });
 
-  return { props: addApolloState(client, data) };
+  return { props: addApolloState(client, {}) };
 };

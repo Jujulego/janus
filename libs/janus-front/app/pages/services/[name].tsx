@@ -98,23 +98,25 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
   }, [subscribeToMore, name]);
 
   // Render
-  if (!data) return <></>;
-
   return (
     <Navbar>
-      <ServiceHeader service={data.service} />
+      { data && (
+        <>
+          <ServiceHeader service={data.service} />
 
-      <Grid container mt={2} flexGrow={1}>
-        <Grid item xs>
-          <ServiceGraph service={data.service} onSelect={setSelected} />
-        </Grid>
+          <Grid container mt={2} flexGrow={1}>
+            <Grid item xs>
+              <ServiceGraph service={data.service} onSelect={setSelected} />
+            </Grid>
 
-        { gate && (
-          <Grid item lg={2} minWidth={300} ml={2}>
-            <GateDetails gate={gate} onToggle={handleToggle} />
+            { gate && (
+              <Grid item lg={2} minWidth={300} ml={2}>
+                <GateDetails gate={gate} onToggle={handleToggle} />
+              </Grid>
+            ) }
           </Grid>
-        ) }
-      </Grid>
+        </>
+      ) }
     </Navbar>
   );
 };
@@ -126,7 +128,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const client = createApolloClient(ctx);
   const { name } = ctx.params!;
 
-  // Request name
+  // Request service
   await client.query<ServicePageData>({
     query: SERVICE_QRY,
     variables: { name }

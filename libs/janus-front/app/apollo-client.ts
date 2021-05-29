@@ -44,8 +44,14 @@ export function createApolloClient(ctx?: GetServerSidePropsContext): ApolloClien
 
   // Build client
   return new ApolloClient({
-    cache: new InMemoryCache(),
-    link, ssrMode
+    link, ssrMode,
+    cache: new InMemoryCache({
+      typePolicies: {
+        Service: {
+          keyFields: ["name"]
+        }
+      }
+    })
   });
 }
 

@@ -62,14 +62,14 @@ export const Navbar: FC = ({ children }) => {
   // Effects
   useEffect(() => {
     setOpen(false);
-  }, [router.pathname]);
+  }, [router.asPath]);
 
   // Handlers
   const handleOpen  = () => { setOpen(true); };
   const handleClose = () => { setOpen(false); };
 
   // Render
-  const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('md'));
+  const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('lg'));
   const styles = useStyles();
 
   return (

@@ -1957,7 +1957,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-front@1.0.0-alpha.3, @jujulego/janus-front@workspace:libs/janus-front":
+"@jujulego/janus-front@1.0.0-alpha.4, @jujulego/janus-front@workspace:libs/janus-front":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-front@workspace:libs/janus-front"
   dependencies:
@@ -2043,7 +2043,7 @@ __metadata:
   dependencies:
     "@jujulego/janus-common": ^1.0.0-alpha.1
     "@jujulego/janus-config": ^1.0.0-alpha.3
-    "@jujulego/janus-front": 1.0.0-alpha.3
+    "@jujulego/janus-front": 1.0.0-alpha.4
     "@nestjs/cli": ^7.6.0
     "@nestjs/common": ^7.6.15
     "@nestjs/core": ^7.6.15
@@ -2081,7 +2081,7 @@ __metadata:
     typescript: ^4.2.3
     url-router: ^13.0.0
   peerDependencies:
-    "@jujulego/janus-front": 1.0.0-alpha.3
+    "@jujulego/janus-front": 1.0.0-alpha.4
   peerDependenciesMeta:
     "@jujulego/janus-front":
       optional: true

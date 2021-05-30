@@ -43,6 +43,7 @@ export class LoggerTransport extends Transport implements OnApplicationBootstrap
     // Store and send via pubsub
     try {
       const log = plainToClass(Log, info);
+      log.metadata = JSON.stringify(info.metadata)
 
       this._save(log);
       await this._pubsub.publish('logs', { logs: log });

@@ -7,6 +7,7 @@ import NextLink from 'next/link';
 import { IService } from '@jujulego/janus-common';
 
 import { addApolloState, createApolloClient } from '../apollo-client';
+import { Logs } from '../control/Logs';
 import { Navbar } from '../layout/Navbar';
 
 // Queries
@@ -57,6 +58,9 @@ const HomePage: NextPage = () => {
           </Grid>
         )) }
       </Grid>
+
+      <Typography variant="h5" mt={4} mb={2}>Events</Typography>
+      <Logs />
     </Navbar>
   );
 };

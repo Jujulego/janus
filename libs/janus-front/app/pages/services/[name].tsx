@@ -91,9 +91,7 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
     subscribeToMore({
       document: SERVICE_SUB,
       variables: { name },
-      updateQuery: (prev, { subscriptionData }) => {
-        return subscriptionData.data;
-      }
+      updateQuery: (prev, { subscriptionData }) => subscriptionData.data
     });
   }, [subscribeToMore, name]);
 

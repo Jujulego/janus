@@ -49,9 +49,6 @@ export function createApolloClient(ctx?: GetServerSidePropsContext): ApolloClien
       typePolicies: {
         Log: {
           keyFields: ['timestamp']
-        },
-        Service: {
-          keyFields: ["name"]
         }
       }
     })

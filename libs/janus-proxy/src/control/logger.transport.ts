@@ -1,4 +1,5 @@
 import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
+import { plainToClass } from 'class-transformer';
 import { PubSub } from 'graphql-subscriptions';
 import Transport from 'winston-transport';
 import { format } from 'winston';
@@ -17,8 +18,8 @@ export class LoggerTransport extends Transport implements OnApplicationBootstrap
   constructor(private readonly _pubsub: PubSub) {
     super({
       format: format.combine(
-        format.timestamp(),
-        format.json()
+        format.metadata(),
+        format.timestamp()
       )
     });
   }
@@ -41,9 +42,7 @@ export class LoggerTransport extends Transport implements OnApplicationBootstrap
 
     // Store and send via pubsub
     try {
-      const log = new Log();
-      log.level = info.level;
-      log.json = info[Symbol.for('message')];
+      const log = plainToClass(Log, info);
 
       this._save(log);
       await this._pubsub.publish('logs', { logs: log });

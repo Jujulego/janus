@@ -5,5 +5,7 @@ import { Field, ObjectType } from '@nestjs/graphql';
 export class Log {
   // Attributes
   @Field() level: string;
-  @Field() json: string;
+  @Field() message: string;
+  @Field() timestamp: string;
+  @Field() metadata: string;
 }

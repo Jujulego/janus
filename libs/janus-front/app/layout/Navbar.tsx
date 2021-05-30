@@ -39,7 +39,8 @@ const useStyles = makeStyles(({ spacing, zIndex }) => ({
   },
   content: {
     flexGrow: 1,
-    minHeight: '100vh',
+    height: '100vh',
+    overflow: 'auto',
 
     padding: spacing(2),
 

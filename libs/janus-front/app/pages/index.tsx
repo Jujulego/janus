@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { Card, CardHeader, Grid, IconButton, Typography } from '@material-ui/core';
+import { Box, Card, CardHeader, Grid, IconButton, Paper, Typography } from '@material-ui/core';
 import { Share as ShareIcon } from '@material-ui/icons';
 import { GetServerSideProps, NextPage } from 'next';
 import NextLink from 'next/link';
@@ -60,7 +60,9 @@ const HomePage: NextPage = () => {
       </Grid>
 
       <Typography variant="h5" mt={4} mb={2}>Events</Typography>
-      <Logs />
+      <Paper variant="outlined" sx={{ flex: 1, overflow: 'auto' }}>
+        <Logs />
+      </Paper>
     </Navbar>
   );
 };

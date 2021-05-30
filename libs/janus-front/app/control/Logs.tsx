@@ -1,8 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
+import { Box, Typography } from '@material-ui/core';
 import { FC, useEffect } from 'react';
 
 import { ILog, LogFragment } from '@jujulego/janus-common';
-import { Typography } from '@material-ui/core';
 
 // Types
 interface LogsData {
@@ -47,15 +47,15 @@ export const Logs: FC = () => {
         ...prev,
         logs: [...prev.logs, subscriptionData.data.logs]
       })
-    })
+    });
   }, [subscribeToMore]);
 
   // Render
   return (
-    <>
+    <Box p={1}>
       { data?.logs?.map((log, i) => (
         <Typography key={i}>{ log.message }</Typography>
       )) }
-    </>
+    </Box>
   );
 };

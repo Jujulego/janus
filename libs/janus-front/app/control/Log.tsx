@@ -11,141 +11,166 @@ const useStyles = makeStyles(({ palette }) => ({
     '&.verbose': {
       color: cyan[700],
     },
-    '& .escape0': {
+    '& .e-0': {
       color: palette.text.primary,
       background: palette.background.default
     },
-    '& .escape1': {
+    '& .e-1': {
       fontWeight: 'bold'
     },
-    '& .escape3': {
+    '& .e-3': {
       fontStyle: 'italic'
     },
-    '& .escape4': {
+    '& .e-4': {
       textDecoration: 'underline'
     },
-    '& .escape30': {
+    '& .e-30': {
       color: palette.common.black
     },
-    '& .escape31': {
+    '& .e-31': {
       color: red[700]
     },
-    '& .escape32': {
+    '& .e-32': {
       color: green[700]
     },
-    '& .escape33': {
+    '& .e-33': {
       color: yellow[700]
     },
-    '& .escape34': {
+    '& .e-34': {
       color: blue[700]
     },
-    '& .escape35': {
+    '& .e-35': {
       color: purple[700]
     },
-    '& .escape36': {
+    '& .e-36': {
       color: cyan[700]
     },
-    '& .escape37': {
+    '& .e-37': {
       color: palette.common.white
     },
-    '& .escape40': {
+    '& .e-40': {
       background: palette.common.black
     },
-    '& .escape41': {
+    '& .e-41': {
       background: red[700]
     },
-    '& .escape42': {
+    '& .e-42': {
       background: green[700]
     },
-    '& .escape43': {
+    '& .e-43': {
       background: yellow[700]
     },
-    '& .escape44': {
+    '& .e-44': {
       background: blue[700]
     },
-    '& .escape45': {
+    '& .e-45': {
       background: purple[700]
     },
-    '& .escape46': {
+    '& .e-46': {
       background: cyan[700]
     },
-    '& .escape47': {
+    '& .e-47': {
       background: palette.common.white
     },
-    '& .escape90': {
+    '& .e-90': {
       color: palette.grey[500]
     },
-    '& .escape91': {
+    '& .e-91': {
       color: red[300]
     },
-    '& .escape92': {
+    '& .e-92': {
       color: green[300]
     },
-    '& .escape93': {
+    '& .e-93': {
       color: yellow[300]
     },
-    '& .escape94': {
+    '& .e-94': {
       color: blue[300]
     },
-    '& .escape95': {
+    '& .e-95': {
       color: purple[300]
     },
-    '& .escape96': {
+    '& .e-96': {
       color: cyan[300]
     },
-    '& .escape97': {
+    '& .e-97': {
       color: palette.common.white
     },
-    '& .escape100': {
+    '& .e-100': {
       background: palette.grey[500]
     },
-    '& .escape101': {
+    '& .e-101': {
       background: red[300]
     },
-    '& .escape102': {
+    '& .e-102': {
       background: green[300]
     },
-    '& .escape103': {
+    '& .e-103': {
       background: yellow[300]
     },
-    '& .escape104': {
+    '& .e-104': {
       background: blue[300]
     },
-    '& .escape105': {
+    '& .e-105': {
       background: purple[300]
     },
-    '& .escape106': {
+    '& .e-106': {
       background: cyan[300]
     },
-    '& .escape107': {
+    '& .e-107': {
       background: palette.common.white
     }
   }
 }));
 
-// Props
+// Types
 export interface LogProps {
   log: ILog
+}
+
+export interface EscapeCode {
+  s?: number[];
+  f?: number;
+  b?: number;
 }
 
 // Component
 export const Log: FC<LogProps> = ({ log }) => {
   // Memo
   const parts = useMemo(() => {
-    return log.message.split('\x1b')
-      .map((part, i) => {
-        if (i === 0) return ['', part];
+    const result: [string, string][] = [];
+    let state: EscapeCode = {};
 
-        const idx = part.indexOf('m');
-        if (idx === -1) return ['', part];
+    for (const part of log.message.split('\x1b')) {
+      if (result.length === 0) {
+        result.push(['', part]);
+        continue;
+      }
 
-        const codes = part.substr(1, idx - 1)
-          .split(',')
-          .map(code => `escape${code}`)
-          .join(' ');
+      // Parse code
+      const end = part.indexOf('m');
+      const msg = part.substr(end + 1);
+      const codes = part.substr(1, end - 1).split(',').map(c => parseInt(c));
 
-        return [codes, part.substr(idx + 1)];
-      })
+      if (codes.includes(0)) {
+        state = {};
+        result.push(['e-0', msg]);
+      } else {
+        for (const code of codes) {
+          if ((code >= 30 && code <= 37) || (code >= 90 && code <= 97)) {
+            state.f = code;
+          } else if ((code >= 40 && code <= 47) || (code >= 100 && code <= 107)) {
+            state.b = code;
+          } else {
+            state.s = [...state.s || [], code];
+          }
+        }
+
+        result.push([clsx(state.f && `e-${state.f}`, state.b && `e-${state.b}`, state.s?.map(c => `e-${c}`)), msg]);
+      }
+    }
+
+    return result;
   }, [log]);
 
   // Render

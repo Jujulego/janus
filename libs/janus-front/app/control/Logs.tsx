@@ -4,6 +4,8 @@ import { FC, useEffect } from 'react';
 
 import { ILog, LogFragment } from '@jujulego/janus-common';
 
+import { Log } from './Log';
+
 // Types
 interface LogsData {
   logs: ILog[];
@@ -53,9 +55,7 @@ export const Logs: FC = () => {
   // Render
   return (
     <Box p={1}>
-      { data?.logs?.map((log, i) => (
-        <Typography key={i}>{ log.message }</Typography>
-      )) }
+      { data?.logs?.map((log, i) => <Log key={i} log={log} />) }
     </Box>
   );
 };

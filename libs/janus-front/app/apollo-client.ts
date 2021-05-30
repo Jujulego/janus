@@ -47,6 +47,9 @@ export function createApolloClient(ctx?: GetServerSidePropsContext): ApolloClien
     link, ssrMode,
     cache: new InMemoryCache({
       typePolicies: {
+        Log: {
+          keyFields: ['timestamp']
+        },
         Service: {
           keyFields: ["name"]
         }

@@ -1,6 +1,8 @@
 import { gql, useQuery } from '@apollo/client';
 import { Box } from '@material-ui/core';
-import { FC, useEffect, useRef } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
+import { FixedSizeList as List } from 'react-window';
+import ResizeObserver from 'resize-observer-polyfill';
 
 import { ILog, LogFragment } from '@jujulego/janus-common';
 
@@ -41,10 +43,26 @@ export const Logs: FC = () => {
   // Query logs
   const { data, subscribeToMore } = useQuery<LogsData>(LOGS_QRY);
 
+  // State
+  const [height, setHeight] = useState(200);
+
   // Ref
   const container = useRef<HTMLDivElement>(null);
+  const list = useRef<List>(null);
 
   // Effects
+  useEffect(() => {
+    const obs = new ResizeObserver((entries: ResizeObserverEntry[]) => {
+      setHeight(entries[0].contentRect.height);
+    });
+
+    if (container.current?.parentElement) {
+      obs.observe(container.current?.parentElement);
+    }
+
+    return  () => obs.disconnect()
+  }, []);
+
   useEffect(() => {
     subscribeToMore<LogsEvent>({
       document: LOGS_SUB,
@@ -56,17 +74,25 @@ export const Logs: FC = () => {
   }, [subscribeToMore]);
 
   useEffect(() => {
-    const wrapper = container.current?.parentElement;
-
-    if (data && wrapper) {
-      wrapper.scrollTo(0, wrapper.scrollHeight);
+    if (data) {
+      list.current?.scrollToItem(data.logs.length - 1);
     }
   }, [data?.logs?.length]);
 
   // Render
   return (
-    <Box ref={container} p={1}>
-      { data?.logs?.map((log) => <Log key={log.id} log={log} />) }
+    <Box ref={container} height="100%" pl={1}>
+      <List
+        ref={list}
+        width="100%"
+        height={height}
+        itemSize={24}
+        itemCount={data?.logs?.length || 0}
+      >
+        { ({ index: i, style }) => (
+          <Log log={data!.logs[i]} style={style} />
+        ) }
+      </List>
     </Box>
   );
 };

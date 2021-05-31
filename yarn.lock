@@ -1994,6 +1994,7 @@ __metadata:
     "@types/node": ^14.14.36
     "@types/react": ^17
     "@types/react-dom": ^17
+    "@types/react-window": ^1
     "@types/supertest": ^2.0.10
     "@typescript-eslint/eslint-plugin": ^4.19.0
     "@typescript-eslint/parser": ^4.19.0
@@ -2012,6 +2013,7 @@ __metadata:
     prettier: ^2.2.1
     react: ^17.0.2
     react-dom: ^17.0.2
+    react-window: ^1.8.6
     reflect-metadata: ^0.1.13
     resize-observer-polyfill: ^1.5.1
     rxjs: ^6.6.6
@@ -3479,6 +3481,15 @@ __metadata:
   dependencies:
     "@types/react": "*"
   checksum: 7d9d9ecf8187902c129c4bf99ee911658f5cf97ffe56f31703be06df70b5209d49515386e26be540508436c8383d2cb1cdc287777103c5eb5106a1027281e8ec
+  languageName: node
+  linkType: hard
+
+"@types/react-window@npm:^1":
+  version: 1.8.3
+  resolution: "@types/react-window@npm:1.8.3"
+  dependencies:
+    "@types/react": "*"
+  checksum: 0e807a51df46cdb0a22786d5b6507e3b71c86506a2cb9fe70404ff1b38c854cf8d83e95da905503272ebe3ac5e5ca8090f3c568066e94fc190452a69336798a6
   languageName: node
   linkType: hard
 
@@ -10402,6 +10413,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"memoize-one@npm:>=3.1.1 <6":
+  version: 5.2.1
+  resolution: "memoize-one@npm:5.2.1"
+  checksum: 6b7dab7d8d9dca696d500dbc7f6b1445cbc4168d8208ee2746dd1a7f75378445d9bc6a2def7868afee81c87e630294456310f33f3f1eb738f69d748c797d87d5
+  languageName: node
+  linkType: hard
+
 "merge-descriptors@npm:1.0.1":
   version: 1.0.1
   resolution: "merge-descriptors@npm:1.0.1"
@@ -12063,6 +12081,19 @@ __metadata:
     react: ">=16.6.0"
     react-dom: ">=16.6.0"
   checksum: e14446123f820e804335c64be5270333c29e8cfaa43dfc33387e132c5d521cf4a0a7c2408058a147b254ae82a6569f373394d83e977ef340d6937bc2f4ff7d6c
+  languageName: node
+  linkType: hard
+
+"react-window@npm:^1.8.6":
+  version: 1.8.6
+  resolution: "react-window@npm:1.8.6"
+  dependencies:
+    "@babel/runtime": ^7.0.0
+    memoize-one: ">=3.1.1 <6"
+  peerDependencies:
+    react: ^15.0.0 || ^16.0.0 || ^17.0.0
+    react-dom: ^15.0.0 || ^16.0.0 || ^17.0.0
+  checksum: e2bfdfbe39f165c8ca4005b36837288546db5701fc6b53da0acb352317f5dad14cd7abbdff3b13644a8615074fa9841996249b2776f8f94e7efa4e37236b06a4
   languageName: node
   linkType: hard
 

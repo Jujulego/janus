@@ -77,7 +77,7 @@ export class JanusServer {
       this.app.use(morgan('dev', {
         stream: {
           write(str: string) {
-            Logger.verbose(str.trim());
+            Logger.debug(str.trim());
           }
         }
       }));

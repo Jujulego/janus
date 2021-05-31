@@ -1,6 +1,6 @@
 import { makeStyles, Typography } from '@material-ui/core';
 import { blue, cyan, green, purple, red, yellow } from '@material-ui/core/colors';
-import { FC, useMemo } from 'react';
+import { CSSProperties, FC, useMemo } from 'react';
 import clsx from 'clsx';
 
 import { ILog } from '@jujulego/janus-common';
@@ -8,6 +8,11 @@ import { ILog } from '@jujulego/janus-common';
 // Styles
 const useStyles = makeStyles(({ palette }) => ({
   log: {
+    whiteSpace: 'nowrap',
+
+    '&.debug': {
+      color: blue[700],
+    },
     '&.verbose': {
       color: cyan[700],
     },
@@ -131,7 +136,8 @@ const useStyles = makeStyles(({ palette }) => ({
 
 // Types
 export interface LogProps {
-  log: ILog
+  log: ILog;
+  style?: CSSProperties;
 }
 
 export interface EscapeCode {
@@ -141,7 +147,7 @@ export interface EscapeCode {
 }
 
 // Component
-export const Log: FC<LogProps> = ({ log }) => {
+export const Log: FC<LogProps> = ({ log, style }) => {
   // Memo
   const parts = useMemo(() => {
     const result: [string, string][] = [];
@@ -186,7 +192,7 @@ export const Log: FC<LogProps> = ({ log }) => {
   const styles = useStyles();
 
   return (
-    <Typography className={clsx(styles.log, log.level)}>
+    <Typography className={clsx(styles.log, log.level)} style={style}>
       { parts.map(([cls, part], i) => (
         <span key={i} className={cls}>{ part }</span>
       )) }

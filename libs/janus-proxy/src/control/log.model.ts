@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from '@nestjs/graphql';
+import { Field, ObjectType } from '@nestjs/graphql';
 
 import { ILog } from '@jujulego/janus-common';
 
@@ -6,7 +6,6 @@ import { ILog } from '@jujulego/janus-common';
 @ObjectType()
 export class Log implements ILog {
   // Attributes
-  @Field(() => Int) id: number;
   @Field() level: string;
   @Field() message: string;
   @Field() timestamp: string;

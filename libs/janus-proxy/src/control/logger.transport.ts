@@ -13,7 +13,6 @@ import { Log } from './log.model';
 export class LoggerTransport extends Transport implements OnModuleInit {
   // Attributes
   readonly history: Log[] = [];
-  private _id = 0;
 
   // Constructor
   constructor(private readonly _pubsub: PubSub) {
@@ -44,7 +43,6 @@ export class LoggerTransport extends Transport implements OnModuleInit {
     // Store and send via pubsub
     try {
       const log = plainToClass(Log, info);
-      log.id = ++(this._id);
       log.metadata = JSON.stringify(info.metadata)
 
       this._save(log);

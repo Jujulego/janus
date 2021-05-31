@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { Box, Typography } from '@material-ui/core';
+import { Box } from '@material-ui/core';
 import { FC, useEffect } from 'react';
 
 import { ILog, LogFragment } from '@jujulego/janus-common';

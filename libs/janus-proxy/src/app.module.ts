@@ -21,7 +21,7 @@ import { ProxyModule } from './proxy/proxy.module';
     ControlModule,
     FrontModule.forRoot(),
     ProxyModule,
-    GatesModule
+    GatesModule,
   ],
   providers: [
     { provide: APP_INTERCEPTOR, useClass: GraphQLInterceptor }

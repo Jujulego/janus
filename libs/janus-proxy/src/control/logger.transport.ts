@@ -1,4 +1,4 @@
-import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
+import { Injectable, OnApplicationBootstrap, OnModuleInit } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import { PubSub } from 'graphql-subscriptions';
 import Transport from 'winston-transport';
@@ -10,7 +10,7 @@ import { Log } from './log.model';
 
 // Services
 @Injectable()
-export class LoggerTransport extends Transport implements OnApplicationBootstrap {
+export class LoggerTransport extends Transport implements OnModuleInit {
   // Attributes
   readonly history: Log[] = [];
 
@@ -25,7 +25,7 @@ export class LoggerTransport extends Transport implements OnApplicationBootstrap
   }
 
   // Lifecycle
-  onApplicationBootstrap(): void {
+  onModuleInit(): void {
     Logger.root.add(this);
   }
 

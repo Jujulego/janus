@@ -55,7 +55,7 @@ export const Logs: FC = () => {
   // Render
   return (
     <Box p={1}>
-      { data?.logs?.map((log, i) => <Log key={i} log={log} />) }
+      { data?.logs?.map((log) => <Log key={log.id} log={log} />) }
     </Box>
   );
 };

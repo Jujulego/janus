@@ -3,6 +3,7 @@ import gql from 'graphql-tag';
 // Model
 export interface ILog {
   // Attributes
+  id: number;
   level: string;
   message: string;
   timestamp: string;
@@ -12,6 +13,7 @@ export interface ILog {
 // Fragment
 export const LogFragment = gql`
   fragment Log on Log {
+      id
       level
       message
       timestamp

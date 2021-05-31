@@ -166,7 +166,10 @@ export const Log: FC<LogProps> = ({ log }) => {
           }
         }
 
-        result.push([clsx(state.f && `e-${state.f}`, state.b && `e-${state.b}`, state.s?.map(c => `e-${c}`)), msg]);
+        result.push([
+          clsx(state.f && `e-${state.f}`, state.b && `e-${state.b}`, state.s?.map(c => `e-${c}`)),
+          msg
+        ]);
       }
     }
 
@@ -178,9 +181,9 @@ export const Log: FC<LogProps> = ({ log }) => {
 
   return (
     <Typography className={clsx(styles.log, log.level)}>
-      { parts.map(([cls, part]) => (
-        <span className={cls}>{ part }</span>
+      { parts.map(([cls, part], i) => (
+        <span key={i} className={cls}>{ part }</span>
       )) }
     </Typography>
-  )
+  );
 };

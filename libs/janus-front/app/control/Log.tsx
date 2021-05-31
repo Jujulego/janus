@@ -11,6 +11,12 @@ const useStyles = makeStyles(({ palette }) => ({
     '&.verbose': {
       color: cyan[700],
     },
+    '&.warn': {
+      color: yellow[700],
+    },
+    '&.error': {
+      color: red[700],
+    },
     '& .e-0': {
       color: palette.text.primary,
       background: palette.background.default

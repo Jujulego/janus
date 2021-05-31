@@ -1,6 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
 import { Box } from '@material-ui/core';
-import { FC, useEffect } from 'react';
+import { FC, useEffect, useRef } from 'react';
 
 import { ILog, LogFragment } from '@jujulego/janus-common';
 
@@ -41,6 +41,9 @@ export const Logs: FC = () => {
   // Query logs
   const { data, subscribeToMore } = useQuery<LogsData>(LOGS_QRY);
 
+  // Ref
+  const container = useRef<HTMLDivElement>(null);
+
   // Effects
   useEffect(() => {
     subscribeToMore<LogsEvent>({
@@ -52,9 +55,17 @@ export const Logs: FC = () => {
     });
   }, [subscribeToMore]);
 
+  useEffect(() => {
+    const wrapper = container.current?.parentElement;
+
+    if (data && wrapper) {
+      wrapper.scrollTo(0, wrapper.scrollHeight);
+    }
+  }, [data?.logs?.length]);
+
   // Render
   return (
-    <Box p={1}>
+    <Box ref={container} p={1}>
       { data?.logs?.map((log) => <Log key={log.id} log={log} />) }
     </Box>
   );

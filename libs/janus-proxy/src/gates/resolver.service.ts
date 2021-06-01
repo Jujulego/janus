@@ -29,7 +29,7 @@ export class ResolverService {
 
   // Methods
   private _register(service: Service) {
-    this._logger.verbose(`New route ${service.name}: ${service.url}`);
+    this._logger.verbose(`New route ${service.name}: ${service.url}`, { service: service.name });
     this._routes.push([service.url, service.name]);
   }
 

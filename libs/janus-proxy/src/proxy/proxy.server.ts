@@ -56,7 +56,7 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
     $req.asObservable()
       .pipe(
         map((req) => this._resolveGate(req)),
-        tap(([service, gate]) => this._logger.verbose(`${req.url} => ${gate.target} (service: ${service.name})`)),
+        tap(([service, gate]) => this._logger.verbose(`${req.url} => ${gate.target} (service: ${service.name})`, { service: service.name, gate: gate.name })),
       )
       .subscribe(
         ([service, gate]) => {
@@ -65,7 +65,7 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
           this._proxy.web(req, res, options, (error) => {
             // Handle proxy error
             if ((error as any).code === 'ECONNREFUSED') {
-              this._logger.warn(`${options.target} is not responding ...`);
+              this._logger.warn(`${options.target} is not responding ...`, { service: service.name, gate: gate.name });
 
               // Disable gate and try again
               this._gateService.disableGate(service.name, gate.name);
@@ -96,7 +96,7 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
       this._logger.warn(`${req.url} => unresolved`);
       throw new NotFoundException(`No route found for ${req.url}`);
     } else if (!gate) {
-      this._logger.warn(`${req.url} => unresolved (service: ${service.name})`)
+      this._logger.warn(`${req.url} => unresolved (service: ${service.name})`, { service: service.name })
       throw new GatewayTimeoutException(`No gates available for ${req.url} (service: ${service.name})`);
     }
 

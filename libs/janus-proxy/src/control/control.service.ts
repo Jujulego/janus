@@ -1,5 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { Subject } from 'rxjs';
+
 import { Event } from '../event';
 
 // Service

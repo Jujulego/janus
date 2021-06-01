@@ -68,7 +68,7 @@ export const Logs: FC = () => {
       document: LOGS_SUB,
       updateQuery: (prev, { subscriptionData }) => ({
         ...prev,
-        logs: [...prev.logs, subscriptionData.data.logs]
+        logs: [...prev.logs || [], subscriptionData.data.logs]
       })
     });
   }, [subscribeToMore]);

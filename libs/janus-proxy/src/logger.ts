@@ -30,44 +30,84 @@ export class Logger implements LoggerService {
     ]
   });
 
-  static error(message: any, trace?: string, context?: string): void {
-    this.root.error({ message, context });
+  static error(message: any, trace?: string,  metadata?: string | Record<string, string | number>): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this.root.error({ message, trace, ...metadata });
   }
 
-  static warn(message: any, context?: string): void {
-    this.root.warn({ message, context });
+  static warn(message: any, metadata?: string | Record<string, string | number>): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this.root.warn({ message, ...metadata });
   }
 
-  static log(message: any, context?: string): void {
-    this.root.info({ message, context });
+  static log(message: any, metadata?: string | Record<string, string | number>): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this.root.info({ message, ...metadata });
   }
 
-  static verbose(message: any, context?: string): void {
-    this.root.verbose({ message, context });
+  static verbose(message: any, metadata?: string | Record<string, string | number>): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this.root.verbose({ message, ...metadata });
   }
 
-  static debug(message: any, context?: string): void {
-    this.root.debug({ message, context });
+  static debug(message: any, metadata?: string | Record<string, string | number>): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this.root.debug({ message, ...metadata });
   }
 
   // Methods
-  error(message: any, trace?: string, context?: string): void {
-    this._logger.error({ message, context });
+  error(message: any, trace?: string, metadata?: string | Record<string, string | number>): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this._logger.error({ message, trace, ...metadata });
   }
 
-  warn(message: any, context?: string): void {
-    this._logger.warn({ message, context });
+  warn(message: any, metadata?: string | Record<string, string | number>): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this._logger.warn({ message, ...metadata });
   }
 
-  log(message: any, context?: string): void {
-    this._logger.info({ message, context });
+  log(message: any, metadata?: string | Record<string, string | number>): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this._logger.info({ message, ...metadata });
   }
 
-  verbose(message: any, context?: string): void {
-    this._logger.verbose({ message, context });
+  verbose(message: any, metadata?: string | Record<string, string | number>): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this._logger.verbose({ message, ...metadata });
   }
 
-  debug(message: any, context?: string): void {
-    this._logger.debug({ message, context });
+  debug(message: any, metadata?: string | Record<string, string | number>): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this._logger.debug({ message, ...metadata });
   }
 }

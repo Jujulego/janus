@@ -17,6 +17,10 @@ interface LogsEvent {
   logs: ILog;
 }
 
+export interface LogsProps {
+  filter?: (log: ILog) => boolean;
+}
+
 // Queries
 export const LOGS_QRY = gql`
   query Logs {
@@ -39,7 +43,7 @@ export const LOGS_SUB = gql`
 `;
 
 // Component
-export const Logs: FC = () => {
+export const Logs: FC<LogsProps> = () => {
   // Query logs
   const { data, subscribeToMore } = useQuery<LogsData>(LOGS_QRY);
 

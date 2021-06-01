@@ -8,6 +8,8 @@ import { ILog } from '@jujulego/janus-common';
 // Styles
 const useStyles = makeStyles(({ palette }) => ({
   log: {
+    overflow: 'hidden',
+    textOverflow: 'ellispsis',
     whiteSpace: 'nowrap',
 
     '&.debug': {
@@ -149,8 +151,6 @@ export interface EscapeCode {
 // Component
 export const Log: FC<LogProps> = ({ log, style }) => {
   // Memos
-  const metadata = useMemo(() => JSON.parse(log.metadata), [log]);
-
   const parts = useMemo(() => {
     const result: [string, string][] = [];
     let state: EscapeCode = {};
@@ -195,8 +195,8 @@ export const Log: FC<LogProps> = ({ log, style }) => {
 
   return (
     <Typography className={clsx(styles.log, log.level)} style={style}>
-      { metadata.context && (
-        <span className="e-90">[{ metadata.context }] </span>
+      { log.metadata.context && (
+        <span className="e-90">[{ log.metadata.context }] </span>
       ) }
       { parts.map(([cls, part], i) => (
         <span key={i} className={cls}>{ part }</span>

@@ -1,6 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 import { ILog } from '@jujulego/janus-common';
+import { JsonObj } from '../json-obj.scalar';
 
 // Model
 @ObjectType()
@@ -9,5 +10,7 @@ export class Log implements ILog {
   @Field() level: string;
   @Field() message: string;
   @Field() timestamp: string;
-  @Field() metadata: string;
+
+  @Field(() => JsonObj)
+  metadata: any;
 }

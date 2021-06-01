@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { Box } from '@material-ui/core';
+import { Box, Paper, Toolbar, Typography } from '@material-ui/core';
 import { FC, useEffect, useRef, useState } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import ResizeObserver from 'resize-observer-polyfill';
@@ -60,8 +60,8 @@ export const Logs: FC<LogsProps> = () => {
       setHeight(entries[0].contentRect.height);
     });
 
-    if (container.current?.parentElement) {
-      obs.observe(container.current?.parentElement);
+    if (container.current) {
+      obs.observe(container.current);
     }
 
     return  () => obs.disconnect()
@@ -85,18 +85,25 @@ export const Logs: FC<LogsProps> = () => {
 
   // Render
   return (
-    <Box ref={container} height="100%" pl={1}>
-      <List
-        ref={list}
-        width="100%"
-        height={height}
-        itemSize={24}
-        itemCount={data?.logs?.length || 0}
-      >
-        { ({ index: i, style }) => (
-          <Log log={data!.logs[i]} style={style} />
-        ) }
-      </List>
+    <Box height="100%" display="flex" flexDirection="column">
+      <Toolbar variant="dense">
+        <Paper>
+          <Typography>Hello !</Typography>
+        </Paper>
+      </Toolbar>
+      <Box ref={container} pl={1} flex={1} maxHeight="calc(100% - 48px)">
+        <List
+          ref={list}
+          width="100%"
+          height={height}
+          itemSize={24}
+          itemCount={data?.logs?.length || 0}
+        >
+          { ({ index: i, style }) => (
+            <Log log={data!.logs[i]} style={style} />
+          ) }
+        </List>
+      </Box>
     </Box>
   );
 };

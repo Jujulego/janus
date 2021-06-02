@@ -2,15 +2,19 @@ import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs';
 
 // Commands
-(async function() {
+(async function () {
   try {
     await yargs(hideBin(process.argv))
       .scriptName('janus')
       .usage('Usage: $0 [command] [options]')
-      .option('config', { alias: 'c', description: 'Path to the configuration file', default: 'janus.config.yml' })
-      .command(require('./commands/start'))
-      .command(require('./commands/stop'))
-      .command(require('./commands/gql-schema'))
+      .option('config', {
+        alias: 'c',
+        description: 'Path to the configuration file',
+        default: 'janus.config.yml',
+      })
+      .command(require('./commands/start'))      // eslint-disable-line @typescript-eslint/no-var-requires
+      .command(require('./commands/stop'))       // eslint-disable-line @typescript-eslint/no-var-requires
+      .command(require('./commands/gql-schema')) // eslint-disable-line @typescript-eslint/no-var-requires
       .help()
       .parse();
   } catch (error) {

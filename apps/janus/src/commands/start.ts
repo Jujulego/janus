@@ -17,8 +17,7 @@ export const handler = commandWrapper(async (args: CommonArgs) => {
     const server = await JanusServer.createServer();
 
     // Prepare shutdown
-    server.$shutdown
-      .subscribe(() => process.exit(0))
+    server.$shutdown.subscribe(() => process.exit(0));
 
     // Start server
     await server.start(args.config);

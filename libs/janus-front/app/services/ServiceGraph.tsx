@@ -23,14 +23,14 @@ export interface ServiceGraphProps {
 const useStyles = makeStyles(({ palette, transitions }) => ({
   graph: {
     height: '100%',
-    width: '100%'
+    width: '100%',
   },
   node: {
     cursor: 'pointer',
 
     '& text': {
       fill: palette.text.primary,
-      dominantBaseline: 'central'
+      dominantBaseline: 'central',
     },
 
     '& rect': {
@@ -38,7 +38,9 @@ const useStyles = makeStyles(({ palette, transitions }) => ({
       stroke: palette.warning.main,
       strokeWidth: 2,
 
-      transition: transitions.create('fill', { duration: transitions.duration.shortest }),
+      transition: transitions.create('fill', {
+        duration: transitions.duration.shortest,
+      }),
     },
 
     '& circle': {
@@ -47,7 +49,7 @@ const useStyles = makeStyles(({ palette, transitions }) => ({
     },
 
     '&:hover rect': {
-      fill: '#252525'
+      fill: '#252525',
     },
 
     '&.used': {
@@ -78,15 +80,15 @@ const useStyles = makeStyles(({ palette, transitions }) => ({
 
     '&.enabled': {
       stroke: palette.success.main,
-      strokeDasharray: '0'
+      strokeDasharray: '0',
     },
 
     '&.used': {
       stroke: palette.primary.main,
       strokeWidth: 3,
-      strokeDasharray: '0'
+      strokeDasharray: '0',
     },
-  }
+  },
 }));
 
 // Component
@@ -110,7 +112,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
       .map((gate) => ({
         name: gate.name,
         enabled: gate.enabled,
-      }))
+      })),
   }), [service]);
 
   // Effects
@@ -125,7 +127,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
 
     return () => {
       obs.disconnect();
-    }
+    };
   }, [graph.current, refresh]);
 
   useEffect(() => {
@@ -139,8 +141,8 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
     const w = Math.max(graph.current.clientWidth - 10, 750);
     const rw = Math.min((graph.current.clientWidth - 10) / 750, 1);
 
-    const nw = 200;                                   // node width
-    const lw = w / 3;                                 // link width => space between nodes
+    const nw = 200;   // node width
+    const lw = w / 3; // link width => space between nodes
     const ml = Math.max((w - lw) / 2 - nw, 0); // left margin
 
     const layout = d3.tree<IData>()
@@ -154,7 +156,8 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
       .attr('transform', `translate(5, 5) scale(${rw})`);
 
     // - nodes
-    const nodes = svg.select('g.nodes').selectAll('g')
+    const nodes = svg.select('g.nodes')
+      .selectAll('g')
       .data(root.descendants())
       .join(
         (ent) => {
@@ -167,7 +170,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
           return node;
         },
         (upd) => upd,
-        (ext) => ext.remove()
+        (ext) => ext.remove(),
       )
         .classed(styles.node, true)
         .classed('enabled', (d) => d.data.enabled)
@@ -195,7 +198,8 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
       .text((d) => d.data.name);
 
     // - links
-    svg.select('g.links').selectAll('path')
+    svg.select('g.links')
+      .selectAll('path')
       .data(root.links())
       .join('path')
         .classed(styles.link, true)

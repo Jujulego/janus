@@ -6,8 +6,6 @@ import { PubSub } from 'graphql-subscriptions';
   providers: [
     { provide: PubSub, useValue: new PubSub() }
   ],
-  exports: [
-    PubSub
-  ]
+  exports: [PubSub],
 })
 export class PubSubModule {}

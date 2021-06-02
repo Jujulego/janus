@@ -1,11 +1,12 @@
 import {
   GatewayTimeoutException,
   HttpException,
-  Injectable, InternalServerErrorException,
+  Injectable,
+  InternalServerErrorException,
   Logger,
   NotFoundException,
   OnApplicationBootstrap,
-  OnApplicationShutdown
+  OnApplicationShutdown,
 } from '@nestjs/common';
 import { Subject } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
@@ -20,10 +21,14 @@ import { Service } from '../gates/service.model';
 
 // Service
 @Injectable()
-export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdown {
+export class ProxyServer
+  implements OnApplicationBootstrap, OnApplicationShutdown
+{
   // Attributes
   private readonly _proxy = httpProxy.createProxyServer();
-  private readonly _server = http.createServer((req, res) => this._redirect(req, res));
+  private readonly _server = http.createServer((req, res) =>
+    this._redirect(req, res),
+  );
   private readonly _logger = new Logger(ProxyServer.name);
 
   // Constructor
@@ -53,10 +58,13 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
   private _redirect(req: http.IncomingMessage, res: http.ServerResponse) {
     const $req = new Subject<http.IncomingMessage>();
 
-    $req.asObservable()
+    $req
+      .asObservable()
       .pipe(
         map((req) => this._resolveGate(req)),
-        tap(([service, gate]) => this._logger.verbose(`${req.url} => ${gate.target} (service: ${service.name})`)),
+        tap(([service, gate]) =>
+          this._logger.verbose(`${req.url} => ${gate.target} (service: ${service.name})`),
+        ),
       )
       .subscribe(
         ([service, gate]) => {
@@ -72,7 +80,8 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
               $req.next(req);
             } else {
               this._logger.error(error.message);
-              this._sendError(res, new InternalServerErrorException(error.message))
+
+              this._sendError(res, new InternalServerErrorException(error.message),);
             }
           });
         },
@@ -81,9 +90,10 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
             this._sendError(res, error);
           } else {
             this._logger.error(error.message);
-            this._sendError(res, new InternalServerErrorException(error.message));
+
+            this._sendError(res, new InternalServerErrorException(error.message),);
           }
-        }
+        },
       );
 
     $req.next(req);
@@ -94,10 +104,14 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
 
     if (!service) {
       this._logger.warn(`${req.url} => unresolved`);
+
       throw new NotFoundException(`No route found for ${req.url}`);
     } else if (!gate) {
-      this._logger.warn(`${req.url} => unresolved (service: ${service.name})`)
-      throw new GatewayTimeoutException(`No gates available for ${req.url} (service: ${service.name})`);
+      this._logger.warn(`${req.url} => unresolved (service: ${service.name})`);
+
+      throw new GatewayTimeoutException(
+        `No gates available for ${req.url} (service: ${service.name})`,
+      );
     }
 
     return [service, gate];
@@ -108,13 +122,15 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
       target: gate.target,
       changeOrigin: gate.changeOrigin,
       secure: gate.secure,
-      ws: gate.ws
+      ws: gate.ws,
     };
   }
 
   async listen() {
     await this._server.listen(this._config.proxy.port, () => {
-      this._logger.log(`Proxy listening at http://localhost:${this._config.proxy.port}`);
+      this._logger.log(
+        `Proxy listening at http://localhost:${this._config.proxy.port}`,
+      );
     });
   }
 

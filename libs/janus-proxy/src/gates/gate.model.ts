@@ -17,10 +17,14 @@ export class Gate implements IGate {
   @Field()
   enabled: boolean;
 
-  @Field(() => Int,{ description: 'The gate with the lowest priority will be chosen' })
+  @Field(() => Int, {
+    description: 'The gate with the lowest priority will be chosen',
+  })
   priority: number;
 
-  @Field({ description: 'Changes the origin of the host header to the target URL' })
+  @Field({
+    description: 'Changes the origin of the host header to the target URL',
+  })
   changeOrigin: boolean;
 
   @Field({ description: 'Enable HTTPS support' })
@@ -32,13 +36,13 @@ export class Gate implements IGate {
   // Statics
   static fromConfig(name: string, index: number, config: IGateConfig): Gate {
     return plainToClass(Gate, {
-      name:         name,
-      target:       config.target,
-      enabled:      config.enabled ?? false,
-      priority:     index,
+      name: name,
+      target: config.target,
+      enabled: config.enabled ?? false,
+      priority: index,
       changeOrigin: config.changeOrigin ?? false,
-      secure:       config.secure ?? false,
-      ws:           config.ws ?? false
+      secure: config.secure ?? false,
+      ws: config.ws ?? false,
     });
   }
 }

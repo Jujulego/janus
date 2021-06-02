@@ -6,20 +6,20 @@ export class FrontModule {
   // Methods
   static async forRoot(): Promise<DynamicModule> {
     try {
-      const { default: JanusFrontModule } = await import('@jujulego/janus-front');
+      const { default: JanusFrontModule } = await import(
+        '@jujulego/janus-front'
+      );
 
       return {
         module: FrontModule,
-        imports: [
-          JanusFrontModule
-        ]
+        imports: [JanusFrontModule],
       };
     } catch (error) {
       Logger.log('Front library not found. Front will not be served');
       Logger.debug(error);
 
       return {
-        module: FrontModule
+        module: FrontModule,
       };
     }
   }

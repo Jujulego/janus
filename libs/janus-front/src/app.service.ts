@@ -12,7 +12,7 @@ export class AppService implements OnModuleInit, OnModuleDestroy {
   async onModuleInit(): Promise<void> {
     this._server = next({
       dev: process.env.NODE_ENV !== 'production',
-      dir: path.join(__dirname, '../app')
+      dir: path.join(__dirname, '../app'),
     });
     await this._server.prepare();
   }

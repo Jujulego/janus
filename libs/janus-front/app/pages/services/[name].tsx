@@ -3,7 +3,12 @@ import { Grid } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { GateFragment, IGate, IService, ServiceFragment } from '@jujulego/janus-common';
+import {
+  GateFragment,
+  IGate,
+  IService,
+  ServiceFragment,
+} from '@jujulego/janus-common';
 
 import { addApolloState, createApolloClient } from '../../apollo-client';
 import { GateDetails } from '../../gates/GateDetails';
@@ -22,49 +27,49 @@ export interface ServicePageProps {
 
 // Queries
 const SERVICE_QRY = gql`
-    query ServiceGraph($name: String!) {
-        service(name: $name) {
-            ...Service
-        }
+  query ServiceGraph($name: String!) {
+    service(name: $name) {
+      ...Service
     }
+  }
 
-    ${ServiceFragment}
+  ${ServiceFragment}
 `;
 
 const SERVICE_SUB = gql`
-    subscription ServiceGraph($name: String!) {
-        service(name: $name) {
-            ...Service
-        }
+  subscription ServiceGraph($name: String!) {
+    service(name: $name) {
+      ...Service
     }
+  }
 
-    ${ServiceFragment}
+  ${ServiceFragment}
 `;
 
 const ENABLE_GATE_MUT = gql`
-    mutation EnableGate($service: String!, $gate: String!) {
-        enableGate(service: $service, gate: $gate) {
-            ...Gate
-        }
+  mutation EnableGate($service: String!, $gate: String!) {
+    enableGate(service: $service, gate: $gate) {
+      ...Gate
     }
-    
-    ${GateFragment}
+  }
+
+  ${GateFragment}
 `;
 
 const DISABLE_GATE_MUT = gql`
-    mutation DisableGate($service: String!, $gate: String!) {
-        disableGate(service: $service, gate: $gate) {
-            ...Gate
-        }
+  mutation DisableGate($service: String!, $gate: String!) {
+    disableGate(service: $service, gate: $gate) {
+      ...Gate
     }
-    
-    ${GateFragment}
+  }
+
+  ${GateFragment}
 `;
 
 // Page
 const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
   // State
-  const [selected, setSelected] = useState<string>("");
+  const [selected, setSelected] = useState<string>('');
 
   // Queries
   const { data, subscribeToMore } = useQuery<ServicePageData>(SERVICE_QRY, {
@@ -75,16 +80,22 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
   const [disableGate] = useMutation<{ disableGate: IGate }>(DISABLE_GATE_MUT);
 
   // Memos
-  const gate = useMemo(() => data && data.service.gates.find(g => g.name === selected), [selected, data]);
+  const gate = useMemo(
+    () => data && data.service.gates.find((g) => g.name === selected),
+    [selected, data],
+  );
 
   // Callbacks
-  const handleToggle = useCallback(async (gate: IGate) => {
-    if (gate.enabled) {
-      await disableGate({ variables: { service: name, gate: gate.name } });
-    } else {
-      await enableGate({ variables: { service: name, gate: gate.name } });
-    }
-  }, [name]);
+  const handleToggle = useCallback(
+    async (gate: IGate) => {
+      if (gate.enabled) {
+        await disableGate({ variables: { service: name, gate: gate.name } });
+      } else {
+        await enableGate({ variables: { service: name, gate: gate.name } });
+      }
+    },
+    [name],
+  );
 
   // Effects
   useEffect(() => {
@@ -93,14 +104,14 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
       variables: { name },
       updateQuery: (prev, { subscriptionData }) => {
         return subscriptionData.data;
-      }
+      },
     });
   }, [subscribeToMore, name]);
 
   // Render
   return (
     <Navbar>
-      { data && (
+      {data && (
         <>
           <ServiceHeader service={data.service} />
 
@@ -109,14 +120,14 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
               <ServiceGraph service={data.service} onSelect={setSelected} />
             </Grid>
 
-            { gate && (
+            {gate && (
               <Grid item lg={2} minWidth={300} ml={2}>
                 <GateDetails gate={gate} onToggle={handleToggle} />
               </Grid>
-            ) }
+            )}
           </Grid>
         </>
-      ) }
+      )}
     </Navbar>
   );
 };
@@ -131,7 +142,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Request service
   await client.query<ServicePageData>({
     query: SERVICE_QRY,
-    variables: { name }
+    variables: { name },
   });
 
   return { props: addApolloState(client, { name }) };

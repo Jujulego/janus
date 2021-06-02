@@ -5,9 +5,6 @@ import { ServerResolver } from './server.resolver';
 
 // Module
 @Module({
-  providers: [
-    ControlService,
-    ServerResolver
-  ]
+  providers: [ControlService, ServerResolver],
 })
 export class ControlModule {}

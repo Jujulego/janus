@@ -43,4 +43,4 @@ export default function App(props: AppProps) {
       </ApolloProvider>
     </CacheProvider>
   );
-};
+}

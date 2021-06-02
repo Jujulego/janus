@@ -1,6 +1,6 @@
 import { IJanusConfig, JanusConfig } from '@jujulego/janus-config';
 
-process.env.NODE_ENV='production'
+process.env.NODE_ENV = 'production';
 
 // Utils
 async function importProxy() {
@@ -9,10 +9,10 @@ async function importProxy() {
   } catch (error) {
     throw new Error(
       '@jujulego/janus-proxy is needed for autostart.\n' +
-      'Please install it:\n' +
-      '  npm install --save-dev @jujulego/janus-proxy\n' +
-      'or\n' +
-      '  yarn add --dev @jujulego/janus-proxy'
+        'Please install it:\n' +
+        '  npm install --save-dev @jujulego/janus-proxy\n' +
+        'or\n' +
+        '  yarn add --dev @jujulego/janus-proxy',
     );
   }
 }
@@ -27,11 +27,9 @@ process.once('message', async (config: IJanusConfig) => {
     const server = await JanusServer.createServer();
 
     // Prepare shutdown
-    server.$shutdown
-      .subscribe(() => process.exit(0));
+    server.$shutdown.subscribe(() => process.exit(0));
 
-    server.$started
-      .subscribe(() => process.send?.('started'))
+    server.$started.subscribe(() => process.send?.('started'));
 
     await server.start(new JanusConfig(config));
   } catch (error) {

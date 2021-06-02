@@ -5,11 +5,7 @@ import { AppService } from './app.service';
 
 // Module
 @Module({
-  controllers: [
-    AppController
-  ],
-  providers: [
-    AppService
-  ]
+  controllers: [AppController],
+  providers: [AppService],
 })
 export class JanusFrontModule {}

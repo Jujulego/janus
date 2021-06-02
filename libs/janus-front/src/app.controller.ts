@@ -7,13 +7,15 @@ import { AppService } from './app.service';
 @Controller()
 export class AppController {
   // Constructor
-  constructor(
-    private readonly app: AppService
-  ) {}
+  constructor(private readonly app: AppService) {}
 
   // Endpoints
   @Get('/')
-  async home(@Req() req: Request, @Res() res: Response, @Query() query: any): Promise<void> {
+  async home(
+    @Req() req: Request,
+    @Res() res: Response,
+    @Query() query: any,
+  ): Promise<void> {
     await this.app.server.render(req, res, '/', query);
   }
 
@@ -22,7 +24,7 @@ export class AppController {
     @Param('name') name: string,
     @Req() req: Request,
     @Res() res: Response,
-    @Query() query: any
+    @Query() query: any,
   ): Promise<void> {
     await this.app.server.render(req, res, `/services/${name}`, query);
   }

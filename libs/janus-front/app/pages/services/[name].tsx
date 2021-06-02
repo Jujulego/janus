@@ -22,49 +22,49 @@ export interface ServicePageProps {
 
 // Queries
 const SERVICE_QRY = gql`
-    query ServiceGraph($name: String!) {
-        service(name: $name) {
-            ...Service
-        }
+  query ServiceGraph($name: String!) {
+    service(name: $name) {
+      ...Service
     }
+  }
 
-    ${ServiceFragment}
+  ${ServiceFragment}
 `;
 
 const SERVICE_SUB = gql`
-    subscription ServiceGraph($name: String!) {
-        service(name: $name) {
-            ...Service
-        }
+  subscription ServiceGraph($name: String!) {
+    service(name: $name) {
+      ...Service
     }
+  }
 
-    ${ServiceFragment}
+  ${ServiceFragment}
 `;
 
 const ENABLE_GATE_MUT = gql`
-    mutation EnableGate($service: String!, $gate: String!) {
-        enableGate(service: $service, gate: $gate) {
-            ...Gate
-        }
+  mutation EnableGate($service: String!, $gate: String!) {
+    enableGate(service: $service, gate: $gate) {
+      ...Gate
     }
-    
-    ${GateFragment}
+  }
+
+  ${GateFragment}
 `;
 
 const DISABLE_GATE_MUT = gql`
-    mutation DisableGate($service: String!, $gate: String!) {
-        disableGate(service: $service, gate: $gate) {
-            ...Gate
-        }
+  mutation DisableGate($service: String!, $gate: String!) {
+    disableGate(service: $service, gate: $gate) {
+      ...Gate
     }
-    
-    ${GateFragment}
+  }
+
+  ${GateFragment}
 `;
 
 // Page
 const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
   // State
-  const [selected, setSelected] = useState<string>("");
+  const [selected, setSelected] = useState<string>('');
 
   // Queries
   const { data, subscribeToMore } = useQuery<ServicePageData>(SERVICE_QRY, {
@@ -75,7 +75,10 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
   const [disableGate] = useMutation<{ disableGate: IGate }>(DISABLE_GATE_MUT);
 
   // Memos
-  const gate = useMemo(() => data && data.service.gates.find(g => g.name === selected), [selected, data]);
+  const gate = useMemo(
+    () => data && data.service.gates.find((g) => g.name === selected),
+    [selected, data],
+  );
 
   // Callbacks
   const handleToggle = useCallback(async (gate: IGate) => {
@@ -91,7 +94,9 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
     subscribeToMore({
       document: SERVICE_SUB,
       variables: { name },
-      updateQuery: (prev, { subscriptionData }) => subscriptionData.data
+      updateQuery: (prev, { subscriptionData }) => {
+        return subscriptionData.data;
+      },
     });
   }, [subscribeToMore, name]);
 
@@ -129,7 +134,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // Request service
   await client.query<ServicePageData>({
     query: SERVICE_QRY,
-    variables: { name }
+    variables: { name },
   });
 
   return { props: addApolloState(client, { name }) };

@@ -7,19 +7,19 @@ export const theme = createTheme({
   palette: {
     primary: indigo,
     secondary: amber,
-    mode: "dark"
+    mode: 'dark',
   },
   components: {
     MuiCardHeader: {
       defaultProps: {
-        titleTypographyProps: { variant: "h6" }
-      }
+        titleTypographyProps: { variant: 'h6' },
+      },
     },
     MuiDialog: {
       defaultProps: {
         maxWidth: 'xs',
-        fullWidth: true
-      }
-    }
-  }
+        fullWidth: true,
+      },
+    },
+  },
 }, frFR);

@@ -7,12 +7,9 @@ import { Event } from '../event';
 @Injectable()
 export class ControlService {
   // Attributes
-  private readonly _events = new Subject<Event<null, 'shutdown'>>()
+  private readonly _events = new Subject<Event<null, 'shutdown'>>();
 
   readonly $events = this._events.asObservable();
-
-  // Constructor
-  constructor() {}
 
   // Methods
   shutdown() {

@@ -1,15 +1,26 @@
 import {
   AppBar,
-  Box, Divider, Drawer,
-  IconButton, Link,
-  List, ListItem, ListItemText, ListSubheader,
+  Box,
+  Divider,
+  Drawer,
+  IconButton,
+  Link,
+  List,
+  ListItem,
+  ListItemText,
+  ListSubheader,
   makeStyles,
   Theme,
-  Toolbar, Tooltip,
+  Toolbar,
+  Tooltip,
   Typography,
-  useMediaQuery
+  useMediaQuery,
 } from '@material-ui/core';
-import { Attractions as AttractionsIcon, ChevronLeft as ChevronLeftIcon, Menu as MenuIcon } from '@material-ui/icons';
+import {
+  Attractions as AttractionsIcon,
+  ChevronLeft as ChevronLeftIcon,
+  Menu as MenuIcon,
+} from '@material-ui/icons';
 import { default as NextLink } from 'next/link';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
@@ -23,19 +34,19 @@ interface NavbarData {
 }
 
 const NAVBAR_QUERY = gql`
-    query Navbar {
-        services {
-            name
-            url
-        }
+  query Navbar {
+    services {
+      name
+      url
     }
+  }
 `;
 
 // Styles
 const useStyles = makeStyles(({ spacing, zIndex }) => ({
   drawerPaper: {
     width: 300,
-    zIndex: zIndex.drawer
+    zIndex: zIndex.drawer,
   },
   content: {
     flexGrow: 1,
@@ -45,8 +56,8 @@ const useStyles = makeStyles(({ spacing, zIndex }) => ({
     padding: spacing(2),
 
     display: 'flex',
-    flexDirection: 'column'
-  }
+    flexDirection: 'column',
+  },
 }));
 
 // Component
@@ -66,8 +77,12 @@ export const Navbar: FC = ({ children }) => {
   }, [router.asPath]);
 
   // Handlers
-  const handleOpen  = () => { setOpen(true); };
-  const handleClose = () => { setOpen(false); };
+  const handleOpen = () => {
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   // Render
   const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('lg'));
@@ -75,19 +90,29 @@ export const Navbar: FC = ({ children }) => {
 
   return (
     <Box sx={{ display: 'flex' }}>
-      <AppBar position="fixed" sx={{ zIndex: ({ zIndex }) => zIndex.drawer + 1 }}>
+      <AppBar
+        position="fixed"
+        sx={{ zIndex: ({ zIndex }) => zIndex.drawer + 1 }}
+      >
         <Toolbar>
-          { small && (
+          {small && (
             <IconButton
-              color="inherit" edge="start"
+              color="inherit"
+              edge="start"
               onClick={handleOpen}
               sx={{ mr: 2 }}
             >
               <MenuIcon />
             </IconButton>
-          ) }
+          )}
           <NextLink href="/" passHref>
-            <Typography component="a" variant="h6" sx={{ flex: 1, color: 'text.primary', textDecoration: 'none' }}>Janus Proxy</Typography>
+            <Typography
+              component="a"
+              variant="h6"
+              sx={{ flex: 1, color: 'text.primary', textDecoration: 'none' }}
+            >
+              Janus Proxy
+            </Typography>
           </NextLink>
           <Tooltip title="GraphQL Playground">
             <IconButton component={Link} href="/graphql" color="inherit">
@@ -98,23 +123,27 @@ export const Navbar: FC = ({ children }) => {
       </AppBar>
       <Drawer
         classes={{ paper: styles.drawerPaper }}
-        variant={small ? "temporary" : "permanent"}
+        variant={small ? 'temporary' : 'permanent'}
         PaperProps={{ elevation: 3 }}
         sx={{ width: 300, flexShrink: 0 }}
-        open={open} onClose={handleClose}
+        open={open}
+        onClose={handleClose}
       >
         <Toolbar>
           <NextLink href="/" passHref>
-            <Typography component="a" variant="h6" sx={{ flex: 1, color: 'text.primary', textDecoration: 'none' }}>Janus Proxy</Typography>
+            <Typography
+              component="a"
+              variant="h6"
+              sx={{ flex: 1, color: 'text.primary', textDecoration: 'none' }}
+            >
+              Janus Proxy
+            </Typography>
           </NextLink>
-          <IconButton
-            color="inherit" edge="end"
-            onClick={handleClose}
-          >
+          <IconButton color="inherit" edge="end" onClick={handleClose}>
             <ChevronLeftIcon />
           </IconButton>
         </Toolbar>
-        { small && <Divider /> }
+        {small && <Divider />}
         <List
           component="nav"
           subheader={
@@ -123,22 +152,29 @@ export const Navbar: FC = ({ children }) => {
             </ListSubheader>
           }
         >
-          { data?.services?.map((service) => (
-            <NextLink key={service.name} href={`/services/${service.name}`} passHref>
+          {data?.services?.map((service) => (
+            <NextLink
+              key={service.name}
+              href={`/services/${service.name}`}
+              passHref
+            >
               <ListItem button component="a">
                 <ListItemText
                   primary={service.name}
                   secondary={service.url}
-                  secondaryTypographyProps={{ variant: 'body2', color: 'primary.light' }}
+                  secondaryTypographyProps={{
+                    variant: 'body2',
+                    color: 'primary.light',
+                  }}
                 />
               </ListItem>
             </NextLink>
-          )) }
+          ))}
         </List>
       </Drawer>
       <main className={styles.content}>
         <Toolbar />
-        { children }
+        {children}
       </main>
     </Box>
   );

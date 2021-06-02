@@ -14,7 +14,7 @@ import { ProxyModule } from './proxy/proxy.module';
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: process.env.NODE_ENV !== 'development' || 'schema.gql',
-      installSubscriptionHandlers: true
+      installSubscriptionHandlers: true,
     }),
 
     ConfigModule,
@@ -25,6 +25,6 @@ import { ProxyModule } from './proxy/proxy.module';
   ],
   providers: [
     { provide: APP_INTERCEPTOR, useClass: GraphQLInterceptor }
-  ]
+  ],
 })
 export class AppModule {}

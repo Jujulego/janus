@@ -8,11 +8,15 @@
     "samples/*"
   ],
   "scripts": {
+    "janus": "yarn workspace @jujulego/janus start",
     "build": "yarn workspaces foreach -pvi --no-private --topological-dev run build",
-    "janus": "yarn workspace @jujulego/janus start"
+    "lint": "yarn workspaces foreach -p run lint"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.6.0",
-    "@nestjs/schematics": "^7.3.0"
+    "@nestjs/schematics": "^7.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.26.0",
+    "@typescript-eslint/parser": "^4.26.0",
+    "typescript": "^4.2.3"
   }
 }

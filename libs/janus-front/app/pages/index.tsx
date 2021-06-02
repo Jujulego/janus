@@ -12,12 +12,12 @@ import { Navbar } from '../layout/Navbar';
 
 // Queries
 const HOME_PAGE_QRY = gql`
-    query HomePage {
-        services {
-            name
-            url
-        }
+  query HomePage {
+    services {
+      name
+      url
     }
+  }
 `;
 
 // Types
@@ -44,19 +44,22 @@ const HomePage: NextPage = () => {
                 titleTypographyProps={{ variant: 'body1' }}
 
                 subheader={service.url}
-                subheaderTypographyProps={{ variant: 'body2', color: 'primary.light' }}
+                subheaderTypographyProps={{
+                  variant: 'body2',
+                  color: 'primary.light',
+                }}
 
                 action={
                   <NextLink href={`/services/${service.name}`} passHref>
                     <IconButton component="a">
-                      <ShareIcon/>
+                      <ShareIcon />
                     </IconButton>
                   </NextLink>
                 }
               />
             </Card>
           </Grid>
-        )) }
+        ))}
       </Grid>
 
       <Typography variant="h5" mt={4} mb={2}>Events</Typography>
@@ -75,7 +78,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
 
   // Request services data
   await client.query<HomePageData>({
-    query: HOME_PAGE_QRY
+    query: HOME_PAGE_QRY,
   });
 
   return { props: addApolloState(client, {}) };

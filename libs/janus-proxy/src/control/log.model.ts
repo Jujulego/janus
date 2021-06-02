@@ -1,6 +1,7 @@
 import { Field, ObjectType } from '@nestjs/graphql';
 
 import { ILog } from '@jujulego/janus-common';
+
 import { JsonObj } from '../json-obj.scalar';
 
 // Model

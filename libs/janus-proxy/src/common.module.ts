@@ -9,8 +9,6 @@ import { JsonObjScalar } from './json-obj.scalar';
     JsonObjScalar,
     { provide: PubSub, useValue: new PubSub() }
   ],
-  exports: [
-    PubSub
-  ]
+  exports: [PubSub],
 })
 export class CommonModule {}

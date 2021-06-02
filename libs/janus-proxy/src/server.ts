@@ -47,7 +47,7 @@ export class JanusServer {
     return await factory.create([
       GateResolver,
       ServiceResolver,
-      ServerResolver
+      ServerResolver,
     ]);
   }
 
@@ -78,8 +78,8 @@ export class JanusServer {
         stream: {
           write(str: string) {
             Logger.debug(str.trim());
-          }
-        }
+          },
+        },
       }));
     }
 
@@ -91,7 +91,7 @@ export class JanusServer {
       // Listen for shutdown events
       this.control.$events
         .pipe(
-          filter(event => event.action === 'shutdown'),
+          filter((event) => event.action === 'shutdown'),
           exhaustMap(() => this.handleShutdown()),
         )
         .subscribe();

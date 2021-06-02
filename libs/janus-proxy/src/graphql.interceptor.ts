@@ -1,4 +1,9 @@
-import { CallHandler, ExecutionContext, Injectable, NestInterceptor } from '@nestjs/common';
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  NestInterceptor,
+} from '@nestjs/common';
 import { GraphQLSchemaHost } from '@nestjs/graphql';
 import { Observable } from 'rxjs';
 
@@ -6,9 +11,7 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class GraphQLInterceptor implements NestInterceptor {
   // Constructor
-  constructor(
-    private readonly _schema: GraphQLSchemaHost
-  ) {}
+  constructor(private readonly _schema: GraphQLSchemaHost) {}
 
   // Methods
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {

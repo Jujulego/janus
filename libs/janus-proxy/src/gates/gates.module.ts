@@ -10,8 +10,20 @@ import { ServiceResolver } from './service.resolver';
 
 // Module
 @Module({
-  imports: [ConfigModule, PubSubModule],
-  providers: [GatesService, ResolverService, GateResolver, ServiceResolver],
-  exports: [GatesService, ResolverService],
+  imports: [
+    ConfigModule,
+    PubSubModule
+  ],
+  providers: [
+    GatesService,
+    ResolverService,
+
+    GateResolver,
+    ServiceResolver
+  ],
+  exports: [
+    GatesService,
+    ResolverService
+  ],
 })
 export class GatesModule {}

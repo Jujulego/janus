@@ -15,7 +15,9 @@ export class ResolverService {
   // Constructor
   constructor(private readonly _gates: GatesService) {
     this._gates.$events
-      .pipe(filter((event) => event.action === 'add'))
+      .pipe(
+        filter((event) => event.action === 'add')
+      )
       .subscribe(({ value }) => {
         this._register(value);
       });

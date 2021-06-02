@@ -76,15 +76,13 @@ export class JanusServer {
 
     if (process.env.NODE_ENV === 'development') {
       // Log access requests
-      this.app.use(
-        morgan('dev', {
-          stream: {
-            write(str: string) {
-              Logger.log(str.trim());
-            },
+      this.app.use(morgan('dev', {
+        stream: {
+          write(str: string) {
+            Logger.log(str.trim());
           },
-        }),
-      );
+        },
+      }),);
     }
 
     // Start server

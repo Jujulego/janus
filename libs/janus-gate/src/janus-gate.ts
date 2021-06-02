@@ -34,18 +34,8 @@ export class JanusGate {
   ) {}
 
   // Statics
-  static async fromConfigFile(
-    service: string,
-    name: string,
-    config: string,
-    options?: JanusGateOptions,
-  ): Promise<JanusGate> {
-    return new JanusGate(
-      service,
-      name,
-      await JanusConfig.loadFile(config),
-      options,
-    );
+  static async fromConfigFile(service: string, name: string, config: string, options?: JanusGateOptions): Promise<JanusGate> {
+    return new JanusGate(service, name, await JanusConfig.loadFile(config), options);
   }
 
   // Methods
@@ -86,9 +76,7 @@ export class JanusGate {
 
   async enable(): Promise<void> {
     return await this.autoStart(async () => {
-      const { enableGate: data } = await this._qclient.request<{
-        enableGate?: { enabled: boolean };
-      }>(
+      const { enableGate: data } = await this._qclient.request<{ enableGate?: { enabled: boolean } }>(
         gql`
           mutation EnableGate($service: String!, $gate: String!) {
             enableGate(service: $service, gate: $gate) {
@@ -150,6 +138,8 @@ export class JanusGate {
   }
 
   get enabled$(): Observable<boolean> {
-    return this.gate$.pipe(map((gate) => gate.enabled));
+    return this.gate$.pipe(
+      map((gate) => gate.enabled)
+    );
   }
 }

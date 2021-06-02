@@ -103,20 +103,17 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
   const graph = useRef<SVGSVGElement>(null);
 
   // Memos
-  const hierarchy = useMemo(() =>
-    d3.hierarchy<IData>({
-      name: service.name,
-      enabled: service.gates.some((gate) => gate.enabled),
+  const hierarchy = useMemo(() => d3.hierarchy<IData>({
+    name: service.name,
+    enabled: service.gates.some((gate) => gate.enabled),
 
-      children: [...service.gates]
-        .sort((a, b) => a.priority - b.priority)
-        .map((gate) => ({
-          name: gate.name,
-          enabled: gate.enabled,
-        })),
-    }),
-  [service]
-  );
+    children: [...service.gates]
+      .sort((a, b) => a.priority - b.priority)
+      .map((gate) => ({
+        name: gate.name,
+        enabled: gate.enabled,
+      })),
+  }), [service]);
 
   // Effects
   useEffect(() => {
@@ -144,17 +141,19 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
     const w = Math.max(graph.current.clientWidth - 10, 750);
     const rw = Math.min((graph.current.clientWidth - 10) / 750, 1);
 
-    const nw = 200; // node width
+    const nw = 200;   // node width
     const lw = w / 3; // link width => space between nodes
     const ml = Math.max((w - lw) / 2 - nw, 0); // left margin
 
-    const layout = d3.tree<IData>().size([h / rw, w - ml * 2]);
+    const layout = d3.tree<IData>()
+      .size([h / rw, w - ml * 2]);
 
     // Render graph
     const svg = d3.select(graph.current);
     const root = layout(hierarchy);
 
-    svg.select('g.root').attr('transform', `translate(5, 5) scale(${rw})`);
+    svg.select('g.root')
+      .attr('transform', `translate(5, 5) scale(${rw})`);
 
     // - nodes
     const nodes = svg.select('g.nodes')

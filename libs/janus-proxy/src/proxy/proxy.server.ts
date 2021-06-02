@@ -63,9 +63,7 @@ export class ProxyServer
       .pipe(
         map((req) => this._resolveGate(req)),
         tap(([service, gate]) =>
-          this._logger.verbose(
-            `${req.url} => ${gate.target} (service: ${service.name})`,
-          ),
+          this._logger.verbose(`${req.url} => ${gate.target} (service: ${service.name})`),
         ),
       )
       .subscribe(
@@ -83,10 +81,7 @@ export class ProxyServer
             } else {
               this._logger.error(error.message);
 
-              this._sendError(
-                res,
-                new InternalServerErrorException(error.message),
-              );
+              this._sendError(res, new InternalServerErrorException(error.message),);
             }
           });
         },
@@ -96,10 +91,7 @@ export class ProxyServer
           } else {
             this._logger.error(error.message);
 
-            this._sendError(
-              res,
-              new InternalServerErrorException(error.message),
-            );
+            this._sendError(res, new InternalServerErrorException(error.message),);
           }
         },
       );

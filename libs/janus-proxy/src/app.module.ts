@@ -23,6 +23,8 @@ import { ProxyModule } from './proxy/proxy.module';
     ProxyModule,
     GatesModule,
   ],
-  providers: [{ provide: APP_INTERCEPTOR, useClass: GraphQLInterceptor }],
+  providers: [
+    { provide: APP_INTERCEPTOR, useClass: GraphQLInterceptor }
+  ],
 })
 export class AppModule {}

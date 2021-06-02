@@ -27,7 +27,14 @@ jobs:
       - name: Install
         run: yarn install
 
-      - run: yarn lint | cut -d ' ' -f3-
+      - name: Lint
+        run:
+          yarn lint workspace @jujulego/janus lint
+          yarn lint workspace @jujulego/janus-common lint
+          yarn lint workspace @jujulego/janus-config lint
+          yarn lint workspace @jujulego/janus-front lint
+          yarn lint workspace @jujulego/janus-gate lint
+          yarn lint workspace @jujulego/janus-proxy lint
 
   publish:
     runs-on: ubuntu-latest

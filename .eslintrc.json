@@ -13,5 +13,9 @@
     "node": true
   },
   "root": true,
-  "rules": {}
+  "rules": {
+    "jsx-quotes": ["error", "prefer-double"],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"]
+  }
 }

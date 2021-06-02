@@ -1,7 +1,6 @@
 {
   "extends": [
-    "../../.eslintrc.json",
-    "plugin:prettier/recommended"
+    "../../.eslintrc.json"
   ],
   "rules": {}
 }

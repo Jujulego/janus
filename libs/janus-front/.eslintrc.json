@@ -1,7 +1,6 @@
 {
   "extends": [
-    "../../.eslintrc.json",
-    "plugin:prettier/recommended"
+    "../../.eslintrc.json"
   ],
   "env": {
     "node": true,
@@ -14,7 +13,6 @@
       "files": "app/**",
       "extends": [
         "../../.eslintrc.json",
-        "plugin:prettier/recommended",
         "plugin:react/recommended",
         "plugin:react-hooks/recommended"
       ],

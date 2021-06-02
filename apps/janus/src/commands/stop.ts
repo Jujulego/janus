@@ -17,13 +17,14 @@ export const handler = commandWrapper(async (args: CommonArgs) => {
     const config = await JanusConfig.loadFile(args.config);
 
     // Shutdown
-    const client = new GraphQLClient(`http://localhost:${config.control.port}/graphql`)
+    const client = new GraphQLClient(
+      `http://localhost:${config.control.port}/graphql`,
+    );
     await client.request(gql`
       mutation Shutdown {
-          shutdown
+        shutdown
       }
     `);
-
   } catch (error) {
     console.error(error);
     process.exit(1);

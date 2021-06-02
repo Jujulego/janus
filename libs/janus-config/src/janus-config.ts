@@ -24,12 +24,13 @@ export interface IOptions {
 // Class
 export class JanusConfig implements IJanusConfig {
   // Constructor
-  constructor(
-    readonly config: IJanusConfig
-  ) {}
+  constructor(readonly config: IJanusConfig) {}
 
   // Statics
-  static async loadFile(file: string, options?: IOptions): Promise<JanusConfig> {
+  static async loadFile(
+    file: string,
+    options?: IOptions,
+  ): Promise<JanusConfig> {
     // Options
     const logger = options?.logger ?? console;
 

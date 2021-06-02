@@ -16,8 +16,33 @@ jobs:
       - name: Version check
         run: yarn version check
 
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          fetch-depth: 0
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2.1.5
+        with:
+          node-version: 14.x
+
+      - uses: actions/cache@v2.1.6
+        with:
+          path: .yarn/cache
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: ${{ runner.os }}-yarn-
+
+      - name: Install
+        run: yarn install
+
+      - run: yarn lint | cut -d ' ' -f3-
+
   build:
     runs-on: ubuntu-latest
+    needs: ['lint']
 
     strategy:
       matrix:

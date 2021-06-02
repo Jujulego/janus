@@ -1,8 +1,15 @@
 import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
-import createEmotionServer from '@emotion/server/create-instance'
+import createEmotionServer from '@emotion/server/create-instance';
 import { ServerStyleSheets } from '@material-ui/styles';
-import Document, { Html, Head, Main, NextScript, DocumentContext, DocumentInitialProps } from 'next/document';
+import Document, {
+  Html,
+  Head,
+  Main,
+  NextScript,
+  DocumentContext,
+  DocumentInitialProps,
+} from 'next/document';
 import { Children } from 'react';
 
 import { theme } from '../theme';
@@ -13,12 +20,14 @@ const getCache = () => {
   cache.compat = true;
 
   return cache;
-}
+};
 
 // Document
 export default class MyDocument extends Document {
   // Statics
-  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
+  static async getInitialProps(
+    ctx: DocumentContext,
+  ): Promise<DocumentInitialProps> {
     // Collect style sheets
     const sheets = new ServerStyleSheets();
     const renderPage = ctx.renderPage;
@@ -51,8 +60,8 @@ export default class MyDocument extends Document {
       styles: [
         ...Children.toArray(initialProps.styles),
         sheets.getStyleElement(),
-        ...emotionStyleTags
-      ]
+        ...emotionStyleTags,
+      ],
     };
   }
 

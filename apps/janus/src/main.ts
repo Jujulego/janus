@@ -12,9 +12,9 @@ import yargs from 'yargs';
         description: 'Path to the configuration file',
         default: 'janus.config.yml',
       })
-      .command(require('./commands/start'))
-      .command(require('./commands/stop'))
-      .command(require('./commands/gql-schema'))
+      .command(require('./commands/start'))      // eslint-disable-line @typescript-eslint/no-var-requires
+      .command(require('./commands/stop'))       // eslint-disable-line @typescript-eslint/no-var-requires
+      .command(require('./commands/gql-schema')) // eslint-disable-line @typescript-eslint/no-var-requires
       .help()
       .parse();
   } catch (error) {

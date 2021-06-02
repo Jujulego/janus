@@ -37,6 +37,7 @@ export default class MyDocument extends Document {
 
     ctx.renderPage = () => renderPage({
       enhanceApp: (App) => (props) => sheets.collect(<App {...props} />),
+      // eslint-disable-next-line react/display-name
       enhanceComponent: (Component) => (props) => (
         <CacheProvider value={cache}>
           <Component {...props} />

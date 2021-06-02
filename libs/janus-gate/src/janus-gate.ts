@@ -19,19 +19,33 @@ export class JanusGate {
   // Attributes
   private readonly _endpoint = `http://localhost:${this.config.control.port}/graphql`;
   private readonly _qclient = new GraphQLClient(this._endpoint);
-  private readonly _sclient = new SubscriptionClient(this._endpoint, { lazy: true, reconnect: true }, WebSocket);
+  private readonly _sclient = new SubscriptionClient(
+    this._endpoint,
+    { lazy: true, reconnect: true },
+    WebSocket,
+  );
 
   // Constructor
   constructor(
     readonly service: string,
     readonly name: string,
     readonly config: JanusConfig,
-    readonly options: JanusGateOptions = {}
+    readonly options: JanusGateOptions = {},
   ) {}
 
   // Statics
-  static async fromConfigFile(service: string, name: string, config: string, options?: JanusGateOptions): Promise<JanusGate> {
-    return new JanusGate(service, name, await JanusConfig.loadFile(config), options);
+  static async fromConfigFile(
+    service: string,
+    name: string,
+    config: string,
+    options?: JanusGateOptions,
+  ): Promise<JanusGate> {
+    return new JanusGate(
+      service,
+      name,
+      await JanusConfig.loadFile(config),
+      options,
+    );
   }
 
   // Methods
@@ -54,7 +68,7 @@ export class JanusGate {
       const child = fork('./proxy.js', [], {
         cwd: __dirname,
         detached: true,
-        stdio: 'ignore'
+        stdio: 'ignore',
       });
 
       child.on('message', (msg: 'started' | Error) => {
@@ -72,18 +86,20 @@ export class JanusGate {
 
   async enable(): Promise<void> {
     return await this.autoStart(async () => {
-      const { enableGate: data } = await this._qclient.request<{ enableGate?: { enabled: boolean } }>(
+      const { enableGate: data } = await this._qclient.request<{
+        enableGate?: { enabled: boolean };
+      }>(
         gql`
-            mutation EnableGate($service: String!, $gate: String!) {
-                enableGate(service: $service, gate: $gate) {
-                    enabled
-                }
+          mutation EnableGate($service: String!, $gate: String!) {
+            enableGate(service: $service, gate: $gate) {
+              enabled
             }
+          }
         `,
         {
           service: this.service,
-          gate: this.name
-        }
+          gate: this.name,
+        },
       );
 
       if (!data) {
@@ -102,17 +118,17 @@ export class JanusGate {
     const obs = this._sclient.request({
       query: gql`
         subscription Gate($service: String!, $gate: String!) {
-            gate(service: $service, gate: $gate) {
-                ...Gate
-            }
+          gate(service: $service, gate: $gate) {
+            ...Gate
+          }
         }
-        
+
         ${GateFragment}
       `,
       variables: {
         service: this.service,
-        gate: this.name
-      }
+        gate: this.name,
+      },
     });
 
     // Build observable
@@ -127,15 +143,13 @@ export class JanusGate {
       },
       complete() {
         sub.complete();
-      }
+      },
     });
 
     return sub.asObservable();
   }
 
   get enabled$(): Observable<boolean> {
-    return this.gate$.pipe(
-      map(gate => gate.enabled)
-    );
+    return this.gate$.pipe(map((gate) => gate.enabled));
   }
 }

@@ -15,12 +15,12 @@ export interface IGate {
 // Fragment
 export const GateFragment = gql`
   fragment Gate on Gate {
-      name
-      target
-      enabled
-      priority
-      changeOrigin
-      secure
-      ws
+    name
+    target
+    enabled
+    priority
+    changeOrigin
+    secure
+    ws
   }
 `;

@@ -12,14 +12,14 @@ export interface IService {
 
 // Fragment
 export const ServiceFragment = gql`
-    fragment Service on Service {
-        name
-        url
-        
-        gates {
-            ...Gate
-        }
+  fragment Service on Service {
+    name
+    url
+
+    gates {
+      ...Gate
     }
-    
-    ${GateFragment}
+  }
+
+  ${GateFragment}
 `;

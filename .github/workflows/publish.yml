@@ -29,12 +29,12 @@ jobs:
 
       - name: Lint
         run:
-          yarn lint workspace @jujulego/janus lint
-          yarn lint workspace @jujulego/janus-common lint
-          yarn lint workspace @jujulego/janus-config lint
-          yarn lint workspace @jujulego/janus-front lint
-          yarn lint workspace @jujulego/janus-gate lint
-          yarn lint workspace @jujulego/janus-proxy lint
+          yarn workspace @jujulego/janus lint
+          yarn workspace @jujulego/janus-common lint
+          yarn workspace @jujulego/janus-config lint
+          yarn workspace @jujulego/janus-front lint
+          yarn workspace @jujulego/janus-gate lint
+          yarn workspace @jujulego/janus-proxy lint
 
   publish:
     runs-on: ubuntu-latest

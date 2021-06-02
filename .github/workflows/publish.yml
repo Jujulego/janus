@@ -28,7 +28,7 @@ jobs:
         run: yarn install
 
       - name: Lint
-        run:
+        run: |
           yarn workspace @jujulego/janus lint
           yarn workspace @jujulego/janus-common lint
           yarn workspace @jujulego/janus-config lint

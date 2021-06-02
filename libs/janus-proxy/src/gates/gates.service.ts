@@ -21,7 +21,7 @@ export class GatesService implements OnApplicationBootstrap {
   // Constructor
   constructor(
     private readonly _pubsub: PubSub,
-    private readonly _config: ConfigService
+    private readonly _config: ConfigService,
   ) {}
 
   // Lifecycle

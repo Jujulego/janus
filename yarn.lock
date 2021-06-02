@@ -2092,22 +2092,21 @@ __metadata:
     "@types/morgan": ^1
     "@types/node": ^14.14.36
     "@types/supertest": ^2.0.10
-    "@typescript-eslint/eslint-plugin": ^4.19.0
-    "@typescript-eslint/parser": ^4.19.0
+    "@typescript-eslint/eslint-plugin": ^4.26.0
     apollo-server-core: ^2.23.0
     apollo-server-express: ^2.23.0
     class-transformer: ^0.4.0
     class-validator: ^0.13.1
-    eslint: ^7.22.0
-    eslint-config-prettier: ^8.1.0
-    eslint-plugin-prettier: ^3.3.1
+    eslint: ^7.27.0
+    eslint-config-prettier: ^8.3.0
+    eslint-plugin-prettier: ^3.4.0
     graphql: ^15.5.0
     graphql-subscriptions: ^1.2.1
     graphql-tools: ^7.0.4
     http-proxy: ^1.18.1
     jest: ^26.6.3
     morgan: ^1.10.0
-    prettier: ^2.2.1
+    prettier: ^2.3.0
     reflect-metadata: ^0.1.13
     rxjs: ^6.6.6
     supertest: ^6.1.3

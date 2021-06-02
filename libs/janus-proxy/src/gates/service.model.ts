@@ -23,14 +23,16 @@ export class Service implements IService {
   // Statics
   static fromConfig(name: string, config: IServiceConfig): Service {
     return plainToClass(Service, {
-      name:  name,
-      url:   config.url,
-      gates: Object.keys(config.gates).map((name, i) => Gate.fromConfig(name, i, config.gates[name]))
+      name: name,
+      url: config.url,
+      gates: Object.keys(config.gates).map((name, i) =>
+        Gate.fromConfig(name, i, config.gates[name]),
+      ),
     });
   }
 
   // Methods
   getGate(name: string): Gate | null {
-    return this.gates.find(g => g.name === name) || null;
+    return this.gates.find((g) => g.name === name) || null;
   }
 }

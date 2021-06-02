@@ -1,6 +1,9 @@
 import { NestFactory } from '@nestjs/core';
 import { INestApplication, Logger } from '@nestjs/common';
-import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphql';
+import {
+  GraphQLSchemaBuilderModule,
+  GraphQLSchemaFactory,
+} from '@nestjs/graphql';
 import { GraphQLSchema } from 'graphql';
 import { Subject } from 'rxjs';
 import { exhaustMap, filter } from 'rxjs/operators';
@@ -27,9 +30,7 @@ export class JanusServer {
   readonly $shutdown = this._shutdown.asObservable();
 
   // Constructor
-  private constructor(
-    readonly app: INestApplication
-  ) {}
+  private constructor(readonly app: INestApplication) {}
 
   // Statics
   static async createServer(): Promise<JanusServer> {
@@ -38,7 +39,9 @@ export class JanusServer {
   }
 
   static async generateGQLSchema(): Promise<GraphQLSchema> {
-    const app = await NestFactory.create(GraphQLSchemaBuilderModule, { logger: false });
+    const app = await NestFactory.create(GraphQLSchemaBuilderModule, {
+      logger: false,
+    });
     await app.init();
 
     // Generate schema
@@ -46,7 +49,7 @@ export class JanusServer {
     return await factory.create([
       GateResolver,
       ServiceResolver,
-      ServerResolver
+      ServerResolver,
     ]);
   }
 
@@ -73,24 +76,28 @@ export class JanusServer {
 
     if (process.env.NODE_ENV === 'development') {
       // Log access requests
-      this.app.use(morgan('dev', {
-        stream: {
-          write(str: string) {
-            Logger.log(str.trim());
-          }
-        }
-      }));
+      this.app.use(
+        morgan('dev', {
+          stream: {
+            write(str: string) {
+              Logger.log(str.trim());
+            },
+          },
+        }),
+      );
     }
 
     // Start server
     await this.app.listen(this.config.control.port, () => {
-      this._logger.log(`Server listening at http://localhost:${this.config.control.port}`);
+      this._logger.log(
+        `Server listening at http://localhost:${this.config.control.port}`,
+      );
       this._started.next();
 
       // Listen for shutdown events
       this.control.$events
         .pipe(
-          filter(event => event.action === 'shutdown'),
+          filter((event) => event.action === 'shutdown'),
           exhaustMap(() => this.handleShutdown()),
         )
         .subscribe();

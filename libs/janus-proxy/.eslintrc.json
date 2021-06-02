@@ -1,0 +1,11 @@
+{
+  "extends": [
+    "../../.eslintrc.json",
+    "plugin:prettier/recommended"
+  ],
+  "env": {
+    "node": true,
+    "jest": true
+  },
+  "rules": {}
+}

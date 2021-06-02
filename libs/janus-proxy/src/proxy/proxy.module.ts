@@ -7,10 +7,7 @@ import { ProxyServer } from './proxy.server';
 
 // Module
 @Module({
-  imports: [
-    ConfigModule,
-    GatesModule
-  ],
-  providers: [ProxyServer]
+  imports: [ConfigModule, GatesModule],
+  providers: [ProxyServer],
 })
 export class ProxyModule {}

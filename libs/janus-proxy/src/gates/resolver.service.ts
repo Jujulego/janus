@@ -13,16 +13,12 @@ export class ResolverService {
   private readonly _routes: [string, string][] = [];
 
   // Constructor
-  constructor(
-    private readonly _gates: GatesService
-  ) {
+  constructor(private readonly _gates: GatesService) {
     this._gates.$events
-      .pipe(
-        filter(event => event.action === 'add'),
-      )
+      .pipe(filter((event) => event.action === 'add'))
       .subscribe(({ value }) => {
-        this._register(value)
-      })
+        this._register(value);
+      });
   }
 
   // Methods
@@ -44,7 +40,7 @@ export class ResolverService {
         let gate: Gate | null = null;
 
         for (const g of service.gates) {
-          if (g.enabled && (!gate || (g.priority < gate.priority))) {
+          if (g.enabled && (!gate || g.priority < gate.priority)) {
             gate = g;
           }
         }

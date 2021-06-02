@@ -5,9 +5,7 @@ import { ControlService } from './control.service';
 @Resolver()
 export class ServerResolver {
   // Constructor
-  constructor(
-    private readonly server: ControlService
-  ) {}
+  constructor(private readonly server: ControlService) {}
 
   // Mutations
   @Mutation(() => Boolean)

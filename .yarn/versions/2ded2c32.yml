@@ -1,0 +1,7 @@
+declined:
+  - "@jujulego/janus"
+  - "@jujulego/janus-common"
+  - "@jujulego/janus-config"
+  - "@jujulego/janus-front"
+  - "@jujulego/janus-gate"
+  - "@jujulego/janus-proxy"

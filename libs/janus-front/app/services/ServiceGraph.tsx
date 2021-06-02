@@ -103,20 +103,19 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
   const graph = useRef<SVGSVGElement>(null);
 
   // Memos
-  const hierarchy = useMemo(
-    () =>
-      d3.hierarchy<IData>({
-        name: service.name,
-        enabled: service.gates.some((gate) => gate.enabled),
+  const hierarchy = useMemo(() =>
+    d3.hierarchy<IData>({
+      name: service.name,
+      enabled: service.gates.some((gate) => gate.enabled),
 
-        children: [...service.gates]
-          .sort((a, b) => a.priority - b.priority)
-          .map((gate) => ({
-            name: gate.name,
-            enabled: gate.enabled,
-          })),
-      }),
-    [service],
+      children: [...service.gates]
+        .sort((a, b) => a.priority - b.priority)
+        .map((gate) => ({
+          name: gate.name,
+          enabled: gate.enabled,
+        })),
+    }),
+  [service]
   );
 
   // Effects
@@ -158,8 +157,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
     svg.select('g.root').attr('transform', `translate(5, 5) scale(${rw})`);
 
     // - nodes
-    const nodes = svg
-      .select('g.nodes')
+    const nodes = svg.select('g.nodes')
       .selectAll('g')
       .data(root.descendants())
       .join(
@@ -175,20 +173,18 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
         (upd) => upd,
         (ext) => ext.remove(),
       )
-      .classed(styles.node, true)
-      .classed('enabled', (d) => d.data.enabled)
-      .classed('used', (d) => used?.data?.name === d.data.name)
-      .on('click', (e, d) => onSelect(d.data.name));
+        .classed(styles.node, true)
+        .classed('enabled', (d) => d.data.enabled)
+        .classed('used', (d) => used?.data?.name === d.data.name)
+        .on('click', (e, d) => onSelect(d.data.name));
 
-    nodes
-      .select('circle')
+    nodes.select('circle')
       .classed('enabled', (d) => d.data.enabled)
       .attr('cx', (d) => ml + d.y + (d.depth === 0 ? nw : -nw))
       .attr('cy', (d) => d.x)
       .attr('r', 6);
 
-    nodes
-      .select('rect')
+    nodes.select('rect')
       .classed('enabled', (d) => d.data.enabled)
       .attr('x', (d) => ml + d.y + (d.depth === 0 ? 0 : -nw))
       .attr('y', (d) => d.x - 20)
@@ -197,40 +193,38 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
       .attr('width', nw)
       .attr('height', 40);
 
-    nodes
-      .select('text')
+    nodes.select('text')
       .attr('x', (d) => ml + d.y + (d.depth === 0 ? 0 : -nw) + 10)
       .attr('y', (d) => d.x)
       .text((d) => d.data.name);
 
     // - links
-    svg
-      .select('g.links')
+    svg.select('g.links')
       .selectAll('path')
       .data(root.links())
       .join('path')
-      .classed(styles.link, true)
-      .classed('enabled', (d) => d.target.data.enabled)
-      .classed('used', (d) => used?.data?.name === d.target.data.name)
-      .attr('d', (d) => {
-        // coords
-        const sx = d.source.x;
-        const sy = d.source.y + nw;
-        const tx = d.target.x;
-        const ty = d.target.y - nw;
+        .classed(styles.link, true)
+        .classed('enabled', (d) => d.target.data.enabled)
+        .classed('used', (d) => used?.data?.name === d.target.data.name)
+        .attr('d', (d) => {
+          // coords
+          const sx = d.source.x;
+          const sy = d.source.y + nw;
+          const tx = d.target.x;
+          const ty = d.target.y - nw;
 
-        const my = (sy + ty) / 2;
-        const sw = (ty - sy) / 7; // width of strait line
+          const my = (sy + ty) / 2;
+          const sw = (ty - sy) / 7; // width of strait line
 
-        // path
-        const ctx = d3.path();
-        ctx.moveTo(ml + sy, sx);
-        ctx.lineTo(ml + sy + sw, sx);
-        ctx.bezierCurveTo(ml + my, sx, ml + my, tx, ml + ty - sw, tx);
-        ctx.lineTo(ml + ty, tx);
+          // path
+          const ctx = d3.path();
+          ctx.moveTo(ml + sy, sx);
+          ctx.lineTo(ml + sy + sw, sx);
+          ctx.bezierCurveTo(ml + my, sx, ml + my, tx, ml + ty - sw, tx);
+          ctx.lineTo(ml + ty, tx);
 
-        return ctx.toString();
-      });
+          return ctx.toString();
+        });
   }, [count, hierarchy, styles, theme, graph.current, onSelect]);
 
   // Render

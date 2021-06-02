@@ -19,10 +19,7 @@ export interface GateDetailsProps {
 }
 
 // Utils
-const OptionChip: FC<{ label: string; active: boolean }> = ({
-  label,
-  active,
-}) => (
+const OptionChip: FC<{ label: string; active: boolean }> = ({ label, active }) => (
   <Chip
     label={label}
     size="small"

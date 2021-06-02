@@ -4,9 +4,7 @@ export interface CommonArgs {
 }
 
 // Methods
-export function commandWrapper<A extends CommonArgs>(
-  handler: (args: A) => Promise<void>,
-) {
+export function commandWrapper<A extends CommonArgs>(handler: (args: A) => Promise<void>) {
   return async function (args: A) {
     try {
       await handler(args);

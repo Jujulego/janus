@@ -25,9 +25,7 @@ const getCache = () => {
 // Document
 export default class MyDocument extends Document {
   // Statics
-  static async getInitialProps(
-    ctx: DocumentContext,
-  ): Promise<DocumentInitialProps> {
+  static async getInitialProps(ctx: DocumentContext): Promise<DocumentInitialProps> {
     // Collect style sheets
     const sheets = new ServerStyleSheets();
     const renderPage = ctx.renderPage;

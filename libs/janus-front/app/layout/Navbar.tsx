@@ -84,9 +84,7 @@ export const Navbar: FC = ({ children }) => {
   };
 
   // Render
-  const small = useMediaQuery(({ breakpoints }: Theme) =>
-    breakpoints.down('lg'),
-  );
+  const small = useMediaQuery(({ breakpoints }: Theme) => breakpoints.down('lg'));
   const styles = useStyles();
 
   return (

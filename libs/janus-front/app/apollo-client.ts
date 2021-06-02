@@ -20,9 +20,7 @@ export const APOLLO_STATE_PROP_NAME = '__APOLLO_STATE__';
 // Utils
 let _apolloClient: ApolloClient<NormalizedCacheObject>;
 
-export function createApolloClient(
-  ctx?: GetServerSidePropsContext,
-): ApolloClient<NormalizedCacheObject> {
+export function createApolloClient(ctx?: GetServerSidePropsContext): ApolloClient<NormalizedCacheObject> {
   const ssrMode = typeof window === 'undefined';
 
   // Build link
@@ -69,22 +67,15 @@ export function createApolloClient(
   });
 }
 
-export function addApolloState<P>(
-  client: ApolloClient<NormalizedCacheObject>,
-  props: P,
-): P & { [APOLLO_STATE_PROP_NAME]: NormalizedCacheObject } {
+export function addApolloState<P>(client: ApolloClient<NormalizedCacheObject>, props: P): P & { [APOLLO_STATE_PROP_NAME]: NormalizedCacheObject } {
   return {
     ...props,
     [APOLLO_STATE_PROP_NAME]: client.cache.extract(),
   };
 }
 
-export function useApolloClient(
-  pageProps: any,
-): ApolloClient<NormalizedCacheObject> {
-  const state = pageProps[APOLLO_STATE_PROP_NAME] as
-    | NormalizedCacheObject
-    | undefined;
+export function useApolloClient(pageProps: any): ApolloClient<NormalizedCacheObject> {
+  const state = pageProps[APOLLO_STATE_PROP_NAME] as NormalizedCacheObject | undefined;
 
   return useMemo(() => {
     const apolloClient = _apolloClient ?? createApolloClient();

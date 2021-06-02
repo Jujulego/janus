@@ -64,7 +64,7 @@ export const Logs: FC<LogsProps> = () => {
       obs.observe(container.current);
     }
 
-    return  () => obs.disconnect()
+    return  () => obs.disconnect();
   }, []);
 
   useEffect(() => {

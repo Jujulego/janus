@@ -17,5 +17,15 @@
     "jsx-quotes": ["error", "prefer-double"],
     "quotes": ["error", "single"],
     "semi": ["error", "always"]
-  }
+  },
+
+  "overrides": [
+    {
+      "files": "*.json",
+      "rules": {
+        "quotes": ["error", "double"],
+        "semi": ["error", "never"]
+      }
+    }
+  ]
 }

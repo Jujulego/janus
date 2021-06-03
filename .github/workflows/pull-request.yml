@@ -67,6 +67,7 @@ jobs:
 
     strategy:
       matrix:
+        node: [12, 14]
         package:
           - "@jujulego/janus"
           - "@jujulego/janus-common"
@@ -84,11 +85,11 @@ jobs:
           workspace: ${{ matrix.package }}
           base: master
 
-      - name: Use Node.js 14.x
+      - name: Use Node.js ${{ matrix.node }}.x
         if: steps.affected.outputs.affected
         uses: actions/setup-node@v2.1.5
         with:
-          node-version: 14.x
+          node-version: ${{ matrix.node }}
 
       - uses: actions/cache@v2.1.6
         if: steps.affected.outputs.affected

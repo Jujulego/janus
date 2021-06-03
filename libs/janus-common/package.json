@@ -2,8 +2,12 @@
   "name": "@jujulego/janus-common",
   "version": "1.0.0-alpha.1",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": "github:jujulego/janus",
+  "engines": {
+    "node": "^14"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint src/**/*"

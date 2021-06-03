@@ -4,6 +4,10 @@
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
+  "repository": "github:jujulego/janus",
+  "engines": {
+    "node": "^14"
+  },
   "scripts": {
     "build": "nest build",
     "start": "NODE_ENV=development nest start --watch",

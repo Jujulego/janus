@@ -5,6 +5,10 @@
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "bin": "./bin/janus.js",
+  "repository": "github:jujulego/janus",
+  "engines": {
+    "node": "^14"
+  },
   "scripts": {
     "start": "ts-node src/main.ts",
     "build": "tsc -p tsconfig.build.json",

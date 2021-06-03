@@ -24,7 +24,7 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "@types/node": "^14.14.36",
+    "@types/node": "^12.20.14",
     "@types/prettier": "^2",
     "@types/yargs": "^16",
     "@typescript-eslint/eslint-plugin": "^4.26.0",

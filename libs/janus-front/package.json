@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus-front",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.6",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -23,7 +23,7 @@
     "@emotion/react": "^11.4.0",
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.3.0",
-    "@jujulego/janus-common": "^1.0.0-alpha.2",
+    "@jujulego/janus-common": "^1.0.0-alpha.3",
     "@material-ui/core": "^5.0.0-alpha.34",
     "@material-ui/icons": "^5.0.0-alpha.34",
     "@material-ui/styles": "^5.0.0-alpha.33",

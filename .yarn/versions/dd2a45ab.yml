@@ -1,7 +1,0 @@
-releases:
-  "@jujulego/janus": prerelease
-  "@jujulego/janus-common": prerelease
-  "@jujulego/janus-config": prerelease
-  "@jujulego/janus-front": prerelease
-  "@jujulego/janus-gate": prerelease
-  "@jujulego/janus-proxy": prerelease

@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus",
-  "version": "1.0.0-alpha.6",
+  "version": "1.0.0-alpha.7",
   "license": "MIT",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
@@ -15,8 +15,8 @@
     "lint": "eslint src/**/*"
   },
   "dependencies": {
-    "@jujulego/janus-config": "^1.0.0-alpha.4",
-    "@jujulego/janus-proxy": "^1.0.0-alpha.11",
+    "@jujulego/janus-config": "^1.0.0-alpha.5",
+    "@jujulego/janus-proxy": "^1.0.0-alpha.12",
     "chalk": "^4.1.1",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",

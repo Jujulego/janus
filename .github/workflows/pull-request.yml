@@ -68,40 +68,23 @@ jobs:
     strategy:
       matrix:
         node: [12, 14]
-        package:
-          - "@jujulego/janus"
-          - "@jujulego/janus-common"
-          - "@jujulego/janus-config"
-          - "@jujulego/janus-front"
-          - "@jujulego/janus-gate"
-          - "@jujulego/janus-proxy"
 
     steps:
       - uses: actions/checkout@v2.3.4
 
-      - uses: neoxia/is-workspace-affected@v1.0
-        id: affected
-        with:
-          workspace: ${{ matrix.package }}
-          base: master
-
       - name: Use Node.js ${{ matrix.node }}.x
-        if: steps.affected.outputs.affected
         uses: actions/setup-node@v2.1.5
         with:
           node-version: ${{ matrix.node }}
 
       - uses: actions/cache@v2.1.6
-        if: steps.affected.outputs.affected
         with:
           path: .yarn/cache
           key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
           restore-keys: ${{ runner.os }}-yarn-
 
       - name: Install
-        if: steps.affected.outputs.affected
         run: yarn install
 
       - name: Build
-        if: steps.affected.outputs.affected
-        run: yarn workspace ${{ matrix.package }} workspaces foreach -pvR --topological-dev run build
+        run: yarn build

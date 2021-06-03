@@ -1964,7 +1964,40 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-front@1.0.0-alpha.4, @jujulego/janus-front@workspace:libs/janus-front":
+"@jujulego/janus-front@npm:1.0.0-alpha.4":
+  version: 1.0.0-alpha.4
+  resolution: "@jujulego/janus-front@npm:1.0.0-alpha.4"
+  dependencies:
+    "@apollo/client": ^3.3.19
+    "@emotion/cache": ^11.4.0
+    "@emotion/react": ^11.4.0
+    "@emotion/server": ^11.4.0
+    "@emotion/styled": ^11.3.0
+    "@jujulego/janus-common": ^1.0.0-alpha.1
+    "@material-ui/core": ^5.0.0-alpha.34
+    "@material-ui/icons": ^5.0.0-alpha.34
+    "@material-ui/styles": ^5.0.0-alpha.33
+    "@nestjs/common": ^7.6.15
+    "@nestjs/core": ^7.6.15
+    "@nestjs/platform-express": ^7.6.15
+    class-transformer: ^0.4.0
+    class-validator: ^0.13.1
+    d3: ^6.7.0
+    deepmerge: ^4.2.2
+    graphql: ^15.5.0
+    lodash: ^4.17.21
+    next: ^10.2.0
+    react: ^17.0.2
+    react-dom: ^17.0.2
+    reflect-metadata: ^0.1.13
+    resize-observer-polyfill: ^1.5.1
+    rxjs: ^6.6.6
+    subscriptions-transport-ws: ^0.9.18
+  checksum: 408bcd2075928c0de1d4c0cce05a99a4b61b02500837c6cbbe5207ea47b5d0e6266bf232cc6ae7353873336ae240f14ffd699ef2e675987b858831342a084545
+  languageName: node
+  linkType: hard
+
+"@jujulego/janus-front@workspace:libs/janus-front":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-front@workspace:libs/janus-front"
   dependencies:

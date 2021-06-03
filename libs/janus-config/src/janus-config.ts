@@ -1,5 +1,5 @@
 import Ajv from 'ajv';
-import fs from 'fs/promises';
+import { promises as fs } from 'fs';
 import yaml from 'yaml';
 
 import { IJanusConfig } from './janus-config.model';

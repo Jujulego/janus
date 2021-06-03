@@ -6,7 +6,7 @@
   "types": "./dist/index.d.ts",
   "repository": "github:jujulego/janus",
   "engines": {
-    "node": "^14"
+    "node": "^12 ^14"
   },
   "scripts": {
     "build": "yarn build:front && yarn build:server",

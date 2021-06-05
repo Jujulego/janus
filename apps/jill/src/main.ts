@@ -8,9 +8,17 @@ logger.setOptions({ verbosity: 'debug' });
   logger.spin('Loading project ...');
   const prj = new Project('../../');
 
-  logger.info('Available workspaces:');
-  for await (const ws of prj.workspaces()) {
-    logger.info(`- ${ws.printName}`);
+  const ws = await prj.workspace('@jujulego/janus-proxy');
+  if (ws) {
+    logger.info(`${ws.printName} depends on:`);
+
+    for await (const dep of ws.dependencies()) {
+      logger.info(`- ${dep.printName}`);
+    }
+
+    for await (const dep of ws.devDependencies()) {
+      logger.info(`- ${dep.printName}`);
+    }
   }
 
   logger.succeed('Project loaded');

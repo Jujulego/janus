@@ -10,6 +10,7 @@ import { Workspace } from './workspace';
 export class Project {
   // Attributes
   private _mainWorkspace?: Workspace;
+  private readonly _names = new Map<string, Workspace>();
   private readonly _workspaces = new Map<string, Workspace>();
 
   // Constructor
@@ -28,6 +29,8 @@ export class Project {
     if (!this._mainWorkspace) {
       const manifest = await this._loadManifest('.');
       this._mainWorkspace = new Workspace(this, manifest);
+
+      this._names.set(this._mainWorkspace.name, this._mainWorkspace);
     }
 
     return this._mainWorkspace;
@@ -49,11 +52,27 @@ export class Project {
           ws = new Workspace(this, manifest);
 
           this._workspaces.set(dir, ws);
+          this._names.set(ws.name, ws);
         }
 
         yield ws;
       }
     }
+  }
+
+  async workspace(name: string): Promise<Workspace | null> {
+    // Try name index
+    const ws = this._names.get(name);
+    if (ws) return ws;
+
+    // Load workspaces
+    for await (const ws of this.workspaces()) {
+      if (ws.name === name) {
+        return ws;
+      }
+    }
+
+    return null;
   }
 
   // Properties

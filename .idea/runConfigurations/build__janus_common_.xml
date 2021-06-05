@@ -1,5 +1,5 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="build (janus-common)" type="js.build_tools.npm">
+  <configuration default="false" name="build (janus-common)" type="js.build_tools.npm" folderName="janus">
     <package-json value="$PROJECT_DIR$/libs/janus-common/package.json" />
     <command value="run" />
     <scripts>

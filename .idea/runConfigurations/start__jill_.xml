@@ -1,9 +1,9 @@
 <component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="build (janus-front)" type="js.build_tools.npm" folderName="janus">
-    <package-json value="$PROJECT_DIR$/libs/janus-front/package.json" />
+  <configuration default="false" name="start (jill)" type="js.build_tools.npm">
+    <package-json value="$PROJECT_DIR$/apps/jill/package.json" />
     <command value="run" />
     <scripts>
-      <script value="build" />
+      <script value="start" />
     </scripts>
     <node-interpreter value="project" />
     <envs />

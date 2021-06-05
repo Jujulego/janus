@@ -1,5 +1,5 @@
 {
-  "name": "jill",
+  "name": "@jujulego/jill",
   "version": "1.0.0-alpha.0",
   "license": "MIT",
   "main": "./dist/main.js",
@@ -8,7 +8,13 @@
   "engines": {
     "node": "^12 ^14"
   },
+  "scripts": {
+    "start": "ts-node src/main.ts"
+  },
   "dependencies": {
+    "chalk": "^4.1.1",
+    "ora": "^5.4.0",
+    "tiny-glob": "^0.2.9",
     "yargs": "^17.0.1"
   },
   "devDependencies": {

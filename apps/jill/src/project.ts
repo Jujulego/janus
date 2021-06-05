@@ -28,7 +28,7 @@ export class Project {
   async mainWorkspace(): Promise<Workspace> {
     if (!this._mainWorkspace) {
       const manifest = await this._loadManifest('.');
-      this._mainWorkspace = new Workspace(this, manifest);
+      this._mainWorkspace = new Workspace('.', manifest, this);
 
       this._names.set(this._mainWorkspace.name, this._mainWorkspace);
     }
@@ -49,7 +49,7 @@ export class Project {
 
         if (!ws) {
           const manifest = await this._loadManifest(dir);
-          ws = new Workspace(this, manifest);
+          ws = new Workspace(dir, manifest, this);
 
           this._workspaces.set(dir, ws);
           this._names.set(ws.name, ws);

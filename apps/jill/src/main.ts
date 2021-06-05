@@ -5,21 +5,24 @@ import { logger } from './logger';
 logger.setOptions({ verbosity: 'debug' });
 
 (async function () {
-  logger.spin('Loading project ...');
   const prj = new Project('../../');
+  const ws = await prj.workspace('@jujulego/janus-front');
 
-  const ws = await prj.workspace('@jujulego/janus-proxy');
   if (ws) {
-    logger.info(`${ws.printName} depends on:`);
-
     for await (const dep of ws.dependencies()) {
-      logger.info(`- ${dep.printName}`);
+      logger.spin(`Building ${dep.printName} ...`);
+      await dep.run('build');
+      logger.succeed(`${dep.printName} built !`);
     }
 
     for await (const dep of ws.devDependencies()) {
-      logger.info(`- ${dep.printName}`);
+      logger.spin(`Building ${dep.printName} ...`);
+      await dep.run('build');
+      logger.succeed(`${dep.printName} built !`);
     }
-  }
 
-  logger.succeed('Project loaded');
+    logger.spin(`Building ${ws.printName} ...`);
+    await ws.run('build');
+    logger.succeed(`${ws.printName} built !`);
+  }
 })();

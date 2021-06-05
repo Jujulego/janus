@@ -13,6 +13,7 @@
   },
   "dependencies": {
     "chalk": "^4.1.1",
+    "log-symbols": "^4.1.0",
     "ora": "^5.4.0",
     "tiny-glob": "^0.2.9",
     "yargs": "^17.0.1"

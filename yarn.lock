@@ -2120,6 +2120,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": ^4.26.0
     chalk: ^4.1.1
     eslint: ^7.27.0
+    log-symbols: ^4.1.0
     ora: ^5.4.0
     tiny-glob: ^0.2.9
     ts-node: ^9.1.1

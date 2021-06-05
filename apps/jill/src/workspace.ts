@@ -1,3 +1,5 @@
+import chalk from 'chalk';
+
 import { Manifest } from './manifest';
 import { Project } from './project';
 
@@ -9,5 +11,9 @@ export class Workspace {
   // Properties
   get name(): string {
     return this.manifest.name;
+  }
+
+  get printName(): string {
+    return chalk.bold(this.name);
   }
 }

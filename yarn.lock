@@ -1940,7 +1940,6 @@ __metadata:
   dependencies:
     "@types/eslint": ^7
     "@types/node": ^12.20.14
-    "@types/prettier": ^2
     "@typescript-eslint/eslint-plugin": ^4.26.0
     eslint: ^7.27.0
     graphql: ^15.5.0
@@ -1954,7 +1953,6 @@ __metadata:
   resolution: "@jujulego/janus-config@workspace:libs/janus-config"
   dependencies:
     "@types/node": ^12.20.14
-    "@types/prettier": ^2
     "@types/yaml": ^1
     "@typescript-eslint/eslint-plugin": ^4.26.0
     ajv: ^8.2.0
@@ -2025,7 +2023,6 @@ __metadata:
     "@jujulego/janus-config": ^1.0.0-alpha.5
     "@jujulego/janus-proxy": ^1.0.0-alpha.12
     "@types/node": ^12.20.14
-    "@types/prettier": ^2
     "@types/ws": ^7
     "@typescript-eslint/eslint-plugin": ^4.26.0
     eslint: ^7.27.0
@@ -2099,7 +2096,6 @@ __metadata:
     "@jujulego/janus-config": ^1.0.0-alpha.5
     "@jujulego/janus-proxy": ^1.0.0-alpha.12
     "@types/node": ^12.20.14
-    "@types/prettier": ^2
     "@types/yargs": ^16
     "@typescript-eslint/eslint-plugin": ^4.26.0
     chalk: ^4.1.1
@@ -3424,7 +3420,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prettier@npm:^2, @types/prettier@npm:^2.0.0":
+"@types/prettier@npm:^2.0.0":
   version: 2.2.3
   resolution: "@types/prettier@npm:2.2.3"
   checksum: b7e80288f9f776caca84391a7a217b8baac6b4fce00bb9701af69299d465cb8faf17466f0af0803970c74d2c191767ca729a6d21a2f7e2ce552d1ef6cc0d653a
@@ -3607,6 +3603,15 @@ __metadata:
   dependencies:
     "@types/yargs-parser": "*"
   checksum: 7b141b6a9efe2da5af054b022f2fbfa3a34d664f1db384babc567b20e9935ac18924c8075780ea22f5e0da4f5714f24dc27b05b6475cd060031648f154183a45
+  languageName: node
+  linkType: hard
+
+"@types/yargs@npm:^17.0.0":
+  version: 17.0.0
+  resolution: "@types/yargs@npm:17.0.0"
+  dependencies:
+    "@types/yargs-parser": "*"
+  checksum: 92ea97fa209768b993d1a06b9f2453161fc7fc3b25211d1235d112bc960e57b180c0b8616eb10c3e89b5d1bc6add255b0b10e550165ee318560bc0531dfe13b3
   languageName: node
   linkType: hard
 
@@ -9776,6 +9781,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"jill@workspace:apps/jill":
+  version: 0.0.0-use.local
+  resolution: "jill@workspace:apps/jill"
+  dependencies:
+    "@types/node": ^12.20.14
+    "@types/yargs": ^17.0.0
+    "@typescript-eslint/eslint-plugin": ^4.26.0
+    eslint: ^7.27.0
+    ts-node: ^9.1.1
+    typescript: ^4.2.3
+    yargs: ^17.0.1
+  languageName: unknown
+  linkType: soft
+
 "js-tokens@npm:^3.0.0 || ^4.0.0, js-tokens@npm:^4.0.0":
   version: 4.0.0
   resolution: "js-tokens@npm:4.0.0"
@@ -14967,6 +14986,21 @@ typescript@4.2.3:
     y18n: ^5.0.5
     yargs-parser: ^20.2.2
   checksum: a79ce1f043021cd645de1ffebb6149541d382ba68f4a6b5eca5d2ad65af51893371bbd78e240dc3b6cf0cbb419511ba5bda715dec992e4266e6863ea49f14feb
+  languageName: node
+  linkType: hard
+
+"yargs@npm:^17.0.1":
+  version: 17.0.1
+  resolution: "yargs@npm:17.0.1"
+  dependencies:
+    cliui: ^7.0.2
+    escalade: ^3.1.1
+    get-caller-file: ^2.0.5
+    require-directory: ^2.1.1
+    string-width: ^4.2.0
+    y18n: ^5.0.5
+    yargs-parser: ^20.2.2
+  checksum: a7969b48d2dea129a7d4fcc3f13e88d4f94bacbd24f720b2ce19946fa9facc42cfed89c059d953091241f4e9e9000ed9dbf86e4bb4b6ceb3a26af10ddebdd0b2
   languageName: node
   linkType: hard
 

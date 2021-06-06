@@ -13,6 +13,7 @@ import yargs from 'yargs';
         default: 'janus.config.yml',
       })
       .command(require('./commands/start'))      // eslint-disable-line @typescript-eslint/no-var-requires
+      .command(require('./commands/logs'))       // eslint-disable-line @typescript-eslint/no-var-requires
       .command(require('./commands/stop'))       // eslint-disable-line @typescript-eslint/no-var-requires
       .command(require('./commands/gql-schema')) // eslint-disable-line @typescript-eslint/no-var-requires
       .help()

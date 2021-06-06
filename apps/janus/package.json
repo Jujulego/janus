@@ -15,11 +15,13 @@
     "lint": "eslint src/**/*"
   },
   "dependencies": {
+    "@jujulego/janus-common": "^1.0.0-alpha.3",
     "@jujulego/janus-config": "^1.0.0-alpha.5",
     "@jujulego/janus-proxy": "^1.0.0-alpha.12",
     "chalk": "^4.1.1",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
+    "graphql-tag": "^2.12.4",
     "ora": "^5.4.0",
     "yargs": "^16.2.0"
   },

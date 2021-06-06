@@ -1,5 +1,6 @@
 import { gql, useQuery } from '@apollo/client';
-import { Box, Paper, Stack, Toolbar, Typography } from '@material-ui/core';
+import { Box, Chip, Paper, Stack, Toolbar, Typography } from '@material-ui/core';
+import TollIcon from '@material-ui/icons/Toll';
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import ResizeObserver from 'resize-observer-polyfill';
@@ -68,6 +69,10 @@ export const Logs: FC<LogsProps> = ({ title, filter }) => {
     });
   }, [setLevels]);
 
+  const toggleAll = useCallback(() => {
+    setLevels((old) => old.length > 0 ? [] : ['error', 'warn', 'info', 'verbose', 'debug']);
+  }, []);
+
   // Memos
   const logs = useMemo(() => {
     if (!data) return [];
@@ -117,6 +122,7 @@ export const Logs: FC<LogsProps> = ({ title, filter }) => {
       <Toolbar variant="dense" disableGutters sx={{ px: 1 }}>
         <Typography variant="h6" sx={{ flex: 1, ml: 1 }}>{ title }</Typography>
         <Stack direction="row" spacing={1}>
+          <Chip icon={<TollIcon />} label="All" onClick={toggleAll} />
           <LevelChip
             level="error"
             enabled={levels.includes('error')}

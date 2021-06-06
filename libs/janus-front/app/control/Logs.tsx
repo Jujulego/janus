@@ -1,11 +1,12 @@
 import { gql, useQuery } from '@apollo/client';
-import { Box, Paper, Toolbar, Typography } from '@material-ui/core';
-import { FC, useEffect, useRef, useState } from 'react';
+import { Box, Stack, Toolbar } from '@material-ui/core';
+import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import ResizeObserver from 'resize-observer-polyfill';
 
 import { ILog, LogFragment } from '@jujulego/janus-common';
 
+import { LevelChip } from './LevelChip';
 import { Log } from './Log';
 
 // Types
@@ -48,11 +49,31 @@ export const Logs: FC<LogsProps> = () => {
   const { data, subscribeToMore } = useQuery<LogsData>(LOGS_QRY);
 
   // State
+  const [levels, setLevels] = useState<string[]>(['error', 'warn', 'info', 'verbose', 'debug']);
   const [height, setHeight] = useState(200);
 
   // Ref
   const container = useRef<HTMLDivElement>(null);
   const list = useRef<List>(null);
+
+  // Callbacks
+  const toggleLevel = useCallback((level: string) => () => {
+    setLevels((old) => {
+      if (old.includes(level)) {
+        return old.filter((lvl) => lvl !== level);
+      } else {
+        return [...old, level];
+      }
+    });
+  }, [setLevels]);
+
+  // Memos
+  const logs = useMemo(() => {
+    if (!data) return [];
+
+    return data.logs
+      .filter(log => levels.includes(log.level));
+  }, [data, levels]);
 
   // Effects
   useEffect(() => {
@@ -68,28 +89,56 @@ export const Logs: FC<LogsProps> = () => {
   }, []);
 
   useEffect(() => {
-    subscribeToMore<LogsEvent>({
-      document: LOGS_SUB,
-      updateQuery: (prev, { subscriptionData }) => ({
-        ...prev,
-        logs: [...prev.logs || [], subscriptionData.data.logs]
-      })
-    });
+    try {
+      subscribeToMore<LogsEvent>({
+        document: LOGS_SUB,
+        updateQuery: (prev, { subscriptionData }) => ({
+          ...prev,
+          logs: [...prev.logs || [], subscriptionData.data.logs]
+        })
+      });
+    } catch(err) {
+      console.error(err);
+    }
   }, [subscribeToMore]);
 
   useEffect(() => {
-    if (data) {
-      list.current?.scrollToItem(data.logs.length - 1);
+    if (logs.length > 0) {
+      list.current?.scrollToItem(logs.length - 1);
     }
-  }, [data?.logs?.length]);
+  }, [logs.length]);
 
   // Render
   return (
     <Box height="100%" display="flex" flexDirection="column">
       <Toolbar variant="dense">
-        <Paper>
-          <Typography>Hello !</Typography>
-        </Paper>
+        <Stack direction="row" spacing={1}>
+          <LevelChip
+            level="error"
+            enabled={levels.includes('error')}
+            onToggle={toggleLevel('error')}
+          />
+          <LevelChip
+            level="warn"
+            enabled={levels.includes('warn')}
+            onToggle={toggleLevel('warn')}
+          />
+          <LevelChip
+            level="info"
+            enabled={levels.includes('info')}
+            onToggle={toggleLevel('info')}
+          />
+          <LevelChip
+            level="verbose"
+            enabled={levels.includes('verbose')}
+            onToggle={toggleLevel('verbose')}
+          />
+          <LevelChip
+            level="debug"
+            enabled={levels.includes('debug')}
+            onToggle={toggleLevel('debug')}
+          />
+        </Stack>
       </Toolbar>
       <Box ref={container} pl={1} flex={1} maxHeight="calc(100% - 48px)">
         <List
@@ -97,10 +146,10 @@ export const Logs: FC<LogsProps> = () => {
           width="100%"
           height={height}
           itemSize={24}
-          itemCount={data?.logs?.length || 0}
+          itemCount={logs.length}
         >
           { ({ index: i, style }) => (
-            <Log log={data!.logs[i]} style={style} />
+            <Log log={logs[i]} style={style} />
           ) }
         </List>
       </Box>

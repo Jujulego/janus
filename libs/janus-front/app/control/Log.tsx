@@ -5,6 +5,8 @@ import clsx from 'clsx';
 
 import { ILog } from '@jujulego/janus-common';
 
+import { levelsColors } from './levels';
+
 // Styles
 const useStyles = makeStyles(({ palette }) => ({
   log: {
@@ -13,16 +15,16 @@ const useStyles = makeStyles(({ palette }) => ({
     whiteSpace: 'nowrap',
 
     '&.debug': {
-      color: blue[700],
+      color: levelsColors.debug,
     },
     '&.verbose': {
-      color: cyan[700],
+      color: levelsColors.verbose,
     },
     '&.warn': {
-      color: yellow[700],
+      color: levelsColors.warn,
     },
     '&.error': {
-      color: red[700],
+      color: levelsColors.error,
     },
     '& .e-0': {
       color: palette.text.primary,

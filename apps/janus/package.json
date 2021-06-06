@@ -1,18 +1,22 @@
 {
   "name": "@jujulego/janus",
-  "version": "1.0.0-alpha.5",
+  "version": "1.0.0-alpha.7",
   "license": "MIT",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
   "bin": "./bin/janus.js",
+  "repository": "github:jujulego/janus",
+  "engines": {
+    "node": "^12 ^14"
+  },
   "scripts": {
     "start": "ts-node src/main.ts",
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint src/**/*"
   },
   "dependencies": {
-    "@jujulego/janus-config": "^1.0.0-alpha.3",
-    "@jujulego/janus-proxy": "^1.0.0-alpha.10",
+    "@jujulego/janus-config": "^1.0.0-alpha.5",
+    "@jujulego/janus-proxy": "^1.0.0-alpha.12",
     "chalk": "^4.1.1",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
@@ -20,7 +24,7 @@
     "yargs": "^16.2.0"
   },
   "devDependencies": {
-    "@types/node": "^14.14.36",
+    "@types/node": "^12.20.14",
     "@types/prettier": "^2",
     "@types/yargs": "^16",
     "@typescript-eslint/eslint-plugin": "^4.26.0",

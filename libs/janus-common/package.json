@@ -1,9 +1,13 @@
 {
   "name": "@jujulego/janus-common",
-  "version": "1.0.0-alpha.1",
+  "version": "1.0.0-alpha.3",
   "license": "MIT",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "repository": "github:jujulego/janus",
+  "engines": {
+    "node": "^12 ^14"
+  },
   "scripts": {
     "build": "tsc -p tsconfig.build.json",
     "lint": "eslint src/**/*"
@@ -14,7 +18,7 @@
   },
   "devDependencies": {
     "@types/eslint": "^7",
-    "@types/node": "^14.14.41",
+    "@types/node": "^12.20.14",
     "@types/prettier": "^2",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "eslint": "^7.27.0",

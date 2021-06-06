@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { Box, Stack, Toolbar } from '@material-ui/core';
+import { Box, Paper, Stack, Toolbar } from '@material-ui/core';
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import ResizeObserver from 'resize-observer-polyfill';
@@ -44,7 +44,7 @@ export const LOGS_SUB = gql`
 `;
 
 // Component
-export const Logs: FC<LogsProps> = () => {
+export const Logs: FC<LogsProps> = ({ filter }) => {
   // Query logs
   const { data, subscribeToMore } = useQuery<LogsData>(LOGS_QRY);
 
@@ -71,9 +71,15 @@ export const Logs: FC<LogsProps> = () => {
   const logs = useMemo(() => {
     if (!data) return [];
 
-    return data.logs
-      .filter(log => levels.includes(log.level));
-  }, [data, levels]);
+    let logs = data.logs;
+    logs = logs.filter(log => levels.includes(log.level));
+
+    if (filter) {
+      logs = logs.filter(filter);
+    }
+
+    return logs;
+  }, [data, levels, filter]);
 
   // Effects
   useEffect(() => {
@@ -89,17 +95,13 @@ export const Logs: FC<LogsProps> = () => {
   }, []);
 
   useEffect(() => {
-    try {
-      subscribeToMore<LogsEvent>({
-        document: LOGS_SUB,
-        updateQuery: (prev, { subscriptionData }) => ({
-          ...prev,
-          logs: [...prev.logs || [], subscriptionData.data.logs]
-        })
-      });
-    } catch(err) {
-      console.error(err);
-    }
+    subscribeToMore<LogsEvent>({
+      document: LOGS_SUB,
+      updateQuery: (prev, { subscriptionData }) => ({
+        ...prev,
+        logs: [...prev.logs || [], subscriptionData.data.logs]
+      })
+    });
   }, [subscribeToMore]);
 
   useEffect(() => {
@@ -110,8 +112,8 @@ export const Logs: FC<LogsProps> = () => {
 
   // Render
   return (
-    <Box height="100%" display="flex" flexDirection="column">
-      <Toolbar variant="dense">
+    <Paper variant="outlined" sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+      <Toolbar variant="dense" disableGutters sx={{ px: 1 }}>
         <Stack direction="row" spacing={1}>
           <LevelChip
             level="error"
@@ -153,6 +155,6 @@ export const Logs: FC<LogsProps> = () => {
           ) }
         </List>
       </Box>
-    </Box>
+    </Paper>
   );
 };

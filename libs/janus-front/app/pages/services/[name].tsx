@@ -1,5 +1,5 @@
 import { gql, useMutation, useQuery } from '@apollo/client';
-import { Grid } from '@material-ui/core';
+import { Box, Grid } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -10,6 +10,8 @@ import { GateDetails } from '../../gates/GateDetails';
 import { Navbar } from '../../layout/Navbar';
 import { ServiceHeader } from '../../services/ServiceHeader';
 import { ServiceGraph } from '../../services/ServiceGraph';
+import { Logs } from '../../control/Logs';
+import { ILog } from '../../../../janus-common/src';
 
 // Types
 export interface ServicePageData {
@@ -87,7 +89,21 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
     } else {
       await enableGate({ variables: { service: name, gate: gate.name } });
     }
-  }, [name]);
+  }, [name, enableGate, disableGate]);
+
+  const filterLogs = useCallback((log: ILog) => {
+    if (data) {
+      if (log.metadata.service !== data.service.name) {
+        return false;
+      }
+
+      if (gate) {
+        return log.metadata.gate === gate.name;
+      }
+    }
+
+    return true;
+  }, [data, gate]);
 
   // Effects
   useEffect(() => {
@@ -107,7 +123,7 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
         <>
           <ServiceHeader service={data.service} />
 
-          <Grid container mt={2} flexGrow={1}>
+          <Grid container mt={2} flex={2} minHeight={400}>
             <Grid item xs>
               <ServiceGraph service={data.service} onSelect={setSelected} />
             </Grid>
@@ -118,6 +134,10 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
               </Grid>
             ) }
           </Grid>
+
+          <Box mt={2} flex={1} minHeight={200}>
+            <Logs filter={filterLogs} />
+          </Box>
         </>
       ) }
     </Navbar>

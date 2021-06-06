@@ -63,9 +63,9 @@ const HomePage: NextPage = () => {
       </Grid>
 
       <Typography variant="h5" mt={4} mb={2}>Events</Typography>
-      <Paper variant="outlined" sx={{ flex: 1, overflow: 'auto' }}>
+      <Box flex={1} overflow="auto">
         <Logs />
-      </Paper>
+      </Box>
     </Navbar>
   );
 };

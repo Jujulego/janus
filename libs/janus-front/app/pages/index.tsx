@@ -64,7 +64,7 @@ const HomePage: NextPage = () => {
 
       <Typography variant="h5" mt={4} mb={2}>Events</Typography>
       <Box flex={1} overflow="auto">
-        <Logs />
+        <Logs title="Global logs" />
       </Box>
     </Navbar>
   );

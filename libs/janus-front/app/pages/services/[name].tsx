@@ -140,7 +140,7 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
           </Grid>
 
           <Box mt={2} flex={1} minHeight={200}>
-            <Logs filter={filterLogs} />
+            <Logs title={`Logs of ${selected === name ? selected : [name, selected].join('.')}`} filter={filterLogs} />
           </Box>
         </>
       ) }

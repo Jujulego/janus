@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { Box, Paper, Stack, Toolbar } from '@material-ui/core';
+import { Box, Paper, Stack, Toolbar, Typography } from '@material-ui/core';
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeList as List } from 'react-window';
 import ResizeObserver from 'resize-observer-polyfill';
@@ -19,6 +19,7 @@ interface LogsEvent {
 }
 
 export interface LogsProps {
+  title?: string;
   filter?: (log: ILog) => boolean;
 }
 
@@ -44,7 +45,7 @@ export const LOGS_SUB = gql`
 `;
 
 // Component
-export const Logs: FC<LogsProps> = ({ filter }) => {
+export const Logs: FC<LogsProps> = ({ title, filter }) => {
   // Query logs
   const { data, subscribeToMore } = useQuery<LogsData>(LOGS_QRY);
 
@@ -114,6 +115,7 @@ export const Logs: FC<LogsProps> = ({ filter }) => {
   return (
     <Paper variant="outlined" sx={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
       <Toolbar variant="dense" disableGutters sx={{ px: 1 }}>
+        <Typography variant="h6" sx={{ flex: 1, ml: 1 }}>{ title }</Typography>
         <Stack direction="row" spacing={1}>
           <LevelChip
             level="error"

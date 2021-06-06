@@ -1,5 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import { Box, Card, CardHeader, Grid, IconButton, Paper, Typography } from '@material-ui/core';
+import { Box, Card, CardHeader, Grid, IconButton, Typography } from '@material-ui/core';
 import { Share as ShareIcon } from '@material-ui/icons';
 import { GetServerSideProps, NextPage } from 'next';
 import NextLink from 'next/link';
@@ -7,7 +7,7 @@ import NextLink from 'next/link';
 import { IService } from '@jujulego/janus-common';
 
 import { addApolloState, createApolloClient } from '../apollo-client';
-import { Logs } from '../control/Logs';
+import { Logs, LOGS_QRY } from '../control/Logs';
 import { Navbar } from '../layout/Navbar';
 
 // Queries
@@ -77,8 +77,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const client = createApolloClient(ctx);
 
   // Request services data
-  await client.query<HomePageData>({
+  await client.query({
     query: HOME_PAGE_QRY,
+  });
+
+  await client.query({
+    query: LOGS_QRY
   });
 
   return { props: addApolloState(client, {}) };

@@ -10,7 +10,7 @@ import { GateDetails } from '../../gates/GateDetails';
 import { Navbar } from '../../layout/Navbar';
 import { ServiceHeader } from '../../services/ServiceHeader';
 import { ServiceGraph } from '../../services/ServiceGraph';
-import { Logs } from '../../control/Logs';
+import { Logs, LOGS_QRY } from '../../control/Logs';
 import { ILog } from '../../../../janus-common/src';
 
 // Types
@@ -159,6 +159,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   await client.query<ServicePageData>({
     query: SERVICE_QRY,
     variables: { name },
+  });
+
+  await client.query({
+    query: LOGS_QRY
   });
 
   return { props: addApolloState(client, { name }) };

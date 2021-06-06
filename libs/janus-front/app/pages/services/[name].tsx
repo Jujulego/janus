@@ -66,7 +66,7 @@ const DISABLE_GATE_MUT = gql`
 // Page
 const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
   // State
-  const [selected, setSelected] = useState<string>('');
+  const [selected, setSelected] = useState<string>(name);
 
   // Queries
   const { data, subscribeToMore } = useQuery<ServicePageData>(SERVICE_QRY, {
@@ -116,6 +116,10 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
     });
   }, [subscribeToMore, name]);
 
+  useEffect(() => {
+    setSelected(name);
+  }, [name]);
+
   // Render
   return (
     <Navbar>
@@ -125,7 +129,7 @@ const ServicePage: NextPage<ServicePageProps> = ({ name }) => {
 
           <Grid container mt={2} flex={2} minHeight={400}>
             <Grid item xs>
-              <ServiceGraph service={data.service} onSelect={setSelected} />
+              <ServiceGraph service={data.service} selected={selected} onSelect={setSelected} />
             </Grid>
 
             { gate && (

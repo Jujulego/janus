@@ -16,6 +16,7 @@ interface IData {
 // Props
 export interface ServiceGraphProps {
   service: IService;
+  selected?: string;
   onSelect(selected: string): void;
 }
 
@@ -24,6 +25,8 @@ const useStyles = makeStyles(({ palette, transitions }) => ({
   graph: {
     height: '100%',
     width: '100%',
+
+    background: palette.background.paper,
   },
   node: {
     cursor: 'pointer',
@@ -34,11 +37,12 @@ const useStyles = makeStyles(({ palette, transitions }) => ({
     },
 
     '& rect': {
-      fill: palette.background.paper,
+      fill: palette.action.active,
+      fillOpacity: 0,
       stroke: palette.warning.main,
       strokeWidth: 2,
 
-      transition: transitions.create('fill', {
+      transition: transitions.create('fill-opacity', {
         duration: transitions.duration.shortest,
       }),
     },
@@ -49,7 +53,15 @@ const useStyles = makeStyles(({ palette, transitions }) => ({
     },
 
     '&:hover rect': {
-      fill: '#252525',
+      fillOpacity: palette.action.hoverOpacity,
+    },
+
+    '&.selected rect': {
+      fillOpacity: palette.action.selectedOpacity,
+    },
+
+    '&.selected:hover rect': {
+      fillOpacity: palette.action.hoverOpacity + palette.action.selectedOpacity,
     },
 
     '&.used': {
@@ -92,7 +104,7 @@ const useStyles = makeStyles(({ palette, transitions }) => ({
 }));
 
 // Component
-export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
+export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, selected, service }) => {
   const theme = useTheme();
   const styles = useStyles();
 
@@ -128,7 +140,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
     return () => {
       obs.disconnect();
     };
-  }, [graph.current, refresh]);
+  }, [refresh]);
 
   useEffect(() => {
     if (!graph.current) return;
@@ -163,8 +175,8 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
         (ent) => {
           const node = ent.append('g');
 
-          node.append('circle');
           node.append('rect');
+          node.append('circle');
           node.append('text');
 
           return node;
@@ -175,6 +187,7 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
         .classed(styles.node, true)
         .classed('enabled', (d) => d.data.enabled)
         .classed('used', (d) => used?.data?.name === d.data.name)
+        .classed('selected', (d) => selected === d.data.name)
         .on('click', (e, d) => onSelect(d.data.name));
 
     nodes.select('circle')
@@ -224,11 +237,11 @@ export const ServiceGraph: FC<ServiceGraphProps> = ({ onSelect, service }) => {
 
           return ctx.toString();
         });
-  }, [count, hierarchy, styles, theme, graph.current, onSelect]);
+  }, [count, selected, hierarchy, styles, theme, onSelect]);
 
   // Render
   return (
-    <Paper variant="outlined" sx={{ height: '100%' }}>
+    <Paper variant="outlined" sx={{ height: '100%', overflow: 'hidden' }}>
       <svg className={styles.graph} ref={graph}>
         <g className="root" transform="translate(5, 5)">
           <g className="links" />

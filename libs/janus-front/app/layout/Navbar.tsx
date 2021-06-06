@@ -4,7 +4,6 @@ import {
   Divider,
   Drawer,
   IconButton,
-  Link,
   List,
   ListItem,
   ListItemText,
@@ -12,15 +11,11 @@ import {
   makeStyles,
   Theme,
   Toolbar,
-  Tooltip,
   Typography,
   useMediaQuery,
 } from '@material-ui/core';
-import {
-  Attractions as AttractionsIcon,
-  ChevronLeft as ChevronLeftIcon,
-  Menu as MenuIcon,
-} from '@material-ui/icons';
+import ChevronLeftIcon from '@material-ui/icons/ChevronLeft';
+import MenuIcon from '@material-ui/icons/Menu';
 import { default as NextLink } from 'next/link';
 import { useRouter } from 'next/router';
 import { FC, useEffect, useState } from 'react';
@@ -109,16 +104,11 @@ export const Navbar: FC = ({ children }) => {
             <Typography
               component="a"
               variant="h6"
-              sx={{ flex: 1, color: 'text.primary', textDecoration: 'none' }}
+              sx={{ color: 'text.primary', textDecoration: 'none' }}
             >
               Janus Proxy
             </Typography>
           </NextLink>
-          <Tooltip title="GraphQL Playground">
-            <IconButton component={Link} href="/graphql" color="inherit">
-              <AttractionsIcon />
-            </IconButton>
-          </Tooltip>
         </Toolbar>
       </AppBar>
       <Drawer

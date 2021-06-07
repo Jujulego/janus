@@ -2118,6 +2118,7 @@ __metadata:
     "@jujulego/janus-proxy": ^1.0.0-alpha.12
     "@types/node": ^12.20.14
     "@types/prettier": ^2
+    "@types/ws": ^7
     "@types/yargs": ^16
     "@typescript-eslint/eslint-plugin": ^4.26.0
     chalk: ^4.1.1
@@ -2127,8 +2128,11 @@ __metadata:
     graphql-tag: ^2.12.4
     log-symbols: ^4.1.0
     ora: ^5.4.0
+    rxjs: ^7.1.0
+    subscriptions-transport-ws: ^0.9.18
     ts-node: ^9.1.1
     typescript: ^4.2.3
+    ws: ^7.4.5
     yargs: ^16.2.0
   bin:
     janus: ./bin/janus.js
@@ -12724,6 +12728,15 @@ resolve@^2.0.0-next.3:
   dependencies:
     tslib: ~2.1.0
   checksum: e0d08420f94474c73a14e57b7a1bcbf7010791817e06e5a16a998a8e151b89bd0b4a4883203cb86906a81b0e052cb99cfe3d96b652de4c744282f4d60a51d73e
+  languageName: node
+  linkType: hard
+
+"rxjs@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "rxjs@npm:7.1.0"
+  dependencies:
+    tslib: ~2.1.0
+  checksum: e4d71512e71278002f8399e0741b6a51b383b74476b687074961bc3a66ed48d657fa7b77a6d6dc07535fe265abd9d510afbcab598f86dba3218e76470f0ec3e7
   languageName: node
   linkType: hard
 

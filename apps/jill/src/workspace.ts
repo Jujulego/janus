@@ -5,7 +5,7 @@ import path from 'path';
 import { Manifest } from './manifest';
 import { Project } from './project';
 import { logger } from './logger';
-import * as Buffer from 'buffer';
+import { formatDuration } from './utils';
 
 // Class
 export class Workspace {
@@ -62,6 +62,13 @@ export class Workspace {
         }
       });
     });
+  }
+
+  async build(): Promise<void> {
+    const start = Date.now();
+    await this.run('build');
+
+    logger.succeed(chalk`${this.printName} built {grey (${formatDuration(Date.now() - start)})}`);
   }
 
   // Properties

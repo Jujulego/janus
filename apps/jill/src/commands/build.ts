@@ -1,14 +1,12 @@
 import { CommandBuilder } from 'yargs';
-import chalk from 'chalk';
 
 import { commandWrapper, CommonArgs } from '../helpers';
 import { logger } from '../logger';
 import { Project } from '../project';
-import { walkDependencies, walkDevDependencies } from '../tree';
+import { walkDevDependencies } from '../tree';
 
 // Types
-interface DepsArgs extends CommonArgs {
-  dev: boolean;
+interface BuildArgs extends CommonArgs {
   workspace: string;
 }
 
@@ -20,13 +18,9 @@ export const describe = 'Build all workspace\'s dependencies';
 export const builder: CommandBuilder = (yargs) => yargs
   .positional('workspace', {
     type: 'string'
-  })
-  .option('dev', {
-    type: 'boolean',
-    default: false
   });
 
-export const handler = commandWrapper(async (args: DepsArgs) => {
+export const handler = commandWrapper(async (args: BuildArgs) => {
   try {
     logger.spin('Loading project ...');
     const prj = new Project('../../');
@@ -36,15 +30,18 @@ export const handler = commandWrapper(async (args: DepsArgs) => {
     if (!ws) {
       logger.warn(`Workspace ${args.workspace} not found`);
     } else {
-      const deps = args.dev ? walkDevDependencies(ws) : walkDependencies(ws);
-
-      for await (const dep of deps) {
+      // Build dev dependencies
+      for await (const dep of walkDevDependencies(ws)) {
         logger.spin(`Building ${dep.printName} ...`);
-        await dep.run('build');
-        logger.succeed(`${dep.printName} built`);
+        await dep.build();
       }
+
+      // Build package
+      logger.spin(`Building ${ws.printName} ...`);
+      await ws.build();
     }
   } catch (error) {
+    logger.fail(`Failed to build ${args.workspace}`);
     logger.error(error);
     process.exit(1);
   }

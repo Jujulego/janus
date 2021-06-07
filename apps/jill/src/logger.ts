@@ -69,7 +69,7 @@ export class Logger {
 
   private formatLog(level: LogLevel, log: string): string[] {
     return log
-      .replace(/\n+$/, '')
+      .replace(/\n$/, '')
       .split('\n')
       .map(line => {
         switch (level) {

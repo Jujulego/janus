@@ -10,14 +10,16 @@
     "node": "^12 ^14"
   },
   "scripts": {
-    "start": "ts-node src/main.ts",
-    "build": "tsc -p tsconfig.build.json",
+    "jill:build": "tsc -p tsconfig.build.json",
+    "build": "jill run build",
+    "start": "jill run ts-node src/main.ts",
     "lint": "eslint src/**/*"
   },
   "dependencies": {
     "@jujulego/janus-common": "^1.0.0-alpha.4",
     "@jujulego/janus-config": "^1.0.0-alpha.6",
     "@jujulego/janus-proxy": "^1.0.0-alpha.13",
+    "@jujulego/jill": "^1.0.0-alpha.0",
     "chalk": "^4.1.1",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",

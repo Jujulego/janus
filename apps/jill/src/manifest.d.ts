@@ -4,6 +4,7 @@ export interface Manifest {
   version?: string;
   private?: boolean;
   workspaces?: string[];
+  scripts?: Record<string, string>;
   dependencies?: Record<string, string>;
   devDependencies?: Record<string, string>;
 }

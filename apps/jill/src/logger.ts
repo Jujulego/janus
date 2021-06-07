@@ -156,6 +156,11 @@ export class Logger {
       this.spinner.stopAndPersist({ text: line, symbol: options.symbol ?? SYMBOLS[level] ?? ' ' });
     }
   }
+
+  // Properties
+  get isSpinning(): boolean {
+    return this.spinner.isSpinning;
+  }
 }
 
 export const logger = new Logger();

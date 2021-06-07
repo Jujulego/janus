@@ -42,15 +42,28 @@ export class Workspace {
   }
 
   run(script: string, ...args: string[]): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      logger.debug(`${this.printName}: yarn run ${script} ${args.join(' ')} (in ${this.cwd})`);
-      const run = spawn('yarn', ['run', script, ...args], { cwd: this.cwd, shell: true, stdio: 'pipe' });
+    if (this.manifest.scripts && this.manifest.scripts[`jill:${script}`]) {
+      script = `jill:${script}`;
+    }
 
-      run.stdout.on('data', (data: Buffer) => {
+    return new Promise<void>((resolve, reject) => {
+      logger.verbose(`yarn run ${script} ${args.join(' ')} (in ${this.printName})`);
+      const run = spawn('yarn', [script, ...args], {
+        cwd: this.cwd,
+        shell: true,
+        stdio: logger.isSpinning ? 'pipe' : 'inherit',
+        env: {
+          ...process.env,
+          JILL_STARTED_SCRIPT: script,
+          FORCE_COLOR: '1'
+        }
+      });
+
+      run.stdout?.on('data', (data: Buffer) => {
         logger.info(data.toString('utf-8'));
       });
 
-      run.stderr.on('data', (data: Buffer) => {
+      run.stderr?.on('data', (data: Buffer) => {
         logger.warn(data.toString('utf-8'));
       });
 

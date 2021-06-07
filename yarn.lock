@@ -1949,6 +1949,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-common@workspace:libs/janus-common"
   dependencies:
+    "@jujulego/jill": ^1.0.0-alpha.0
     "@types/eslint": ^7
     "@types/node": ^12.20.14
     "@typescript-eslint/eslint-plugin": ^4.26.0
@@ -1963,6 +1964,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-config@workspace:libs/janus-config"
   dependencies:
+    "@jujulego/jill": ^1.0.0-alpha.0
     "@types/node": ^12.20.14
     "@types/yaml": ^1
     "@typescript-eslint/eslint-plugin": ^4.26.0
@@ -1983,6 +1985,7 @@ __metadata:
     "@emotion/server": ^11.4.0
     "@emotion/styled": ^11.3.0
     "@jujulego/janus-common": ^1.0.0-alpha.4
+    "@jujulego/jill": ^1.0.0-alpha.0
     "@material-ui/core": ^5.0.0-alpha.34
     "@material-ui/icons": ^5.0.0-alpha.34
     "@material-ui/styles": ^5.0.0-alpha.33
@@ -2036,6 +2039,7 @@ __metadata:
     "@jujulego/janus-common": ^1.0.0-alpha.4
     "@jujulego/janus-config": ^1.0.0-alpha.6
     "@jujulego/janus-proxy": ^1.0.0-alpha.13
+    "@jujulego/jill": ^1.0.0-alpha.0
     "@types/node": ^12.20.14
     "@types/ws": ^7
     "@typescript-eslint/eslint-plugin": ^4.26.0
@@ -2063,6 +2067,7 @@ __metadata:
     "@jujulego/janus-common": ^1.0.0-alpha.4
     "@jujulego/janus-config": ^1.0.0-alpha.6
     "@jujulego/janus-front": ^1.0.0-alpha.7
+    "@jujulego/jill": ^1.0.0-alpha.0
     "@nestjs/cli": ^7.6.0
     "@nestjs/common": ^7.6.15
     "@nestjs/core": ^7.6.15
@@ -2113,6 +2118,7 @@ __metadata:
     "@jujulego/janus-common": ^1.0.0-alpha.4
     "@jujulego/janus-config": ^1.0.0-alpha.6
     "@jujulego/janus-proxy": ^1.0.0-alpha.13
+    "@jujulego/jill": ^1.0.0-alpha.0
     "@types/node": ^12.20.14
     "@types/ws": ^7
     "@types/yargs": ^16
@@ -2135,7 +2141,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/jill@workspace:apps/jill":
+"@jujulego/jill@^1.0.0-alpha.0, @jujulego/jill@workspace:apps/jill":
   version: 0.0.0-use.local
   resolution: "@jujulego/jill@workspace:apps/jill"
   dependencies:

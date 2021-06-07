@@ -25,6 +25,20 @@ export class Project {
     return JSON.parse(data) as Manifest;
   }
 
+  private async _loadWorkspace(dir: string): Promise<Workspace> {
+    let ws = this._workspaces.get(dir);
+
+    if (!ws) {
+      const manifest = await this._loadManifest(dir);
+      ws = new Workspace(dir, manifest, this);
+
+      this._workspaces.set(dir, ws);
+      this._names.set(ws.name, ws);
+    }
+
+    return ws;
+  }
+
   async mainWorkspace(): Promise<Workspace> {
     if (!this._mainWorkspace) {
       const manifest = await this._loadManifest('.');
@@ -45,24 +59,20 @@ export class Project {
 
     for (const pattern of workspaces) {
       for (const dir of await glob(pattern, { cwd: this.root })) {
-        let ws = this._workspaces.get(dir);
-
-        if (!ws) {
-          const manifest = await this._loadManifest(dir);
-          ws = new Workspace(dir, manifest, this);
-
-          this._workspaces.set(dir, ws);
-          this._names.set(ws.name, ws);
-        }
-
-        yield ws;
+        yield this._loadWorkspace(dir);
       }
     }
   }
 
-  async workspace(name: string): Promise<Workspace | null> {
+  async workspace(name?: string): Promise<Workspace | null> {
+    // With current directory
+    if (!name) {
+      const dir = path.relative(this.root, process.cwd());
+      return this._loadWorkspace(dir);
+    }
+
     // Try name index
-    const ws = this._names.get(name);
+    const ws = name ? this._names.get(name) : this._workspaces.get(path.relative(this.root, process.cwd()));
     if (ws) return ws;
 
     // Load workspaces

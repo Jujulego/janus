@@ -9,20 +9,22 @@ import { walkDevDependencies } from '../tree';
 interface RunArgs extends CommonArgs {
   workspace: string;
   script: string;
+  args: string[];
 }
 
 // Command
-export const command = 'run <workspace> <script>';
+export const command = 'run <script> [args..]';
 export const aliases = [];
 export const describe = 'Build all workspace\'s dependencies before running script';
 
-export const builder: CommandBuilder = (yargs) => yargs
-  .positional('workspace', {
-    type: 'string'
-  })
-  .positional('script', {
-    type: 'string'
-  });
+export const builder: CommandBuilder = {
+  script: {
+    description: 'Script or command to run'
+  },
+  workspace: {
+    alias: 'w'
+  }
+};
 
 export const handler = commandWrapper(async (args: RunArgs) => {
   try {
@@ -32,20 +34,22 @@ export const handler = commandWrapper(async (args: RunArgs) => {
     logger.stop();
 
     if (!ws) {
-      logger.warn(`Workspace ${args.workspace} not found`);
+      logger.warn(`Workspace ${args.workspace || 'for current directory'} not found`);
     } else {
-      // Build dependencies
-      for await (const dep of walkDevDependencies(ws)) {
-        logger.spin(`Building ${dep.printName} ...`);
-        await dep.build();
+      if (process.env.JILL_STARTED_SCRIPT) {
+        logger.warn('Script with jill started by jill !');
+        logger.warn(`Consider removing jill from script or define a script with name jill:${process.env.JILL_STARTED_SCRIPT}.`);
+        logger.warn('Dependencies will not be build, as they should be build by parent jill process.');
+      } else {
+        // Build dependencies
+        for await (const dep of walkDevDependencies(ws)) {
+          logger.spin(`Building ${dep.printName} ...`);
+          await dep.build();
+        }
       }
 
-      // Build package
-      const argv = args._.slice(1)
-        .map(arg => arg.toString());
-
-      logger.verbose(`yarn run ${args.script} ${argv.join(' ')}`);
-      await ws.run(args.script, ...argv);
+      // Run script
+      await ws.run(args.script, ...args.args);
     }
   } catch (error) {
     logger.fail(`Failed to build ${args.workspace}`);

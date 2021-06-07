@@ -86,5 +86,8 @@ jobs:
       - name: Install
         run: yarn install
 
+      - name: Build Jill
+        run: yarn workspace @jujulego/jill build
+
       - name: Build
         run: yarn build

@@ -9,7 +9,8 @@
     "node": "^12 ^14"
   },
   "scripts": {
-    "build": "tsc -p tsconfig.build.json",
+    "jill:build": "tsc -p tsconfig.build.json",
+    "build": "jill run build",
     "lint": "eslint src/**/*"
   },
   "dependencies": {
@@ -17,6 +18,7 @@
     "graphql-tag": "^2.12.4"
   },
   "devDependencies": {
+    "@jujulego/jill": "^1.0.0-alpha.0",
     "@types/eslint": "^7",
     "@types/node": "^12.20.14",
     "@typescript-eslint/eslint-plugin": "^4.26.0",

@@ -8,7 +8,6 @@ import { LOG_LEVELS } from './logger';
   try {
     await yargs(hideBin(process.argv))
       .scriptName('jill')
-      .usage('Usage: $0 [command] [options]')
       .option('verbosity', {
         conflicts: 'v',
         choices: LOG_LEVELS,

@@ -9,8 +9,9 @@
     "node": "^12 ^14"
   },
   "scripts": {
-    "build": "yarn build:front && yarn build:server",
-    "build:dev": "yarn build:server --watch",
+    "jill:build": "yarn build:server",
+    "build": "jill run build:front && yarn build:server",
+    "build:dev": "jill run build:server --watch",
     "build:front": "next build app",
     "build:server": "nest build",
     "lint": "eslint \"{app,src,test}/**/*\"",
@@ -24,6 +25,7 @@
     "@emotion/server": "^11.4.0",
     "@emotion/styled": "^11.3.0",
     "@jujulego/janus-common": "^1.0.0-alpha.4",
+    "@jujulego/jill": "^1.0.0-alpha.0",
     "@material-ui/core": "^5.0.0-alpha.34",
     "@material-ui/icons": "^5.0.0-alpha.34",
     "@material-ui/styles": "^5.0.0-alpha.33",

@@ -1,28 +1,30 @@
-import { Project } from './project';
+import { hideBin } from 'yargs/helpers';
+import yargs from 'yargs';
 
-import { logger } from './logger';
+import { LOG_LEVELS } from './logger';
 
-logger.setOptions({ verbosity: 'debug' });
-
+// Commands
 (async function () {
-  const prj = new Project('../../');
-  const ws = await prj.workspace('@jujulego/janus-front');
-
-  if (ws) {
-    for await (const dep of ws.dependencies()) {
-      logger.spin(`Building ${dep.printName} ...`);
-      await dep.run('build');
-      logger.succeed(`${dep.printName} built !`);
-    }
-
-    for await (const dep of ws.devDependencies()) {
-      logger.spin(`Building ${dep.printName} ...`);
-      await dep.run('build');
-      logger.succeed(`${dep.printName} built !`);
-    }
-
-    logger.spin(`Building ${ws.printName} ...`);
-    await ws.run('build');
-    logger.succeed(`${ws.printName} built !`);
+  try {
+    await yargs(hideBin(process.argv))
+      .scriptName('jill')
+      .usage('Usage: $0 [command] [options]')
+      .option('verbosity', {
+        conflicts: 'v',
+        choices: LOG_LEVELS,
+        description: 'Set verbosity level'
+      })
+      .option('verbose', {
+        alias: 'v',
+        boolean: true,
+        conflicts: 'verbosity',
+        description: 'Set verbosity level to "verbose"',
+      })
+      .command(require('./commands/deps')) // eslint-disable-line @typescript-eslint/no-var-requires
+      .help()
+      .parse();
+  } catch (error) {
+    console.error(error);
+    process.exit(1);
   }
 })();

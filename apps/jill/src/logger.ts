@@ -3,7 +3,7 @@ import logSymbols from 'log-symbols';
 import ora from 'ora';
 
 // Types
-export type LogLevel = 'debug' | 'info' | 'success' | 'warn' | 'error' | 'fail';
+export type LogLevel = 'debug' | 'verbose' | 'info' | 'success' | 'warn' | 'error' | 'fail';
 
 export interface LoggerOptions {
   verbosity: Exclude<LogLevel, 'success' | 'fail'>;
@@ -14,9 +14,10 @@ export interface LogOptions {
 }
 
 // Constants
-const LEVELS = ['debug', 'info', 'warn', 'error'];
+export const LOG_LEVELS = ['debug', 'verbose', 'info', 'warn', 'error'];
 const SYMBOLS: Record<LogLevel, string> = {
   debug:   ' ',
+  verbose: logSymbols.info,
   info:    logSymbols.info,
   success: logSymbols.success,
   warn:    logSymbols.warning,
@@ -60,19 +61,21 @@ export class Logger {
     if (['success', 'fail'].includes(level)) return true;
 
     // Test
-    const allowed = LEVELS.indexOf(this.options.verbosity);
-    const index = LEVELS.indexOf(level);
+    const allowed = LOG_LEVELS.indexOf(this.options.verbosity);
+    const index = LOG_LEVELS.indexOf(level);
 
     return index >= allowed;
   }
 
   private formatLog(level: LogLevel, log: string): string[] {
-    return log.replace(/\n+$/, '')
-      .split('\n')
+    return log.split('\n')
       .map(line => {
         switch (level) {
           case 'debug':
             return chalk.gray(line);
+
+          case 'verbose':
+            return chalk.cyan(line);
 
           case 'warn':
             return chalk.yellow(line);
@@ -111,6 +114,12 @@ export class Logger {
     });
   }
 
+  verbose(message: string): void {
+    this.keepSpinner(() => {
+      this.log('verbose', message);
+    });
+  }
+
   info(message: string): void {
     this.keepSpinner(() => {
       this.log('info', message);
@@ -140,8 +149,8 @@ export class Logger {
   log(level: LogLevel, message: string, options: LogOptions = {}): void {
     if (!this.shouldLog(level)) return;
 
-    for (let line of this.formatLog(level, message)) {
-      if (line === '') line = ' ';
+    for (const line of this.formatLog(level, message)) {
+      if (line === '') continue;
       this.spinner.stopAndPersist({ text: line, symbol: options.symbol ?? SYMBOLS[level] ?? ' ' });
     }
   }

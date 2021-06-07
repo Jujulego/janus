@@ -4,6 +4,7 @@
   "license": "MIT",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
+  "bin": "./bin/jill.js",
   "repository": "github:jujulego/janus",
   "engines": {
     "node": "^12 ^14"

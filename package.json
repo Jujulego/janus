@@ -9,6 +9,7 @@
   ],
   "scripts": {
     "janus": "yarn workspace @jujulego/janus start",
+    "jill": "yarn workspace @jujulego/jill start",
     "build": "yarn workspaces foreach -pvi --no-private --topological-dev run build",
     "lint": "yarn workspaces foreach -p run lint"
   },

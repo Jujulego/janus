@@ -3,6 +3,8 @@ import { logger, LoggerOptions } from './logger';
 // Types
 export interface CommonArgs extends LoggerOptions {
   verbose: boolean;
+  _: (string | number)[];
+  '$0': string;
 }
 
 // Methods

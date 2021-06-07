@@ -20,8 +20,9 @@ import { LOG_LEVELS } from './logger';
         conflicts: 'verbosity',
         description: 'Set verbosity level to "verbose"',
       })
-      .command(require('./commands/build')) // eslint-disable-line @typescript-eslint/no-var-requires
-      .command(require('./commands/deps'))  // eslint-disable-line @typescript-eslint/no-var-requires
+      .command(require('./commands/run'))  // eslint-disable-line @typescript-eslint/no-var-requires
+      .command(require('./commands/deps')) // eslint-disable-line @typescript-eslint/no-var-requires
+      .demandCommand(1)
       .help()
       .parse();
   } catch (error) {

@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus",
-  "version": "1.0.0-alpha.7",
+  "version": "1.0.0-alpha.8",
   "license": "MIT",
   "main": "./dist/main.js",
   "types": "./dist/main.d.ts",
@@ -15,16 +15,23 @@
     "lint": "eslint src/**/*"
   },
   "dependencies": {
-    "@jujulego/janus-config": "^1.0.0-alpha.5",
-    "@jujulego/janus-proxy": "^1.0.0-alpha.12",
+    "@jujulego/janus-common": "^1.0.0-alpha.4",
+    "@jujulego/janus-config": "^1.0.0-alpha.6",
+    "@jujulego/janus-proxy": "^1.0.0-alpha.13",
     "chalk": "^4.1.1",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
+    "graphql-tag": "^2.12.4",
+    "log-symbols": "^4.1.0",
     "ora": "^5.4.0",
+    "rxjs": "^7.1.0",
+    "subscriptions-transport-ws": "^0.9.18",
+    "ws": "^7.4.5",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
     "@types/node": "^12.20.14",
+    "@types/ws": "^7",
     "@types/yargs": "^16",
     "@typescript-eslint/eslint-plugin": "^4.26.0",
     "eslint": "^7.27.0",

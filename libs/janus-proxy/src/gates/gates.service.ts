@@ -1,9 +1,10 @@
-import { Injectable, Logger, OnApplicationBootstrap } from '@nestjs/common';
+import { Injectable, OnApplicationBootstrap } from '@nestjs/common';
 import { PubSub } from 'graphql-subscriptions';
 import { Subject } from 'rxjs';
 
 import { ConfigService } from '../config/config.service';
 import { Event } from '../event';
+import { Logger } from '../logger';
 
 import { Service } from './service.model';
 import { Gate } from './gate.model';
@@ -59,7 +60,7 @@ export class GatesService implements OnApplicationBootstrap {
       this._pubsub.publish(service, { service: srv });
       this._pubsub.publish(`${service}.${name}`, { gate });
 
-      this._logger.log(`Gate ${service}.${name} enabled`);
+      this._logger.log(`Gate ${service}.${name} enabled`, { service, gate: name });
     }
 
     return gate;
@@ -75,7 +76,7 @@ export class GatesService implements OnApplicationBootstrap {
       this._pubsub.publish(service, { service: srv });
       this._pubsub.publish(`${service}.${name}`, { gate });
 
-      this._logger.log(`Gate ${service}.${name} disabled`);
+      this._logger.log(`Gate ${service}.${name} disabled`, { service, gate: name });
     }
 
     return gate;

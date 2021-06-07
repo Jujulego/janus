@@ -1,9 +1,6 @@
 import { NestFactory } from '@nestjs/core';
-import { INestApplication, Logger } from '@nestjs/common';
-import {
-  GraphQLSchemaBuilderModule,
-  GraphQLSchemaFactory,
-} from '@nestjs/graphql';
+import { INestApplication } from '@nestjs/common';
+import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphql';
 import { GraphQLSchema } from 'graphql';
 import { Subject } from 'rxjs';
 import { exhaustMap, filter } from 'rxjs/operators';
@@ -17,6 +14,8 @@ import { GateResolver } from './gates/gate.resolver';
 import { ServiceResolver } from './gates/service.resolver';
 import { ConfigService } from './config/config.service';
 import { ControlService } from './control/control.service';
+import { Logger } from './logger';
+import { JsonObjScalar } from './json-obj.scalar';
 
 // Server
 export class JanusServer {
@@ -30,18 +29,18 @@ export class JanusServer {
   readonly $shutdown = this._shutdown.asObservable();
 
   // Constructor
-  private constructor(readonly app: INestApplication) {}
+  private constructor(
+    readonly app: INestApplication
+  ) {}
 
   // Statics
   static async createServer(): Promise<JanusServer> {
-    const app = await NestFactory.create(AppModule);
+    const app = await NestFactory.create(AppModule, { logger: new Logger() });
     return new JanusServer(app);
   }
 
   static async generateGQLSchema(): Promise<GraphQLSchema> {
-    const app = await NestFactory.create(GraphQLSchemaBuilderModule, {
-      logger: false,
-    });
+    const app = await NestFactory.create(GraphQLSchemaBuilderModule, { logger: false });
     await app.init();
 
     // Generate schema
@@ -50,7 +49,7 @@ export class JanusServer {
       GateResolver,
       ServiceResolver,
       ServerResolver,
-    ]);
+    ], [JsonObjScalar]);
   }
 
   // Methods
@@ -79,17 +78,15 @@ export class JanusServer {
       this.app.use(morgan('dev', {
         stream: {
           write(str: string) {
-            Logger.log(str.trim());
+            Logger.debug(str.trim());
           },
         },
-      }),);
+      }));
     }
 
     // Start server
     await this.app.listen(this.config.control.port, () => {
-      this._logger.log(
-        `Server listening at http://localhost:${this.config.control.port}`,
-      );
+      this._logger.log(`Server listening at http://localhost:${this.config.control.port}`);
       this._started.next();
 
       // Listen for shutdown events

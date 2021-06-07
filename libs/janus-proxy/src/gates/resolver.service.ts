@@ -1,5 +1,7 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { filter } from 'rxjs/operators';
+
+import { Logger } from '../logger';
 
 import { GatesService } from './gates.service';
 import { Service } from './service.model';
@@ -25,7 +27,7 @@ export class ResolverService {
 
   // Methods
   private _register(service: Service) {
-    this._logger.verbose(`New route ${service.name}: ${service.url}`);
+    this._logger.verbose(`New route ${service.name}: ${service.url}`, { service: service.name });
     this._routes.push([service.url, service.name]);
   }
 

@@ -17,7 +17,8 @@ export async function handler() {
     console.log(printSchema(schema));
     process.exit(0);
   } catch (error) {
-    logger.fail(error);
+    logger.fail('Generation failed');
+    logger.error(error);
     process.exit(1);
   }
 }

@@ -15,6 +15,7 @@ import { ServiceResolver } from './gates/service.resolver';
 import { ConfigService } from './config/config.service';
 import { ControlService } from './control/control.service';
 import { Logger } from './logger';
+import { JsonObjScalar } from './json-obj.scalar';
 
 // Server
 export class JanusServer {
@@ -48,7 +49,7 @@ export class JanusServer {
       GateResolver,
       ServiceResolver,
       ServerResolver,
-    ]);
+    ], [JsonObjScalar]);
   }
 
   // Methods

@@ -3,7 +3,7 @@ import { Box, Grid } from '@material-ui/core';
 import { GetServerSideProps, NextPage } from 'next';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 
-import { GateFragment, IGate, IService, ServiceFragment } from '@jujulego/janus-common';
+import { GateFragment, IGate, ILog, IService, ServiceFragment } from '@jujulego/janus-common';
 
 import { addApolloState, createApolloClient } from '../../apollo-client';
 import { GateDetails } from '../../gates/GateDetails';
@@ -11,7 +11,6 @@ import { Navbar } from '../../layout/Navbar';
 import { ServiceHeader } from '../../services/ServiceHeader';
 import { ServiceGraph } from '../../services/ServiceGraph';
 import { Logs, LOGS_QRY } from '../../control/Logs';
-import { ILog } from '../../../../janus-common/src';
 
 // Types
 export interface ServicePageData {

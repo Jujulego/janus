@@ -1,11 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
-import {
-  Card,
-  CardHeader,
-  Grid,
-  IconButton,
-  Typography,
-} from '@material-ui/core';
+import { Box, Card, CardHeader, Grid, IconButton, Typography } from '@material-ui/core';
 import { Share as ShareIcon } from '@material-ui/icons';
 import { GetServerSideProps, NextPage } from 'next';
 import NextLink from 'next/link';
@@ -13,6 +7,7 @@ import NextLink from 'next/link';
 import { IService } from '@jujulego/janus-common';
 
 import { addApolloState, createApolloClient } from '../apollo-client';
+import { Logs, LOGS_QRY } from '../control/Logs';
 import { Navbar } from '../layout/Navbar';
 
 // Queries
@@ -38,22 +33,22 @@ const HomePage: NextPage = () => {
   // Render
   return (
     <Navbar>
-      <Typography variant="h5" mb={2}>
-        Services
-      </Typography>
+      <Typography variant="h5" mb={2}>Services</Typography>
 
       <Grid container spacing={2}>
-        {data?.services.map((service) => (
+        { data?.services.map((service) => (
           <Grid key={service.name} item xs={4} md={3} xl={2}>
             <Card>
               <CardHeader
                 title={service.name}
                 titleTypographyProps={{ variant: 'body1' }}
+
                 subheader={service.url}
                 subheaderTypographyProps={{
                   variant: 'body2',
                   color: 'primary.light',
                 }}
+
                 action={
                   <NextLink href={`/services/${service.name}`} passHref>
                     <IconButton component="a">
@@ -66,6 +61,11 @@ const HomePage: NextPage = () => {
           </Grid>
         ))}
       </Grid>
+
+      <Typography variant="h5" mt={4} mb={2}>Events</Typography>
+      <Box flex={1} overflow="auto">
+        <Logs title="Global logs" />
+      </Box>
     </Navbar>
   );
 };
@@ -77,8 +77,12 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const client = createApolloClient(ctx);
 
   // Request services data
-  await client.query<HomePageData>({
+  await client.query({
     query: HOME_PAGE_QRY,
+  });
+
+  await client.query({
+    query: LOGS_QRY
   });
 
   return { props: addApolloState(client, {}) };

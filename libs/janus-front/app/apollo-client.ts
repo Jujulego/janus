@@ -1,11 +1,4 @@
-import {
-  ApolloClient,
-  ApolloLink,
-  HttpLink,
-  InMemoryCache,
-  NormalizedCacheObject,
-  split,
-} from '@apollo/client';
+import { ApolloClient, ApolloLink, HttpLink, InMemoryCache, NormalizedCacheObject, split } from '@apollo/client';
 import { WebSocketLink } from '@apollo/client/link/ws';
 import { getMainDefinition } from '@apollo/client/utilities';
 import { SchemaLink } from '@apollo/client/link/schema';
@@ -55,8 +48,7 @@ export function createApolloClient(ctx?: GetServerSidePropsContext): ApolloClien
 
   // Build client
   return new ApolloClient({
-    link,
-    ssrMode,
+    link, ssrMode,
     cache: new InMemoryCache({
       typePolicies: {
         Service: {

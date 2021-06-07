@@ -1,9 +1,7 @@
 import {
   GatewayTimeoutException,
   HttpException,
-  Injectable,
-  InternalServerErrorException,
-  Logger,
+  Injectable, InternalServerErrorException,
   NotFoundException,
   OnApplicationBootstrap,
   OnApplicationShutdown,
@@ -18,17 +16,14 @@ import { ResolverService } from '../gates/resolver.service';
 import { GatesService } from '../gates/gates.service';
 import { Gate } from '../gates/gate.model';
 import { Service } from '../gates/service.model';
+import { Logger } from '../logger';
 
 // Service
 @Injectable()
-export class ProxyServer
-  implements OnApplicationBootstrap, OnApplicationShutdown
-{
+export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdown {
   // Attributes
   private readonly _proxy = httpProxy.createProxyServer();
-  private readonly _server = http.createServer((req, res) =>
-    this._redirect(req, res),
-  );
+  private readonly _server = http.createServer((req, res) => this._redirect(req, res));
   private readonly _logger = new Logger(ProxyServer.name);
 
   // Constructor
@@ -58,13 +53,13 @@ export class ProxyServer
   private _redirect(req: http.IncomingMessage, res: http.ServerResponse) {
     const $req = new Subject<http.IncomingMessage>();
 
-    $req
-      .asObservable()
+    $req.asObservable()
       .pipe(
         map((req) => this._resolveGate(req)),
-        tap(([service, gate]) =>
-          this._logger.verbose(`${req.url} => ${gate.target} (service: ${service.name})`),
-        ),
+        tap(([service, gate]) => this._logger.verbose(`${req.url} => ${gate.target} (service: ${service.name})`, {
+          service: service.name,
+          gate: gate.name
+        })),
       )
       .subscribe(
         ([service, gate]) => {
@@ -73,7 +68,7 @@ export class ProxyServer
           this._proxy.web(req, res, options, (error) => {
             // Handle proxy error
             if ((error as any).code === 'ECONNREFUSED') {
-              this._logger.warn(`${options.target} is not responding ...`);
+              this._logger.warn(`${options.target} is not responding ...`, { service: service.name, gate: gate.name });
 
               // Disable gate and try again
               this._gateService.disableGate(service.name, gate.name);
@@ -81,7 +76,7 @@ export class ProxyServer
             } else {
               this._logger.error(error.message);
 
-              this._sendError(res, new InternalServerErrorException(error.message),);
+              this._sendError(res, new InternalServerErrorException(error.message));
             }
           });
         },
@@ -91,7 +86,7 @@ export class ProxyServer
           } else {
             this._logger.error(error.message);
 
-            this._sendError(res, new InternalServerErrorException(error.message),);
+            this._sendError(res, new InternalServerErrorException(error.message));
           }
         },
       );
@@ -107,11 +102,9 @@ export class ProxyServer
 
       throw new NotFoundException(`No route found for ${req.url}`);
     } else if (!gate) {
-      this._logger.warn(`${req.url} => unresolved (service: ${service.name})`);
+      this._logger.warn(`${req.url} => unresolved (service: ${service.name})`, { service: service.name });
 
-      throw new GatewayTimeoutException(
-        `No gates available for ${req.url} (service: ${service.name})`,
-      );
+      throw new GatewayTimeoutException(`No gates available for ${req.url} (service: ${service.name})`);
     }
 
     return [service, gate];
@@ -128,9 +121,7 @@ export class ProxyServer
 
   async listen() {
     await this._server.listen(this._config.proxy.port, () => {
-      this._logger.log(
-        `Proxy listening at http://localhost:${this._config.proxy.port}`,
-      );
+      this._logger.log(`Proxy listening at http://localhost:${this._config.proxy.port}`);
     });
   }
 

@@ -13,9 +13,9 @@ interface DepsArgs extends CommonArgs {
 }
 
 // Command
-export const command = 'deps <workspace>';
+export const command = 'build <workspace>';
 export const aliases = [];
-export const describe = 'Print all workspace\'s dependencies';
+export const describe = 'Build all workspace\'s dependencies';
 
 export const builder: CommandBuilder = (yargs) => yargs
   .positional('workspace', {
@@ -36,11 +36,12 @@ export const handler = commandWrapper(async (args: DepsArgs) => {
     if (!ws) {
       logger.warn(`Workspace ${args.workspace} not found`);
     } else {
-      logger.info(`Dependencies of ${ws.printName}:`);
       const deps = args.dev ? walkDevDependencies(ws) : walkDependencies(ws);
 
       for await (const dep of deps) {
-        logger.info(`- ${dep.printName}`);
+        logger.spin(`Building ${dep.printName} ...`);
+        await dep.run('build');
+        logger.succeed(`${dep.printName} built`);
       }
     }
   } catch (error) {

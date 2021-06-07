@@ -68,7 +68,9 @@ export class Logger {
   }
 
   private formatLog(level: LogLevel, log: string): string[] {
-    return log.split('\n')
+    return log
+      .replace(/\n+$/, '')
+      .split('\n')
       .map(line => {
         switch (level) {
           case 'debug':
@@ -149,8 +151,8 @@ export class Logger {
   log(level: LogLevel, message: string, options: LogOptions = {}): void {
     if (!this.shouldLog(level)) return;
 
-    for (const line of this.formatLog(level, message)) {
-      if (line === '') continue;
+    for (let line of this.formatLog(level, message)) {
+      if (line === '') line = ' ';
       this.spinner.stopAndPersist({ text: line, symbol: options.symbol ?? SYMBOLS[level] ?? ' ' });
     }
   }

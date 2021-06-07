@@ -95,6 +95,14 @@ export class Logger implements LoggerService {
     this._logger.info({ message, ...metadata });
   }
 
+  info(message: any, metadata?: string | Record<string, string | number>): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this._logger.info({ message, ...metadata });
+  }
+
   verbose(message: any, metadata?: string | Record<string, string | number>): void {
     if (typeof metadata === 'string') {
       metadata = { context: metadata };

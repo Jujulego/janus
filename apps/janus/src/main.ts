@@ -1,6 +1,8 @@
 import { hideBin } from 'yargs/helpers';
 import yargs from 'yargs';
 
+import { LOG_LEVELS } from './logger';
+
 // Commands
 (async function () {
   try {
@@ -11,6 +13,17 @@ import yargs from 'yargs';
         alias: 'c',
         description: 'Path to the configuration file',
         default: 'janus.config.yml',
+      })
+      .option('verbosity', {
+        conflicts: 'v',
+        choices: LOG_LEVELS,
+        description: 'Set verbosity level'
+      })
+      .option('verbose', {
+        alias: 'v',
+        boolean: true,
+        conflicts: 'verbosity',
+        description: 'Set verbosity level to "verbose"',
       })
       .command(require('./commands/start'))      // eslint-disable-line @typescript-eslint/no-var-requires
       .command(require('./commands/logs'))       // eslint-disable-line @typescript-eslint/no-var-requires

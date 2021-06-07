@@ -4,6 +4,7 @@ import { CommandBuilder } from 'yargs';
 import { JanusConfig } from '@jujulego/janus-config';
 
 import { commandWrapper, CommonArgs } from '../helpers';
+import { logger } from '../logger';
 
 // Command
 export const command = 'stop';
@@ -14,6 +15,7 @@ export const builder: CommandBuilder = {};
 export const handler = commandWrapper(async (args: CommonArgs) => {
   try {
     // Load config
+    logger.spin('Stopping proxy ...');
     const config = await JanusConfig.loadFile(args.config);
 
     // Shutdown
@@ -23,8 +25,9 @@ export const handler = commandWrapper(async (args: CommonArgs) => {
         shutdown
       }
     `);
+    logger.succeed('Proxy stopped');
   } catch (error) {
-    console.error(error);
+    logger.fail(error);
     process.exit(1);
   }
 });

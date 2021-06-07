@@ -7,19 +7,12 @@ import { ILog, LogFragment } from '@jujulego/janus-common';
 import { JanusConfig } from '@jujulego/janus-config';
 
 import { commandWrapper, CommonArgs } from '../helpers';
+import { LOG_LEVELS, logger, LogLevel } from '../logger';
 
 // Types
 interface ILogsData {
   logs: ILog[];
 }
-
-// Constants
-const LEVELS: Record<string, (txt: string) => string | undefined> = {
-  debug: chalk.blue,
-  verbose: chalk.cyan,
-  warn: chalk.yellow,
-  error: chalk.red
-};
 
 // Command
 export const command = 'logs';
@@ -30,7 +23,8 @@ export const builder: CommandBuilder = {};
 export const handler = commandWrapper(async (args: CommonArgs) => {
   try {
     // Load config
-    const config = await JanusConfig.loadFile(args.config);
+    logger.spin('Connecting to proxy server ...');
+    const config = await JanusConfig.loadFile(args.config, { logger });
 
     // Existing logs
     const client = new GraphQLClient(`http://localhost:${config.control.port}/graphql`,);
@@ -44,14 +38,20 @@ export const handler = commandWrapper(async (args: CommonArgs) => {
       ${LogFragment}
     `);
 
+    logger.stop();
+
     for (const log of logs) {
-      const fmt = LEVELS[log.level] || ((txt) => txt);
+      let { message, level } = log;
 
       if (log.metadata.context) {
-        console.log(chalk`{grey [${log.metadata.context}]} ${fmt(log.message)}`);
-      } else {
-        console.log(fmt(log.message));
+        message = chalk`{grey [${log.metadata.context}]} ${log.message}`;
       }
+
+      if (!LOG_LEVELS.includes(level)) {
+        level = 'info';
+      }
+
+      logger.log(level as LogLevel, message);
     }
   } catch (error) {
     console.error(error);

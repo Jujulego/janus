@@ -12,7 +12,10 @@ export const DEFAULT_PROXY_PORT = 3000;
 // Types
 export interface ILogger {
   // Methods
-  log(message: string): void;
+  debug(message: string): void;
+  verbose(message: string): void;
+  info(message: string): void;
+  warn(message: string): void;
   error(message: string): void;
 }
 
@@ -61,7 +64,7 @@ export class JanusConfig implements IJanusConfig {
         throw new Error(`Invalid config file ${file}`);
       }
 
-      logger.log(`Config file ${file} loaded`);
+      logger.debug(`Config file ${file} loaded`);
       return new JanusConfig(data);
     } catch (error) {
       logger.error('Failed to load config file');

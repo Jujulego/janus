@@ -3,7 +3,7 @@ import { CommandBuilder } from 'yargs';
 import { commandWrapper, CommonArgs } from '../helpers';
 import { logger } from '../logger';
 import { Project } from '../project';
-import { walkDevDependencies } from '../tree';
+import { extractors, walk } from '../tree';
 
 // Types
 interface RunArgs extends CommonArgs {
@@ -42,7 +42,7 @@ export const handler = commandWrapper(async (args: RunArgs) => {
         logger.warn('Dependencies will not be build, as they should be build by parent jill process.');
       } else {
         // Build dependencies
-        for await (const dep of walkDevDependencies(ws)) {
+        for await (const dep of walk(ws, extractors.devDependencies)) {
           logger.spin(`Building ${dep.printName} ...`);
           await dep.build();
         }

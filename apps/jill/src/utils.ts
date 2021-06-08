@@ -20,3 +20,9 @@ export function formatDuration(ms: number): string {
 
   return txt.join(' ');
 }
+
+export async function* combine<T>(...generators: AsyncGenerator<T>[]): AsyncGenerator<T> {
+  for (const gen of generators) {
+    yield* gen;
+  }
+}

@@ -1,10 +1,9 @@
 import { CommandBuilder } from 'yargs';
-import chalk from 'chalk';
 
 import { commandWrapper, CommonArgs } from '../helpers';
 import { logger } from '../logger';
 import { Project } from '../project';
-import { walkDependencies, walkDevDependencies } from '../tree';
+import { extractors, walk } from '../tree';
 
 // Types
 interface DepsArgs extends CommonArgs {
@@ -37,9 +36,7 @@ export const handler = commandWrapper(async (args: DepsArgs) => {
       logger.warn(`Workspace ${args.workspace} not found`);
     } else {
       logger.info(`Dependencies of ${ws.printName}:`);
-      const deps = args.dev ? walkDevDependencies(ws) : walkDependencies(ws);
-
-      for await (const dep of deps) {
+      for await (const dep of walk(ws, args.dev ? extractors.devDependencies : extractors.dependencies)) {
         logger.info(`- ${dep.printName}`);
       }
     }

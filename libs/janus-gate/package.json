@@ -16,7 +16,6 @@
   "dependencies": {
     "@jujulego/janus-common": "^1.0.0-alpha.4",
     "@jujulego/janus-config": "^1.0.0-alpha.6",
-    "@jujulego/jill": "^1.0.0-alpha.0",
     "graphql": "^15.5.0",
     "graphql-request": "^3.4.0",
     "graphql-tag": "^2.12.4",
@@ -26,6 +25,7 @@
   },
   "devDependencies": {
     "@jujulego/janus-proxy": "^1.0.0-alpha.13",
+    "@jujulego/jill": "^1.0.0-alpha.0",
     "@types/node": "^12.20.14",
     "@types/ws": "^7",
     "@typescript-eslint/eslint-plugin": "^4.26.0",

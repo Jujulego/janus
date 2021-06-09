@@ -12,18 +12,20 @@ interface DepsArgs extends CommonArgs {
 }
 
 // Command
-export const command = 'deps <workspace>';
+export const command = 'deps';
 export const aliases = [];
 export const describe = 'Print all workspace\'s dependencies';
 
-export const builder: CommandBuilder = (yargs) => yargs
-  .positional('workspace', {
+export const builder: CommandBuilder = {
+  workspace: {
+    alias: 'w',
     type: 'string'
-  })
-  .option('dev', {
+  },
+  dev: {
     type: 'boolean',
     default: false
-  });
+  }
+};
 
 export const handler = commandWrapper(async (args: DepsArgs) => {
   try {

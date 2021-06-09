@@ -19,7 +19,6 @@
   "dependencies": {
     "@jujulego/janus-common": "^1.0.0-alpha.4",
     "@jujulego/janus-config": "^1.0.0-alpha.6",
-    "@jujulego/jill": "^1.0.0-alpha.0",
     "@nestjs/common": "^7.6.15",
     "@nestjs/core": "^7.6.15",
     "@nestjs/graphql": "^7.10.6",
@@ -41,6 +40,7 @@
   },
   "devDependencies": {
     "@jujulego/janus-front": "^1.0.0-alpha.7",
+    "@jujulego/jill": "^1.0.0-alpha.0",
     "@nestjs/cli": "^7.6.0",
     "@nestjs/schematics": "^7.3.0",
     "@nestjs/testing": "^7.6.15",

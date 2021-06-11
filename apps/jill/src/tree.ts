@@ -2,7 +2,7 @@ import { Workspace } from './workspace';
 import { combine } from './utils';
 
 // Types
-type DepsExtractor = (ws: Workspace) => AsyncGenerator<Workspace, void, unknown>;
+type DepsExtractor = (ws: Workspace) => AsyncGenerator<Workspace>;
 
 // Extractors
 export const extractors = {
@@ -11,7 +11,7 @@ export const extractors = {
 };
 
 // Walkers
-async function* _walk(ws: Workspace, emitted: Set<string>, extractor: DepsExtractor): AsyncGenerator<Workspace, void, unknown> {
+async function* _walk(ws: Workspace, emitted: Set<string>, extractor: DepsExtractor): AsyncGenerator<Workspace> {
   for await (const dep of extractor(ws)) {
     yield* _walk(dep, emitted, extractor);
 

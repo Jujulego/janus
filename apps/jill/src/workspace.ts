@@ -1,11 +1,11 @@
 import chalk from 'chalk';
-import { spawn } from 'child_process';
 import path from 'path';
 
 import { Manifest } from './manifest';
 import { Project } from './project';
 import { logger } from './logger';
 import { formatDuration } from './utils';
+import { spawn } from './spawn';
 
 // Class
 export class Workspace {
@@ -41,39 +41,17 @@ export class Workspace {
     }
   }
 
-  run(script: string, ...args: string[]): Promise<void> {
+  async run(script: string, ...args: string[]): Promise<void> {
     if (this.manifest.scripts && this.manifest.scripts[`jill:${script}`]) {
       script = `jill:${script}`;
     }
 
-    return new Promise<void>((resolve, reject) => {
-      logger.verbose(`yarn run ${script} ${args.join(' ')} (in ${this.printName})`);
-      const run = spawn('yarn', [script, ...args], {
-        cwd: this.cwd,
-        shell: true,
-        stdio: logger.isSpinning ? 'pipe' : 'inherit',
-        env: {
-          ...process.env,
-          JILL_STARTED_SCRIPT: script,
-          FORCE_COLOR: '1'
-        }
-      });
-
-      run.stdout?.on('data', (data: Buffer) => {
-        logger.info(data.toString('utf-8'));
-      });
-
-      run.stderr?.on('data', (data: Buffer) => {
-        logger.warn(data.toString('utf-8'));
-      });
-
-      run.on('close', (code) => {
-        if (code) {
-          reject(new Error(`Script failed with error code ${code}`));
-        } else {
-          resolve();
-        }
-      });
+    return await spawn('yarn', [script, ...args], {
+      cwd: this.cwd,
+      location: this.printName,
+      env: {
+        JILL_STARTED_SCRIPT: script,
+      }
     });
   }
 

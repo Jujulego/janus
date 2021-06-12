@@ -23,6 +23,10 @@ async function* _walk(ws: Workspace, emitted: Set<string>, extractor: DepsExtrac
   }
 }
 
-export function walk(ws: Workspace, extractor: DepsExtractor): AsyncGenerator<Workspace> {
-  return _walk(ws, new Set(), extractor);
+export async function* walk(roots: Workspace[], extractor: DepsExtractor): AsyncGenerator<Workspace> {
+  const emitted = new Set<string>();
+
+  for (const root of roots) {
+    yield* _walk(root, emitted, extractor);
+  }
 }

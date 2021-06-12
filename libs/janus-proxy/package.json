@@ -9,9 +9,8 @@
     "node": "^12 ^14"
   },
   "scripts": {
-    "jill:build": "nest build",
-    "build": "jill run build",
-    "start": "NODE_ENV=development jill run nest start --watch",
+    "build": "nest build",
+    "start": "NODE_ENV=development jill run -v nest -- start --watch",
     "lint": "eslint \"{src,test}/**/*.ts\"",
     "test:unit": "jest -c jest.config.unit.json",
     "test:e2e": "jest -c jest.config.e2e.json"

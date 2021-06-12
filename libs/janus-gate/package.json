@@ -9,8 +9,7 @@
     "node": "^12 ^14"
   },
   "scripts": {
-    "jill:build": "tsc -p tsconfig.build.json",
-    "build": "jill run build",
+    "build": "tsc -p tsconfig.build.json",
     "lint": "eslint src/**/*"
   },
   "dependencies": {

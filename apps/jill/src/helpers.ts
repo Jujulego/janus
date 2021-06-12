@@ -1,8 +1,10 @@
 import { logger, LoggerOptions } from './logger';
+import { Arguments } from 'yargs';
 
 // Types
-export interface CommonArgs extends LoggerOptions {
+export interface CommonArgs extends Arguments, LoggerOptions {
   verbose: boolean;
+  '--'?: string[];
 }
 
 // Methods

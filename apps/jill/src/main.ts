@@ -23,6 +23,9 @@ import { LOG_LEVELS } from './logger';
       .command(require('./commands/deps')) // eslint-disable-line @typescript-eslint/no-var-requires
       .demandCommand(1)
       .help()
+      .parserConfiguration({
+        'populate--': true
+      })
       .parse();
   } catch (error) {
     console.error(error);

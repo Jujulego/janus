@@ -10,8 +10,8 @@
   },
   "scripts": {
     "jill:build": "yarn build:server",
-    "build": "jill run build:front && yarn build:server",
-    "build:dev": "jill run build:server --watch",
+    "build": "yarn run build:front && yarn build:server",
+    "build:dev": "yarn run build:server --watch",
     "build:front": "next build app",
     "build:server": "nest build",
     "lint": "eslint \"{app,src,test}/**/*\"",

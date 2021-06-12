@@ -38,7 +38,7 @@ export const handler = commandWrapper(async (args: DepsArgs) => {
       logger.warn(`Workspace ${args.workspace} not found`);
     } else {
       logger.info(`Dependencies of ${ws.printName}:`);
-      for await (const dep of walk(ws, args.dev ? extractors.devDependencies : extractors.dependencies)) {
+      for await (const dep of walk([ws], args.dev ? extractors.devDependencies : extractors.dependencies)) {
         logger.info(`- ${dep.printName}`);
       }
     }

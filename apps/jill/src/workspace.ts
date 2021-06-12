@@ -41,11 +41,11 @@ export class Workspace {
     }
   }
 
-  async run(script: string, ...args: string[]): Promise<void> {
-    if (this.manifest.scripts && this.manifest.scripts[`jill:${script}`]) {
-      script = `jill:${script}`;
-    }
+  hasScript(name: string): boolean {
+    return !!(this.manifest.scripts && this.manifest.scripts[name]);
+  }
 
+  async run(script: string, ...args: string[]): Promise<void> {
     return await spawn('yarn', [script, ...args], {
       cwd: this.cwd,
       location: this.printName,
@@ -57,7 +57,7 @@ export class Workspace {
 
   async build(): Promise<void> {
     const start = Date.now();
-    await this.run('build');
+    await this.run(this.hasScript('jill:build') ? 'jill:build' : 'build');
 
     logger.succeed(chalk`${this.printName} built {grey (${formatDuration(Date.now() - start)})}`);
   }

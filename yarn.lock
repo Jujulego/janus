@@ -1949,14 +1949,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-common@workspace:libs/janus-common"
   dependencies:
-    "@types/eslint": ^7
-    "@types/node": ^12.20.14
-    "@types/prettier": ^2
+    "@types/eslint": 7.2.13
+    "@types/node": 12.20.14
+    "@types/prettier": 2.2.3
     "@typescript-eslint/eslint-plugin": ^4.26.0
-    eslint: ^7.27.0
+    eslint: 7.27.0
     graphql: ^15.5.0
     graphql-tag: ^2.12.4
-    typescript: ^4.2.3
+    typescript: 4.2.4
   languageName: unknown
   linkType: soft
 
@@ -1964,13 +1964,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-config@workspace:libs/janus-config"
   dependencies:
-    "@types/node": ^12.20.14
-    "@types/prettier": ^2
-    "@types/yaml": ^1
+    "@types/node": 12.20.14
+    "@types/prettier": 2.2.3
+    "@types/yaml": 1.9.6
     "@typescript-eslint/eslint-plugin": ^4.26.0
     ajv: ^8.2.0
-    eslint: ^7.27.0
-    typescript: ^4.2.4
+    eslint: 7.27.0
+    typescript: 4.2.4
     yaml: ^1.10.2
   languageName: unknown
   linkType: soft
@@ -1992,25 +1992,25 @@ __metadata:
     "@nestjs/common": ^7.6.15
     "@nestjs/core": ^7.6.15
     "@nestjs/platform-express": ^7.6.15
-    "@nestjs/schematics": ^7.3.0
+    "@nestjs/schematics": 7.3.1
     "@nestjs/testing": ^7.6.15
-    "@types/d3": ^6
-    "@types/express": ^4.17.11
-    "@types/jest": ^26.0.22
-    "@types/lodash": ^4.14.170
-    "@types/node": ^12.20.14
-    "@types/react": ^17
-    "@types/react-dom": ^17
-    "@types/react-window": ^1
-    "@types/supertest": ^2.0.10
+    "@types/d3": 6.7.0
+    "@types/express": 4.17.12
+    "@types/jest": 26.0.22
+    "@types/lodash": 4.14.170
+    "@types/node": 12.20.14
+    "@types/react": 17.0.7
+    "@types/react-dom": 17.0.5
+    "@types/react-window": 1.8.3
+    "@types/supertest": 2.0.11
     "@typescript-eslint/eslint-plugin": ^4.26.0
     class-transformer: ^0.4.0
     class-validator: ^0.13.1
     clsx: ^1.1.1
     d3: ^6.7.0
     deepmerge: ^4.2.2
-    eslint: ^7.27.0
-    eslint-plugin-react: ^7.24.0
+    eslint: 7.27.0
+    eslint-plugin-react: 7.24.0
     eslint-plugin-react-hooks: ^4.2.0
     graphql: ^15.5.0
     jest: ^26.6.3
@@ -2023,11 +2023,11 @@ __metadata:
     resize-observer-polyfill: ^1.5.1
     rxjs: ^6.6.6
     subscriptions-transport-ws: ^0.9.18
-    supertest: ^6.1.3
-    ts-jest: ^26.5.4
-    ts-node: ^9.1.1
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.3
+    supertest: 6.1.3
+    ts-jest: 26.5.5
+    ts-node: 9.1.1
+    tsconfig-paths: 3.9.0
+    typescript: 4.2.4
   languageName: unknown
   linkType: soft
 
@@ -2038,18 +2038,18 @@ __metadata:
     "@jujulego/janus-common": ^1.0.0-alpha.4
     "@jujulego/janus-config": ^1.0.0-alpha.6
     "@jujulego/janus-proxy": ^1.0.0-alpha.13
-    "@types/node": ^12.20.14
-    "@types/prettier": ^2
-    "@types/ws": ^7
+    "@types/node": 12.20.14
+    "@types/prettier": 2.2.3
+    "@types/ws": 7.4.2
     "@typescript-eslint/eslint-plugin": ^4.26.0
-    eslint: ^7.27.0
+    eslint: 7.27.0
     graphql: ^15.5.0
     graphql-request: ^3.4.0
     graphql-tag: ^2.12.4
     rxjs: ^7.0.0
     subscriptions-transport-ws: ^0.9.18
-    ts-node: ^9.1.1
-    typescript: ^4.2.3
+    ts-node: 9.1.1
+    typescript: 4.2.4
     ws: ^7.4.5
   peerDependencies:
     "@jujulego/janus-proxy": ^1.0.0-alpha.13
@@ -2071,33 +2071,33 @@ __metadata:
     "@nestjs/core": ^7.6.15
     "@nestjs/graphql": ^7.10.6
     "@nestjs/platform-express": ^7.6.15
-    "@nestjs/schematics": ^7.3.0
+    "@nestjs/schematics": 7.3.1
     "@nestjs/testing": ^7.6.15
-    "@types/http-proxy": ^1.17.5
-    "@types/jest": ^26.0.22
-    "@types/morgan": ^1
-    "@types/node": ^12.20.14
-    "@types/supertest": ^2.0.10
+    "@types/http-proxy": 1.17.5
+    "@types/jest": 26.0.22
+    "@types/morgan": 1.9.2
+    "@types/node": 12.20.14
+    "@types/supertest": 2.0.11
     "@typescript-eslint/eslint-plugin": ^4.26.0
     apollo-server-core: ^2.23.0
     apollo-server-express: ^2.23.0
     chalk: ^4.1.1
     class-transformer: ^0.4.0
     class-validator: ^0.13.1
-    eslint: ^7.27.0
+    eslint: 7.27.0
     graphql: ^15.5.0
     graphql-subscriptions: ^1.2.1
     graphql-tools: ^7.0.4
     http-proxy: ^1.18.1
     jest: ^26.6.3
-    morgan: ^1.10.0
+    morgan: 1.10.0
     reflect-metadata: ^0.1.13
     rxjs: ^6.6.6
-    supertest: ^6.1.3
-    ts-jest: ^26.5.4
-    ts-node: ^9.1.1
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.3
+    supertest: 6.1.3
+    ts-jest: 26.5.5
+    ts-node: 9.1.1
+    tsconfig-paths: 3.9.0
+    typescript: 4.2.4
     url-router: ^13.0.0
     winston: ^3.3.3
     winston-transport: ^4.4.0
@@ -2116,13 +2116,13 @@ __metadata:
     "@jujulego/janus-common": ^1.0.0-alpha.4
     "@jujulego/janus-config": ^1.0.0-alpha.6
     "@jujulego/janus-proxy": ^1.0.0-alpha.13
-    "@types/node": ^12.20.14
-    "@types/prettier": ^2
-    "@types/ws": ^7
-    "@types/yargs": ^16
+    "@types/node": 12.20.14
+    "@types/prettier": 2.2.3
+    "@types/ws": 7.4.2
+    "@types/yargs": 16.0.1
     "@typescript-eslint/eslint-plugin": ^4.26.0
     chalk: ^4.1.1
-    eslint: ^7.27.0
+    eslint: 7.27.0
     graphql: ^15.5.0
     graphql-request: ^3.4.0
     graphql-tag: ^2.12.4
@@ -2130,8 +2130,8 @@ __metadata:
     ora: ^5.4.0
     rxjs: ^7.1.0
     subscriptions-transport-ws: ^0.9.18
-    ts-node: ^9.1.1
-    typescript: ^4.2.3
+    ts-node: 9.1.1
+    typescript: 4.2.4
     ws: ^7.4.5
     yargs: ^16.2.0
   bin:
@@ -2475,7 +2475,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/schematics@npm:^7.3.0":
+"@nestjs/schematics@npm:7.3.1, @nestjs/schematics@npm:^7.3.0":
   version: 7.3.1
   resolution: "@nestjs/schematics@npm:7.3.1"
   dependencies:
@@ -3110,7 +3110,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/d3@npm:^6":
+"@types/d3@npm:6.7.0":
   version: 6.7.0
   resolution: "@types/d3@npm:6.7.0"
   dependencies:
@@ -3168,7 +3168,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:^7":
+"@types/eslint@npm:7.2.13":
   version: 7.2.13
   resolution: "@types/eslint@npm:7.2.13"
   dependencies:
@@ -3215,7 +3215,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/express@npm:^4.17.11":
+"@types/express@npm:4.17.12":
   version: 4.17.12
   resolution: "@types/express@npm:4.17.12"
   dependencies:
@@ -3266,7 +3266,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/http-proxy@npm:^1.17.5":
+"@types/http-proxy@npm:1.17.5":
   version: 1.17.5
   resolution: "@types/http-proxy@npm:1.17.5"
   dependencies:
@@ -3300,7 +3300,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:^26.0.22":
+"@types/jest@npm:26.0.22":
   version: 26.0.22
   resolution: "@types/jest@npm:26.0.22"
   dependencies:
@@ -3365,7 +3365,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:^4.14.170":
+"@types/lodash@npm:4.14.170":
   version: 4.14.170
   resolution: "@types/lodash@npm:4.14.170"
   checksum: 5ecc968649e764e3204435ba5125a3645e5e83963069a26b9307791698bf47ed9c2bd0f97488d9537eb4753d4bae596e5fa6187437a5b04bf47aba78fa553d50
@@ -3386,7 +3386,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/morgan@npm:^1":
+"@types/morgan@npm:1.9.2":
   version: 1.9.2
   resolution: "@types/morgan@npm:1.9.2"
   dependencies:
@@ -3432,17 +3432,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:12.20.14":
+  version: 12.20.14
+  resolution: "@types/node@npm:12.20.14"
+  checksum: 2047f32e4a5a7f5be80745bdfd834635de673b2ee23259cf1dd2023513c33af7f165387a5ebb0f0aab605fe078b4840e4e810152266e5611aa755538d9bf77df
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^10.1.0":
   version: 10.17.58
   resolution: "@types/node@npm:10.17.58"
   checksum: 48412811a6c4f8d2d59a5e299b1600cdb3bdc5011db01f1cdf149f8f5a2f6fa5273370c1ce5eebbad1348a49251e88c680b008cfe09da6bfbb9a16d9aec3ff5a
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:^12.20.14":
-  version: 12.20.14
-  resolution: "@types/node@npm:12.20.14"
-  checksum: 2047f32e4a5a7f5be80745bdfd834635de673b2ee23259cf1dd2023513c33af7f165387a5ebb0f0aab605fe078b4840e4e810152266e5611aa755538d9bf77df
   languageName: node
   linkType: hard
 
@@ -3460,7 +3460,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prettier@npm:^2, @types/prettier@npm:^2.0.0":
+"@types/prettier@npm:2.2.3, @types/prettier@npm:^2.0.0":
   version: 2.2.3
   resolution: "@types/prettier@npm:2.2.3"
   checksum: b7e80288f9f776caca84391a7a217b8baac6b4fce00bb9701af69299d465cb8faf17466f0af0803970c74d2c191767ca729a6d21a2f7e2ce552d1ef6cc0d653a
@@ -3488,7 +3488,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:^17":
+"@types/react-dom@npm:17.0.5":
   version: 17.0.5
   resolution: "@types/react-dom@npm:17.0.5"
   dependencies:
@@ -3515,7 +3515,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-window@npm:^1":
+"@types/react-window@npm:1.8.3":
   version: 1.8.3
   resolution: "@types/react-window@npm:1.8.3"
   dependencies:
@@ -3524,7 +3524,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:^17":
+"@types/react@npm:*, @types/react@npm:17.0.7":
   version: 17.0.7
   resolution: "@types/react@npm:17.0.7"
   dependencies:
@@ -3578,7 +3578,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/supertest@npm:^2.0.10":
+"@types/supertest@npm:2.0.11":
   version: 2.0.11
   resolution: "@types/supertest@npm:2.0.11"
   dependencies:
@@ -3603,7 +3603,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ws@npm:^7":
+"@types/ws@npm:7.4.2":
   version: 7.4.2
   resolution: "@types/ws@npm:7.4.2"
   dependencies:
@@ -3621,7 +3621,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/yaml@npm:^1":
+"@types/yaml@npm:1.9.6":
   version: 1.9.6
   resolution: "@types/yaml@npm:1.9.6"
   dependencies:
@@ -3637,21 +3637,21 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/yargs@npm:16.0.1":
+  version: 16.0.1
+  resolution: "@types/yargs@npm:16.0.1"
+  dependencies:
+    "@types/yargs-parser": "*"
+  checksum: 7b141b6a9efe2da5af054b022f2fbfa3a34d664f1db384babc567b20e9935ac18924c8075780ea22f5e0da4f5714f24dc27b05b6475cd060031648f154183a45
+  languageName: node
+  linkType: hard
+
 "@types/yargs@npm:^15.0.0":
   version: 15.0.13
   resolution: "@types/yargs@npm:15.0.13"
   dependencies:
     "@types/yargs-parser": "*"
   checksum: fa1a5b0a07dbbff1657a27d1191d586632412d170321000f6f417f279547a8c191d7058dbf4d4187c188a5a1aeb2473ddb25fe316b206fccdfe1de6fad976619
-  languageName: node
-  linkType: hard
-
-"@types/yargs@npm:^16":
-  version: 16.0.1
-  resolution: "@types/yargs@npm:16.0.1"
-  dependencies:
-    "@types/yargs-parser": "*"
-  checksum: 7b141b6a9efe2da5af054b022f2fbfa3a34d664f1db384babc567b20e9935ac18924c8075780ea22f5e0da4f5714f24dc27b05b6475cd060031648f154183a45
   languageName: node
   linkType: hard
 
@@ -7140,7 +7140,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:^7.24.0":
+"eslint-plugin-react@npm:7.24.0":
   version: 7.24.0
   resolution: "eslint-plugin-react@npm:7.24.0"
   dependencies:
@@ -7206,7 +7206,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:^7.27.0":
+"eslint@npm:7.27.0":
   version: 7.27.0
   resolution: "eslint@npm:7.27.0"
   dependencies:
@@ -7443,13 +7443,13 @@ __metadata:
   resolution: "express-api@workspace:samples/express-api"
   dependencies:
     "@jujulego/janus-gate": ^1.0.0-alpha.14
-    "@types/express": ^4.17.11
-    "@types/node": ^12.20.14
-    express: ^4.17.1
-    nodemon: ^2.0.7
-    ts-node: ^9.1.1
-    tsconfig-paths: ^3.9.0
-    typescript: ^4.2.3
+    "@types/express": 4.17.12
+    "@types/node": 12.20.14
+    express: 4.17.1
+    nodemon: 2.0.7
+    ts-node: 9.1.1
+    tsconfig-paths: 3.9.0
+    typescript: 4.2.4
   languageName: unknown
   linkType: soft
 
@@ -9423,10 +9423,10 @@ __metadata:
   resolution: "janus@workspace:."
   dependencies:
     "@nestjs/cli": ^7.6.0
-    "@nestjs/schematics": ^7.3.0
+    "@nestjs/schematics": 7.3.1
     "@typescript-eslint/eslint-plugin": ^4.26.0
     "@typescript-eslint/parser": ^4.26.0
-    typescript: ^4.2.3
+    typescript: 4.2.4
   languageName: unknown
   linkType: soft
 
@@ -10793,7 +10793,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"morgan@npm:^1.10.0":
+"morgan@npm:1.10.0":
   version: 1.10.0
   resolution: "morgan@npm:1.10.0"
   dependencies:
@@ -11126,7 +11126,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nodemon@npm:^2.0.7":
+"nodemon@npm:2.0.7":
   version: 2.0.7
   resolution: "nodemon@npm:2.0.7"
   dependencies:
@@ -13689,7 +13689,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"supertest@npm:^6.1.3":
+"supertest@npm:6.1.3":
   version: 6.1.3
   resolution: "supertest@npm:6.1.3"
   dependencies:
@@ -14095,7 +14095,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ts-jest@npm:^26.5.4":
+"ts-jest@npm:26.5.5":
   version: 26.5.5
   resolution: "ts-jest@npm:26.5.5"
   dependencies:
@@ -14128,7 +14128,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ts-node@npm:^9.1.1":
+"ts-node@npm:9.1.1":
   version: 9.1.1
   resolution: "ts-node@npm:9.1.1"
   dependencies:
@@ -14347,7 +14347,7 @@ typescript@4.2.3:
   languageName: node
   linkType: hard
 
-"typescript@^4.2.3, typescript@^4.2.4":
+typescript@4.2.4:
   version: 4.2.4
   resolution: "typescript@npm:4.2.4"
   bin:
@@ -14367,7 +14367,7 @@ typescript@4.2.3:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.2.3#builtin<compat/typescript>, typescript@patch:typescript@^4.2.4#builtin<compat/typescript>":
+"typescript@patch:typescript@4.2.4#builtin<compat/typescript>":
   version: 4.2.4
   resolution: "typescript@patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=a45b0e"
   bin:

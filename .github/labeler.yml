@@ -1,0 +1,6 @@
+cli: apps/janus/**/*
+common: libs/janus-common/**/*
+config: libs/janus-config/**/*
+front: libs/janus-front/**/*
+gate: libs/janus-gate/**/*
+proxy: libs/janus-proxy/**/*

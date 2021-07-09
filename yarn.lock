@@ -2119,7 +2119,7 @@ __metadata:
     "@types/node": 12.20.16
     "@types/prettier": 2.2.3
     "@types/ws": 7.4.6
-    "@types/yargs": 16.0.1
+    "@types/yargs": 16.0.4
     "@typescript-eslint/eslint-plugin": 4.26.0
     chalk: ^4.1.1
     eslint: 7.27.0
@@ -3641,12 +3641,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/yargs@npm:16.0.1":
-  version: 16.0.1
-  resolution: "@types/yargs@npm:16.0.1"
+"@types/yargs@npm:16.0.4":
+  version: 16.0.4
+  resolution: "@types/yargs@npm:16.0.4"
   dependencies:
     "@types/yargs-parser": "*"
-  checksum: 7b141b6a9efe2da5af054b022f2fbfa3a34d664f1db384babc567b20e9935ac18924c8075780ea22f5e0da4f5714f24dc27b05b6475cd060031648f154183a45
+  checksum: 929334a45c548f78e5aa756282b8abe17c0c7233eaaf414795808ab36a5f9957b3bc8c84151429d919fd2ac04ed2ce99853a85aea65823b4f669643656a3c65e
   languageName: node
   linkType: hard
 

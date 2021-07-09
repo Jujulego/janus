@@ -1312,20 +1312,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^0.4.1":
-  version: 0.4.1
-  resolution: "@eslint/eslintrc@npm:0.4.1"
+"@eslint/eslintrc@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "@eslint/eslintrc@npm:0.4.2"
   dependencies:
     ajv: ^6.12.4
     debug: ^4.1.1
     espree: ^7.3.0
-    globals: ^12.1.0
+    globals: ^13.9.0
     ignore: ^4.0.6
     import-fresh: ^3.2.1
     js-yaml: ^3.13.1
     minimatch: ^3.0.4
     strip-json-comments: ^3.1.1
-  checksum: 418f5810c8dd9897d2457ceef098197d0e5f1ad345fbe4cd9256fd4223d7ea83d5e350f9091b3ab3483b6b1c367fa560df3ba1fccc7eb8ca6e1aae5a5b126d60
+  checksum: 60b66ce4257bf5c36a920dea83a056102fef746e7afd7100a6fe245a126ff455f67f4948e75d28ed73090bff8f8556b6a996e74a124911ca703440bc245dbc23
   languageName: node
   linkType: hard
 
@@ -1723,6 +1723,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@humanwhocodes/config-array@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@humanwhocodes/config-array@npm:0.5.0"
+  dependencies:
+    "@humanwhocodes/object-schema": ^1.2.0
+    debug: ^4.1.1
+    minimatch: ^3.0.4
+  checksum: 71e3c1fef40166ecaacbe29b681499dc6bab3fe45df5bfb3e137baf6e50f22813cf14f24ff759a4da43b6743d7f5a776298ae1e0e266c9602bab62da2ee3b302
+  languageName: node
+  linkType: hard
+
+"@humanwhocodes/object-schema@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "@humanwhocodes/object-schema@npm:1.2.0"
+  checksum: ef533ee0d227b8036e4220013575fedc3d0346e2e40bc5f5536ba5761825f23577eb4b71e52f18a2d3b827c9d83cfa60c821a71e30d5f6537918a94bc1990963
+  languageName: node
+  linkType: hard
+
 "@istanbuljs/load-nyc-config@npm:^1.0.0":
   version: 1.1.0
   resolution: "@istanbuljs/load-nyc-config@npm:1.1.0"
@@ -1949,11 +1967,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-common@workspace:libs/janus-common"
   dependencies:
-    "@types/eslint": 7.2.13
+    "@types/eslint": 7.2.14
     "@types/node": 12.20.16
     "@types/prettier": 2.2.3
     "@typescript-eslint/eslint-plugin": 4.26.0
-    eslint: 7.27.0
+    eslint: 7.30.0
     graphql: ^15.5.0
     graphql-tag: ^2.12.4
     typescript: 4.2.4
@@ -1969,7 +1987,7 @@ __metadata:
     "@types/yaml": 1.9.6
     "@typescript-eslint/eslint-plugin": 4.26.0
     ajv: ^8.2.0
-    eslint: 7.27.0
+    eslint: 7.30.0
     typescript: 4.2.4
     yaml: ^1.10.2
   languageName: unknown
@@ -2009,7 +2027,7 @@ __metadata:
     clsx: ^1.1.1
     d3: ^6.7.0
     deepmerge: ^4.2.2
-    eslint: 7.27.0
+    eslint: 7.30.0
     eslint-plugin-react: 7.24.0
     eslint-plugin-react-hooks: 4.2.0
     graphql: ^15.5.0
@@ -2042,7 +2060,7 @@ __metadata:
     "@types/prettier": 2.2.3
     "@types/ws": 7.4.6
     "@typescript-eslint/eslint-plugin": 4.26.0
-    eslint: 7.27.0
+    eslint: 7.30.0
     graphql: ^15.5.0
     graphql-request: ^3.4.0
     graphql-tag: ^2.12.4
@@ -2084,7 +2102,7 @@ __metadata:
     chalk: ^4.1.1
     class-transformer: ^0.4.0
     class-validator: ^0.13.1
-    eslint: 7.27.0
+    eslint: 7.30.0
     graphql: ^15.5.0
     graphql-subscriptions: ^1.2.1
     graphql-tools: ^7.0.4
@@ -2122,7 +2140,7 @@ __metadata:
     "@types/yargs": 16.0.1
     "@typescript-eslint/eslint-plugin": 4.26.0
     chalk: ^4.1.1
-    eslint: 7.27.0
+    eslint: 7.30.0
     graphql: ^15.5.0
     graphql-request: ^3.4.0
     graphql-tag: ^2.12.4
@@ -3161,13 +3179,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:7.2.13":
-  version: 7.2.13
-  resolution: "@types/eslint@npm:7.2.13"
+"@types/eslint@npm:7.2.14":
+  version: 7.2.14
+  resolution: "@types/eslint@npm:7.2.14"
   dependencies:
     "@types/estree": "*"
     "@types/json-schema": "*"
-  checksum: e55906fa72e6288bd129652c4b3aa992d7219481265e1651564ba0d5fbacf41e39f97252a9001549eac544e5465f7f93ae81844b1e291f6cbf17c17ec048f729
+  checksum: e7ab90a295beae9495e3241a57078cc36dd1b7e58d0d2605d927abbe6eee5b8996ab6aff0f6d230da93d5f0361b737416dd8137f6c89d38f19d3d1f51f34d22d
   languageName: node
   linkType: hard
 
@@ -7210,12 +7228,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:7.27.0":
-  version: 7.27.0
-  resolution: "eslint@npm:7.27.0"
+"eslint@npm:7.30.0":
+  version: 7.30.0
+  resolution: "eslint@npm:7.30.0"
   dependencies:
     "@babel/code-frame": 7.12.11
-    "@eslint/eslintrc": ^0.4.1
+    "@eslint/eslintrc": ^0.4.2
+    "@humanwhocodes/config-array": ^0.5.0
     ajv: ^6.10.0
     chalk: ^4.0.0
     cross-spawn: ^7.0.2
@@ -7232,7 +7251,7 @@ __metadata:
     fast-deep-equal: ^3.1.3
     file-entry-cache: ^6.0.1
     functional-red-black-tree: ^1.0.1
-    glob-parent: ^5.0.0
+    glob-parent: ^5.1.2
     globals: ^13.6.0
     ignore: ^4.0.6
     import-fresh: ^3.0.0
@@ -7255,7 +7274,7 @@ __metadata:
     v8-compile-cache: ^2.0.3
   bin:
     eslint: bin/eslint.js
-  checksum: c91a9a88091fb2654ec599b452f6d8aff22daa4a21761e762536877ec8b65cd6386c29ea2e0fec2668125a07c62973bc23922f924c999e140c1042b8cffca030
+  checksum: 028048847e0252d6c972ac612fe37be55822ae2255d10d1bf68255749f7ae1364b2aa538cd95f3bc4d951fc7d36195e46b62fe8d215297ef9a6a8aeb8ca28a90
   languageName: node
   linkType: hard
 
@@ -8059,7 +8078,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob-parent@npm:^5.0.0, glob-parent@npm:^5.1.0, glob-parent@npm:~5.1.0":
+"glob-parent@npm:^5.1.0, glob-parent@npm:^5.1.2, glob-parent@npm:~5.1.0":
   version: 5.1.2
   resolution: "glob-parent@npm:5.1.2"
   dependencies:
@@ -8105,21 +8124,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"globals@npm:^12.1.0":
-  version: 12.4.0
-  resolution: "globals@npm:12.4.0"
-  dependencies:
-    type-fest: ^0.8.1
-  checksum: 0b9764bdeab0bc9762dea8954a0d4c5db029420bd8bf693df9098ce7e045ccaf9b2d259185396fd048b051d42fdc8dc7ab02af62e3dbeb2324a78a05aac8d33c
-  languageName: node
-  linkType: hard
-
 "globals@npm:^13.6.0":
   version: 13.8.0
   resolution: "globals@npm:13.8.0"
   dependencies:
     type-fest: ^0.20.2
   checksum: de85e5dc899ebd77414cc026e806d0bfd2c102ba23d08a2516c960a5e324433d3f1c124465a35b5b1d948448a7008bad85f823a9bcd8d54664d8a0cbcaab0091
+  languageName: node
+  linkType: hard
+
+"globals@npm:^13.9.0":
+  version: 13.10.0
+  resolution: "globals@npm:13.10.0"
+  dependencies:
+    type-fest: ^0.20.2
+  checksum: ae5f8d4ef26b845a3d2a370a0dd0b7cc8bce09d11bf75dbde8dce8a0855e8ad4f34613090eaad8e71d24fb01fe00d8b2708533b32da08f104c0ddd19b70219f1
   languageName: node
   linkType: hard
 

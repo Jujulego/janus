@@ -1988,12 +1988,12 @@ __metadata:
     "@material-ui/core": ^5.0.0-alpha.34
     "@material-ui/icons": ^5.0.0-alpha.34
     "@material-ui/styles": ^5.0.0-alpha.33
-    "@nestjs/cli": ^7.6.0
+    "@nestjs/cli": 7.6.0
     "@nestjs/common": ^7.6.15
     "@nestjs/core": ^7.6.15
     "@nestjs/platform-express": ^7.6.15
     "@nestjs/schematics": 7.3.1
-    "@nestjs/testing": ^7.6.15
+    "@nestjs/testing": 7.6.15
     "@types/d3": 6.7.0
     "@types/express": 4.17.12
     "@types/jest": 26.0.22
@@ -2066,13 +2066,13 @@ __metadata:
     "@jujulego/janus-common": ^1.0.0-alpha.4
     "@jujulego/janus-config": ^1.0.0-alpha.6
     "@jujulego/janus-front": ^1.0.0-alpha.7
-    "@nestjs/cli": ^7.6.0
+    "@nestjs/cli": 7.6.0
     "@nestjs/common": ^7.6.15
     "@nestjs/core": ^7.6.15
     "@nestjs/graphql": ^7.10.6
     "@nestjs/platform-express": ^7.6.15
     "@nestjs/schematics": 7.3.1
-    "@nestjs/testing": ^7.6.15
+    "@nestjs/testing": 7.6.15
     "@types/http-proxy": 1.17.5
     "@types/jest": 26.0.22
     "@types/morgan": 1.9.2
@@ -2326,7 +2326,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/cli@npm:^7.6.0":
+"@nestjs/cli@npm:7.6.0":
   version: 7.6.0
   resolution: "@nestjs/cli@npm:7.6.0"
   dependencies:
@@ -2490,7 +2490,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/testing@npm:^7.6.15":
+"@nestjs/testing@npm:7.6.15":
   version: 7.6.15
   resolution: "@nestjs/testing@npm:7.6.15"
   dependencies:
@@ -9422,7 +9422,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "janus@workspace:."
   dependencies:
-    "@nestjs/cli": ^7.6.0
+    "@nestjs/cli": 7.6.0
     "@nestjs/schematics": 7.3.1
     "@typescript-eslint/eslint-plugin": 4.26.0
     "@typescript-eslint/parser": 4.26.0

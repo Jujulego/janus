@@ -1997,7 +1997,7 @@ __metadata:
     "@types/d3": 6.7.0
     "@types/express": 4.17.12
     "@types/jest": 26.0.22
-    "@types/lodash": 4.14.170
+    "@types/lodash": 4.14.171
     "@types/node": 12.20.14
     "@types/react": 17.0.7
     "@types/react-dom": 17.0.5
@@ -3365,10 +3365,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/lodash@npm:4.14.170":
-  version: 4.14.170
-  resolution: "@types/lodash@npm:4.14.170"
-  checksum: 5ecc968649e764e3204435ba5125a3645e5e83963069a26b9307791698bf47ed9c2bd0f97488d9537eb4753d4bae596e5fa6187437a5b04bf47aba78fa553d50
+"@types/lodash@npm:4.14.171":
+  version: 4.14.171
+  resolution: "@types/lodash@npm:4.14.171"
+  checksum: e48668fb030ad7d8c0c7751061bd332ad8704937d976bd4e24fd9e2128f80c17112be11e5c13d39f6a210336dc3549f7fb00eaebb56b94c2bfb89ad64c57d721
   languageName: node
   linkType: hard
 

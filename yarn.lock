@@ -2000,7 +2000,7 @@ __metadata:
     "@types/lodash": 4.14.171
     "@types/node": 12.20.14
     "@types/react": 17.0.14
-    "@types/react-dom": 17.0.5
+    "@types/react-dom": 17.0.9
     "@types/react-window": 1.8.4
     "@types/supertest": 2.0.11
     "@typescript-eslint/eslint-plugin": 4.26.0
@@ -3488,12 +3488,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:17.0.5":
-  version: 17.0.5
-  resolution: "@types/react-dom@npm:17.0.5"
+"@types/react-dom@npm:17.0.9":
+  version: 17.0.9
+  resolution: "@types/react-dom@npm:17.0.9"
   dependencies:
     "@types/react": "*"
-  checksum: b3e23acb7be9405050abb4bcd443d14b16b2f3ded2d1853528199e4307b17b25186f905ddd236c27b6ef0297e6779b7fedd11fd24ee9170771be45a7e8e70f4b
+  checksum: 82da85bcfba524fb83946df50e433b8cc942dd30f5f3f6e0756816960ce4b85db6faa2da9f2b83124087fbe0d124580edf7b1017628b78fb28fee057e91512cb
   languageName: node
   linkType: hard
 

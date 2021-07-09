@@ -1951,7 +1951,7 @@ __metadata:
   dependencies:
     "@types/eslint": 7.2.13
     "@types/node": 12.20.16
-    "@types/prettier": 2.2.3
+    "@types/prettier": 2.3.2
     "@typescript-eslint/eslint-plugin": 4.26.0
     eslint: 7.27.0
     graphql: ^15.5.0
@@ -1965,7 +1965,7 @@ __metadata:
   resolution: "@jujulego/janus-config@workspace:libs/janus-config"
   dependencies:
     "@types/node": 12.20.16
-    "@types/prettier": 2.2.3
+    "@types/prettier": 2.3.2
     "@types/yaml": 1.9.6
     "@typescript-eslint/eslint-plugin": 4.26.0
     ajv: ^8.2.0
@@ -2039,7 +2039,7 @@ __metadata:
     "@jujulego/janus-config": ^1.0.0-alpha.6
     "@jujulego/janus-proxy": ^1.0.0-alpha.13
     "@types/node": 12.20.16
-    "@types/prettier": 2.2.3
+    "@types/prettier": 2.3.2
     "@types/ws": 7.4.6
     "@typescript-eslint/eslint-plugin": 4.26.0
     eslint: 7.27.0
@@ -2117,7 +2117,7 @@ __metadata:
     "@jujulego/janus-config": ^1.0.0-alpha.6
     "@jujulego/janus-proxy": ^1.0.0-alpha.13
     "@types/node": 12.20.16
-    "@types/prettier": 2.2.3
+    "@types/prettier": 2.3.2
     "@types/ws": 7.4.6
     "@types/yargs": 16.0.4
     "@typescript-eslint/eslint-plugin": 4.26.0
@@ -3453,7 +3453,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/prettier@npm:2.2.3, @types/prettier@npm:^2.0.0":
+"@types/prettier@npm:2.3.2":
+  version: 2.3.2
+  resolution: "@types/prettier@npm:2.3.2"
+  checksum: 7b425386aaf3b03fa63382ed1aceff367477ef9a52a2705978bfb1495fa1d8795316e1ab84671f6c8c5920de59a33d1567d837b9eb033996983efdfdbce84cb3
+  languageName: node
+  linkType: hard
+
+"@types/prettier@npm:^2.0.0":
   version: 2.2.3
   resolution: "@types/prettier@npm:2.2.3"
   checksum: b7e80288f9f776caca84391a7a217b8baac6b4fce00bb9701af69299d465cb8faf17466f0af0803970c74d2c191767ca729a6d21a2f7e2ce552d1ef6cc0d653a

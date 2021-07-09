@@ -41,7 +41,7 @@
     "@jujulego/janus-front": "^1.0.0-alpha.7",
     "@nestjs/cli": "7.6.0",
     "@nestjs/schematics": "7.3.1",
-    "@nestjs/testing": "7.6.15",
+    "@nestjs/testing": "7.6.18",
     "@types/http-proxy": "1.17.7",
     "@types/jest": "26.0.22",
     "@types/morgan": "1.9.3",

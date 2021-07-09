@@ -2075,7 +2075,7 @@ __metadata:
     "@nestjs/testing": 7.6.15
     "@types/http-proxy": 1.17.5
     "@types/jest": 26.0.22
-    "@types/morgan": 1.9.2
+    "@types/morgan": 1.9.3
     "@types/node": 12.20.14
     "@types/supertest": 2.0.11
     "@typescript-eslint/eslint-plugin": 4.26.0
@@ -3386,12 +3386,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/morgan@npm:1.9.2":
-  version: 1.9.2
-  resolution: "@types/morgan@npm:1.9.2"
+"@types/morgan@npm:1.9.3":
+  version: 1.9.3
+  resolution: "@types/morgan@npm:1.9.3"
   dependencies:
     "@types/node": "*"
-  checksum: ebb3b2239f1ae7f1041168121934fd1e3058c707a4986ebfa2b461d7d032ba6a9eee219c9c208d05893fde752215d2a78b54d1b5d17cd2e5bd5370e6ca5f2932
+  checksum: b8b0713b20c56c5a83b4d8bdb0320b396b68367ee901c809581d19b3bf67255f66206815f24729e3977e5c6277e1169fa09b9beb8437a82e353e4f79be476807
   languageName: node
   linkType: hard
 

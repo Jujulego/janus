@@ -1993,7 +1993,7 @@ __metadata:
     "@nestjs/core": ^7.6.15
     "@nestjs/platform-express": ^7.6.15
     "@nestjs/schematics": 7.3.1
-    "@nestjs/testing": 7.6.15
+    "@nestjs/testing": 7.6.18
     "@types/d3": 6.7.5
     "@types/express": 4.17.13
     "@types/jest": 26.0.24
@@ -2072,7 +2072,7 @@ __metadata:
     "@nestjs/graphql": ^7.10.6
     "@nestjs/platform-express": ^7.6.15
     "@nestjs/schematics": 7.3.1
-    "@nestjs/testing": 7.6.15
+    "@nestjs/testing": 7.6.18
     "@types/http-proxy": 1.17.7
     "@types/jest": 26.0.24
     "@types/morgan": 1.9.3
@@ -2490,12 +2490,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/testing@npm:7.6.15":
-  version: 7.6.15
-  resolution: "@nestjs/testing@npm:7.6.15"
+"@nestjs/testing@npm:7.6.18":
+  version: 7.6.18
+  resolution: "@nestjs/testing@npm:7.6.18"
   dependencies:
     optional: 0.1.4
-    tslib: 2.1.0
+    tslib: 2.2.0
   peerDependencies:
     "@nestjs/common": ^7.0.0
     "@nestjs/core": ^7.0.0
@@ -2506,7 +2506,7 @@ __metadata:
       optional: true
     "@nestjs/platform-express":
       optional: true
-  checksum: c25a104af68ec78743d9f99087e0058684109251d5c9ac2fb0cc1451a479f9ac9e7e1a199bc70d49778a9d0768f3e536f1aef967b6ce60fb3b980e0d1e3bd2aa
+  checksum: 4b316f85502e468bbc8ee6cf9774d6b0610fa902b57665c4e07411887486cdc9e3147eba6ffed72c8e92946693ab635029f50e627b6c91eba0fd15be25c72b98
   languageName: node
   linkType: hard
 

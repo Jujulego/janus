@@ -2073,7 +2073,7 @@ __metadata:
     "@nestjs/platform-express": ^7.6.15
     "@nestjs/schematics": 7.3.1
     "@nestjs/testing": 7.6.15
-    "@types/http-proxy": 1.17.5
+    "@types/http-proxy": 1.17.7
     "@types/jest": 26.0.22
     "@types/morgan": 1.9.3
     "@types/node": 12.20.14
@@ -3259,12 +3259,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/http-proxy@npm:1.17.5":
-  version: 1.17.5
-  resolution: "@types/http-proxy@npm:1.17.5"
+"@types/http-proxy@npm:1.17.7":
+  version: 1.17.7
+  resolution: "@types/http-proxy@npm:1.17.7"
   dependencies:
     "@types/node": "*"
-  checksum: 21aefcc88273cb99474a7682209c795ee0dad15cc277b027ea504e65faab5cbb799b067662f7ae7c0255651bf9433a41811930c76f7561757f02f2c8262ee592
+  checksum: 47c34b8a64e48cf45aa8ddcdf12dace1de6b0bacfae82884765953abb53b3b868dc7d0c29239f8900b8a65975ee75686bc1938883bd0a6e4066213ea81d07d6c
   languageName: node
   linkType: hard
 

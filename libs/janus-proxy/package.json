@@ -42,7 +42,7 @@
     "@nestjs/cli": "7.6.0",
     "@nestjs/schematics": "7.3.1",
     "@nestjs/testing": "7.6.15",
-    "@types/http-proxy": "1.17.5",
+    "@types/http-proxy": "1.17.7",
     "@types/jest": "26.0.22",
     "@types/morgan": "1.9.3",
     "@types/node": "12.20.14",

@@ -7475,7 +7475,7 @@ __metadata:
     "@types/express": 4.17.13
     "@types/node": 14.17.5
     express: 4.17.1
-    nodemon: 2.0.10
+    nodemon: 2.0.12
     ts-node: 9.1.1
     tsconfig-paths: 3.10.1
     typescript: 4.2.4
@@ -11155,9 +11155,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"nodemon@npm:2.0.10":
-  version: 2.0.10
-  resolution: "nodemon@npm:2.0.10"
+"nodemon@npm:2.0.12":
+  version: 2.0.12
+  resolution: "nodemon@npm:2.0.12"
   dependencies:
     chokidar: ^3.2.2
     debug: ^3.2.6
@@ -11171,7 +11171,7 @@ __metadata:
     update-notifier: ^4.1.0
   bin:
     nodemon: bin/nodemon.js
-  checksum: 664e579d9585c7508a7678f67d098238ff892dae3d84198280cfc81164eedc5d9e77c01dd66e5ba08407b96401d0e875bb08cf7c53a1504e563b5748c897b92e
+  checksum: 8a866e2a25043e88615c223ccd601092e181f9c4edbe2027f0e59fc881647ffb2be9fac280f5d2d851564242cd8aa55a288fb1ae8c6609a0013d375b5647b656
   languageName: node
   linkType: hard
 

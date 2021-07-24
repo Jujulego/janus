@@ -1974,7 +1974,7 @@ __metadata:
     eslint: 7.30.0
     graphql: ^15.5.0
     graphql-tag: ^2.12.4
-    typescript: 4.2.4
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -1988,7 +1988,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 4.28.2
     ajv: ^8.2.0
     eslint: 7.30.0
-    typescript: 4.2.4
+    typescript: 4.3.5
     yaml: ^1.10.2
   languageName: unknown
   linkType: soft
@@ -2045,7 +2045,7 @@ __metadata:
     ts-jest: 26.5.6
     ts-node: 9.1.1
     tsconfig-paths: 3.10.1
-    typescript: 4.2.4
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -2067,7 +2067,7 @@ __metadata:
     rxjs: ^7.0.0
     subscriptions-transport-ws: ^0.9.18
     ts-node: 9.1.1
-    typescript: 4.2.4
+    typescript: 4.3.5
     ws: ^7.4.5
   peerDependencies:
     "@jujulego/janus-proxy": ^1.0.0-alpha.13
@@ -2115,7 +2115,7 @@ __metadata:
     ts-jest: 26.5.6
     ts-node: 9.1.1
     tsconfig-paths: 3.10.1
-    typescript: 4.2.4
+    typescript: 4.3.5
     url-router: ^13.0.0
     winston: ^3.3.3
     winston-transport: ^4.4.0
@@ -2149,7 +2149,7 @@ __metadata:
     rxjs: ^7.1.0
     subscriptions-transport-ws: ^0.9.18
     ts-node: 9.1.1
-    typescript: 4.2.4
+    typescript: 4.3.5
     ws: ^7.4.5
     yargs: ^16.2.0
   bin:
@@ -7478,7 +7478,7 @@ __metadata:
     nodemon: 2.0.10
     ts-node: 9.1.1
     tsconfig-paths: 3.10.1
-    typescript: 4.2.4
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -9455,7 +9455,7 @@ __metadata:
     "@nestjs/schematics": 7.3.1
     "@typescript-eslint/eslint-plugin": 4.28.2
     "@typescript-eslint/parser": 4.28.2
-    typescript: 4.2.4
+    typescript: 4.3.5
   languageName: unknown
   linkType: soft
 
@@ -14387,13 +14387,13 @@ typescript@4.2.3:
   languageName: node
   linkType: hard
 
-typescript@4.2.4:
-  version: 4.2.4
-  resolution: "typescript@npm:4.2.4"
+typescript@4.3.5:
+  version: 4.3.5
+  resolution: "typescript@npm:4.3.5"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: edaede2fa77f56b7fba80ee624a2368ab1216e75b0434d968ccb47ab0a5e2f6d94f848b3b111c1237dd71e988cd376af26370dcdad3b94355c76e759f0dd0a1e
+  checksum: d9a8e78d72dd19896e6bfa73ab2a0fcea6eca2700d1d6e7c33f67a970af54a3e0fed8f715a8c4e6a0ff7fc0995067b394b2003518ab0aa84cd396377e54b760c
   languageName: node
   linkType: hard
 
@@ -14407,13 +14407,13 @@ typescript@4.2.4:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.2.4#builtin<compat/typescript>":
-  version: 4.2.4
-  resolution: "typescript@patch:typescript@npm%3A4.2.4#builtin<compat/typescript>::version=4.2.4&hash=ddfc1b"
+"typescript@patch:typescript@4.3.5#builtin<compat/typescript>":
+  version: 4.3.5
+  resolution: "typescript@patch:typescript@npm%3A4.3.5#builtin<compat/typescript>::version=4.3.5&hash=ddfc1b"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 64658fdf27872904641dcaacf925e6b5a52fb4aa4881a5a726fc78a11b76748423ce9e996dac42313729321061c4dd38a06108014f8d07b222dcff2687037186
+  checksum: 7f0b8343f71ecac18095be1476b398aca420ab60dc207cc1efe078f381eef5527b80a518297720257114cdbda65612f8839e4b63e85dc95e67ac5cbbade8bdf0
   languageName: node
   linkType: hard
 

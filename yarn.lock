@@ -2267,7 +2267,7 @@ __metadata:
   resolution: "@jujulego/janus-common@workspace:libs/janus-common"
   dependencies:
     "@types/eslint": 7.2.14
-    "@types/node": 14.17.5
+    "@types/node": 14.17.6
     "@types/prettier": 2.3.2
     "@typescript-eslint/eslint-plugin": 4.28.2
     eslint: 7.30.0
@@ -2281,7 +2281,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-config@workspace:libs/janus-config"
   dependencies:
-    "@types/node": 14.17.5
+    "@types/node": 14.17.6
     "@types/prettier": 2.3.2
     "@types/yaml": 1.9.6
     "@typescript-eslint/eslint-plugin": 4.28.2
@@ -2315,7 +2315,7 @@ __metadata:
     "@types/express": 4.17.13
     "@types/jest": 26.0.24
     "@types/lodash": 4.14.171
-    "@types/node": 14.17.5
+    "@types/node": 14.17.6
     "@types/react": 17.0.15
     "@types/react-dom": 17.0.9
     "@types/react-window": 1.8.4
@@ -2355,7 +2355,7 @@ __metadata:
     "@jujulego/janus-common": ^1.0.0-alpha.4
     "@jujulego/janus-config": ^1.0.0-alpha.6
     "@jujulego/janus-proxy": ^1.0.0-alpha.13
-    "@types/node": 14.17.5
+    "@types/node": 14.17.6
     "@types/prettier": 2.3.2
     "@types/ws": 7.4.7
     "@typescript-eslint/eslint-plugin": 4.28.2
@@ -2393,7 +2393,7 @@ __metadata:
     "@types/http-proxy": 1.17.7
     "@types/jest": 26.0.24
     "@types/morgan": 1.9.3
-    "@types/node": 14.17.5
+    "@types/node": 14.17.6
     "@types/supertest": 2.0.11
     "@typescript-eslint/eslint-plugin": 4.28.2
     apollo-server-core: ^2.23.0
@@ -2433,7 +2433,7 @@ __metadata:
     "@jujulego/janus-common": ^1.0.0-alpha.4
     "@jujulego/janus-config": ^1.0.0-alpha.6
     "@jujulego/janus-proxy": ^1.0.0-alpha.13
-    "@types/node": 14.17.5
+    "@types/node": 14.17.6
     "@types/prettier": 2.3.2
     "@types/ws": 7.4.7
     "@types/yargs": 16.0.4
@@ -3770,10 +3770,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:14.17.5":
-  version: 14.17.5
-  resolution: "@types/node@npm:14.17.5"
-  checksum: bd2c9bd617d36fea3b6380f5f7bbf56b59dbfb97ba5ff6d04fdf8ec47402ba4bb4cc902087a7f40d17c91845cc949c811a366679f3421a965e80fbce328a2750
+"@types/node@npm:14.17.6":
+  version: 14.17.6
+  resolution: "@types/node@npm:14.17.6"
+  checksum: 4b2464f39d96be4fcdde7f4e8bb3c8b24e98ff908ca0cced997884d0dfbcc666b4b65a51b83dac92650508a1a2466e82eac2f926ddc3c0ae87bfff580dd324f6
   languageName: node
   linkType: hard
 
@@ -7574,7 +7574,7 @@ __metadata:
   dependencies:
     "@jujulego/janus-gate": ^1.0.0-alpha.14
     "@types/express": 4.17.13
-    "@types/node": 14.17.5
+    "@types/node": 14.17.6
     express: 4.17.1
     nodemon: 2.0.12
     ts-node: 9.1.1

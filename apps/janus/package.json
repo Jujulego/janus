@@ -27,13 +27,13 @@
     "rxjs": "^7.1.0",
     "subscriptions-transport-ws": "^0.9.18",
     "ws": "^7.4.5",
-    "yargs": "^16.2.0"
+    "yargs": "^17.0.0"
   },
   "devDependencies": {
     "@types/node": "14.17.5",
     "@types/prettier": "2.3.2",
     "@types/ws": "7.4.7",
-    "@types/yargs": "16.0.4",
+    "@types/yargs": "17.0.2",
     "@typescript-eslint/eslint-plugin": "4.28.2",
     "eslint": "7.30.0",
     "ts-node": "10.1.0",

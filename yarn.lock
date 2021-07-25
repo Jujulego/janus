@@ -1568,9 +1568,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@eslint/eslintrc@npm:^0.4.2":
-  version: 0.4.2
-  resolution: "@eslint/eslintrc@npm:0.4.2"
+"@eslint/eslintrc@npm:^0.4.3":
+  version: 0.4.3
+  resolution: "@eslint/eslintrc@npm:0.4.3"
   dependencies:
     ajv: ^6.12.4
     debug: ^4.1.1
@@ -1581,7 +1581,7 @@ __metadata:
     js-yaml: ^3.13.1
     minimatch: ^3.0.4
     strip-json-comments: ^3.1.1
-  checksum: 60b66ce4257bf5c36a920dea83a056102fef746e7afd7100a6fe245a126ff455f67f4948e75d28ed73090bff8f8556b6a996e74a124911ca703440bc245dbc23
+  checksum: fa916db689fac96c749571f03f931448d896ce07c3da40079082f28621f52defa36cc0c88bfcdd8d19b9981a6549c3a9a3977953db2f6945aba1135bb83a3d35
   languageName: node
   linkType: hard
 
@@ -2242,11 +2242,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-common@workspace:libs/janus-common"
   dependencies:
-    "@types/eslint": 7.2.14
+    "@types/eslint": 7.28.0
     "@types/node": 14.17.6
     "@types/prettier": 2.3.2
     "@typescript-eslint/eslint-plugin": 4.28.2
-    eslint: 7.30.0
+    eslint: 7.31.0
     graphql: ^15.5.0
     graphql-tag: ^2.12.4
     typescript: 4.3.5
@@ -2262,7 +2262,7 @@ __metadata:
     "@types/yaml": 1.9.6
     "@typescript-eslint/eslint-plugin": 4.28.2
     ajv: ^8.2.0
-    eslint: 7.30.0
+    eslint: 7.31.0
     typescript: 4.3.5
     yaml: ^1.10.2
   languageName: unknown
@@ -2302,7 +2302,7 @@ __metadata:
     clsx: ^1.1.1
     d3: ^6.7.0
     deepmerge: ^4.2.2
-    eslint: 7.30.0
+    eslint: 7.31.0
     eslint-plugin-react: 7.24.0
     eslint-plugin-react-hooks: 4.2.0
     graphql: ^15.5.0
@@ -2335,7 +2335,7 @@ __metadata:
     "@types/prettier": 2.3.2
     "@types/ws": 7.4.7
     "@typescript-eslint/eslint-plugin": 4.28.2
-    eslint: 7.30.0
+    eslint: 7.31.0
     graphql: ^15.5.0
     graphql-request: ^3.4.0
     graphql-tag: ^2.12.4
@@ -2377,7 +2377,7 @@ __metadata:
     chalk: ^4.1.1
     class-transformer: ^0.4.0
     class-validator: ^0.13.1
-    eslint: 7.30.0
+    eslint: 7.31.0
     graphql: ^15.5.0
     graphql-subscriptions: ^1.2.1
     graphql-tools: ^7.0.4
@@ -2415,7 +2415,7 @@ __metadata:
     "@types/yargs": 17.0.2
     "@typescript-eslint/eslint-plugin": 4.28.2
     chalk: ^4.1.1
-    eslint: 7.30.0
+    eslint: 7.31.0
     graphql: ^15.5.0
     graphql-request: ^3.4.0
     graphql-tag: ^2.12.4
@@ -3486,13 +3486,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/eslint@npm:7.2.14":
-  version: 7.2.14
-  resolution: "@types/eslint@npm:7.2.14"
+"@types/eslint@npm:7.28.0":
+  version: 7.28.0
+  resolution: "@types/eslint@npm:7.28.0"
   dependencies:
     "@types/estree": "*"
     "@types/json-schema": "*"
-  checksum: e7ab90a295beae9495e3241a57078cc36dd1b7e58d0d2605d927abbe6eee5b8996ab6aff0f6d230da93d5f0361b737416dd8137f6c89d38f19d3d1f51f34d22d
+  checksum: eae026f960db17c8a6e88b736eeabc6da553846ca88668d0757d1ee74e4abf2bed40ccff28548c89b088f513e9064f7a458c831dd8ef4445d0b5dc85eb94e791
   languageName: node
   linkType: hard
 
@@ -7390,12 +7390,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint@npm:7.30.0":
-  version: 7.30.0
-  resolution: "eslint@npm:7.30.0"
+"eslint@npm:7.31.0":
+  version: 7.31.0
+  resolution: "eslint@npm:7.31.0"
   dependencies:
     "@babel/code-frame": 7.12.11
-    "@eslint/eslintrc": ^0.4.2
+    "@eslint/eslintrc": ^0.4.3
     "@humanwhocodes/config-array": ^0.5.0
     ajv: ^6.10.0
     chalk: ^4.0.0
@@ -7436,7 +7436,7 @@ __metadata:
     v8-compile-cache: ^2.0.3
   bin:
     eslint: bin/eslint.js
-  checksum: 028048847e0252d6c972ac612fe37be55822ae2255d10d1bf68255749f7ae1364b2aa538cd95f3bc4d951fc7d36195e46b62fe8d215297ef9a6a8aeb8ca28a90
+  checksum: 38c000372bfafc3715da2d2b6db2a75d4b3b95ac2c20696d774185aa5b6118065a37d0a1292eaa91292e07f86d53a0993cf9bfb838a7a9b935524a125e21af98
   languageName: node
   linkType: hard
 

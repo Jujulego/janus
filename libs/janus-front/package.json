@@ -43,7 +43,7 @@
     "react-window": "^1.8.6",
     "reflect-metadata": "^0.1.13",
     "resize-observer-polyfill": "^1.5.1",
-    "rxjs": "^6.6.6",
+    "rxjs": "^7.0.0",
     "subscriptions-transport-ws": "^0.9.18"
   },
   "devDependencies": {

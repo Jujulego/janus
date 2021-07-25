@@ -2314,7 +2314,7 @@ __metadata:
     react-window: ^1.8.6
     reflect-metadata: ^0.1.13
     resize-observer-polyfill: ^1.5.1
-    rxjs: ^6.6.6
+    rxjs: ^7.0.0
     subscriptions-transport-ws: ^0.9.18
     supertest: 6.1.4
     ts-jest: 27.0.4
@@ -2385,7 +2385,7 @@ __metadata:
     jest: 27.0.6
     morgan: 1.10.0
     reflect-metadata: ^0.1.13
-    rxjs: ^6.6.6
+    rxjs: ^7.0.0
     supertest: 6.1.4
     ts-jest: 27.0.4
     ts-node: 10.1.0

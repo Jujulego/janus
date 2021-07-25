@@ -32,7 +32,7 @@
     "graphql-tools": "^7.0.4",
     "http-proxy": "^1.18.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^6.6.6",
+    "rxjs": "^7.0.0",
     "url-router": "^13.0.0",
     "winston": "^3.3.3",
     "winston-transport": "^4.4.0"

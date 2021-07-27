@@ -39,9 +39,9 @@
   },
   "devDependencies": {
     "@jujulego/janus-front": "^1.0.0-alpha.7",
-    "@nestjs/cli": "8.0.2",
+    "@nestjs/cli": "8.1.0",
     "@nestjs/schematics": "8.0.2",
-    "@nestjs/testing": "8.0.4",
+    "@nestjs/testing": "8.0.5",
     "@types/http-proxy": "1.17.7",
     "@types/jest": "26.0.24",
     "@types/morgan": "1.9.3",

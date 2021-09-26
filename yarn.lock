@@ -808,8 +808,10 @@ __metadata:
     "@types/morgan": 1.9.3
     "@types/node": 14.17.19
     "@types/supertest": 2.0.11
+    "@types/yaml": 1.9.7
     "@typescript-eslint/eslint-plugin": 4.31.2
     "@typescript-eslint/parser": 4.31.2
+    ajv: ^8.6.3
     chalk: ^4.1.2
     class-transformer: ^0.4.0
     class-validator: ^0.13.1
@@ -825,6 +827,7 @@ __metadata:
     ts-node: 10.2.1
     typescript: 4.4.3
     winston: ^3.3.3
+    yaml: ^1.10.2
   languageName: unknown
   linkType: soft
 
@@ -1324,6 +1327,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/yaml@npm:1.9.7":
+  version: 1.9.7
+  resolution: "@types/yaml@npm:1.9.7"
+  dependencies:
+    yaml: "*"
+  checksum: 0cdbf1857d89ade9b7d00aa09f2e0a2a56b707870b1dc1387f5be5398cd60c3f92bb32a543471147d2eaf38919f921391e0ade34fc9e1e022c7d67fb1a0da73c
+  languageName: node
+  linkType: hard
+
 "@types/yargs-parser@npm:*":
   version: 20.2.1
   resolution: "@types/yargs-parser@npm:20.2.1"
@@ -1782,7 +1794,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ajv@npm:^8.0.0":
+"ajv@npm:^8.0.0, ajv@npm:^8.6.3":
   version: 8.6.3
   resolution: "ajv@npm:8.6.3"
   dependencies:
@@ -7687,7 +7699,7 @@ typescript@4.4.3:
   languageName: node
   linkType: hard
 
-"yaml@npm:^1.7.2":
+"yaml@npm:*, yaml@npm:^1.10.2, yaml@npm:^1.7.2":
   version: 1.10.2
   resolution: "yaml@npm:1.10.2"
   checksum: ce4ada136e8a78a0b08dc10b4b900936912d15de59905b2bf415b4d33c63df1d555d23acb2a41b23cf9fb5da41c256441afca3d6509de7247daa062fd2c5ea5f

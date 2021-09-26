@@ -3,26 +3,13 @@ import { promises as fs } from 'fs';
 import yaml from 'yaml';
 
 import { IJanusConfig } from './janus-config.model';
-import janusConfigSchema from './janus-config.schema.json';
+import { Logger } from '../logger';
+
+import janusConfigSchema from '../janus-config.schema.json';
 
 // Constants
 export const DEFAULT_CONTROL_PORT = 5000;
 export const DEFAULT_PROXY_PORT = 3000;
-
-// Types
-export interface ILogger {
-  // Methods
-  debug(message: string): void;
-  verbose(message: string): void;
-  info(message: string): void;
-  warn(message: string): void;
-  error(message: string): void;
-}
-
-export interface IOptions {
-  // Options
-  logger?: ILogger;
-}
 
 // Class
 export class JanusConfig implements IJanusConfig {
@@ -32,9 +19,9 @@ export class JanusConfig implements IJanusConfig {
   ) {}
 
   // Statics
-  static async loadFile(file: string, options?: IOptions): Promise<JanusConfig> {
+  static async loadFile(file: string): Promise<JanusConfig> {
     // Options
-    const logger = options?.logger ?? console;
+    const logger = new Logger('JanusConfig');
 
     try {
       // Check if is file

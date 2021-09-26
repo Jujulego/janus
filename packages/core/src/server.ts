@@ -14,13 +14,13 @@ import { AppModule } from './app.module';
 // import { ServiceResolver } from './gates/service.resolver';
 // import { ConfigService } from './config/config.service';
 // import { ControlService } from './control/control.service';
-// import { Logger } from './logger';
+import { Logger } from './logger';
 // import { JsonObjScalar } from './json-obj.scalar';
 
 // Server
 export class JanusServer {
   // Attributes
-  private readonly _logger = console;//new Logger(JanusServer.name);
+  private readonly _logger = new Logger(JanusServer.name);
 
   private readonly _started = new Subject<void>();
   readonly $started = this._started.asObservable();
@@ -35,7 +35,7 @@ export class JanusServer {
 
   // Statics
   static async createServer(): Promise<JanusServer> {
-    const app = await NestFactory.create(AppModule, /*{ logger: new Logger() }*/);
+    const app = await NestFactory.create(AppModule, { logger: new Logger() });
     return new JanusServer(app);
   }
 

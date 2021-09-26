@@ -1,4 +1,5 @@
 import { JanusServer } from './server';
+import { Logger } from './logger';
 
 process.env.NODE_ENV = 'development';
 
@@ -14,7 +15,7 @@ process.env.NODE_ENV = 'development';
     // Start server
     await server.start('../../janus.config.yml');
   } catch (error) {
-    console.error(error);
+    Logger.error(error);
     process.exit(1);
   }
 })();

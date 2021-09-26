@@ -20,7 +20,7 @@
     "@jujulego/janus-config": "^1.0.0-alpha.6",
     "@nestjs/common": "^8.0.0",
     "@nestjs/core": "^8.0.0",
-    "@nestjs/graphql": "^8.0.0",
+    "@nestjs/graphql": "^9.0.0",
     "@nestjs/platform-express": "^8.0.0",
     "apollo-server-core": "^2.23.0",
     "apollo-server-express": "^2.23.0",

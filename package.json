@@ -2,21 +2,20 @@
   "name": "janus",
   "private": true,
   "license": "MIT",
-  "workspaces": [
-    "apps/*",
-    "libs/*",
-    "samples/*"
-  ],
-  "scripts": {
-    "janus": "yarn workspace @jujulego/janus start",
-    "build": "yarn workspaces foreach -pvi --no-private --topological-dev run build",
-    "lint": "yarn workspaces foreach -p run lint"
+  "packageManager": "yarn@3.0.2",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Jujulego/janus"
   },
+  "workspaces": [
+    "packages/*"
+  ],
   "devDependencies": {
-    "@nestjs/cli": "8.1.0",
-    "@nestjs/schematics": "8.0.2",
-    "@typescript-eslint/eslint-plugin": "4.28.5",
-    "@typescript-eslint/parser": "4.28.5",
-    "typescript": "4.3.5"
+    "@jujulego/jill": "1.1.2",
+    "@typescript-eslint/eslint-plugin": "4.31.2",
+    "@typescript-eslint/parser": "4.31.2",
+    "eslint": "7.32.0",
+    "eslint-plugin-jest": "24.4.2",
+    "typescript": "4.4.3"
   }
 }

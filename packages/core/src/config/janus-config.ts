@@ -2,7 +2,7 @@ import Ajv from 'ajv';
 import { promises as fs } from 'fs';
 import yaml from 'yaml';
 
-import { IJanusConfig } from './janus-config.model';
+import { IJanusConfig } from './config.model';
 import { Logger } from '../logger';
 
 import janusConfigSchema from '../janus-config.schema.json';

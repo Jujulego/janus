@@ -6,13 +6,11 @@ import { Subject } from 'rxjs';
 // import { exhaustMap, filter } from 'rxjs/operators';
 import morgan from 'morgan';
 
-// import { JanusConfig } from '@jujulego/janus-config';
-
 import { AppModule } from './app.module';
+import { JanusConfig } from './config';
 // import { ServerResolver } from './control/server.resolver';
 // import { GateResolver } from './gates/gate.resolver';
 // import { ServiceResolver } from './gates/service.resolver';
-// import { ConfigService } from './config/config.service';
 // import { ControlService } from './control/control.service';
 import { Logger } from './logger';
 // import { JsonObjScalar } from './json-obj.scalar';
@@ -62,13 +60,13 @@ export class JanusServer {
     this._shutdown.complete();
   }
 
-  async start(config: string /*| JanusConfig*/): Promise<void> {
+  async start(config: string | JanusConfig): Promise<void> {
     // Load configuration
-    // if (typeof config === 'string') {
-    //   config = await JanusConfig.loadFile(config, { logger: this._logger });
-    // }
+    if (typeof config === 'string') {
+      config = await JanusConfig.loadFile(config, { logger: this._logger });
+    }
 
-    // this.config.config = config;
+    this.config.config = config;
 
     // Setup
     this.app.enableShutdownHooks();
@@ -76,17 +74,17 @@ export class JanusServer {
     if (process.env.NODE_ENV === 'development') {
       // Log access requests
       this.app.use(morgan('dev', {
-        // stream: {
-        //   write(str: string) {
-        //     Logger.debug(str.trim());
-        //   },
-        // },
+        stream: {
+          write(str: string) {
+            Logger.debug(str.trim());
+          },
+        },
       }));
     }
 
     // Start server
-    await this.app.listen(5000 /*this.config.control.port*/, () => {
-      this._logger.log(`Server listening at http://localhost:${5000/*this.config.control.port*/}`);
+    await this.app.listen(this.config.control.port, () => {
+      this._logger.log(`Server listening at http://localhost:${this.config.control.port}`);
       this._started.next();
 
       // Listen for shutdown events
@@ -104,10 +102,10 @@ export class JanusServer {
   }
 
   // Properties
-  // private get config(): ConfigService {
-  //   return this.app.get(ConfigService);
-  // }
-  //
+  private get config(): ConfigService {
+    return this.app.get(ConfigService);
+  }
+
   // private get control(): ControlService {
   //   return this.app.get(ControlService);
   // }

@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 // import { APP_INTERCEPTOR } from '@nestjs/core';
 // import { GraphQLModule } from '@nestjs/graphql';
 //
-// import { ConfigModule } from './config/config.module';
+import { ConfigModule } from './config/config.module';
 // import { ControlModule } from './control/control.module';
 // import { FrontModule } from './front.module';
 // import { GatesModule } from './gates/gates.module';
@@ -17,7 +17,7 @@ import { Module } from '@nestjs/common';
     //   installSubscriptionHandlers: true,
     // }),
     //
-    // ConfigModule,
+    ConfigModule,
     // ControlModule,
     // FrontModule.forRoot(),
     // ProxyModule,

@@ -1,4 +1,4 @@
-import { Injectable, OnApplicationBootstrap, OnModuleInit } from '@nestjs/common';
+import { Injectable, OnModuleInit } from '@nestjs/common';
 import { plainToClass } from 'class-transformer';
 import { PubSub } from 'graphql-subscriptions';
 import Transport from 'winston-transport';

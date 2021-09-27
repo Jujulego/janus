@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
 import { ConfigModule } from './config';
-// import { ControlModule } from './control/control.module';
+import { ControlModule } from './control/control.module';
 // import { FrontModule } from './front.module';
 import { ServicesModule } from './services/services.module';
 // import { ProxyModule } from './proxy/proxy.module';
@@ -16,7 +16,7 @@ import { ServicesModule } from './services/services.module';
     }),
 
     ConfigModule,
-    // ControlModule,
+    ControlModule,
     // FrontModule.forRoot(),
     // ProxyModule,
     ServicesModule,

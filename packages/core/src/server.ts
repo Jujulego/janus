@@ -3,16 +3,16 @@ import { INestApplication } from '@nestjs/common';
 import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphql';
 import { GraphQLSchema } from 'graphql';
 import { Subject } from 'rxjs';
-// import { exhaustMap, filter } from 'rxjs/operators';
+import { exhaustMap, filter } from 'rxjs/operators';
 import morgan from 'morgan';
 
 import { AppModule } from './app.module';
 import { ConfigService, JanusConfig } from './config';
 import { JsonObjScalar } from './json-obj.scalar';
 import { Logger } from './logger';
-// import { ServerResolver } from './control/server.resolver';
-// import { GateResolver } from './services/gate.resolver';
-// import { ServiceResolver } from './services/service.resolver';
+import { ServerResolver } from './control/server.resolver';
+import { GateResolver } from './services/gate.resolver';
+import { ServiceResolver } from './services/service.resolver';
 
 // Server
 export class JanusServer {
@@ -43,9 +43,9 @@ export class JanusServer {
     // Generate schema
     const factory = app.get(GraphQLSchemaFactory);
     return await factory.create([
-      // GateResolver,
-      // ServiceResolver,
-      // ServerResolver,
+      GateResolver,
+      ServiceResolver,
+      ServerResolver,
     ], [JsonObjScalar]);
   }
 
@@ -87,12 +87,12 @@ export class JanusServer {
       this._started.next();
 
       // Listen for shutdown events
-      // this.control.$events
-      //   .pipe(
-      //     filter((event) => event.action === 'shutdown'),
-      //     exhaustMap(() => this.handleShutdown()),
-      //   )
-      //   .subscribe();
+      this.control.$events
+        .pipe(
+          filter((event) => event.action === 'shutdown'),
+          exhaustMap(() => this.handleShutdown()),
+        )
+        .subscribe();
     });
   }
 
@@ -105,7 +105,7 @@ export class JanusServer {
     return this.app.get(ConfigService);
   }
 
-  // private get control(): ControlService {
-  //   return this.app.get(ControlService);
-  // }
+  private get control(): ControlService {
+    return this.app.get(ControlService);
+  }
 }

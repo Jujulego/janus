@@ -6,6 +6,5 @@
     "rootDir": ".",
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
     "resolveJsonModule": true
-  },
-  "include": ["src/**/*.ts", "src/**/*.json"]
+  }
 }

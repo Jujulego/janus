@@ -38,6 +38,7 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.3.0",
     "winston": "^3.3.3",
+    "winston-transport": "^4.4.0",
     "yaml": "^1.10.2"
   },
   "devDependencies": {

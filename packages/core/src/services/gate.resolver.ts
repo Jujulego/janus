@@ -48,7 +48,7 @@ export class GateResolver {
 
   // Subscriptions
   @Subscription(() => Gate, { name: 'gate' })
-  gateSub(@Args('service') service: string, @Args('gate') name: string) {
+  gateSub(@Args('service') service: string, @Args('gate') name: string): AsyncIterator<Gate> {
     return this._pubsub.asyncIterator<Gate>(`${service}.${name}`);
   }
 }

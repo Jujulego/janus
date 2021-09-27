@@ -35,7 +35,7 @@ export class ServiceResolver {
 
   // Subscriptions
   @Subscription(() => Service, { name: 'service' })
-  serviceSub(@Args('name') name: string) {
+  serviceSub(@Args('name') name: string): AsyncIterator<Service> {
     return this._pubsub.asyncIterator<Service>(name);
   }
 }

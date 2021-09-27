@@ -30,7 +30,7 @@ export class ServerResolver {
 
   // Subscription
   @Subscription(() => Log, { name: 'logs' })
-  logsSub() {
+  logsSub(): AsyncIterator<Log> {
     return this._pubsub.asyncIterator<Log>('logs');
   }
 }

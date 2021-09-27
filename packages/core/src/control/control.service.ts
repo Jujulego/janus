@@ -12,7 +12,7 @@ export class ControlService {
   readonly $events = this._events.asObservable();
 
   // Methods
-  shutdown() {
+  shutdown(): void {
     this._events.next({ value: null, action: 'shutdown' });
   }
 }

@@ -2,10 +2,9 @@ import Ajv from 'ajv';
 import { promises as fs } from 'fs';
 import yaml from 'yaml';
 
-import { IControlServerConfig, IJanusConfig, IServiceConfig } from './config.model';
+import configSchema from '@jujulego/janus-types/dist/config.schema.json';
+import { IControlServerConfig, IJanusConfig, IServiceConfig } from '@jujulego/janus-types';
 import { Logger } from '../logger';
-
-import janusConfigSchema from '../janus-config.schema.json';
 
 // Constants
 export const DEFAULT_CONTROL_PORT = 5000;
@@ -37,7 +36,7 @@ export class JanusConfig implements IJanusConfig {
 
       // Validate file
       const ajv = new Ajv({ allErrors: true, useDefaults: true });
-      const validate = ajv.compile(janusConfigSchema);
+      const validate = ajv.compile(configSchema);
 
       if (!validate(data)) {
         if (validate.errors) {

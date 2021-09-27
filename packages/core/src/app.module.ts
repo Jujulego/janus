@@ -4,7 +4,7 @@ import { GraphQLModule } from '@nestjs/graphql';
 import { ConfigModule } from './config';
 // import { ControlModule } from './control/control.module';
 // import { FrontModule } from './front.module';
-// import { GatesModule } from './gates/gates.module';
+import { ServicesModule } from './services/services.module';
 // import { ProxyModule } from './proxy/proxy.module';
 
 // Module
@@ -19,7 +19,7 @@ import { ConfigModule } from './config';
     // ControlModule,
     // FrontModule.forRoot(),
     // ProxyModule,
-    // GatesModule,
+    ServicesModule,
   ],
 })
 export class AppModule {}

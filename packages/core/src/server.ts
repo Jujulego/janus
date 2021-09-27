@@ -1,18 +1,18 @@
 import { NestFactory } from '@nestjs/core';
 import { INestApplication } from '@nestjs/common';
-// import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphql';
-// import { GraphQLSchema } from 'graphql';
+import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphql';
+import { GraphQLSchema } from 'graphql';
 import { Subject } from 'rxjs';
 // import { exhaustMap, filter } from 'rxjs/operators';
 import morgan from 'morgan';
 
 import { AppModule } from './app.module';
 import { ConfigService, JanusConfig } from './config';
+import { JsonObjScalar } from './json-obj.scalar';
+import { Logger } from './logger';
 // import { ServerResolver } from './control/server.resolver';
 // import { GateResolver } from './gates/gate.resolver';
 // import { ServiceResolver } from './gates/service.resolver';
-import { Logger } from './logger';
-// import { JsonObjScalar } from './json-obj.scalar';
 
 // Server
 export class JanusServer {
@@ -36,18 +36,18 @@ export class JanusServer {
     return new JanusServer(app);
   }
 
-  // static async generateGQLSchema(): Promise<GraphQLSchema> {
-  //   const app = await NestFactory.create(GraphQLSchemaBuilderModule, { logger: false });
-  //   await app.init();
-  //
-  //   // Generate schema
-  //   const factory = app.get(GraphQLSchemaFactory);
-  //   return await factory.create([
-  //     GateResolver,
-  //     ServiceResolver,
-  //     ServerResolver,
-  //   ], [JsonObjScalar]);
-  // }
+  static async generateGQLSchema(): Promise<GraphQLSchema> {
+    const app = await NestFactory.create(GraphQLSchemaBuilderModule, { logger: false });
+    await app.init();
+
+    // Generate schema
+    const factory = app.get(GraphQLSchemaFactory);
+    return await factory.create([
+      // GateResolver,
+      // ServiceResolver,
+      // ServerResolver,
+    ], [JsonObjScalar]);
+  }
 
   // Methods
   private async handleShutdown(): Promise<void> {

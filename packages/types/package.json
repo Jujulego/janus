@@ -19,6 +19,10 @@
   "engines": {
     "node": "^14"
   },
+  "dependencies": {
+    "graphql": "^15.6.0",
+    "graphql-tag": "^2.12.5"
+  },
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "4.31.2",
     "@typescript-eslint/parser": "4.31.2",

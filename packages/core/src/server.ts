@@ -7,11 +7,10 @@ import { Subject } from 'rxjs';
 import morgan from 'morgan';
 
 import { AppModule } from './app.module';
-import { JanusConfig } from './config';
+import { ConfigService, JanusConfig } from './config';
 // import { ServerResolver } from './control/server.resolver';
 // import { GateResolver } from './gates/gate.resolver';
 // import { ServiceResolver } from './gates/service.resolver';
-// import { ControlService } from './control/control.service';
 import { Logger } from './logger';
 // import { JsonObjScalar } from './json-obj.scalar';
 
@@ -63,7 +62,7 @@ export class JanusServer {
   async start(config: string | JanusConfig): Promise<void> {
     // Load configuration
     if (typeof config === 'string') {
-      config = await JanusConfig.loadFile(config, { logger: this._logger });
+      config = await JanusConfig.loadFile(config);
     }
 
     this.config.config = config;

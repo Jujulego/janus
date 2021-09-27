@@ -2,7 +2,7 @@ import Ajv from 'ajv';
 import { promises as fs } from 'fs';
 import yaml from 'yaml';
 
-import { IJanusConfig } from './config.model';
+import { IControlServerConfig, IJanusConfig, IServiceConfig } from './config.model';
 import { Logger } from '../logger';
 
 import janusConfigSchema from '../janus-config.schema.json';
@@ -65,19 +65,19 @@ export class JanusConfig implements IJanusConfig {
   }
 
   // Properties
-  get control() {
+  get control(): Readonly<Required<IControlServerConfig>> {
     return {
       port: this.config.control?.port || DEFAULT_CONTROL_PORT,
     };
   }
 
-  get proxy() {
+  get proxy(): Readonly<Required<IControlServerConfig>> {
     return {
       port: this.config.proxy?.port || DEFAULT_PROXY_PORT,
     };
   }
 
-  get services() {
+  get services(): Readonly<Record<string, IServiceConfig>> {
     return this.config.services;
   }
 }

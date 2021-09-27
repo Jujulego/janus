@@ -11,11 +11,8 @@ import { map, tap } from 'rxjs/operators';
 import http from 'http';
 import httpProxy from 'http-proxy';
 
-import { ConfigService } from '../config/config.service';
-import { ResolverService } from '../gates/resolver.service';
-import { GatesService } from '../gates/gates.service';
-import { Gate } from '../gates/gate.model';
-import { Service } from '../gates/service.model';
+import { ConfigService } from '../config';
+import { Gate, GatesService, ResolverService, Service } from '../services';
 import { Logger } from '../logger';
 
 // Service
@@ -119,13 +116,13 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
     };
   }
 
-  async listen() {
+  async listen(): Promise<void> {
     await this._server.listen(this._config.proxy.port, () => {
       this._logger.log(`Proxy listening at http://localhost:${this._config.proxy.port}`);
     });
   }
 
-  async stop() {
+  async stop(): Promise<void> {
     await this._server.close();
     this._logger.log('Proxy stopped');
   }

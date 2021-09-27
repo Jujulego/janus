@@ -8,9 +8,9 @@ import morgan from 'morgan';
 
 import { AppModule } from './app.module';
 import { ConfigService, JanusConfig } from './config';
+import { ControlService, ServerResolver } from './control';
 import { JsonObjScalar } from './json-obj.scalar';
 import { Logger } from './logger';
-import { ServerResolver } from './control/server.resolver';
 import { GateResolver } from './services/gate.resolver';
 import { ServiceResolver } from './services/service.resolver';
 

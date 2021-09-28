@@ -2,11 +2,9 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "incremental": true,
-    "removeComments": true,
-    "rootDir": "./src",
-    "outDir": "./dist",
+    "outDir": "./dist/cjs",
+    "rootDir": ".",
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
-    "baseUrl": "./src",
     "resolveJsonModule": true
   }
 }

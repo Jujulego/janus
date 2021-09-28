@@ -29,15 +29,16 @@ lerna-debug.log*
 .vscode/*
 
 # Configs
-.eslintrc
-.prettierrc
-.janus.config.yml
-jest.config.*.json
+.eslintrc.json
+.gitignore
+jest.config.js
 nest-cli.json
+sonar-project.properties
 tsconfig.*.json
 tsconfig.json
 webpack.config.js
 
 # Others
+/dist/.tsbuildinfo
 /dist/*.js.map
 /dist/*.d.ts.map

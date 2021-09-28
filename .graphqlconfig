@@ -1,6 +1,6 @@
 {
   "name": "Janus GraphQL Schema",
-  "schemaPath": "libs/janus-proxy/schema.graphql",
+  "schemaPath": "packages/core/schema.graphql",
   "extensions": {
     "endpoints": {
       "Default GraphQL Endpoint": {

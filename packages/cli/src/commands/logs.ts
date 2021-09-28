@@ -1,12 +1,13 @@
 import { JanusConfig } from '@jujulego/janus-core';
 import { ILog, LogFragment } from '@jujulego/janus-types';
+import { lastValueFrom } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import gql from 'graphql-tag';
+import { format } from 'winston';
 
 import { JanusClient } from '../client';
 import { logger } from '../logger';
 import { CommandHandler } from '../wrapper';
-import { lastValueFrom } from 'rxjs';
 
 // Types
 interface ILogsData {
@@ -22,10 +23,7 @@ interface LogsArgs {
 }
 
 // Utils
-function printLog(log: ILog) {
-  const { message, level, timestamp, metadata } = log;
-  logger.log(level, message, { ...metadata, timestamp });
-}
+const remoteLogger = logger.child({ label: 'Nest' });
 
 // Handler
 export const logsCommand: CommandHandler<LogsArgs> = async (args) => {
@@ -49,7 +47,7 @@ export const logsCommand: CommandHandler<LogsArgs> = async (args) => {
     logger.stop();
 
     for (const log of logs) {
-      printLog(log);
+      remoteLogger.log(log.level, log.message, { ...log.metadata, timestamp: log.timestamp });
     }
 
     // Subscribe to events
@@ -65,7 +63,7 @@ export const logsCommand: CommandHandler<LogsArgs> = async (args) => {
       `)
       .pipe(
         map((data) => data.logs),
-        tap((log) => printLog(log))
+        tap((log) => remoteLogger.log(log.level, log.message, { ...log.metadata, timestamp: log.timestamp }))
       ));
     }
 

@@ -13,21 +13,24 @@ export class Logger implements LoggerService {
   }
 
   // Statics
+  static readonly consoleTransport = new winston.transports.Console({
+    format: format.combine(
+      format.timestamp({ format: () => new Date().toLocaleString() }),
+      format.printf(({ context, pid, message, timestamp }) => context
+        ? chalk`[Nest] ${pid} - {white ${timestamp}} {grey [${context}]} ${message}`
+        : chalk`[Nest] ${pid} - {white ${timestamp}} ${message}`
+      ),
+      format.colorize({ all: true }),
+    ),
+  });
+
   static readonly root = winston.createLogger({
     level: 'debug',
-    format: format.json(),
-    transports: [
-      new winston.transports.Console({
-        format: format.combine(
-          format.timestamp({ format: () => new Date().toLocaleString() }),
-          format.printf(({ context, message, timestamp }) => context
-            ? chalk`[Nest] ${process.pid} - {white ${timestamp}} {grey [${context}]} ${message}`
-            : chalk`[Nest] ${process.pid} - {white ${timestamp}} ${message}`
-          ),
-          format.colorize({ all: true }),
-        ),
-      })
-    ]
+    format: format.combine(
+      { transform: (info) => Object.assign(info, { pid: process.pid }) },
+      format.json(),
+    ),
+    transports: [this.consoleTransport]
   });
 
   static error(message: any, trace?: string,  metadata?: string | Record<string, string | number>): void {

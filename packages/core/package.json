@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "eslint {src,tests}/**/*.*",
     "build": "nest build",
-    "start": "nest start --watch",
+    "start": "NODE_ENV=development nest start --watch",
     "test": "jest"
   },
   "engines": {

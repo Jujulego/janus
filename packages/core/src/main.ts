@@ -1,8 +1,6 @@
 import { JanusServer } from './server';
 import { Logger } from './logger';
 
-process.env.NODE_ENV = 'development';
-
 // Bootstrap
 (async function () {
   try {

@@ -2,9 +2,9 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 
 import { ConfigModule } from './config';
-import { ControlModule } from './control/control.module';
-import { ServicesModule } from './services/services.module';
-import { ProxyModule } from './proxy/proxy.module';
+import { ControlModule } from './control';
+import { ServicesModule } from './services';
+import { ProxyModule } from './proxy';
 
 // Module
 @Module({

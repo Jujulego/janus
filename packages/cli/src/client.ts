@@ -13,7 +13,7 @@ export class JanusClient {
   // Attributes
   private readonly _endpoint = `http://localhost:${this.config.control.port}/graphql`;
   private readonly _qclient = new GraphQLClient(this._endpoint);
-  private readonly _sclient = new SubscriptionClient(this._endpoint, { lazy: true, reconnect: true }, WebSocket);
+  private readonly _sclient = new SubscriptionClient(this._endpoint.replace(/^http/, 'ws'), { lazy: true, reconnect: true }, WebSocket);
 
   // Constructor
   constructor(readonly config: JanusConfig) {}

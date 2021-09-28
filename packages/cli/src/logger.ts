@@ -79,6 +79,10 @@ export class OraLogger {
 
   // Methods
   // - logger
+  log(level: string, message: string, meta: any): void {
+    this.logger.log(level, message, meta);
+  }
+
   debug(message: string): void {
     this.logger.debug({ message });
   }

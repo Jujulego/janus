@@ -1,40 +1,42 @@
 {
-  "name": "@jujulego/janus-gate",
+  "name": "@jujulego/janus",
   "version": "1.0.0",
   "license": "MIT",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
-  "types": "./dist/types/index.d.ts",
-  "sideEffects": false,
+  "bin": "./bin/janus.js",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/Jujulego/janus",
-    "directory": "packages/gate"
+    "directory": "packages/cli"
   },
   "scripts": {
     "lint": "eslint {src,tests}/**/*.*",
-    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json && copyfiles -f src/config.schema.json dist",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "ts-node src/main.ts",
     "test": "jest"
   },
   "engines": {
     "node": "^14"
   },
   "dependencies": {
+    "@jujulego/janus-core": "^1.0.0",
     "@jujulego/janus-types": "^1.0.0",
+    "chalk": "^4.1.1",
     "graphql": "^15.6.0",
     "graphql-request": "^3.5.0",
     "graphql-tag": "^2.12.5",
+    "ora": "^5.4.1",
     "rxjs": "^7.3.0",
     "subscriptions-transport-ws": "^0.9.19",
-    "ws": "^8.2.2"
-  },
-  "peerDependencies": {
-    "@jujulego/janus-core": "^1.0.0"
+    "ws": "^8.2.2",
+    "yargs": "^17.2.1"
   },
   "devDependencies": {
     "@jujulego/janus-core": "1.0.0",
     "@types/node": "14.17.19",
     "@types/ws": "8.2.0",
+    "@types/yargs": "17.0.3",
     "@typescript-eslint/eslint-plugin": "4.31.2",
     "@typescript-eslint/parser": "4.31.2",
     "eslint": "7.32.0",

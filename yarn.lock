@@ -1035,7 +1035,6 @@ __metadata:
     "@types/ws": 8.2.0
     "@typescript-eslint/eslint-plugin": 4.31.2
     "@typescript-eslint/parser": 4.31.2
-    copyfiles: ^2.4.1
     eslint: 7.32.0
     eslint-plugin-jest: 24.4.2
     graphql: ^15.6.0
@@ -1066,6 +1065,36 @@ __metadata:
     jest: 27.2.2
     ts-jest: 27.0.5
     typescript: 4.4.3
+  languageName: unknown
+  linkType: soft
+
+"@jujulego/janus@workspace:packages/cli":
+  version: 0.0.0-use.local
+  resolution: "@jujulego/janus@workspace:packages/cli"
+  dependencies:
+    "@jujulego/janus-core": 1.0.0
+    "@jujulego/janus-types": ^1.0.0
+    "@types/node": 14.17.19
+    "@types/ws": 8.2.0
+    "@types/yargs": 17.0.3
+    "@typescript-eslint/eslint-plugin": 4.31.2
+    "@typescript-eslint/parser": 4.31.2
+    chalk: ^4.1.1
+    eslint: 7.32.0
+    eslint-plugin-jest: 24.4.2
+    graphql: ^15.6.0
+    graphql-request: ^3.5.0
+    graphql-tag: ^2.12.5
+    jest: 27.2.2
+    ora: ^5.4.1
+    rxjs: ^7.3.0
+    subscriptions-transport-ws: ^0.9.19
+    ts-jest: 27.0.5
+    typescript: 4.4.3
+    ws: ^8.2.2
+    yargs: ^17.2.1
+  bin:
+    janus: ./bin/janus.js
   languageName: unknown
   linkType: soft
 
@@ -1830,6 +1859,15 @@ __metadata:
   version: 20.2.1
   resolution: "@types/yargs-parser@npm:20.2.1"
   checksum: 1d039e64494a7a61ddd278349a3dc60b19f99ff0517425696e796f794e4252452b9d62178e69755ad03f439f9dc0c8c3d7b3a1201b3a24e134bac1a09fa11eaa
+  languageName: node
+  linkType: hard
+
+"@types/yargs@npm:17.0.3":
+  version: 17.0.3
+  resolution: "@types/yargs@npm:17.0.3"
+  dependencies:
+    "@types/yargs-parser": "*"
+  checksum: 8c4e01f893f0b372a37efb2da2191b63793a25126e0b468c7eb8886176fec2a10f063d9718fa75f1fa00e82fbed4a614bb06661d968e4233be8a00468b94ac60
   languageName: node
   linkType: hard
 
@@ -8852,7 +8890,7 @@ typescript@4.4.3:
   languageName: node
   linkType: hard
 
-"yargs@npm:^17.0.1":
+"yargs@npm:^17.0.1, yargs@npm:^17.2.1":
   version: 17.2.1
   resolution: "yargs@npm:17.2.1"
   dependencies:

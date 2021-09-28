@@ -3,4 +3,4 @@ export * from './control';
 export * from './proxy';
 export * from './services';
 
-export { JanusServer } from './server';
+export * from './server';

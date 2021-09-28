@@ -11,8 +11,7 @@ import { ConfigService, JanusConfig } from './config';
 import { ControlService, ServerResolver } from './control';
 import { JsonObjScalar } from './json-obj.scalar';
 import { Logger } from './logger';
-import { GateResolver } from './services/gate.resolver';
-import { ServiceResolver } from './services/service.resolver';
+import { GateResolver, ServiceResolver } from './services';
 
 // Server
 export class JanusServer {

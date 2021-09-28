@@ -133,7 +133,7 @@ export class OraLogger {
 // Setup
 export const transport = new OraTransport({
   format: format.combine(
-    format.colorize({ message: true, colors: { debug: 'grey', verbose: 'blue', info: 'white', error: 'red' } }),
+    format.colorize({ message: true, colors: { debug: 'grey', verbose: 'blue', info: 'green', error: 'red' } }),
     format.printf(({ label, message }) => message.split('\n').map(line => [label && chalk.grey(`[${label}]`), line].filter(p => p).join(' ')).join('\n')),
   )
 });

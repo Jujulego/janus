@@ -4,10 +4,11 @@ import { logger } from './logger';
 
 // Types
 export interface CommonArgs {
+  config: string;
   verbose: number;
 }
 
-export type CommandHandler<A = Record<string, never>> = (argv: A) => Promise<number | void>
+export type CommandHandler<A = Record<string, unknown>> = (argv: Arguments<A & CommonArgs>) => Promise<number | void>
 
 // Wrapper
 export function commandHandler<A = Record<string, never>>(handler: CommandHandler<A>) {

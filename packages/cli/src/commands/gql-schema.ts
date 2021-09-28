@@ -1,6 +1,5 @@
-import { printSchema } from 'graphql';
-
 import { JanusServer } from '@jujulego/janus-core';
+import { printSchema } from 'graphql';
 
 import { logger } from '../logger';
 import { CommandHandler } from '../wrapper';

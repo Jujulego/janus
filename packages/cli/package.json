@@ -33,7 +33,6 @@
     "yargs": "^17.2.1"
   },
   "devDependencies": {
-    "@jujulego/janus-core": "1.0.0",
     "@types/node": "14.17.19",
     "@types/ws": "8.2.0",
     "@types/yargs": "17.0.3",

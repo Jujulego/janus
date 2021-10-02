@@ -29,6 +29,8 @@
     "ora": "^5.4.1",
     "rxjs": "^7.3.0",
     "subscriptions-transport-ws": "^0.9.19",
+    "winston": "^3.3.3",
+    "winston-transport": "^4.4.0",
     "ws": "^8.2.2",
     "yargs": "^17.2.1"
   },

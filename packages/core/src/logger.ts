@@ -30,7 +30,7 @@ export class Logger implements LoggerService {
       { transform: (info) => Object.assign(info, { pid: process.pid }) },
       format.json(),
     ),
-    transports: [this.consoleTransport]
+    transports: [Logger.consoleTransport]
   });
 
   static error(message: any, trace?: string,  metadata?: string | Record<string, string | number>): void {

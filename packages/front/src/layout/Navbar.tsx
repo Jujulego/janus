@@ -1,13 +1,42 @@
-import { AppBar, Box, Drawer, IconButton, Theme, Toolbar, Typography, useMediaQuery } from '@mui/material';
+import {
+  AppBar,
+  Box,
+  Divider,
+  Drawer,
+  IconButton,
+  List, ListItem, ListItemText, ListSubheader,
+  Theme,
+  Toolbar,
+  Typography,
+  useMediaQuery
+} from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useGraphql } from '@jujulego/alma-graphql';
+import { IService } from '@jujulego/janus-types';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
+import gql from 'graphql-tag';
+
+// Types
+interface NavbarData {
+  services: Pick<IService, 'name' | 'url'>[];
+}
 
 // Component
 export const Navbar: FC = ({ children }) => {
   // State
   const [open, setOpen] = useState(false);
+
+  // Api
+  const { data } = useGraphql<NavbarData>('http://localhost:5000/graphql', gql`
+    query Navbar {
+        services {
+            name
+            url
+        }
+    }
+  `, {});
 
   // Render
   const small = useMediaQuery<Theme>(({ breakpoints }) => breakpoints.down('lg'));
@@ -54,6 +83,28 @@ export const Navbar: FC = ({ children }) => {
             </>
           ) }
         </Toolbar>
+        { small && <Divider /> }
+        <List
+          component="nav"
+          subheader={
+            <ListSubheader component="div" sx={{ bgcolor: 'transparent' }}>
+              Services
+            </ListSubheader>
+          }
+        >
+          { data?.services?.map((service) => (
+            <ListItem button key={service.name}>
+              <ListItemText
+                primary={service.name}
+                secondary={service.url}
+                secondaryTypographyProps={{
+                  variant: 'body2',
+                  color: 'primary.light',
+                }}
+              />
+            </ListItem>
+          )) }
+        </List>
       </Drawer>
       <Box
         component="main"

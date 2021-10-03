@@ -1,20 +1,26 @@
-const path = require('path');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+
 
 module.exports = {
   entry: './src/index',
   output: {
-    filename: '[name].bundle.js',
+    filename: '[name].[contenthash].js',
     path: path.resolve('dist'),
+    clean: true
   },
   optimization: {
+    runtimeChunk: 'single',
+    moduleIds: 'deterministic',
     splitChunks: {
-      chunks: 'all'
+      cacheGroups: {
+        vendor: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
     }
-  },
-  devServer: {
-    port: 4000,
-    hot: true
   },
   module: {
     rules: [

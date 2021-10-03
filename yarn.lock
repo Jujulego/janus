@@ -2065,7 +2065,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/alma-api@npm:^1.1.0":
+"@jujulego/alma-api@npm:1.1.1, @jujulego/alma-api@npm:^1.1.0":
   version: 1.1.1
   resolution: "@jujulego/alma-api@npm:1.1.1"
   dependencies:
@@ -2168,6 +2168,7 @@ __metadata:
     "@babel/runtime": 7.15.4
     "@emotion/react": 11.4.1
     "@emotion/styled": 11.3.0
+    "@jujulego/alma-api": 1.1.1
     "@jujulego/alma-graphql": 1.0.0
     "@jujulego/janus-core": 1.0.0
     "@jujulego/janus-types": 1.0.0

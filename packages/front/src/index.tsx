@@ -1,10 +1,12 @@
+import { SwrCache } from '@jujulego/alma-api';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 
 import { Navbar } from './layout/Navbar';
-import { Home } from './pages/Home';
+import { HomePage } from './pages/HomePage';
+import { ServicePage } from './pages/ServicePage';
 import { theme } from './theme';
 
 // Polyfills
@@ -15,11 +17,16 @@ ReactDOM.render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
 
-    <BrowserRouter>
-      <Navbar>
-        <Home />
-      </Navbar>
-    </BrowserRouter>
+    <SwrCache>
+      <BrowserRouter>
+        <Navbar>
+          <Switch>
+            <Route path="/service/:name" component={ServicePage} />
+            <Route component={HomePage} />
+          </Switch>
+        </Navbar>
+      </BrowserRouter>
+    </SwrCache>
   </ThemeProvider>,
   document.getElementById('root')
 );

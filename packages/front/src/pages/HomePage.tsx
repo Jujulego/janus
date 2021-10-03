@@ -4,6 +4,7 @@ import { Box, Card, CardHeader, Grid, IconButton, Typography } from '@mui/materi
 import ShareIcon from '@mui/icons-material/Share';
 import { gql } from 'graphql.macro';
 import { FC } from 'react';
+import { Link } from 'react-router-dom';
 
 // Types
 interface HomeData {
@@ -11,7 +12,7 @@ interface HomeData {
 }
 
 // Component
-export const Home: FC = () => {
+export const HomePage: FC = () => {
   // Api
   const { data } = useGraphql<HomeData>('http://localhost:5000/graphql', gql`
       query Home {
@@ -40,7 +41,7 @@ export const Home: FC = () => {
                 }}
 
                 action={
-                  <IconButton component="a">
+                  <IconButton component={Link} to={`/service/${service.name}`}>
                     <ShareIcon />
                   </IconButton>
                 }

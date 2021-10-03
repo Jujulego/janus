@@ -1,3 +1,5 @@
+import { useGraphql } from '@jujulego/alma-graphql';
+import { IService } from '@jujulego/janus-types';
 import {
   AppBar,
   Box,
@@ -12,11 +14,9 @@ import {
 } from '@mui/material';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
 import MenuIcon from '@mui/icons-material/Menu';
-import { useGraphql } from '@jujulego/alma-graphql';
-import { IService } from '@jujulego/janus-types';
+import { gql } from 'graphql.macro';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { gql } from 'graphql.macro';
 
 // Types
 interface NavbarData {
@@ -93,7 +93,7 @@ export const Navbar: FC = ({ children }) => {
           }
         >
           { data?.services?.map((service) => (
-            <ListItem button key={service.name}>
+            <ListItem button key={service.name} component={Link} to={`/service/${service.name}`}>
               <ListItemText
                 primary={service.name}
                 secondary={service.url}

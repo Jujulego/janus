@@ -37,7 +37,7 @@
     "@typescript-eslint/parser": "4.31.2",
     "axios": "0.21.4",
     "babel-loader": "8.2.2",
-    "babel-plugin-macros": "^3.1.0",
+    "babel-plugin-macros": "3.1.0",
     "eslint": "7.32.0",
     "eslint-plugin-jest": "24.4.2",
     "eslint-plugin-react": "7.26.0",
@@ -56,6 +56,6 @@
     "webpack-bundle-analyzer": "4.4.2",
     "webpack-cli": "4.8.0",
     "webpack-dev-server": "4.3.0",
-    "webpack-merge": "^5.8.0"
+    "webpack-merge": "5.8.0"
   }
 }

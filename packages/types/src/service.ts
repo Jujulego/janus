@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'graphql.macro';
 
 import { GateFragment, IGate } from './gate';
 

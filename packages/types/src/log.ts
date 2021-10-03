@@ -1,4 +1,4 @@
-import gql from 'graphql-tag';
+import { gql } from 'graphql.macro';
 
 // Model
 export interface ILog {

@@ -14,7 +14,7 @@ interface HomeData {
 export const Home: FC = () => {
   // Api
   const { data } = useGraphql<HomeData>('http://localhost:5000/graphql', gql`
-      query Navbar {
+      query Home {
           services {
               name
               url

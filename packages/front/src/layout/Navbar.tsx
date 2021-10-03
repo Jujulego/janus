@@ -113,6 +113,7 @@ export const Navbar: FC = ({ children }) => {
         display="flex"
         flexDirection="column"
         overflow="auto"
+        p={2}
       >
         <Toolbar />
         { children }

@@ -10,7 +10,7 @@ import { GateDetails } from '../../gates/GateDetails';
 import { Navbar } from '../../layout/Navbar';
 import { ServiceHeader } from '../../services/ServiceHeader';
 import { ServiceGraph } from '../../services/ServiceGraph';
-import { Logs, LOGS_QRY } from '../../control/Logs';
+import { Logs, LOGS_QRY } from '../../../../../packages/front/src/molecules/Logs';
 
 // Types
 export interface ServicePageData {

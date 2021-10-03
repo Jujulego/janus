@@ -1,9 +1,9 @@
-import { Chip } from '@material-ui/core';
-import { grey } from '@material-ui/core/colors';
-import CircleIcon from '@material-ui/icons/Circle';
+import { Chip } from '@mui/material';
+import { grey } from '@mui/material/colors';
+import CircleIcon from '@mui/icons-material/Circle';
 import { FC } from 'react';
 
-import { levelsColors, levelsIcons } from './levels';
+import { levelsColors, levelsIcons } from '../levels';
 
 // Types
 export interface LevelChipProps {

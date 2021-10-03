@@ -6,6 +6,8 @@ import { gql } from 'graphql.macro';
 import { FC } from 'react';
 import { Link } from 'react-router-dom';
 
+import { Logs } from '../molecules/Logs';
+
 // Types
 interface HomeData {
   services: Pick<IService, 'name' | 'url'>[];
@@ -24,7 +26,7 @@ const HomePage: FC = () => {
   `, {});
 
   return (
-    <Box component="section" p={2}>
+    <>
       <Typography variant="h5" mb={2}>Services</Typography>
       <Grid container spacing={2}>
         { data?.services.map((service) => (
@@ -50,7 +52,12 @@ const HomePage: FC = () => {
           </Grid>
         )) }
       </Grid>
-    </Box>
+
+      <Typography variant="h5" mb={2} mt={4}>Events</Typography>
+      <Box minHeight={242} flex={1} overflow="auto">
+          <Logs title="Global logs" />
+      </Box>
+    </>
   );
 };
 

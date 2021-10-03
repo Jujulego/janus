@@ -7,7 +7,7 @@ import NextLink from 'next/link';
 import { IService } from '@jujulego/janus-common';
 
 import { addApolloState, createApolloClient } from '../apollo-client';
-import { Logs, LOGS_QRY } from '../control/Logs';
+import { Logs, LOGS_QRY } from '../../../../packages/front/src/molecules/Logs';
 import { Navbar } from '../layout/Navbar';
 
 // Queries

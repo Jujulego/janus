@@ -1,22 +1,17 @@
-import { gql, useQuery } from '@apollo/client';
-import { Box, Chip, Paper, Stack, Toolbar, Typography } from '@material-ui/core';
-import TollIcon from '@material-ui/icons/Toll';
+import { useGraphql } from '@jujulego/alma-graphql';
+import { ILog, LogFragment } from '@jujulego/janus-types';
+import { Box, Chip, Paper, Stack, Toolbar, Typography } from '@mui/material';
+import TollIcon from '@mui/icons-material/Toll';
+import { gql } from 'graphql.macro';
 import { FC, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { FixedSizeList as List } from 'react-window';
-import ResizeObserver from 'resize-observer-polyfill';
 
-import { ILog, LogFragment } from '@jujulego/janus-common';
-
-import { LevelChip } from './LevelChip';
-import { Log } from './Log';
+import { LevelChip } from '../atoms/LevelChip';
+import { Log } from '../atoms/Log';
 
 // Types
 interface LogsData {
   logs: ILog[];
-}
-
-interface LogsEvent {
-  logs: ILog;
 }
 
 export interface LogsProps {
@@ -24,35 +19,23 @@ export interface LogsProps {
   filter?: (log: ILog) => boolean;
 }
 
-// Queries
-export const LOGS_QRY = gql`
-  query Logs {
-      logs {
-          ...Log
-      }
-  }
-  
-  ${LogFragment}
-`;
-
-export const LOGS_SUB = gql`
-  subscription Logs {
-      logs {
-          ...Log
-      }
-  }
-  
-  ${LogFragment}
-`;
-
 // Component
 export const Logs: FC<LogsProps> = ({ title, filter }) => {
   // Query logs
-  const { data, subscribeToMore } = useQuery<LogsData>(LOGS_QRY);
+  // const { data, subscribeToMore } = useQuery<LogsData>(LOGS_QRY);
+  const { data } = useGraphql<LogsData>('/graphql', gql`
+      query Logs {
+          logs {
+              ...Log
+          }
+      }
+
+      ${LogFragment}
+  `, {});
 
   // State
   const [levels, setLevels] = useState<string[]>(['error', 'warn', 'info', 'verbose', 'debug']);
-  const [height, setHeight] = useState(200);
+  const [height, setHeight] = useState(192); // 8 lines of 24px
 
   // Ref
   const container = useRef<HTMLDivElement>(null);
@@ -99,16 +82,6 @@ export const Logs: FC<LogsProps> = ({ title, filter }) => {
 
     return  () => obs.disconnect();
   }, []);
-
-  useEffect(() => {
-    subscribeToMore<LogsEvent>({
-      document: LOGS_SUB,
-      updateQuery: (prev, { subscriptionData }) => ({
-        ...prev,
-        logs: [...prev.logs || [], subscriptionData.data.logs]
-      })
-    });
-  }, [subscribeToMore]);
 
   useEffect(() => {
     if (logs.length > 0) {

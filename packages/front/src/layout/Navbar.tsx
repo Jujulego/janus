@@ -16,7 +16,7 @@ import { useGraphql } from '@jujulego/alma-graphql';
 import { IService } from '@jujulego/janus-types';
 import { FC, useState } from 'react';
 import { Link } from 'react-router-dom';
-import gql from 'graphql-tag';
+import { gql } from 'graphql.macro';
 
 // Types
 interface NavbarData {

@@ -6,7 +6,6 @@ import { Navbar } from './layout/Navbar';
 import { theme } from './theme';
 
 // Polyfills
-import 'core-js/stable';
 import 'regenerator-runtime/runtime';
 
 // Start App

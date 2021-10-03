@@ -12,7 +12,7 @@ interface HomeData {
 }
 
 // Component
-export const HomePage: FC = () => {
+const HomePage: FC = () => {
   // Api
   const { data } = useGraphql<HomeData>('/graphql', gql`
       query Home {
@@ -53,3 +53,5 @@ export const HomePage: FC = () => {
     </Box>
   );
 };
+
+export default HomePage;

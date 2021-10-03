@@ -2,9 +2,9 @@
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
     "incremental": true,
-    "module": "es2015",
+    "module": "esnext",
     "lib": [
-      "es2015",
+      "esnext",
       "dom",
       "dom.iterable"
     ],

@@ -13,6 +13,7 @@
       <excludeFolder url="file://$MODULE_DIR$/samples/express-api/dist" />
       <excludeFolder url="file://$MODULE_DIR$/libs/janus-config/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/libs/janus-gate/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/front/dist" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

@@ -12,7 +12,7 @@ export interface ServicePageData {
 }
 
 // Component
-export const ServicePage: FC = () => {
+const ServicePage: FC = () => {
   // Router
   const { name } = useParams<{ name: string }>();
 
@@ -36,3 +36,5 @@ export const ServicePage: FC = () => {
     <ServiceHeader service={data.service} />
   );
 };
+
+export default ServicePage;

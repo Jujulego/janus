@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 
 import { Navbar } from './layout/Navbar';
+import { Home } from './pages/Home';
 import { theme } from './theme';
 
 // Polyfills
@@ -15,7 +16,7 @@ ReactDOM.render(
 
     <BrowserRouter>
       <Navbar>
-        <h1>Hello World!</h1>
+        <Home />
       </Navbar>
     </BrowserRouter>
   </ThemeProvider>,

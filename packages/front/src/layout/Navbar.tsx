@@ -29,7 +29,7 @@ export const Navbar: FC = ({ children }) => {
   const [open, setOpen] = useState(false);
 
   // Api
-  const { data } = useGraphql<NavbarData>('http://localhost:5000/graphql', gql`
+  const { data } = useGraphql<NavbarData>('/graphql', gql`
     query Navbar {
         services {
             name

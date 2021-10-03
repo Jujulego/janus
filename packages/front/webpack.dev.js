@@ -6,6 +6,12 @@ module.exports = merge(common, {
   devtool: 'inline-source-map',
   devServer: {
     port: 4000,
-    hot: true
+    hot: true,
+    historyApiFallback: true,
+    proxy: {
+      '/graphql': {
+        target: 'http://localhost:5000',
+      }
+    }
   }
 });

@@ -7,7 +7,8 @@ module.exports = {
   output: {
     filename: '[name].[contenthash].js',
     path: path.resolve('dist'),
-    clean: true
+    clean: true,
+    publicPath: '/',
   },
   optimization: {
     runtimeChunk: 'single',
@@ -20,7 +21,7 @@ module.exports = {
           chunks: 'all',
         },
       },
-    }
+    },
   },
   module: {
     rules: [
@@ -28,7 +29,7 @@ module.exports = {
         test: /\.(js|jsx|ts|tsx)$/,
         exclude: /node_modules/,
         use: 'babel-loader',
-      }
+      },
     ],
   },
   resolve: {
@@ -38,6 +39,6 @@ module.exports = {
     new HTMLWebpackPlugin({
       template: path.resolve('public/index.html'),
       filename: 'index.html',
-    })
+    }),
   ],
 };

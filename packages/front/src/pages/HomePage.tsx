@@ -14,7 +14,7 @@ interface HomeData {
 // Component
 export const HomePage: FC = () => {
   // Api
-  const { data } = useGraphql<HomeData>('http://localhost:5000/graphql', gql`
+  const { data } = useGraphql<HomeData>('/graphql', gql`
       query Home {
           services {
               name

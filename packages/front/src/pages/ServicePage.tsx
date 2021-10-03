@@ -17,7 +17,7 @@ export const ServicePage: FC = () => {
   const { name } = useParams<{ name: string }>();
 
   // Api
-  const { data } = useGraphql<ServicePageData>('http://localhost:5000/graphql', gql`
+  const { data } = useGraphql<ServicePageData>('/graphql', gql`
       query ServiceGraph($name: String!) {
           service(name: $name) {
               ...Service

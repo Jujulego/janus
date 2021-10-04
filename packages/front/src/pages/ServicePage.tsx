@@ -8,6 +8,7 @@ import { useParams } from 'react-router-dom';
 import { ServiceHeader } from '../molecules/ServiceHeader';
 import { Logs } from '../molecules/Logs';
 import { ServiceGraph } from '../molecules/ServiceGraph';
+import { GateDetails } from '../molecules/GateDetails';
 
 // Types
 export interface ServicePageData {
@@ -67,6 +68,12 @@ const ServicePage: FC = () => {
         <Grid item xs>
           <ServiceGraph service={data.service} selected={selected} onSelect={setSelected} />
         </Grid>
+
+        { gate && (
+          <Grid item lg={2} minWidth={300} ml={2}>
+            <GateDetails gate={gate} onToggle={() => undefined} />
+          </Grid>
+        ) }
       </Grid>
 
       <Box mt={2} flex={1} minHeight={242}>

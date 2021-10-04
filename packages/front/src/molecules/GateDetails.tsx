@@ -1,3 +1,4 @@
+import { IGate } from '@jujulego/janus-types';
 import {
   Box,
   Chip,
@@ -7,10 +8,8 @@ import {
   Stack,
   Switch,
   Typography,
-} from '@material-ui/core';
+} from '@mui/material';
 import { FC, useCallback } from 'react';
-
-import { IGate } from '@jujulego/janus-common';
 
 // Props
 export interface GateDetailsProps {
@@ -46,7 +45,7 @@ export const GateDetails: FC<GateDetailsProps> = ({ gate, onToggle }) => {
           <Typography>{gate.name}</Typography>
         </Grid>
         <Grid item xs="auto" alignSelf="center">
-          <Switch checked={gate.enabled} onChange={handleToggle} />
+          <Switch checked={gate.enabled} disabled onChange={handleToggle} />
         </Grid>
       </Grid>
       <Divider orientation="horizontal" sx={{ mt: 1.5 }} />

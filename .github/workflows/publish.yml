@@ -1,76 +1,128 @@
-name: "Publish"
+name: 'Publish'
 
 on:
   push:
-    branches: [ master ]
+    branches: [ main ]
+
+  milestone:
+    types: [ closed ]
 
 jobs:
-  lint:
+  setup:
     runs-on: ubuntu-latest
 
+    permissions:
+      actions: write
+
     steps:
-      - uses: actions/checkout@v2.3.4
+      - name: Publish only the latest commit
+        uses: styfle/cancel-workflow-action@0.9.1
         with:
-          fetch-depth: 0
+          all_but_latest: true
+          access_token: ${{ github.token }}
+
+      - uses: actions/checkout@v2.3.4
 
       - name: Use Node.js 14.x
-        uses: actions/setup-node@v2.3.0
+        uses: actions/setup-node@v2.4.1
         with:
           node-version: 14
           cache: yarn
 
       - name: Install
-        run: yarn install
+        run: yarn install --immutable
 
-      - name: Lint
-        run: |
-          yarn workspace @jujulego/janus lint
-          yarn workspace @jujulego/janus-common lint
-          yarn workspace @jujulego/janus-config lint
-          yarn workspace @jujulego/janus-front lint
-          yarn workspace @jujulego/janus-gate lint
-          yarn workspace @jujulego/janus-proxy lint
+      - name: List workspaces to lint
+        id: lint
+        run: echo "::set-output name=matrix::$(yarn jill list --with-script lint --json)"
 
-  publish:
+      - name: List workspaces to test
+        id: test
+        run: echo "::set-output name=matrix::$(yarn jill list --with-script test --json)"
+
+    outputs:
+      matrix-lint: ${{ steps.lint.outputs.matrix }}
+      matrix-test: ${{ steps.test.outputs.matrix }}
+
+  build:
     runs-on: ubuntu-latest
-    environment: npm
-    needs: ['lint']
 
     steps:
       - uses: actions/checkout@v2.3.4
 
       - name: Use Node.js 14.x
-        uses: actions/setup-node@v2.3.0
+        uses: actions/setup-node@v2.4.1
         with:
-          node-version: 14.x
-          registry-url: https://registry.npmjs.org
+          node-version: 14
           cache: yarn
 
       - name: Install
-        run: yarn install
+        run: yarn install --immutable
 
       - name: Build
-        run: yarn build
+        run: yarn jill each build
 
-      - name: Apply version update
-        run: yarn version apply --all
+      - uses: actions/upload-artifact@v2
+        with:
+          name: build-artifacts
+          path: packages/*/dist/*
 
-      - name: Commit
-        run: |
-          git config --global user.name 'Boobrie'
-          git config --global user.email 'boobrie@users.noreply.github.com'
+  lint:
+    runs-on: ubuntu-latest
+    needs: [setup]
+    if: ${{ fromJson(needs.setup.outputs.matrix-lint)[0] }}
 
-          if `git diff --quiet --exit-code`
-          then
-            echo "::warning::Nothing changed !"
-          else
-            git commit -am "update(workspace): update version numbers"
-          fi
+    strategy:
+      matrix:
+        include: ${{ fromJson(needs.setup.outputs.matrix-lint) }}
 
-      - name: Publish
-        run: yarn workspaces foreach --no-private npm publish --access public --tolerate-republish
+    steps:
+      - uses: actions/checkout@v2.3.4
+
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v2.4.1
+        with:
+          node-version: 14
+          cache: yarn
+
+      - name: Install
+        run: yarn install --immutable
+
+      - name: Lint
+        run: yarn workspace ${{ matrix.name }} lint
+
+  sonarcloud:
+    runs-on: ubuntu-latest
+    needs: [setup] #[setup, tests, publish]
+    if: ${{ fromJson(needs.setup.outputs.matrix-test)[0] }}
+
+    strategy:
+      matrix:
+        include: ${{ fromJson(needs.setup.outputs.matrix-test) }}
+
+    steps:
+      - uses: actions/checkout@v2.3.4
+        with:
+          ref: main
+          fetch-depth: 0
+
+#      - name: Download test coverage
+#        uses: actions/download-artifact@v2
+#        continue-on-error: true
+#        with:
+#          name: ${{ matrix.slug }}-coverage
+#          path: ${{ matrix.root }}/coverage
+
+      - name: Load package.json
+        id: info
+        run: echo ::set-output name=package::`cat ${{ matrix.root }}/package.json`
+
+      - name: Sonarcloud
+        uses: sonarsource/sonarcloud-github-action@v1.6
+        with:
+          projectBaseDir: ${{ matrix.root }}
+          args: >
+            -Dsonar.projectVersion=${{ fromJSON(steps.info.outputs.package).version }}
         env:
-          YARN_NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
-
-      - name: Push
-        run: git push
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}

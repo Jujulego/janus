@@ -6,6 +6,7 @@
     "outDir": "./dist/types",
     "sourceMap": false,
     "declarationMap": false,
+    "noEmit": false,
     "emitDeclarationOnly": true
   },
   "exclude": ["node_modules", "tests", "dist", "*.ts"]

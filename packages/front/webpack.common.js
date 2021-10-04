@@ -1,14 +1,14 @@
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
-
 module.exports = {
   entry: {
-    main: './app/index'
+    main: './src/index'
   },
   output: {
     filename: '[name].[contenthash].js',
-    path: path.resolve('dist/app'),
+    path: path.resolve(__dirname, 'dist'),
     clean: true,
     publicPath: '/',
   },
@@ -39,8 +39,17 @@ module.exports = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: path.resolve('public/index.html'),
+      template: path.resolve(__dirname, 'public', 'index.html'),
       filename: 'index.html',
     }),
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: '**',
+          context: path.resolve(__dirname, 'public'),
+          globOptions: { ignore: '**/public/index.html' }
+        },
+      ]
+    })
   ],
 };

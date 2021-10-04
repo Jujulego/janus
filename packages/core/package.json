@@ -24,6 +24,7 @@
     "@nestjs/core": "^8.0.9",
     "@nestjs/graphql": "^9.0.5",
     "@nestjs/platform-express": "^8.0.9",
+    "@nestjs/serve-static": "^2.2.2",
     "ajv": "^8.6.3",
     "apollo-server-core": "^3.3.0",
     "apollo-server-express": "^3.3.0",
@@ -43,6 +44,7 @@
     "yaml": "^1.10.2"
   },
   "devDependencies": {
+    "@jujulego/janus-front": "1.0.0",
     "@nestjs/cli": "8.1.2",
     "@nestjs/schematics": "8.0.3",
     "@nestjs/testing": "8.0.9",
@@ -66,5 +68,13 @@
     "typescript": "4.4.3",
     "webpack": "5.56.0",
     "webpack-pnp-externals": "1.1.0"
+  },
+  "peerDependencies": {
+    "@jujulego/janus-front": "^1.0.0"
+  },
+  "peerDependenciesMeta": {
+    "@jujulego/janus-front": {
+      "optional": true
+    }
   }
 }

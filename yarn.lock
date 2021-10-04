@@ -2136,6 +2136,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-core@workspace:packages/core"
   dependencies:
+    "@jujulego/janus-front": 1.0.0
     "@jujulego/janus-types": ^1.0.0
     "@nestjs/cli": 8.1.2
     "@nestjs/common": ^8.0.9
@@ -2143,6 +2144,7 @@ __metadata:
     "@nestjs/graphql": ^9.0.5
     "@nestjs/platform-express": ^8.0.9
     "@nestjs/schematics": 8.0.3
+    "@nestjs/serve-static": ^2.2.2
     "@nestjs/testing": 8.0.9
     "@types/express": 4.17.13
     "@types/http-proxy": 1.17.7
@@ -2181,10 +2183,15 @@ __metadata:
     winston: ^3.3.3
     winston-transport: ^4.4.0
     yaml: ^1.10.2
+  peerDependencies:
+    "@jujulego/janus-front": ^1.0.0
+  peerDependenciesMeta:
+    "@jujulego/janus-front":
+      optional: true
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-front@workspace:packages/front":
+"@jujulego/janus-front@1.0.0, @jujulego/janus-front@workspace:packages/front":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-front@workspace:packages/front"
   dependencies:
@@ -2197,7 +2204,6 @@ __metadata:
     "@emotion/styled": 11.3.0
     "@jujulego/alma-api": 1.1.1
     "@jujulego/alma-graphql": 1.0.1
-    "@jujulego/janus-core": 1.0.0
     "@jujulego/janus-types": 1.0.0
     "@mui/icons-material": 5.0.1
     "@mui/material": 5.0.2
@@ -2214,6 +2220,7 @@ __metadata:
     babel-plugin-import: 1.13.3
     babel-plugin-macros: 3.1.0
     clsx: 1.1.1
+    copy-webpack-plugin: 9.0.1
     d3: 7.1.1
     eslint: 7.32.0
     eslint-plugin-jest: 24.4.2
@@ -2687,6 +2694,18 @@ __metadata:
   peerDependencies:
     typescript: ^3.4.5 || ^4.3.5
   checksum: 723285e786088d7df85f26f38d479df35d601185527df364b0c6c559f77b2606314fd8b4da1fef7d617d10077c7bd2d2a307a922139364d01a680c33b0236767
+  languageName: node
+  linkType: hard
+
+"@nestjs/serve-static@npm:^2.2.2":
+  version: 2.2.2
+  resolution: "@nestjs/serve-static@npm:2.2.2"
+  dependencies:
+    path-to-regexp: 0.1.7
+  peerDependencies:
+    "@nestjs/common": ^6.0.0 || ^7.0.0 || ^8.0.0
+    "@nestjs/core": ^6.0.0 || ^7.0.0 || ^8.0.0
+  checksum: be8dc624d0b3a48a67c7d310ba1e1711993e7dae5a0495be58c2ea3377ce0f63b906c84a9cc518607e9a52859ff80d04c5c6742b70984787973bfb6ae2bf3859
   languageName: node
   linkType: hard
 
@@ -5639,6 +5658,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"copy-webpack-plugin@npm:9.0.1":
+  version: 9.0.1
+  resolution: "copy-webpack-plugin@npm:9.0.1"
+  dependencies:
+    fast-glob: ^3.2.5
+    glob-parent: ^6.0.0
+    globby: ^11.0.3
+    normalize-path: ^3.0.0
+    p-limit: ^3.1.0
+    schema-utils: ^3.0.0
+    serialize-javascript: ^6.0.0
+  peerDependencies:
+    webpack: ^5.1.0
+  checksum: f3e69883e173f9a298b63dcf35ba5aafc02e252c67c236029424af19fb2e36fc93de94054bd7a9ada8b4cbcc4e96e9a3a269f972e4a45f4fd1b32a3d199d2cae
+  languageName: node
+  linkType: hard
+
 "copyfiles@npm:2.4.1":
   version: 2.4.1
   resolution: "copyfiles@npm:2.4.1"
@@ -7062,7 +7098,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"fast-glob@npm:3.2.7":
+"fast-glob@npm:3.2.7, fast-glob@npm:^3.2.5":
   version: 3.2.7
   resolution: "fast-glob@npm:3.2.7"
   dependencies:
@@ -7480,6 +7516,15 @@ __metadata:
   dependencies:
     is-glob: ^4.0.1
   checksum: f4f2bfe2425296e8a47e36864e4f42be38a996db40420fe434565e4480e3322f18eb37589617a98640c5dc8fdec1a387007ee18dbb1f3f5553409c34d17f425e
+  languageName: node
+  linkType: hard
+
+"glob-parent@npm:^6.0.0":
+  version: 6.0.2
+  resolution: "glob-parent@npm:6.0.2"
+  dependencies:
+    is-glob: ^4.0.3
+  checksum: c13ee97978bef4f55106b71e66428eb1512e71a7466ba49025fc2aec59a5bfb0954d5abd58fc5ee6c9b076eef4e1f6d3375c2e964b88466ca390da4419a786a8
   languageName: node
   linkType: hard
 
@@ -8339,6 +8384,15 @@ __metadata:
   dependencies:
     is-extglob: ^2.1.1
   checksum: 84627cad11b4e745f5db5a163f32c47b711585a5ff6e14f8f8d026db87f4cdd3e2c95f6fa1f94ad22e469f36d819ae2814f03f9c668b164422ac3354a94672d3
+  languageName: node
+  linkType: hard
+
+"is-glob@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "is-glob@npm:4.0.3"
+  dependencies:
+    is-extglob: ^2.1.1
+  checksum: d381c1319fcb69d341cc6e6c7cd588e17cd94722d9a32dbd60660b993c4fb7d0f19438674e68dfec686d09b7c73139c9166b47597f846af387450224a8101ab4
   languageName: node
   linkType: hard
 
@@ -11261,7 +11315,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"schema-utils@npm:^3.1.0, schema-utils@npm:^3.1.1":
+"schema-utils@npm:^3.0.0, schema-utils@npm:^3.1.0, schema-utils@npm:^3.1.1":
   version: 3.1.1
   resolution: "schema-utils@npm:3.1.1"
   dependencies:

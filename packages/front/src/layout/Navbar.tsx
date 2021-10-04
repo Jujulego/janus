@@ -1,4 +1,4 @@
-import { useGraphql } from '@jujulego/alma-graphql';
+import { useGqlQuery } from '@jujulego/alma-graphql';
 import { IService } from '@jujulego/janus-types';
 import {
   AppBar,
@@ -29,7 +29,7 @@ export const Navbar: FC = ({ children }) => {
   const [open, setOpen] = useState(false);
 
   // Api
-  const { data } = useGraphql<NavbarData>('/graphql', gql`
+  const { data } = useGqlQuery<NavbarData>('/graphql', gql`
     query Navbar {
         services {
             name

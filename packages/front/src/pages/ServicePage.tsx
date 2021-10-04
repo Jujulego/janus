@@ -1,5 +1,5 @@
-import { useGraphql } from '@jujulego/alma-graphql';
-import { ILog, IService, ServiceFragment } from '@jujulego/janus-types';
+import { useGqlMutation, useGqlQuery } from '@jujulego/alma-graphql';
+import { GateFragment, IGate, ILog, IService, ServiceFragment } from '@jujulego/janus-types';
 import { Box, Grid } from '@mui/material';
 import { gql } from 'graphql.macro';
 import { FC, useCallback, useMemo, useState } from 'react';
@@ -24,7 +24,7 @@ const ServicePage: FC = () => {
   const [selected, setSelected] = useState<string>(name);
 
   // Api
-  const { data } = useGraphql<ServicePageData>('/graphql', gql`
+  const { data, update } = useGqlQuery<ServicePageData>('/graphql', gql`
       query ServiceGraph($name: String!) {
           service(name: $name) {
               ...Service
@@ -33,6 +33,26 @@ const ServicePage: FC = () => {
 
       ${ServiceFragment}
   `, { name });
+
+  const { send: enableGate } = useGqlMutation<{ enableGate: IGate }, { service: string, gate: string }>('/graphql', gql`
+      mutation EnableGate($service: String!, $gate: String!) {
+          enableGate(service: $service, gate: $gate) {
+              ...Gate
+          }
+      }
+
+    ${GateFragment}
+  `);
+
+  const { send: disableGate } = useGqlMutation<{ disableGate: IGate }, { service: string, gate: string }>('/graphql', gql`
+      mutation DisableGate($service: String!, $gate: String!) {
+          disableGate(service: $service, gate: $gate) {
+              ...Gate
+          }
+      }
+
+    ${GateFragment}
+  `);
 
   // Memos
   const gate = useMemo(
@@ -55,6 +75,24 @@ const ServicePage: FC = () => {
     return true;
   }, [data, gate]);
 
+  const toggleGate = useCallback(async (gate: IGate) => {
+    if (gate.enabled) {
+      const result = await disableGate({ service: name, gate: gate.name });
+      gate = result.disableGate;
+    } else {
+      const result = await enableGate({ service: name, gate: gate.name });
+      gate = result.enableGate;
+    }
+
+    update((data) => ({
+      ...data,
+      service: {
+        ...data.service,
+        gates: data.service.gates.map((g) => g.name === gate.name ? gate : g)
+      }
+    }));
+  }, [name, update, enableGate, disableGate]);
+
   // Render
   if (!data) {
     return null;
@@ -71,7 +109,7 @@ const ServicePage: FC = () => {
 
         { gate && (
           <Grid item lg={2} minWidth={300} ml={2}>
-            <GateDetails gate={gate} onToggle={() => undefined} />
+            <GateDetails gate={gate} onToggle={toggleGate} />
           </Grid>
         ) }
       </Grid>

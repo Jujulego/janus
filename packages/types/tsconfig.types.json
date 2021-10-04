@@ -3,6 +3,7 @@
   "compilerOptions": {
     "removeComments": false,
     "rootDir": "./src",
+    "outDir": "./dist/types",
     "sourceMap": false,
     "declarationMap": false,
     "emitDeclarationOnly": true

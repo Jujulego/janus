@@ -1,4 +1,4 @@
-import { useGraphql } from '@jujulego/alma-graphql';
+import { useGqlQuery } from '@jujulego/alma-graphql';
 import { IService } from '@jujulego/janus-types';
 import { Box, Card, CardHeader, Grid, IconButton, Typography } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
@@ -16,7 +16,7 @@ interface HomeData {
 // Component
 const HomePage: FC = () => {
   // Api
-  const { data } = useGraphql<HomeData>('/graphql', gql`
+  const { data } = useGqlQuery<HomeData>('/graphql', gql`
       query Home {
           services {
               name

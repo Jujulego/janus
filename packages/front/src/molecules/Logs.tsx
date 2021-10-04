@@ -1,4 +1,4 @@
-import { useGraphql } from '@jujulego/alma-graphql';
+import { useGqlQuery } from '@jujulego/alma-graphql';
 import { ILog, LogFragment } from '@jujulego/janus-types';
 import { Box, Chip, Paper, Stack, Toolbar, Typography } from '@mui/material';
 import TollIcon from '@mui/icons-material/Toll';
@@ -23,7 +23,7 @@ export interface LogsProps {
 export const Logs: FC<LogsProps> = ({ title, filter }) => {
   // Query logs
   // const { data, subscribeToMore } = useQuery<LogsData>(LOGS_QRY);
-  const { data } = useGraphql<LogsData>('/graphql', gql`
+  const { data } = useGqlQuery<LogsData>('/graphql', gql`
       query Logs {
           logs {
               ...Log

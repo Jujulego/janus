@@ -3,9 +3,9 @@
   "compilerOptions": {
     "module": "esnext",
     "incremental": true,
-    "outDir": "./dist",
     "rootDir": ".",
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
+    "noEmit": true,
     "resolveJsonModule": true
   }
 }

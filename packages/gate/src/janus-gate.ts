@@ -2,9 +2,9 @@ import { JanusConfig } from '@jujulego/janus-core';
 import { GateFragment, IGate } from '@jujulego/janus-types';
 import { GraphQLClient } from 'graphql-request';
 import { SubscriptionClient } from 'subscriptions-transport-ws';
+import { gql } from 'graphql.macro';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
-import gql from 'graphql-tag';
 import WebSocket from 'ws';
 
 // Class

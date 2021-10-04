@@ -13,7 +13,10 @@
   },
   "scripts": {
     "lint": "eslint {src,tests}/**/*.*",
-    "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
+    "build": "yarn build:esm && yarn build:cjs && yarn build:types",
+    "build:esm": "BABEL_ENV=esm babel --extensions '.ts' src --out-dir dist/esm",
+    "build:cjs": "BABEL_ENV=cjs babel --extensions '.ts' src --out-dir dist/cjs",
+    "build:types": "tsc -p tsconfig.types.json",
     "test": "jest --passWithNoTests"
   },
   "engines": {
@@ -23,19 +26,25 @@
     "@jujulego/janus-types": "^1.0.2",
     "graphql": "^15.6.0",
     "graphql-request": "^3.5.0",
-    "graphql-tag": "^2.12.5",
     "rxjs": "^7.3.0",
     "subscriptions-transport-ws": "^0.9.19",
     "ws": "^8.2.2"
   },
   "devDependencies": {
+    "@babel/cli": "7.15.7",
+    "@babel/core": "7.15.5",
+    "@babel/preset-env": "7.15.6",
+    "@babel/preset-typescript": "7.15.0",
+    "@babel/runtime": "7.15.4",
     "@jujulego/janus-core": "1.0.1",
     "@types/node": "14.17.19",
     "@types/ws": "8.2.0",
     "@typescript-eslint/eslint-plugin": "4.31.2",
     "@typescript-eslint/parser": "4.31.2",
+    "babel-plugin-macros": "3.1.0",
     "eslint": "7.32.0",
     "eslint-plugin-jest": "24.4.2",
+    "graphql.macro": "1.4.2",
     "jest": "27.2.2",
     "ts-jest": "27.0.5",
     "typescript": "4.4.3"

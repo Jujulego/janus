@@ -3,9 +3,11 @@
   "compilerOptions": {
     "removeComments": false,
     "rootDir": "./src",
+    "outDir": "./dist/types",
     "sourceMap": false,
     "declarationMap": false,
-    "declarationDir": "./dist/types"
+    "noEmit": false,
+    "emitDeclarationOnly": true
   },
   "exclude": ["node_modules", "tests", "dist", "*.ts"]
 }

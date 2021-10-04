@@ -13,7 +13,7 @@
   "scripts": {
     "lint": "eslint {src,tests}/**/*.*",
     "build": "babel --extensions \".ts\" src --out-dir dist && tsc -p tsconfig.types.json && copyfiles -f src/config.schema.json dist",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "engines": {
     "node": "^14"

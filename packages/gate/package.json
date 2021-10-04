@@ -14,7 +14,7 @@
   "scripts": {
     "lint": "eslint {src,tests}/**/*.*",
     "build": "tsc -p tsconfig.cjs.json && tsc -p tsconfig.esm.json",
-    "test": "jest"
+    "test": "jest --passWithNoTests"
   },
   "engines": {
     "node": "^14"

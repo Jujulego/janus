@@ -1,5 +1,5 @@
 import { JanusConfig } from '@jujulego/janus-core';
-import gql from 'graphql-tag';
+import { gql } from 'graphql.macro';
 
 import { JanusClient } from '../client';
 import { logger } from '../logger';

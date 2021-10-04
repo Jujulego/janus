@@ -2,8 +2,7 @@ import { JanusConfig } from '@jujulego/janus-core';
 import { ILog, LogFragment } from '@jujulego/janus-types';
 import { lastValueFrom } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import gql from 'graphql-tag';
-import { format } from 'winston';
+import { gql } from 'graphql.macro';
 
 import { JanusClient } from '../client';
 import { logger } from '../logger';

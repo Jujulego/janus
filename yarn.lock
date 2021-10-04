@@ -2132,7 +2132,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/janus-core@1.0.1, @jujulego/janus-core@^1.0.1, @jujulego/janus-core@workspace:packages/core":
+"@jujulego/janus-core@1.0.2, @jujulego/janus-core@^1.0.2, @jujulego/janus-core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-core@workspace:packages/core"
   dependencies:
@@ -2190,6 +2190,42 @@ __metadata:
   languageName: unknown
   linkType: soft
 
+"@jujulego/janus-core@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@jujulego/janus-core@npm:1.0.1"
+  dependencies:
+    "@jujulego/janus-types": ^1.0.1
+    "@nestjs/common": ^8.0.9
+    "@nestjs/core": ^8.0.9
+    "@nestjs/graphql": ^9.0.5
+    "@nestjs/platform-express": ^8.0.9
+    "@nestjs/serve-static": ^2.2.2
+    ajv: ^8.6.3
+    apollo-server-core: ^3.3.0
+    apollo-server-express: ^3.3.0
+    chalk: ^4.1.2
+    class-transformer: ^0.4.0
+    class-validator: ^0.13.1
+    express: ^4.17.1
+    graphql: ^15.6.0
+    graphql-subscriptions: ^1.2.1
+    graphql-tools: 8.2.0
+    http-proxy: ^1.18.1
+    morgan: ^1.10.0
+    reflect-metadata: ^0.1.13
+    rxjs: ^7.3.0
+    winston: ^3.3.3
+    winston-transport: ^4.4.0
+    yaml: ^1.10.2
+  peerDependencies:
+    "@jujulego/janus-front": ^1.0.1
+  peerDependenciesMeta:
+    "@jujulego/janus-front":
+      optional: true
+  checksum: c2b1099501e09364b74daea77f92b281023cd699ab8578c11f98f716759e8c06747388ad1efd2e628548939190c4767aac32cd70b9a23782091e1a04e16d4c09
+  languageName: node
+  linkType: hard
+
 "@jujulego/janus-front@workspace:packages/front":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-front@workspace:packages/front"
@@ -2203,7 +2239,7 @@ __metadata:
     "@emotion/styled": 11.3.0
     "@jujulego/alma-api": 1.1.1
     "@jujulego/alma-graphql": 1.0.1
-    "@jujulego/janus-core": 1.0.1
+    "@jujulego/janus-core": 1.0.2
     "@jujulego/janus-types": 1.0.2
     "@mui/icons-material": 5.0.1
     "@mui/material": 5.0.2
@@ -2276,7 +2312,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-types@1.0.2, @jujulego/janus-types@^1.0.2, @jujulego/janus-types@workspace:packages/types":
+"@jujulego/janus-types@1.0.2, @jujulego/janus-types@^1.0.1, @jujulego/janus-types@^1.0.2, @jujulego/janus-types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-types@workspace:packages/types"
   dependencies:
@@ -2304,7 +2340,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus@workspace:packages/cli"
   dependencies:
-    "@jujulego/janus-core": ^1.0.1
+    "@jujulego/janus-core": ^1.0.2
     "@jujulego/janus-types": ^1.0.2
     "@types/node": 14.17.19
     "@types/ws": 8.2.0

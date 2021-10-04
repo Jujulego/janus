@@ -8,16 +8,6 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/gate/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/packages/types/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.yarn" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/janus-gate/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/apps/janus/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/janus-proxy/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/janus-config/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/janus-front/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/janus-front/app/.next" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/janus-common/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/samples/express-api/dist" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/janus-config/coverage" />
-      <excludeFolder url="file://$MODULE_DIR$/libs/janus-gate/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/packages/front/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/cli/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/packages/core/coverage" />

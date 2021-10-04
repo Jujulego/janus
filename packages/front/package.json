@@ -9,7 +9,7 @@
     "directory": "packages/front"
   },
   "scripts": {
-    "lint": "eslint {app,srv,tests}/**/*.*",
+    "lint": "eslint {src,tests}/**/*.*",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack serve --open --config webpack.dev.js",
     "test": "jest"
@@ -24,6 +24,7 @@
     "@emotion/styled": "11.3.0",
     "@jujulego/alma-api": "1.1.1",
     "@jujulego/alma-graphql": "1.0.1",
+    "@jujulego/janus-core": "1.0.0",
     "@jujulego/janus-types": "1.0.0",
     "@mui/icons-material": "5.0.1",
     "@mui/material": "5.0.2",

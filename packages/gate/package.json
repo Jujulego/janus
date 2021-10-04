@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus-gate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -20,7 +20,7 @@
     "node": "^14"
   },
   "dependencies": {
-    "@jujulego/janus-types": "^1.0.0",
+    "@jujulego/janus-types": "^1.0.1",
     "graphql": "^15.6.0",
     "graphql-request": "^3.5.0",
     "graphql-tag": "^2.12.5",
@@ -29,7 +29,7 @@
     "ws": "^8.2.2"
   },
   "devDependencies": {
-    "@jujulego/janus-core": "1.0.0",
+    "@jujulego/janus-core": "1.0.1",
     "@types/node": "14.17.19",
     "@types/ws": "8.2.0",
     "@typescript-eslint/eslint-plugin": "4.31.2",
@@ -41,7 +41,7 @@
     "typescript": "4.4.3"
   },
   "peerDependencies": {
-    "@jujulego/janus-core": "^1.0.0"
+    "@jujulego/janus-core": "^1.0.1"
   },
   "peerDependenciesMeta": {
     "@jujulego/janus-core": {

@@ -1,0 +1,6 @@
+releases:
+  "@jujulego/janus": patch
+  "@jujulego/janus-core": patch
+  "@jujulego/janus-front": patch
+  "@jujulego/janus-gate": patch
+  "@jujulego/janus-types": patch

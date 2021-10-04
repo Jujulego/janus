@@ -69,7 +69,7 @@
     "webpack-pnp-externals": "1.1.0"
   },
   "peerDependencies": {
-    "@jujulego/janus-front": "^1.0.4"
+    "@jujulego/janus-front": "^1.0.5"
   },
   "peerDependenciesMeta": {
     "@jujulego/janus-front": {

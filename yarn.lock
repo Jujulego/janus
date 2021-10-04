@@ -2183,7 +2183,7 @@ __metadata:
     winston-transport: ^4.4.0
     yaml: ^1.10.2
   peerDependencies:
-    "@jujulego/janus-front": ^1.0.4
+    "@jujulego/janus-front": ^1.0.5
   peerDependenciesMeta:
     "@jujulego/janus-front":
       optional: true

@@ -73,8 +73,8 @@ export class JanusServer {
       // Log access requests
       this.app.use(morgan('dev', {
         stream: {
-          write(str: string) {
-            Logger.debug(str.trim());
+          write: (str: string) => {
+            this._logger.debug(str.trim());
           },
         },
       }));

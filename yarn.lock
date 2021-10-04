@@ -2105,9 +2105,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/alma-graphql@npm:1.0.0":
-  version: 1.0.0
-  resolution: "@jujulego/alma-graphql@npm:1.0.0"
+"@jujulego/alma-graphql@npm:1.0.1":
+  version: 1.0.1
+  resolution: "@jujulego/alma-graphql@npm:1.0.1"
   dependencies:
     "@jujulego/alma-api": ^1.1.0
     "@jujulego/alma-utils": ^1.0.5
@@ -2116,7 +2116,7 @@ __metadata:
     graphql: ^15.6.0
     react: ^17.0.0
     react-dom: ^17.0.0
-  checksum: 7cccbc4663391c96e20ff2e4e2bb9c99e8b02799fd1ddf74082a9cef0e6560806bc8a89c991b26cbf578cff89ceebb863ee042b422a56aa3fe721fa656988534
+  checksum: 4dc4332f6bbc370a62305d0b95c91071bf6879ddc7cfee884d5032b6fc4edafee99e66e3c1a3173f43582a1a51e902b03e15b0302d55eaba4413c5b4f1f930c8
   languageName: node
   linkType: hard
 
@@ -2196,7 +2196,7 @@ __metadata:
     "@emotion/react": 11.4.1
     "@emotion/styled": 11.3.0
     "@jujulego/alma-api": 1.1.1
-    "@jujulego/alma-graphql": 1.0.0
+    "@jujulego/alma-graphql": 1.0.1
     "@jujulego/janus-core": 1.0.0
     "@jujulego/janus-types": 1.0.0
     "@mui/icons-material": 5.0.1

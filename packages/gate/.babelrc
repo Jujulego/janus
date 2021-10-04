@@ -11,7 +11,10 @@
     "cjs": {
       "presets": [
         ["@babel/preset-env", {
-          "modules": "commonjs"
+          "modules": "cjs",
+          "targets": {
+            "node": "14"
+          }
         }],
         "@babel/preset-typescript"
       ],

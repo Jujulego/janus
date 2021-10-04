@@ -4,11 +4,11 @@ const path = require('path');
 
 module.exports = {
   entry: {
-    main: './src/index'
+    main: './app/index'
   },
   output: {
     filename: '[name].[contenthash].js',
-    path: path.resolve('dist'),
+    path: path.resolve('dist/app'),
     clean: true,
     publicPath: '/',
   },

@@ -8,7 +8,7 @@
     "directory": "packages/front"
   },
   "scripts": {
-    "lint": "eslint {src,tests}/**/*.*",
+    "lint": "eslint {app,tests}/**/*.*",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack serve --open --config webpack.dev.js",
     "test": "jest"

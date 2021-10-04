@@ -10,7 +10,7 @@
     "start:local3": "nodemon --watch src/** --exec 'yarn ts-node -r tsconfig-paths/register ./src/main.ts local3'"
   },
   "dependencies": {
-    "@jujulego/janus-gate": "1.0.0-alpha.14",
+    "@jujulego/janus-gate": "1.0.4",
     "express": "4.17.1"
   },
   "devDependencies": {

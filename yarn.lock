@@ -2270,6 +2270,9 @@ __metadata:
     ws: ^8.2.2
   peerDependencies:
     "@jujulego/janus-core": ^1.0.0
+  peerDependenciesMeta:
+    "@jujulego/janus-core":
+      optional: true
   languageName: unknown
   linkType: soft
 

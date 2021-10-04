@@ -1,12 +1,13 @@
 import { useGraphql } from '@jujulego/alma-graphql';
 import { ILog, IService, ServiceFragment } from '@jujulego/janus-types';
-import { Box } from '@mui/material';
+import { Box, Grid } from '@mui/material';
 import { gql } from 'graphql.macro';
 import { FC, useCallback, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ServiceHeader } from '../molecules/ServiceHeader';
 import { Logs } from '../molecules/Logs';
+import { ServiceGraph } from '../molecules/ServiceGraph';
 
 // Types
 export interface ServicePageData {
@@ -61,6 +62,13 @@ const ServicePage: FC = () => {
   return (
     <>
       <ServiceHeader service={data.service} />
+
+      <Grid container mt={2} flex={2} minHeight={400}>
+        <Grid item xs>
+          <ServiceGraph service={data.service} selected={selected} onSelect={setSelected} />
+        </Grid>
+      </Grid>
+
       <Box mt={2} flex={1} minHeight={242}>
         <Logs title={`Logs of ${selected === name ? selected : [name, selected].join('.')}`} filter={filterLogs} />
       </Box>

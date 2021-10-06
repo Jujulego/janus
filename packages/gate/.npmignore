@@ -29,6 +29,7 @@ lerna-debug.log*
 .vscode/*
 
 # Configs
+.babelrc
 .eslintrc.json
 .gitignore
 jest.config.js
@@ -36,7 +37,7 @@ nest-cli.json
 sonar-project.properties
 tsconfig.*.json
 tsconfig.json
-webpack.config.js
+webpack.*.js
 
 # Others
 /dist/.tsbuildinfo

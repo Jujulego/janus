@@ -1,4 +1,4 @@
-import { useGqlQuery } from '@jujulego/alma-graphql';
+import { gqlResource } from '@jujulego/alma-graphql';
 import { ILog, LogFragment } from '@jujulego/janus-types';
 import { Box, Chip, Paper, Stack, Toolbar, Typography } from '@mui/material';
 import TollIcon from '@mui/icons-material/Toll';
@@ -19,19 +19,21 @@ export interface LogsProps {
   filter?: (log: ILog) => boolean;
 }
 
+// Api
+const useLogsData = gqlResource<LogsData>('/graphql', gql`
+    query Logs {
+        logs {
+            ...Log
+        }
+    }
+
+    ${LogFragment}
+`);
+
 // Component
 export const Logs: FC<LogsProps> = ({ title, filter }) => {
   // Query logs
-  // const { data, subscribeToMore } = useQuery<LogsData>(LOGS_QRY);
-  const { data } = useGqlQuery<LogsData>('/graphql', gql`
-      query Logs {
-          logs {
-              ...Log
-          }
-      }
-
-      ${LogFragment}
-  `, {});
+  const { data } = useLogsData({});
 
   // State
   const [levels, setLevels] = useState<string[]>(['error', 'warn', 'info', 'verbose', 'debug']);

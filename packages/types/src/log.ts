@@ -6,7 +6,7 @@ export interface ILog {
   level: string;
   message: string;
   timestamp: string;
-  metadata: any;
+  metadata: Record<string, unknown>;
 }
 
 // Fragment

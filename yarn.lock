@@ -2311,11 +2311,16 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 4.33.0
     "@typescript-eslint/parser": 4.33.0
     babel-plugin-macros: 3.1.0
+    del: ^6.0.0
     eslint: 7.32.0
     eslint-plugin-jest: 24.4.2
-    graphql: ^15.6.0
+    graphql: 15.6.0
     graphql-request: ^3.5.0
     graphql.macro: 1.4.2
+    gulp: 4.0.2
+    gulp-babel: 8.0.0
+    gulp-cli: 2.3.0
+    gulp-typescript: 6.0.0-alpha.1
     jest: 27.2.4
     rxjs: ^7.3.0
     subscriptions-transport-ws: ^0.9.19
@@ -2324,9 +2329,7 @@ __metadata:
     ws: ^8.2.2
   peerDependencies:
     "@jujulego/janus-core": ^1.0.4
-  peerDependenciesMeta:
-    "@jujulego/janus-core":
-      optional: true
+    graphql: ^15.6.0
   languageName: unknown
   linkType: soft
 

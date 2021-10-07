@@ -13,7 +13,7 @@
   },
   "scripts": {
     "lint": "eslint src/**/*.*",
-    "build": "gulp build"
+    "build": "gulp build --color"
   },
   "engines": {
     "node": "^14"

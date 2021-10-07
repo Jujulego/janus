@@ -1,3 +1,4 @@
+const del = require('del');
 const gulp = require('gulp');
 const babel = require('gulp-babel');
 const ts = require('gulp-typescript');
@@ -15,19 +16,28 @@ const tsProject = ts.createProject('tsconfig.json', {
 });
 
 // Tasks
-const cjs = () => gulp.src(paths.src)
+gulp.task('clean', () => del('dist'));
+
+gulp.task('build:cjs', () => gulp.src(paths.src)
   .pipe(babel({ envName: 'cjs' }))
-  .pipe(gulp.dest('dist/cjs'));
+  .pipe(gulp.dest('dist/cjs'))
+);
 
-const esm = () => gulp.src(paths.src)
+gulp.task('build:esm', () => gulp.src(paths.src)
   .pipe(babel({ envName: 'esm' }))
-  .pipe(gulp.dest('dist/esm'));
+  .pipe(gulp.dest('dist/esm'))
+);
 
-const typings = () => gulp.src(paths.src)
+gulp.task('build:types', () => gulp.src(paths.src)
   .pipe(tsProject()).dts
-  .pipe(gulp.dest('dist/types'));
+  .pipe(gulp.dest('dist/types'))
+);
 
-const assets = () => gulp.src(paths.assets)
-  .pipe(gulp.dest('dist'));
+gulp.task('copy:assets', () => gulp.src(paths.assets)
+  .pipe(gulp.dest('dist'))
+);
 
-gulp.task('build', gulp.parallel(cjs, esm, typings, assets));
+gulp.task('build', gulp.series(
+  'clean',
+  gulp.parallel('build:cjs', 'build:esm', 'build:types', 'copy:assets'),
+));

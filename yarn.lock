@@ -2344,6 +2344,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": 4.33.0
     "@typescript-eslint/parser": 4.33.0
     babel-plugin-macros: 3.1.0
+    del: ^6.0.0
     eslint: 7.32.0
     eslint-plugin-jest: 24.4.2
     graphql: 15.6.0

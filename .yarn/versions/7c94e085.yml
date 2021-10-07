@@ -1,0 +1,4 @@
+declined:
+  - "@jujulego/janus"
+  - "@jujulego/janus-gate"
+  - "@jujulego/janus-types"

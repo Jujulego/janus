@@ -1,4 +1,4 @@
-import { useGqlMutation, useGqlQuery } from '@jujulego/alma-graphql';
+import { gqlResource, gqlVars } from '@jujulego/alma-graphql';
 import { GateFragment, IGate, ILog, IService, ServiceFragment } from '@jujulego/janus-types';
 import { Box, Grid } from '@mui/material';
 import { gql } from 'graphql.macro';
@@ -15,6 +15,53 @@ export interface ServicePageData {
   service: IService;
 }
 
+// Utils
+function mergeGate(service: IService, gate: IGate): IService {
+  return {
+    ...service,
+    gates: service.gates.map((g) => g.name === gate.name ? gate : g)
+  };
+}
+
+// Api
+const useServicePageData = gqlResource<ServicePageData, { name: string }>('/graphql', gql`
+    query ServiceGraph($name: String!) {
+        service(name: $name) {
+            ...Service
+        }
+    }
+
+    ${ServiceFragment}
+`)
+  .mutation(
+    'enableGate',
+    gql`
+        mutation EnableGate($service: String!, $gate: String!) {
+            enableGate(service: $service, gate: $gate) {
+                ...Gate
+            }
+        }
+    
+        ${GateFragment}
+    `,
+    (data, res: { enableGate: IGate }) => data && ({ service: mergeGate(data.service, res.enableGate) }),
+    gqlVars<{ service: string, gate: string }>()
+  )
+  .mutation(
+    'disableGate',
+    gql`
+        mutation DisableGate($service: String!, $gate: String!) {
+            disableGate(service: $service, gate: $gate) {
+                ...Gate
+            }
+        }
+    
+        ${GateFragment}
+    `,
+    (data, res: { disableGate: IGate }) => data && ({ service: mergeGate(data.service, res.disableGate) }),
+    gqlVars<{ service: string, gate: string }>()
+  );
+
 // Component
 const ServicePage: FC = () => {
   // Router
@@ -24,35 +71,7 @@ const ServicePage: FC = () => {
   const [selected, setSelected] = useState<string>(name);
 
   // Api
-  const { data, update } = useGqlQuery<ServicePageData>('/graphql', gql`
-      query ServiceGraph($name: String!) {
-          service(name: $name) {
-              ...Service
-          }
-      }
-
-      ${ServiceFragment}
-  `, { name });
-
-  const { send: enableGate } = useGqlMutation<{ enableGate: IGate }, { service: string, gate: string }>('/graphql', gql`
-      mutation EnableGate($service: String!, $gate: String!) {
-          enableGate(service: $service, gate: $gate) {
-              ...Gate
-          }
-      }
-
-    ${GateFragment}
-  `);
-
-  const { send: disableGate } = useGqlMutation<{ disableGate: IGate }, { service: string, gate: string }>('/graphql', gql`
-      mutation DisableGate($service: String!, $gate: String!) {
-          disableGate(service: $service, gate: $gate) {
-              ...Gate
-          }
-      }
-
-    ${GateFragment}
-  `);
+  const { data, enableGate, disableGate } = useServicePageData({ name });
 
   // Memos
   const gate = useMemo(
@@ -77,21 +96,11 @@ const ServicePage: FC = () => {
 
   const toggleGate = useCallback(async (gate: IGate) => {
     if (gate.enabled) {
-      const result = await disableGate({ service: name, gate: gate.name });
-      gate = result.disableGate;
+      await disableGate({ service: name, gate: gate.name });
     } else {
-      const result = await enableGate({ service: name, gate: gate.name });
-      gate = result.enableGate;
+      await enableGate({ service: name, gate: gate.name });
     }
-
-    update((data) => ({
-      ...data,
-      service: {
-        ...data.service,
-        gates: data.service.gates.map((g) => g.name === gate.name ? gate : g)
-      }
-    }));
-  }, [name, update, enableGate, disableGate]);
+  }, [name, enableGate, disableGate]);
 
   // Render
   if (!data) {

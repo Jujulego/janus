@@ -1,4 +1,4 @@
-import { useGqlQuery } from '@jujulego/alma-graphql';
+import { gqlResource } from '@jujulego/alma-graphql';
 import { IService } from '@jujulego/janus-types';
 import {
   AppBar,
@@ -23,20 +23,23 @@ interface NavbarData {
   services: Pick<IService, 'name' | 'url'>[];
 }
 
-// Component
-export const Navbar: FC = ({ children }) => {
-  // State
-  const [open, setOpen] = useState(false);
-
-  // Api
-  const { data } = useGqlQuery<NavbarData>('/graphql', gql`
+// Api
+const useNavbarData = gqlResource<NavbarData>('/graphql', gql`
     query Navbar {
         services {
             name
             url
         }
     }
-  `, {});
+`);
+
+// Component
+export const Navbar: FC = ({ children }) => {
+  // State
+  const [open, setOpen] = useState(false);
+
+  // Api
+  const { data } = useNavbarData({});
 
   // Render
   const small = useMediaQuery<Theme>(({ breakpoints }) => breakpoints.down('lg'));

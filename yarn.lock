@@ -2215,7 +2215,7 @@ __metadata:
     class-transformer: ^0.4.0
     class-validator: ^0.13.1
     eslint: 7.32.0
-    eslint-plugin-jest: 24.4.2
+    eslint-plugin-jest: 24.5.2
     express: ^4.17.1
     graphql: ^15.6.0
     graphql-subscriptions: ^1.2.1
@@ -2315,7 +2315,7 @@ __metadata:
     copy-webpack-plugin: 9.0.1
     d3: 7.1.1
     eslint: 7.32.0
-    eslint-plugin-jest: 24.4.2
+    eslint-plugin-jest: 24.5.2
     eslint-plugin-react: 7.26.1
     eslint-plugin-react-hooks: 4.2.0
     graphql: 15.6.1
@@ -2358,7 +2358,7 @@ __metadata:
     babel-plugin-macros: 3.1.0
     del: 6.0.0
     eslint: 7.32.0
-    eslint-plugin-jest: 24.4.2
+    eslint-plugin-jest: 24.5.2
     graphql: ^15.6.0
     graphql-request: ^3.5.0
     graphql.macro: 1.4.2
@@ -2392,7 +2392,7 @@ __metadata:
     babel-plugin-macros: 3.1.0
     del: 6.0.0
     eslint: 7.32.0
-    eslint-plugin-jest: 24.4.2
+    eslint-plugin-jest: 24.5.2
     graphql: 15.6.1
     graphql.macro: 1.4.2
     gulp: 4.0.2
@@ -2428,7 +2428,7 @@ __metadata:
     chalk: ^4.1.2
     del: 6.0.0
     eslint: 7.32.0
-    eslint-plugin-jest: 24.4.2
+    eslint-plugin-jest: 24.5.2
     graphql: ^15.6.0
     graphql-request: ^3.5.0
     graphql.macro: 1.4.2
@@ -7584,9 +7584,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:24.4.2":
-  version: 24.4.2
-  resolution: "eslint-plugin-jest@npm:24.4.2"
+"eslint-plugin-jest@npm:24.5.2":
+  version: 24.5.2
+  resolution: "eslint-plugin-jest@npm:24.5.2"
   dependencies:
     "@typescript-eslint/experimental-utils": ^4.0.1
   peerDependencies:
@@ -7595,7 +7595,7 @@ __metadata:
   peerDependenciesMeta:
     "@typescript-eslint/eslint-plugin":
       optional: true
-  checksum: de00fa7464860a189841cf767eda6607ec53e8b839d2317f80561751580c3976a04af509f1b771808b56e88316ffc31309b9e58aeac7ac55ffdea8ed3f4626f1
+  checksum: e314d9e3443791273089dd8f90915a4b1dc54db20099725ef9673ff369d4ad361fd8b369eff36c63de797c06f702162f5543a52847877f4a7d6c656a0991df84
   languageName: node
   linkType: hard
 
@@ -10252,7 +10252,7 @@ fsevents@^1.2.7:
     "@typescript-eslint/eslint-plugin": 4.33.0
     "@typescript-eslint/parser": 4.33.0
     eslint: 7.32.0
-    eslint-plugin-jest: 24.4.2
+    eslint-plugin-jest: 24.5.2
     jest: 27.2.5
     typescript: 4.4.3
   languageName: unknown

@@ -7,7 +7,7 @@ const PORTS: Record<string, number> = {
   local1: 3001,
   local2: 3002,
   local3: 3003,
-}
+};
 
 const GATE = process.argv[2] || 'local1';
 const PORT = PORTS[process.argv[2] || 'local1'];

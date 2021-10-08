@@ -2,4 +2,5 @@ cli: packages/cli/**/*
 core: packages/core/**/*
 front: packages/front/**/*
 gate: packages/gate/**/*
+samples: samples/**/*
 types: packages/types/**/*

@@ -1,4 +1,4 @@
-import { gqlResource, gqlVars } from '@jujulego/alma-graphql';
+import { gqlResource, gqlDoc } from '@jujulego/alma-graphql';
 import { GateFragment, IGate, ILog, IService, ServiceFragment } from '@jujulego/janus-types';
 import { Box, Grid } from '@mui/material';
 import { gql } from 'graphql.macro';
@@ -33,34 +33,24 @@ const useServicePageData = gqlResource<ServicePageData, { name: string }>('/grap
 
     ${ServiceFragment}
 `)
-  .mutation(
-    'enableGate',
-    gql`
-        mutation EnableGate($service: String!, $gate: String!) {
-            enableGate(service: $service, gate: $gate) {
-                ...Gate
-            }
-        }
-    
-        ${GateFragment}
-    `,
-    (data, res: { enableGate: IGate }) => data && ({ service: mergeGate(data.service, res.enableGate) }),
-    gqlVars<{ service: string, gate: string }>()
-  )
-  .mutation(
-    'disableGate',
-    gql`
-        mutation DisableGate($service: String!, $gate: String!) {
-            disableGate(service: $service, gate: $gate) {
-                ...Gate
-            }
-        }
-    
-        ${GateFragment}
-    `,
-    (data, res: { disableGate: IGate }) => data && ({ service: mergeGate(data.service, res.disableGate) }),
-    gqlVars<{ service: string, gate: string }>()
-  );
+  .mutation('enableGate', gqlDoc<{ enableGate: IGate }, { service: string, gate: string }>(gql`
+      mutation EnableGate($service: String!, $gate: String!) {
+          enableGate(service: $service, gate: $gate) {
+              ...Gate
+          }
+      }
+  
+      ${GateFragment}
+  `), (data, res) => data && ({ service: mergeGate(data.service, res.enableGate) }))
+  .mutation('disableGate', gqlDoc<{ disableGate: IGate }, { service: string, gate: string }>(gql`
+      mutation DisableGate($service: String!, $gate: String!) {
+          disableGate(service: $service, gate: $gate) {
+              ...Gate
+          }
+      }
+  
+      ${GateFragment}
+  `), (data, res) => data && ({ service: mergeGate(data.service, res.disableGate) }));
 
 // Component
 const ServicePage: FC = () => {

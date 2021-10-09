@@ -24,7 +24,7 @@
     "@babel/runtime": "7.15.4",
     "@emotion/react": "11.4.1",
     "@emotion/styled": "11.3.0",
-    "@jujulego/alma-api": "1.1.2",
+    "@jujulego/alma-api": "1.1.3",
     "@jujulego/alma-graphql": "1.0.8",
     "@jujulego/janus-core": "1.0.5",
     "@jujulego/janus-types": "1.0.5",

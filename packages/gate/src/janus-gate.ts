@@ -1,7 +1,8 @@
 import { JanusConfig } from '@jujulego/janus-core';
 import { GateFragment, IGate } from '@jujulego/janus-types';
 import { GraphQLClient } from 'graphql-request';
-import { SubscriptionClient } from 'subscriptions-transport-ws';
+import { createClient } from 'graphql-ws';
+import { print } from 'graphql';
 import { gql } from 'graphql.macro';
 import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,7 +13,7 @@ export class JanusGate {
   // Attributes
   private readonly _endpoint = `http://localhost:${this.config.control.port}/graphql`;
   private readonly _qclient = new GraphQLClient(this._endpoint);
-  private readonly _sclient = new SubscriptionClient(this._endpoint, { lazy: true, reconnect: true }, WebSocket);
+  private readonly _sclient = createClient({ url: this._endpoint, lazy: true, webSocketImpl: WebSocket });
 
   // Constructor
   constructor(
@@ -53,9 +54,11 @@ export class JanusGate {
 
   // Properties
   get gate$(): Observable<IGate> {
+    const sub = new Subject<IGate>();
+
     // Request
-    const obs = this._sclient.request({
-      query: gql`
+    this._sclient.subscribe<{ gate: IGate }>({
+      query: print(gql`
           subscription Gate($service: String!, $gate: String!) {
               gate(service: $service, gate: $gate) {
                   ...Gate
@@ -63,26 +66,21 @@ export class JanusGate {
           }
 
           ${GateFragment}
-      `,
+      `),
       variables: {
         service: this.service,
         gate: this.gate,
       },
-    });
-
-    // Build observable
-    const sub = new Subject<IGate>();
-
-    obs.subscribe({
+    }, {
       next(value) {
-        sub.next(value.data as IGate);
-      },
-      error(error) {
-        sub.error(error);
+        if (value.data) sub.next(value.data.gate);
       },
       complete() {
         sub.complete();
       },
+      error(error: unknown) {
+        sub.error(error);
+      }
     });
 
     return sub.asObservable();

@@ -2146,31 +2146,32 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/alma-api@npm:1.1.3, @jujulego/alma-api@npm:^1.1.3":
-  version: 1.1.3
-  resolution: "@jujulego/alma-api@npm:1.1.3"
+"@jujulego/alma-api@npm:1.1.5, @jujulego/alma-api@npm:^1.1.5":
+  version: 1.1.5
+  resolution: "@jujulego/alma-api@npm:1.1.5"
   dependencies:
     "@jujulego/alma-utils": ^1.0.6
   peerDependencies:
     axios: ^0.21.4
     react: ^17.0.0
     react-dom: ^17.0.0
-  checksum: e0c0252a7f35605b7d807937c988dde1ea6517f00c8a7f4c260a9976e25c929bfed27cb1fa066499602850caab64b6aaf03df9f76c8566fb126c6bc1f522d20c
+  checksum: 5b84942ffda91f538411947d244af08780c06491e39ee71155f66f885b38062720996f828868960d25f609a592acb9e9bca12aa0a0043fb5b6febfdc95804c20
   languageName: node
   linkType: hard
 
-"@jujulego/alma-graphql@npm:1.0.8":
-  version: 1.0.8
-  resolution: "@jujulego/alma-graphql@npm:1.0.8"
+"@jujulego/alma-graphql@npm:1.0.12":
+  version: 1.0.12
+  resolution: "@jujulego/alma-graphql@npm:1.0.12"
   dependencies:
-    "@jujulego/alma-api": ^1.1.3
+    "@jujulego/alma-api": ^1.1.5
     "@jujulego/alma-utils": ^1.0.6
+    graphql-ws: ^5.5.0
   peerDependencies:
     axios: ^0.21.4
     graphql: ^15.6.0
     react: ^17.0.0
     react-dom: ^17.0.0
-  checksum: b8dc8469beef66fd2198457db08ad392c9f8de1969991ff92639090d25f9cc6fdeb52d54bee00cac913cfccb468309d9bcc091e9de0cbac96147eadf97423a37
+  checksum: 2d2fa4392a4b57e1a7c3681e066b42402d353892eea8642cd8d09310ca1387a4ae145dc7bd73fdf73f307133cce959cf9ec66080f8f32cf4134cc93df73d8bd6
   languageName: node
   linkType: hard
 
@@ -2219,7 +2220,8 @@ __metadata:
     express: ^4.17.1
     graphql: ^15.6.0
     graphql-subscriptions: ^1.2.1
-    graphql-tools: 8.2.0
+    graphql-tools: ^8.2.0
+    graphql-ws: ^5.5.0
     http-proxy: ^1.18.1
     jest: 27.2.5
     morgan: ^1.10.0
@@ -2293,8 +2295,8 @@ __metadata:
     "@babel/runtime": 7.15.4
     "@emotion/react": 11.4.1
     "@emotion/styled": 11.3.0
-    "@jujulego/alma-api": 1.1.3
-    "@jujulego/alma-graphql": 1.0.8
+    "@jujulego/alma-api": 1.1.5
+    "@jujulego/alma-graphql": 1.0.12
     "@jujulego/janus-core": 1.0.5
     "@jujulego/janus-types": 1.0.5
     "@mui/icons-material": 5.0.3
@@ -2361,6 +2363,7 @@ __metadata:
     eslint-plugin-jest: 24.5.2
     graphql: ^15.6.0
     graphql-request: ^3.5.0
+    graphql-ws: ^5.5.0
     graphql.macro: 1.4.2
     gulp: 4.0.2
     gulp-babel: 8.0.0
@@ -2368,7 +2371,6 @@ __metadata:
     gulp-typescript: 6.0.0-alpha.1
     jest: 27.2.5
     rxjs: ^7.3.0
-    subscriptions-transport-ws: ^0.9.19
     ts-jest: 27.0.5
     typescript: 4.4.3
     ws: ^8.2.2
@@ -2431,6 +2433,7 @@ __metadata:
     eslint-plugin-jest: 24.5.2
     graphql: ^15.6.0
     graphql-request: ^3.5.0
+    graphql-ws: ^5.5.0
     graphql.macro: 1.4.2
     gulp: 4.0.2
     gulp-babel: 8.0.0
@@ -2439,7 +2442,6 @@ __metadata:
     jest: 27.2.5
     ora: ^5.4.1
     rxjs: ^7.3.0
-    subscriptions-transport-ws: ^0.9.19
     ts-jest: 27.0.5
     ts-node: 10.2.1
     typescript: 4.4.3
@@ -8872,7 +8874,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"graphql-tools@npm:8.2.0":
+"graphql-tools@npm:8.2.0, graphql-tools@npm:^8.2.0":
   version: 8.2.0
   resolution: "graphql-tools@npm:8.2.0"
   dependencies:
@@ -8888,7 +8890,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"graphql-ws@npm:5.5.0":
+"graphql-ws@npm:5.5.0, graphql-ws@npm:^5.5.0":
   version: 5.5.0
   resolution: "graphql-ws@npm:5.5.0"
   peerDependencies:
@@ -14519,7 +14521,7 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"subscriptions-transport-ws@npm:0.9.19, subscriptions-transport-ws@npm:^0.9.19":
+"subscriptions-transport-ws@npm:0.9.19":
   version: 0.9.19
   resolution: "subscriptions-transport-ws@npm:0.9.19"
   dependencies:

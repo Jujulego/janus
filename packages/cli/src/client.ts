@@ -1,7 +1,7 @@
 import { JanusConfig } from '@jujulego/janus-core';
-import { DocumentNode } from 'graphql';
+import { DocumentNode, print } from 'graphql';
 import { GraphQLClient } from 'graphql-request';
-import { SubscriptionClient } from 'subscriptions-transport-ws';
+import { createClient } from 'graphql-ws';
 import { Observable, Subject } from 'rxjs';
 import WebSocket from 'ws';
 
@@ -13,7 +13,7 @@ export class JanusClient {
   // Attributes
   private readonly _endpoint = `http://localhost:${this.config.control.port}/graphql`;
   private readonly _qclient = new GraphQLClient(this._endpoint);
-  private readonly _sclient = new SubscriptionClient(this._endpoint.replace(/^http/, 'ws'), { lazy: true, reconnect: true }, WebSocket);
+  private readonly _sclient = createClient({ url: this._endpoint.replace(/^http/, 'ws'), lazy: true, webSocketImpl: WebSocket });
 
   // Constructor
   constructor(readonly config: JanusConfig) {}
@@ -28,21 +28,19 @@ export class JanusClient {
   }
 
   subscription<R, V extends Vars = Vars>(query: DocumentNode, variables?: V): Observable<R> {
-    const obs = this._sclient.request({ query, variables });
-
-    // Build observable
     const sub = new Subject<R>();
 
-    obs.subscribe({
+    // Request
+    this._sclient.subscribe<R>({ query: print(query), variables }, {
       next(value) {
-        sub.next(value.data as R);
-      },
-      error(error) {
-        sub.error(error);
+        if (value.data) sub.next(value.data);
       },
       complete() {
         sub.complete();
       },
+      error(error: unknown) {
+        sub.error(error);
+      }
     });
 
     return sub.asObservable();

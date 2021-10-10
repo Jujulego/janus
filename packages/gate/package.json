@@ -24,8 +24,8 @@
     "@jujulego/janus-types": "^1.0.5",
     "graphql": "^15.6.0",
     "graphql-request": "^3.5.0",
+    "graphql-ws": "^5.5.0",
     "rxjs": "^7.3.0",
-    "subscriptions-transport-ws": "^0.9.19",
     "ws": "^8.2.2"
   },
   "devDependencies": {

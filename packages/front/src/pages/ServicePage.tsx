@@ -2,7 +2,7 @@ import { gqlResource, gqlDoc } from '@jujulego/alma-graphql';
 import { GateFragment, IGate, ILog, IService, ServiceFragment } from '@jujulego/janus-types';
 import { Box, Grid } from '@mui/material';
 import { gql } from 'graphql.macro';
-import { FC, useCallback, useMemo, useState } from 'react';
+import { FC, useCallback, useEffect, useMemo, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { ServiceHeader } from '../molecules/ServiceHeader';
@@ -50,7 +50,16 @@ const useServicePageData = gqlResource<ServicePageData, { name: string }>('/grap
       }
   
       ${GateFragment}
-  `), (data, res) => data && ({ service: mergeGate(data.service, res.disableGate) }));
+  `), (data, res) => data && ({ service: mergeGate(data.service, res.disableGate) }))
+  .subscription('subscribe', gqlDoc<ServicePageData, { name: string }>(gql`
+      subscription ServiceGraph($name: String!) {
+          service(name: $name) {
+              ...Service
+          }
+      }
+  
+      ${ServiceFragment}
+  `), (state, event) => event);
 
 // Component
 const ServicePage: FC = () => {
@@ -61,7 +70,7 @@ const ServicePage: FC = () => {
   const [selected, setSelected] = useState<string>(name);
 
   // Api
-  const { data, enableGate, disableGate } = useServicePageData({ name });
+  const { data, enableGate, disableGate, subscribe } = useServicePageData({ name });
 
   // Memos
   const gate = useMemo(
@@ -91,6 +100,11 @@ const ServicePage: FC = () => {
       await enableGate({ service: name, gate: gate.name });
     }
   }, [name, enableGate, disableGate]);
+
+  // Effects
+  useEffect(() => {
+    return subscribe({ name });
+  }, [subscribe, name]);
 
   // Render
   if (!data) {

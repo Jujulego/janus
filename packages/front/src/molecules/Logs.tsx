@@ -1,4 +1,4 @@
-import { gqlResource } from '@jujulego/alma-graphql';
+import { gqlDoc, gqlResource } from '@jujulego/alma-graphql';
 import { ILog, LogFragment } from '@jujulego/janus-types';
 import { Box, Chip, Paper, Stack, Toolbar, Typography } from '@mui/material';
 import TollIcon from '@mui/icons-material/Toll';
@@ -28,12 +28,21 @@ const useLogsData = gqlResource<LogsData>('/graphql', gql`
     }
 
     ${LogFragment}
-`);
+`)
+  .subscription('subscribe', gqlDoc<{ logs: ILog }>(gql`
+      subscription Logs {
+          logs {
+              ...Log
+          }
+      }
+  
+      ${LogFragment}
+  `), (state, event) => state && { logs: [...state.logs, event.logs] });
 
 // Component
 export const Logs: FC<LogsProps> = ({ title, filter }) => {
   // Query logs
-  const { data } = useLogsData({});
+  const { data, subscribe } = useLogsData({});
 
   // State
   const [levels, setLevels] = useState<string[]>(['error', 'warn', 'info', 'verbose', 'debug']);
@@ -84,6 +93,10 @@ export const Logs: FC<LogsProps> = ({ title, filter }) => {
 
     return  () => obs.disconnect();
   }, []);
+
+  useEffect(() => {
+    return subscribe({});
+  }, [subscribe]);
 
   useEffect(() => {
     if (logs.length > 0) {

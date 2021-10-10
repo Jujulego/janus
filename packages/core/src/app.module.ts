@@ -14,7 +14,9 @@ import { ProxyModule } from './proxy';
   imports: [
     GraphQLModule.forRoot({
       autoSchemaFile: process.env.NODE_ENV !== 'development' || 'schema.gql',
-      installSubscriptionHandlers: true,
+      subscriptions: {
+        'graphql-ws': true,
+      },
     }),
     ServeStaticModule.forRootAsync({ useFactory: async () => {
       const logger = new Logger('JanusServer');

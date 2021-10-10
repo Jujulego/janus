@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus-core",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -70,7 +70,7 @@
     "webpack-pnp-externals": "1.1.0"
   },
   "peerDependencies": {
-    "@jujulego/janus-front": "^1.0.6"
+    "@jujulego/janus-front": "^1.0.7"
   },
   "peerDependenciesMeta": {
     "@jujulego/janus-front": {

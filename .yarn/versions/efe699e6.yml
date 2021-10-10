@@ -1,0 +1,4 @@
+releases:
+  "@jujulego/janus": patch
+  "@jujulego/janus-core": patch
+  "@jujulego/janus-front": patch

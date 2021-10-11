@@ -35,10 +35,7 @@ export class PidFile {
 
   async create(): Promise<boolean> {
     try {
-      await this.lock(async () => {
-        await fs.writeFile(this._config.pidfile, process.pid.toString(), { flag: 'wx', encoding: 'utf-8' });
-      });
-
+      await fs.writeFile(this._config.pidfile, process.pid.toString(), { flag: 'wx', encoding: 'utf-8' });
     } catch (err) {
       if (err.code === 'EEXIST') {
         // Try to update pidfile
@@ -77,8 +74,6 @@ export class PidFile {
   }
 
   async delete(): Promise<void> {
-    await this.lock(async () => {
-      await fs.rm(this._config.pidfile);
-    });
+    await fs.rm(this._config.pidfile);
   }
 }

@@ -26,7 +26,7 @@ import { ProxyModule } from './proxy';
           rootPath: path.dirname(require.resolve('@jujulego/janus-front'))
         }];
       } catch (error) {
-        logger.warn('Unable to load @jujulego/janus-front package. Front-End will not be served.');
+        logger.warn('Unable to load @jujulego/janus-front package, gui will not be served.');
         logger.debug(error);
 
         return [];

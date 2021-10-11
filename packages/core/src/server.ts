@@ -91,19 +91,24 @@ export class JanusServer {
       }));
     }
 
-    // Start server
-    await this.app.listen(this.config.control.port, () => {
-      this._logger.log(`Server listening at http://localhost:${this.config.control.port}`);
-      this._started.next();
+    try {
+      // Start server
+      await this.app.listen(this.config.control.port, () => {
+        this._logger.log(`Server listening at http://localhost:${this.config.control.port}`);
+        this._started.next();
 
-      // Listen for shutdown events
-      this.control.$events
-        .pipe(
-          filter((event) => event.action === 'shutdown'),
-          exhaustMap(() => this.handleShutdown()),
-        )
-        .subscribe();
-    });
+        // Listen for shutdown events
+        this.control.$events
+          .pipe(
+            filter((event) => event.action === 'shutdown'),
+            exhaustMap(() => this.handleShutdown()),
+          )
+          .subscribe();
+      });
+    } catch (err) {
+      await this._pidfile?.delete();
+      throw err;
+    }
 
     return true;
   }

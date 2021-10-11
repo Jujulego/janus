@@ -130,7 +130,7 @@ jobs:
   sonarcloud:
     runs-on: ubuntu-latest
     needs: [setup, tests]
-    if: ${{ fromJson(needs.setup.outputs.matrix-test)[0] }}
+    if: ${{ fromJson(needs.setup.outputs.matrix-test)[0] && !startsWith(github.head_ref, 'renovate/') }}
 
     strategy:
       matrix:

@@ -4,7 +4,6 @@ import winston, { format } from 'winston';
 process.env.NODE_ENV = 'production';
 
 // Setup logger
-CoreLogger.root.remove(CoreLogger.consoleTransport);
 CoreLogger.root.add(new winston.transports.Console({
   format: format.combine(
     format.timestamp({ format: () => new Date().toLocaleString() }),

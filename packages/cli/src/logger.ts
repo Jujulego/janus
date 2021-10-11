@@ -150,7 +150,6 @@ export const transport = new OraTransport({
   )
 });
 
-CoreLogger.root.remove(CoreLogger.consoleTransport);
 CoreLogger.root.add(transport);
 
 export const logger = new OraLogger(CoreLogger.root, transport);

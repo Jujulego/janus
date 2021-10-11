@@ -1,10 +1,24 @@
+import winston, { format } from 'winston';
+import chalk from 'chalk';
+
 import { JanusServer } from './server';
 import { Logger } from './logger';
-import * as process from 'process';
 
 // Bootstrap
 (async function () {
   try {
+    // Logger
+    Logger.root.add(new winston.transports.Console({
+      format: format.combine(
+        format.timestamp({ format: () => new Date().toLocaleString() }),
+        format.printf(({ context, pid, message, timestamp }) => context
+          ? chalk`[Nest] ${pid} - {white ${timestamp}} {grey [${context}]} ${message}`
+          : chalk`[Nest] ${pid} - {white ${timestamp}} ${message}`
+        ),
+        format.colorize({ all: true }),
+      ),
+    }));
+
     // Create server
     const server = await JanusServer.createServer();
 

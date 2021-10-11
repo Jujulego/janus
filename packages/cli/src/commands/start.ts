@@ -4,7 +4,6 @@ import path from 'path';
 
 import { logger } from '../logger';
 import { CommandHandler } from '../wrapper';
-import * as fs from 'fs';
 
 // Types
 interface StartArgs {

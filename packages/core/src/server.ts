@@ -12,11 +12,13 @@ import { ControlService, ServerResolver } from './control';
 import { JsonObjScalar } from './json-obj.scalar';
 import { Logger } from './logger';
 import { GateResolver, ServiceResolver } from './services';
+import { PidFile } from './pidfile';
 
 // Server
 export class JanusServer {
   // Attributes
   private readonly _logger = new Logger(JanusServer.name);
+  private _pidfile?: PidFile;
 
   private readonly _started = new Subject<void>();
   readonly $started = this._started.asObservable();
@@ -50,21 +52,30 @@ export class JanusServer {
 
   // Methods
   private async handleShutdown(): Promise<void> {
+    // Shutdown app
     this._logger.log('Shutdown requested');
     await this.app.close();
 
+    // Delete pidfile
+    await this._pidfile?.delete();
+
+    // Emit shutdown event
     this._logger.log('Server stopped');
     this._shutdown.next();
     this._shutdown.complete();
   }
 
-  async start(config: string | JanusConfig): Promise<void> {
+  async start(config: string | JanusConfig): Promise<boolean> {
     // Load configuration
     if (typeof config === 'string') {
       config = await JanusConfig.loadFile(config);
     }
 
     this.config.config = config;
+
+    // Lockfile
+    this._pidfile = new PidFile(config, this._logger);
+    if (!await this._pidfile.create()) return false;
 
     // Setup
     this.app.enableShutdownHooks();
@@ -80,19 +91,26 @@ export class JanusServer {
       }));
     }
 
-    // Start server
-    await this.app.listen(this.config.control.port, () => {
-      this._logger.log(`Server listening at http://localhost:${this.config.control.port}`);
-      this._started.next();
+    try {
+      // Start server
+      await this.app.listen(this.config.control.port, () => {
+        this._logger.log(`Server listening at http://localhost:${this.config.control.port}`);
+        this._started.next();
 
-      // Listen for shutdown events
-      this.control.$events
-        .pipe(
-          filter((event) => event.action === 'shutdown'),
-          exhaustMap(() => this.handleShutdown()),
-        )
-        .subscribe();
-    });
+        // Listen for shutdown events
+        this.control.$events
+          .pipe(
+            filter((event) => event.action === 'shutdown'),
+            exhaustMap(() => this.handleShutdown()),
+          )
+          .subscribe();
+      });
+    } catch (err) {
+      await this._pidfile?.delete();
+      throw err;
+    }
+
+    return true;
   }
 
   async stop(): Promise<void> {

@@ -24,7 +24,7 @@ export function commandHandler<A = Record<string, never>>(handler: CommandHandle
     try {
       process.exit(await handler(argv) || 0);
     } catch (error) {
-      logger.fail(error);
+      logger.fail(error.message);
       process.exit(1);
     }
   };

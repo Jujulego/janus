@@ -1,5 +1,6 @@
 import Ajv from 'ajv';
 import { promises as fs } from 'fs';
+import path from 'path';
 import yaml from 'yaml';
 
 import configSchema from '@jujulego/janus-types/dist/config.schema.json';
@@ -50,8 +51,14 @@ export class JanusConfig implements IJanusConfig {
         throw new Error(`Invalid config file ${file}`);
       }
 
-      logger.debug(`Config file ${file} loaded`);
-      return new JanusConfig(data);
+      // Update file paths
+      data.pidfile = path.resolve(path.dirname(file), data.pidfile);
+
+      const config = new JanusConfig(data);
+      logger.verbose(`Config file ${file} loaded`);
+      logger.debug(`Config loaded: ${JSON.stringify(config.config, null, 2)}`);
+
+      return config;
     } catch (error) {
       logger.error('Failed to load config file');
 
@@ -64,6 +71,10 @@ export class JanusConfig implements IJanusConfig {
   }
 
   // Properties
+  get pidfile(): string {
+    return this.config.pidfile;
+  }
+
   get control(): Readonly<Required<IControlServerConfig>> {
     return {
       port: this.config.control?.port || DEFAULT_CONTROL_PORT,

@@ -14,7 +14,7 @@
     "lint": "eslint {src,tests}/**/*.*",
     "clean": "gulp clean",
     "build": "gulp build",
-    "start": "ts-node src/main.ts",
+    "start": "node dist/main.js",
     "test": "jest --passWithNoTests"
   },
   "engines": {

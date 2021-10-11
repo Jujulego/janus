@@ -51,6 +51,10 @@
     }
   },
   "properties": {
+    "pidfile": {
+      "type": "string",
+      "default": ".janus.pid"
+    },
     "proxy": {
       "type": "object",
       "additionalProperties": false,

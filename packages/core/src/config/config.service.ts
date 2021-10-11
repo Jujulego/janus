@@ -1,9 +1,8 @@
+import { IControlServerConfig } from '@jujulego/janus-types';
 import { Injectable } from '@nestjs/common';
 
-import { IControlServerConfig } from '@jujulego/janus-types';
-import { Service } from '../services/service.model';
-
 import { JanusConfig } from './janus-config';
+import { Service } from '../services/service.model';
 
 // Service
 @Injectable()

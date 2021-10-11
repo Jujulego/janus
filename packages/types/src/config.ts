@@ -26,6 +26,7 @@ export interface IProxyConfig {
 
 export interface IJanusConfig {
   // Attributes
+  pidfile: string;
   proxy?: IProxyConfig;
   control?: IControlServerConfig;
   services: Record<string, IServiceConfig>;

@@ -1,5 +1,0 @@
-releases:
-  "@jujulego/janus": patch
-
-declined:
-  - "@jujulego/janus-front"

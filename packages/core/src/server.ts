@@ -4,7 +4,6 @@ import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphq
 import { GraphQLSchema } from 'graphql';
 import { Subject } from 'rxjs';
 import { exhaustMap, filter } from 'rxjs/operators';
-import { promises as fs } from 'fs';
 import morgan from 'morgan';
 
 import { AppModule } from './app.module';
@@ -13,12 +12,13 @@ import { ControlService, ServerResolver } from './control';
 import { JsonObjScalar } from './json-obj.scalar';
 import { Logger } from './logger';
 import { GateResolver, ServiceResolver } from './services';
-import * as process from 'process';
+import { PidFile } from './pidfile';
 
 // Server
 export class JanusServer {
   // Attributes
   private readonly _logger = new Logger(JanusServer.name);
+  private _pidfile?: PidFile;
 
   private readonly _started = new Subject<void>();
   readonly $started = this._started.asObservable();
@@ -51,26 +51,15 @@ export class JanusServer {
   }
 
   // Methods
-  private async pidfile(config: JanusConfig): Promise<boolean | number> {
-    try {
-      await fs.appendFile(config.pidfile, process.pid.toString(), { flag: 'wx' });
-    } catch (err) {
-      if (err.code === 'EEXIST') {
-        return parseInt(await fs.readFile(config.pidfile, 'utf-8'));
-      } else {
-        this._logger.error(err);
-      }
-
-      return true;
-    }
-
-    return false;
-  }
-
   private async handleShutdown(): Promise<void> {
+    // Shutdown app
     this._logger.log('Shutdown requested');
     await this.app.close();
 
+    // Delete pidfile
+    await this._pidfile?.delete();
+
+    // Emit shutdown event
     this._logger.log('Server stopped');
     this._shutdown.next();
     this._shutdown.complete();
@@ -85,17 +74,8 @@ export class JanusServer {
     this.config.config = config;
 
     // Lockfile
-    const pid = await this.pidfile(config);
-
-    if (pid) {
-      if (typeof pid === 'number') {
-        this._logger.warn(`Looks like janus is already started (${pid})`);
-      } else {
-        this._logger.error('Unable to create pidfile');
-      }
-
-      return false;
-    }
+    this._pidfile = new PidFile(config, this._logger);
+    if (!await this._pidfile.create()) return false;
 
     // Setup
     this.app.enableShutdownHooks();

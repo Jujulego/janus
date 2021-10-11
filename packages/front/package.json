@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus-front",
-  "version": "1.0.8",
+  "version": "1.1.0",
   "license": "MIT",
   "main": "./dist/index.js",
   "repository": {
@@ -26,8 +26,8 @@
     "@emotion/styled": "11.3.0",
     "@jujulego/alma-api": "1.1.5",
     "@jujulego/alma-graphql": "1.0.12",
-    "@jujulego/janus-core": "1.0.7",
-    "@jujulego/janus-types": "1.0.6",
+    "@jujulego/janus-core": "1.1.0",
+    "@jujulego/janus-types": "1.1.0",
     "@mui/icons-material": "5.0.3",
     "@mui/material": "5.0.3",
     "@types/d3": "7.0.0",
@@ -68,6 +68,6 @@
     "webpack-merge": "5.8.0"
   },
   "peerDependencies": {
-    "@jujulego/janus-core": "^1.0.7"
+    "@jujulego/janus-core": "^1.1.0"
   }
 }

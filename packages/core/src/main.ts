@@ -1,5 +1,6 @@
 import { JanusServer } from './server';
 import { Logger } from './logger';
+import * as process from 'process';
 
 // Bootstrap
 (async function () {
@@ -11,7 +12,11 @@ import { Logger } from './logger';
     server.$shutdown.subscribe(() => process.exit(0));
 
     // Start server
-    await server.start('../../janus.config.yml');
+    const started = await server.start('../../janus.config.yml');
+
+    if (!started) {
+      process.exit(1);
+    }
   } catch (error) {
     Logger.error(error);
     process.exit(1);

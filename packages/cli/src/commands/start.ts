@@ -13,9 +13,11 @@ export const startCommand: CommandHandler = async (args) => {
     logger.stop();
 
     // Start server
-    await server.start(args.config);
-
-    return firstValueFrom(server.$shutdown.pipe(map(() => 0)));
+    if (await server.start(args.config)) {
+      return firstValueFrom(server.$shutdown.pipe(map(() => 0)));
+    } else {
+      return 1;
+    }
   } catch (error) {
     logger.error(error);
     return 1;

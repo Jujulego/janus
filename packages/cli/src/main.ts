@@ -22,7 +22,13 @@ import { commandHandler } from './wrapper';
       type: 'count',
       description: 'Set verbosity level (1 for verbose, 2 for debug)',
     })
-    .command(['start', '$0'], 'Starts the proxy server', {}, commandHandler(startCommand))
+    .command(['start', '$0'], 'Starts the proxy server', {
+      daemon: {
+        alias: 'd',
+        boolean: true,
+        default: false,
+      }
+    }, commandHandler(startCommand))
     .command('stop', 'Stops remote proxy server', {}, commandHandler(stopCommand))
     .command('logs', 'Print remote proxy logs', {
       follow: {

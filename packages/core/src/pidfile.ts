@@ -35,6 +35,7 @@ export class PidFile {
 
   async create(): Promise<boolean> {
     try {
+      this._logger.debug(`Create pid file ${process.pid}`);
       await fs.writeFile(this._config.pidfile, process.pid.toString(), { flag: 'wx', encoding: 'utf-8' });
     } catch (err) {
       if (err.code === 'EEXIST') {
@@ -61,6 +62,7 @@ export class PidFile {
     try {
       // Lock pidfile
       await this.lock(async () => {
+        this._logger.debug(`Update pid file ${pid} => ${process.pid}`);
         await fs.writeFile(this._config.pidfile, process.pid.toString(), { flag: 'w', encoding: 'utf-8' });
       });
 
@@ -74,6 +76,7 @@ export class PidFile {
   }
 
   async delete(): Promise<void> {
-    await fs.rm(this._config.pidfile);
+    this._logger.debug('Delete pid file');
+    await fs.unlink(this._config.pidfile);
   }
 }

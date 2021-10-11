@@ -4,6 +4,7 @@ import path from 'path';
 
 import { logger } from '../logger';
 import { CommandHandler } from '../wrapper';
+import * as fs from 'fs';
 
 // Types
 interface StartArgs {
@@ -47,7 +48,6 @@ export const startCommand: CommandHandler<StartArgs> = async (args) => {
           }
         } else {
           logger.fail(msg.message);
-          resolve(1);
         }
       });
 

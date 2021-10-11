@@ -1,4 +1,5 @@
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HTMLWebpackPlugin = require('html-webpack-plugin');
 const path = require('path');
 
@@ -50,6 +51,7 @@ module.exports = {
           globOptions: { ignore: '**/public/index.html' }
         },
       ]
-    })
+    }),
+    new ForkTsCheckerWebpackPlugin()
   ],
 };

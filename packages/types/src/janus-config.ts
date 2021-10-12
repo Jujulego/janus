@@ -1,5 +1,5 @@
 import Ajv from 'ajv';
-import { promises as fs } from 'fs';
+import { promises as pfs } from 'fs';
 import path from 'path';
 import yaml from 'yaml';
 
@@ -37,19 +37,20 @@ async function handleIOError<R>(fun: () => Promise<R>, file: string, logger: ILo
 
 export async function loadJanusConfigFile(file: string, logger: ILogger = new ConsoleLogger()): Promise<IJanusConfig> {
   // Check if is file
-  const stat = await handleIOError(() => fs.stat(file), file, logger);
+  const stat = await handleIOError(() => pfs.stat(file), file, logger);
 
   if (!stat.isFile()) {
+    logger.error('Failed to load config file');
     throw new Error(`File ${file} does not exists or is not a file`);
   }
 
   // Read file
-  const str = await handleIOError(() => fs.readFile(file, 'utf-8'), file, logger);
-  const data = yaml.parse(str) as ILoadedJanusConfig;
+  const str = await handleIOError(() => pfs.readFile(file, 'utf-8'), file, logger);
+  const data = yaml.parse(str);
 
   // Validate file
   const ajv = new Ajv({ allErrors: true, useDefaults: true });
-  const validate = ajv.compile(configSchema);
+  const validate = ajv.compile<ILoadedJanusConfig>(configSchema);
 
   if (!validate(data)) {
     if (validate.errors) {
@@ -67,8 +68,8 @@ export async function loadJanusConfigFile(file: string, logger: ILogger = new Co
   const config: IJanusConfig = {
     ...data,
     pidfile: path.resolve(path.dirname(file), data.pidfile),
-    control: data?.control ?? { port: DEFAULT_CONTROL_PORT },
-    proxy: data?.proxy ?? { port: DEFAULT_PROXY_PORT },
+    control: data.control ?? { port: DEFAULT_CONTROL_PORT },
+    proxy: data.proxy ?? { port: DEFAULT_PROXY_PORT },
   };
 
   logger.verbose(`Config file ${file} loaded`);

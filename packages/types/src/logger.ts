@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import { ILogMetadata } from './log';
 
 // Interface
@@ -14,6 +15,10 @@ export interface ILogger {
 // Class
 export class ConsoleLogger implements ILogger {
   // Methods
+  log(level: string, message: string, metadata?: ILogMetadata): void {
+    console.log(`${level}: ${message} ${JSON.stringify(metadata)}`);
+  }
+
   error(message: string, metadata?: ILogMetadata): void {
     this.log('error', message, metadata);
   }
@@ -32,10 +37,5 @@ export class ConsoleLogger implements ILogger {
 
   debug(message: string, metadata?: ILogMetadata): void {
     this.log('debug', message, metadata);
-  }
-
-  log(level: string, message: string, metadata?: ILogMetadata): void {
-    // eslint-disable-next-line no-console
-    console.log(`${level}: ${message} ${metadata}`);
   }
 }

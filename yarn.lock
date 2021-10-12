@@ -2213,7 +2213,7 @@ __metadata:
     ajv: ^8.6.3
     apollo-server-core: ^3.3.0
     apollo-server-express: ^3.3.0
-    chalk: ^4.1.2
+    chalk: 4.1.2
     class-transformer: ^0.4.0
     class-validator: ^0.13.1
     eslint: 7.32.0
@@ -2247,42 +2247,6 @@ __metadata:
       optional: true
   languageName: unknown
   linkType: soft
-
-"@jujulego/janus-core@npm:1.0.1":
-  version: 1.0.1
-  resolution: "@jujulego/janus-core@npm:1.0.1"
-  dependencies:
-    "@jujulego/janus-types": ^1.0.1
-    "@nestjs/common": ^8.0.9
-    "@nestjs/core": ^8.0.9
-    "@nestjs/graphql": ^9.0.5
-    "@nestjs/platform-express": ^8.0.9
-    "@nestjs/serve-static": ^2.2.2
-    ajv: ^8.6.3
-    apollo-server-core: ^3.3.0
-    apollo-server-express: ^3.3.0
-    chalk: ^4.1.2
-    class-transformer: ^0.4.0
-    class-validator: ^0.13.1
-    express: ^4.17.1
-    graphql: ^15.6.0
-    graphql-subscriptions: ^1.2.1
-    graphql-tools: 8.2.0
-    http-proxy: ^1.18.1
-    morgan: ^1.10.0
-    reflect-metadata: ^0.1.13
-    rxjs: ^7.3.0
-    winston: ^3.3.3
-    winston-transport: ^4.4.0
-    yaml: ^1.10.2
-  peerDependencies:
-    "@jujulego/janus-front": ^1.0.1
-  peerDependenciesMeta:
-    "@jujulego/janus-front":
-      optional: true
-  checksum: c2b1099501e09364b74daea77f92b281023cd699ab8578c11f98f716759e8c06747388ad1efd2e628548939190c4767aac32cd70b9a23782091e1a04e16d4c09
-  languageName: node
-  linkType: hard
 
 "@jujulego/janus-front@workspace:packages/front":
   version: 0.0.0-use.local
@@ -2354,7 +2318,7 @@ __metadata:
     "@babel/preset-env": 7.15.8
     "@babel/preset-typescript": 7.15.0
     "@babel/runtime": 7.15.4
-    "@jujulego/janus-core": 1.0.1
+    "@jujulego/janus-core": 1.1.0
     "@jujulego/janus-types": ^1.1.0
     "@types/node": 14.17.22
     "@types/ws": 8.2.0
@@ -2382,7 +2346,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-types@1.1.0, @jujulego/janus-types@^1.0.1, @jujulego/janus-types@^1.1.0, @jujulego/janus-types@workspace:packages/types":
+"@jujulego/janus-types@1.1.0, @jujulego/janus-types@^1.1.0, @jujulego/janus-types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-types@workspace:packages/types"
   dependencies:
@@ -5633,6 +5597,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"chalk@npm:4.1.2, chalk@npm:^4.1.2":
+  version: 4.1.2
+  resolution: "chalk@npm:4.1.2"
+  dependencies:
+    ansi-styles: ^4.1.0
+    supports-color: ^7.1.0
+  checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
+  languageName: node
+  linkType: hard
+
 "chalk@npm:^2.0.0":
   version: 2.4.2
   resolution: "chalk@npm:2.4.2"
@@ -5661,16 +5635,6 @@ __metadata:
     ansi-styles: ^4.1.0
     supports-color: ^7.1.0
   checksum: 036e973e665ba1a32c975e291d5f3d549bceeb7b1b983320d4598fb75d70fe20c5db5d62971ec0fe76cdbce83985a00ee42372416abfc3a5584465005a7855ed
-  languageName: node
-  linkType: hard
-
-"chalk@npm:^4.1.2":
-  version: 4.1.2
-  resolution: "chalk@npm:4.1.2"
-  dependencies:
-    ansi-styles: ^4.1.0
-    supports-color: ^7.1.0
-  checksum: fe75c9d5c76a7a98d45495b91b2172fa3b7a09e0cc9370e5c8feb1c567b85c4288e2b3fded7cfdd7359ac28d6b3844feb8b82b8686842e93d23c827c417e83fc
   languageName: node
   linkType: hard
 
@@ -8856,7 +8820,7 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"graphql-tools@npm:8.2.0, graphql-tools@npm:^8.2.0":
+"graphql-tools@npm:^8.2.0":
   version: 8.2.0
   resolution: "graphql-tools@npm:8.2.0"
   dependencies:

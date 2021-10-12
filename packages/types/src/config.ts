@@ -16,18 +16,18 @@ export interface IServiceConfig {
 
 export interface IControlServerConfig {
   // Attributes
-  port?: number;
+  port: number;
 }
 
 export interface IProxyConfig {
   // Attributes
-  port?: number;
+  port: number;
 }
 
 export interface IJanusConfig {
   // Attributes
   pidfile: string;
-  proxy?: IProxyConfig;
-  control?: IControlServerConfig;
+  proxy: IProxyConfig;
+  control: IControlServerConfig;
   services: Record<string, IServiceConfig>;
 }

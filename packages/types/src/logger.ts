@@ -1,39 +1,41 @@
+import { ILogMetadata } from './log';
+
 // Interface
 export interface ILogger {
   // Methods
-  error(message: string): void;
-  warn(message: string): void;
-  info(message: string): void;
-  verbose(message: string): void;
-  debug(message: string): void;
-  log(level: string, message: string): void;
+  error(message: string, metadata?: ILogMetadata): void;
+  warn(message: string, metadata?: ILogMetadata): void;
+  info(message: string, metadata?: ILogMetadata): void;
+  verbose(message: string, metadata?: ILogMetadata): void;
+  debug(message: string, metadata?: ILogMetadata): void;
+  log(level: string, message: string, metadata?: ILogMetadata): void;
 }
 
 // Class
 export class ConsoleLogger implements ILogger {
   // Methods
-  error(message: string): void {
-    this.log('error', message);
+  error(message: string, metadata?: ILogMetadata): void {
+    this.log('error', message, metadata);
   }
 
-  warn(message: string): void {
-    this.log('warn', message);
+  warn(message: string, metadata?: ILogMetadata): void {
+    this.log('warn', message, metadata);
   }
 
-  info(message: string): void {
-    this.log('info', message);
+  info(message: string, metadata?: ILogMetadata): void {
+    this.log('info', message, metadata);
   }
 
-  verbose(message: string): void {
-    this.log('verbose', message);
+  verbose(message: string, metadata?: ILogMetadata): void {
+    this.log('verbose', message, metadata);
   }
 
-  debug(message: string): void {
-    this.log('debug', message);
+  debug(message: string, metadata?: ILogMetadata): void {
+    this.log('debug', message, metadata);
   }
 
-  log(level: string, message: string): void {
+  log(level: string, message: string, metadata?: ILogMetadata): void {
     // eslint-disable-next-line no-console
-    console.log(`${level}: ${message}`);
+    console.log(`${level}: ${message} ${metadata}`);
   }
 }

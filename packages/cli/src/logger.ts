@@ -1,4 +1,5 @@
 import { Logger as CoreLogger } from '@jujulego/janus-core';
+import { ILogger, ILogMetadata } from '@jujulego/janus-types';
 import { format, Logger } from 'winston';
 import Transport from 'winston-transport';
 import ora from 'ora';
@@ -70,7 +71,7 @@ export class OraTransport extends Transport {
 }
 
 // Logger
-export class OraLogger {
+export class OraLogger implements ILogger {
   // Logger
   constructor(
     private readonly logger: Logger,
@@ -79,7 +80,7 @@ export class OraLogger {
 
   // Methods
   // - logger
-  log(level: string, message: string, meta: any): void {
+  log(level: string, message: string, meta?: ILogMetadata): void {
     this.logger.log(level, message, meta);
   }
 

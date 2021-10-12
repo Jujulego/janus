@@ -1,10 +1,10 @@
+import { IControlServerConfig, IJanusConfig, IServiceConfig } from '@jujulego/janus-types';
+import configSchema from '@jujulego/janus-types/dist/config.schema.json';
 import Ajv from 'ajv';
 import { promises as fs } from 'fs';
 import path from 'path';
 import yaml from 'yaml';
 
-import configSchema from '@jujulego/janus-types/dist/config.schema.json';
-import { IControlServerConfig, IJanusConfig, IServiceConfig } from '@jujulego/janus-types';
 import { Logger } from '../logger';
 
 // Constants

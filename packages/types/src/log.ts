@@ -1,12 +1,15 @@
 import { gql } from 'graphql.macro';
 
+// Types
+export type ILogMetadata = Record<string, unknown>;
+
 // Model
 export interface ILog {
   // Attributes
   level: string;
   message: string;
   timestamp: string;
-  metadata: Record<string, unknown>;
+  metadata: ILogMetadata;
 }
 
 // Fragment

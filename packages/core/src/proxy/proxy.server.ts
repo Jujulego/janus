@@ -118,12 +118,12 @@ export class ProxyServer implements OnApplicationBootstrap, OnApplicationShutdow
 
   async listen(): Promise<void> {
     await this._server.listen(this._config.proxy.port, () => {
-      this._logger.log(`Proxy listening at http://localhost:${this._config.proxy.port}`);
+      this._logger.info(`Proxy listening at http://localhost:${this._config.proxy.port}`);
     });
   }
 
   async stop(): Promise<void> {
     await this._server.close();
-    this._logger.log('Proxy stopped');
+    this._logger.info('Proxy stopped');
   }
 }

@@ -60,7 +60,7 @@ export class GatesService implements OnApplicationBootstrap {
       this._pubsub.publish(service, { service: srv });
       this._pubsub.publish(`${service}.${name}`, { gate });
 
-      this._logger.log(`Gate ${service}.${name} enabled`, { service, gate: name });
+      this._logger.info(`Gate ${service}.${name} enabled`, { service, gate: name });
     }
 
     return gate;
@@ -76,7 +76,7 @@ export class GatesService implements OnApplicationBootstrap {
       this._pubsub.publish(service, { service: srv });
       this._pubsub.publish(`${service}.${name}`, { gate });
 
-      this._logger.log(`Gate ${service}.${name} disabled`, { service, gate: name });
+      this._logger.info(`Gate ${service}.${name} disabled`, { service, gate: name });
     }
 
     return gate;

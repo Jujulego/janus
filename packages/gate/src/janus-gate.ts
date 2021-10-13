@@ -1,5 +1,5 @@
-import { JanusConfig } from '@jujulego/janus-core';
-import { GateFragment, IGate } from '@jujulego/janus-types';
+import { loadJanusConfigFile } from '@jujulego/janus-common';
+import { GateFragment, IGate, IJanusConfig, ILogger } from '@jujulego/janus-types';
 import { GraphQLClient } from 'graphql-request';
 import { createClient } from 'graphql-ws';
 import { print } from 'graphql';
@@ -19,12 +19,12 @@ export class JanusGate {
   constructor(
     readonly service: string,
     readonly gate: string,
-    readonly config: JanusConfig
+    readonly config: IJanusConfig
   ) {}
 
   // Statics
-  static async fromConfigFile(service: string, name: string, config: string): Promise<JanusGate> {
-    return new JanusGate(service, name, await JanusConfig.loadFile(config));
+  static async fromConfigFile(service: string, name: string, config: string, logger?: ILogger): Promise<JanusGate> {
+    return new JanusGate(service, name, await loadJanusConfigFile(config, logger));
   }
 
   // Methods

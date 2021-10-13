@@ -33,7 +33,11 @@ gulp.task('build:types', () => gulp.src(paths.src)
   .pipe(gulp.dest('dist/types'))
 );
 
+gulp.task('copy:assets', () => gulp.src(paths.assets)
+  .pipe(gulp.dest('dist'))
+);
+
 gulp.task('build', gulp.series(
   'clean',
-  gulp.parallel('build:cjs', 'build:esm', 'build:types'),
+  gulp.parallel('build:cjs', 'build:esm', 'build:types', 'copy:assets'),
 ));

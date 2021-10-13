@@ -1,4 +1,4 @@
-import { JanusConfig } from '@jujulego/janus-core';
+import { IJanusConfig } from '@jujulego/janus-types';
 import { DocumentNode, print } from 'graphql';
 import { GraphQLClient } from 'graphql-request';
 import { createClient } from 'graphql-ws';
@@ -16,7 +16,7 @@ export class JanusClient {
   private readonly _sclient = createClient({ url: this._endpoint.replace(/^http/, 'ws'), lazy: true, webSocketImpl: WebSocket });
 
   // Constructor
-  constructor(readonly config: JanusConfig) {}
+  constructor(readonly config: IJanusConfig) {}
 
   // Methods
   async query<R, V extends Vars = Vars>(query: DocumentNode, variables?: V): Promise<R> {

@@ -1,4 +1,4 @@
-import { JanusConfig } from '@jujulego/janus-core';
+import { loadJanusConfigFile } from '@jujulego/janus-common';
 import { gql } from 'graphql.macro';
 
 import { JanusClient } from '../client';
@@ -13,7 +13,7 @@ export const stopCommand: CommandHandler = async (args) => {
   try {
     // Load config
     logger.spin('Stopping proxy ...');
-    const config = await JanusConfig.loadFile(args.config);
+    const config = await loadJanusConfigFile(args.config, logger);
 
     // Shutdown
     const client = new JanusClient(config);

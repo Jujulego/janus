@@ -1,9 +1,9 @@
+import { ILogger, ILogMetadata } from '@jujulego/janus-types';
 import { LoggerService } from '@nestjs/common';
 import winston, { format } from 'winston';
-import chalk from 'chalk';
 
 // Class
-export class Logger implements LoggerService {
+export class Logger implements ILogger, LoggerService {
   // Attributes
   private readonly _logger: winston.Logger;
 
@@ -22,15 +22,23 @@ export class Logger implements LoggerService {
     transports: []
   });
 
-  static error(message: any, trace?: string,  metadata?: string | Record<string, string | number>): void {
+  static log(level: string, message: string, metadata?: string | ILogMetadata): void {
     if (typeof metadata === 'string') {
       metadata = { context: metadata };
     }
 
-    this.root.error({ message, trace, ...metadata });
+    this.root.log(level, { message, ...metadata });
   }
 
-  static warn(message: any, metadata?: string | Record<string, string | number>): void {
+  static error(message: string, metadata?: string | ILogMetadata): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this.root.error({ message, ...metadata });
+  }
+
+  static warn(message: string, metadata?: string | ILogMetadata): void {
     if (typeof metadata === 'string') {
       metadata = { context: metadata };
     }
@@ -38,15 +46,7 @@ export class Logger implements LoggerService {
     this.root.warn({ message, ...metadata });
   }
 
-  static log(message: any, metadata?: string | Record<string, string | number>): void {
-    if (typeof metadata === 'string') {
-      metadata = { context: metadata };
-    }
-
-    this.root.info({ message, ...metadata });
-  }
-
-  static verbose(message: any, metadata?: string | Record<string, string | number>): void {
+  static verbose(message: string, metadata?: string | ILogMetadata): void {
     if (typeof metadata === 'string') {
       metadata = { context: metadata };
     }
@@ -54,7 +54,7 @@ export class Logger implements LoggerService {
     this.root.verbose({ message, ...metadata });
   }
 
-  static debug(message: any, metadata?: string | Record<string, string | number>): void {
+  static debug(message: string, metadata?: string | ILogMetadata): void {
     if (typeof metadata === 'string') {
       metadata = { context: metadata };
     }
@@ -63,15 +63,23 @@ export class Logger implements LoggerService {
   }
 
   // Methods
-  error(message: any, trace?: string, metadata?: string | Record<string, string | number>): void {
+  log(level: string, message: string, metadata?: string | ILogMetadata): void {
     if (typeof metadata === 'string') {
       metadata = { context: metadata };
     }
 
-    this._logger.error({ message, trace, ...metadata });
+    this._logger.log(level, { message, ...metadata });
   }
 
-  warn(message: any, metadata?: string | Record<string, string | number>): void {
+  error(message: string, metadata?: string | ILogMetadata): void {
+    if (typeof metadata === 'string') {
+      metadata = { context: metadata };
+    }
+
+    this._logger.error({ message, ...metadata });
+  }
+
+  warn(message: string, metadata?: string | ILogMetadata): void {
     if (typeof metadata === 'string') {
       metadata = { context: metadata };
     }
@@ -79,7 +87,7 @@ export class Logger implements LoggerService {
     this._logger.warn({ message, ...metadata });
   }
 
-  log(message: any, metadata?: string | Record<string, string | number>): void {
+  info(message: string, metadata?: string | ILogMetadata): void {
     if (typeof metadata === 'string') {
       metadata = { context: metadata };
     }
@@ -87,15 +95,7 @@ export class Logger implements LoggerService {
     this._logger.info({ message, ...metadata });
   }
 
-  info(message: any, metadata?: string | Record<string, string | number>): void {
-    if (typeof metadata === 'string') {
-      metadata = { context: metadata };
-    }
-
-    this._logger.info({ message, ...metadata });
-  }
-
-  verbose(message: any, metadata?: string | Record<string, string | number>): void {
+  verbose(message: string, metadata?: string | ILogMetadata): void {
     if (typeof metadata === 'string') {
       metadata = { context: metadata };
     }
@@ -103,7 +103,7 @@ export class Logger implements LoggerService {
     this._logger.verbose({ message, ...metadata });
   }
 
-  debug(message: any, metadata?: string | Record<string, string | number>): void {
+  debug(message: string, metadata?: string | ILogMetadata): void {
     if (typeof metadata === 'string') {
       metadata = { context: metadata };
     }

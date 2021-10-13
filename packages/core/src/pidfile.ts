@@ -1,14 +1,14 @@
+import { IJanusConfig } from '@jujulego/janus-types';
 import { promises as fs } from 'fs';
 import { lock } from 'proper-lockfile';
 
-import { JanusConfig } from './config';
 import { Logger } from './logger';
 
 // Class
 export class PidFile {
   // Constructor
   constructor(
-    private readonly _config: JanusConfig,
+    private readonly _config: IJanusConfig,
     private readonly _logger: Logger
   ) {}
 

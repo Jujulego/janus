@@ -1,14 +1,13 @@
-import { IControlServerConfig } from '@jujulego/janus-types';
+import { IControlServerConfig, IJanusConfig } from '@jujulego/janus-types';
 import { Injectable } from '@nestjs/common';
 
-import { JanusConfig } from './janus-config';
 import { Service } from '../services/service.model';
 
 // Service
 @Injectable()
 export class ConfigService {
   // Attributes
-  private _config: JanusConfig;
+  private _config: IJanusConfig;
 
   // Methods
   *services(): Generator<Service> {
@@ -20,15 +19,15 @@ export class ConfigService {
   }
 
   // Properties
-  set config(config: JanusConfig) {
+  set config(config: IJanusConfig) {
     this._config = config;
   }
 
-  get proxy(): Readonly<Required<IControlServerConfig>> {
+  get proxy(): Readonly<IControlServerConfig> {
     return this._config.proxy;
   }
 
-  get control(): Readonly<Required<IControlServerConfig>> {
+  get control(): Readonly<IControlServerConfig> {
     return this._config.control;
   }
 }

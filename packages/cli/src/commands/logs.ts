@@ -1,4 +1,5 @@
-import { ILog, loadJanusConfigFile, LogFragment } from '@jujulego/janus-types';
+import { loadJanusConfigFile } from '@jujulego/janus-common';
+import { ILog, LogFragment } from '@jujulego/janus-types';
 import { lastValueFrom } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { gql } from 'graphql.macro';

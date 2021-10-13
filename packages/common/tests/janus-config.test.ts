@@ -1,11 +1,12 @@
+import { IJanusConfig } from '@jujulego/janus-types';
 import _Ajv, { ValidateFunction } from 'ajv';
 import fs, { promises as pfs } from 'fs';
+import path from 'path';
 import yaml from 'yaml';
 
-import { IJanusConfig, loadJanusConfigFile } from '../src';
+import { loadJanusConfigFile } from '../src';
 import configSchema from '../src/config.schema.json';
 import { testLogger } from './test-logger';
-import * as path from 'path';
 
 // Constants
 const MOCK_CONFIG: IJanusConfig = {

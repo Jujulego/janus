@@ -3,8 +3,14 @@ import { promises as pfs } from 'fs';
 import path from 'path';
 import yaml from 'yaml';
 
-import { IControlServerConfig, IJanusConfig, IProxyConfig, IServiceConfig } from './config';
-import { ILogger, ConsoleLogger } from './logger';
+import {
+  ConsoleLogger,
+  IControlServerConfig,
+  IJanusConfig,
+  ILogger,
+  IProxyConfig,
+  IServiceConfig
+} from '@jujulego/janus-types';
 import configSchema from './config.schema.json';
 
 // Constants

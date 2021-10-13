@@ -21,6 +21,7 @@
     "node": "^14"
   },
   "dependencies": {
+    "@jujulego/janus-common": "^1.1.0",
     "@jujulego/janus-types": "^1.1.0",
     "graphql": "^15.6.0",
     "graphql-request": "^3.5.0",

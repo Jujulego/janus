@@ -1,4 +1,5 @@
-import { GateFragment, IGate, IJanusConfig, ILogger, loadJanusConfigFile } from '@jujulego/janus-types';
+import { loadJanusConfigFile } from '@jujulego/janus-common';
+import { GateFragment, IGate, IJanusConfig, ILogger } from '@jujulego/janus-types';
 import { GraphQLClient } from 'graphql-request';
 import { createClient } from 'graphql-ws';
 import { print } from 'graphql';

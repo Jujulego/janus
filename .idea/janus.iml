@@ -14,6 +14,7 @@
       <excludeFolder url="file://$MODULE_DIR$/packages/front/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/packages/types/coverage" />
       <excludeFolder url="file://$MODULE_DIR$/packages/gate/coverage" />
+      <excludeFolder url="file://$MODULE_DIR$/packages/common/coverage" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

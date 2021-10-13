@@ -1,4 +1,4 @@
-import { ILogMetadata } from '../src';
+import { ILogMetadata } from '@jujulego/janus-types';
 
 // Constants
 export const testLogger = {

@@ -1,4 +1,5 @@
-import { IJanusConfig, loadJanusConfigFile } from '@jujulego/janus-types';
+import { loadJanusConfigFile } from '@jujulego/janus-common';
+import { IJanusConfig } from '@jujulego/janus-types';
 import { NestFactory } from '@nestjs/core';
 import { INestApplication } from '@nestjs/common';
 import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphql';

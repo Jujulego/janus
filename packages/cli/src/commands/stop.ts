@@ -1,4 +1,4 @@
-import { loadJanusConfigFile } from '@jujulego/janus-types';
+import { loadJanusConfigFile } from '@jujulego/janus-common';
 import { gql } from 'graphql.macro';
 
 import { JanusClient } from '../client';

@@ -2204,7 +2204,7 @@ __metadata:
     "@types/http-proxy": 1.17.7
     "@types/jest": 27.0.2
     "@types/morgan": 1.9.3
-    "@types/node": 14.17.21
+    "@types/node": 14.17.22
     "@types/proper-lockfile": 4.1.2
     "@types/supertest": 2.0.11
     "@types/yaml": 1.9.7
@@ -2234,7 +2234,7 @@ __metadata:
     ts-jest: 27.0.5
     ts-loader: 9.2.6
     ts-node: 10.3.0
-    typescript: 4.4.3
+    typescript: 4.4.4
     webpack: 5.58.1
     webpack-pnp-externals: 1.1.0
     winston: ^3.3.3
@@ -2268,7 +2268,7 @@ __metadata:
     "@mui/icons-material": 5.0.3
     "@mui/material": 5.0.3
     "@types/d3": 7.0.0
-    "@types/react": 17.0.27
+    "@types/react": 17.0.29
     "@types/react-dom": 17.0.9
     "@types/react-router-dom": 5.3.1
     "@types/react-window": 1.8.5
@@ -2297,9 +2297,9 @@ __metadata:
     react-window: 1.8.6
     regenerator-runtime: 0.13.9
     ts-jest: 27.0.5
-    typescript: 4.4.3
+    typescript: 4.4.4
     webpack: 5.58.1
-    webpack-bundle-analyzer: 4.4.2
+    webpack-bundle-analyzer: 4.5.0
     webpack-cli: 4.9.0
     webpack-dev-server: 4.3.1
     webpack-merge: 5.8.0
@@ -2320,7 +2320,7 @@ __metadata:
     "@babel/runtime": 7.15.4
     "@jujulego/janus-core": 1.1.0
     "@jujulego/janus-types": ^1.1.0
-    "@types/node": 14.17.21
+    "@types/node": 14.17.22
     "@types/ws": 8.2.0
     "@typescript-eslint/eslint-plugin": 5.0.0
     "@typescript-eslint/parser": 5.0.0
@@ -2339,7 +2339,7 @@ __metadata:
     jest: 27.2.5
     rxjs: ^7.3.0
     ts-jest: 27.0.5
-    typescript: 4.4.3
+    typescript: 4.4.4
     ws: ^8.2.2
   peerDependencies:
     "@jujulego/janus-core": ^1.1.0
@@ -2374,7 +2374,7 @@ __metadata:
     gulp-typescript: 6.0.0-alpha.1
     jest: 27.2.5
     ts-jest: 27.0.5
-    typescript: 4.4.3
+    typescript: 4.4.4
     yaml: ^1.10.2
   peerDependencies:
     graphql: ^15.6.0
@@ -2393,7 +2393,7 @@ __metadata:
     "@babel/runtime": 7.15.4
     "@jujulego/janus-core": ^1.1.0
     "@jujulego/janus-types": ^1.1.0
-    "@types/node": 14.17.21
+    "@types/node": 14.17.22
     "@types/ws": 8.2.0
     "@types/yargs": 17.0.3
     "@typescript-eslint/eslint-plugin": 5.0.0
@@ -2416,7 +2416,7 @@ __metadata:
     rxjs: ^7.3.0
     ts-jest: 27.0.5
     ts-node: 10.3.0
-    typescript: 4.4.3
+    typescript: 4.4.4
     winston: ^3.3.3
     winston-transport: ^4.4.0
     ws: ^8.2.2
@@ -3613,6 +3613,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/node@npm:14.17.22":
+  version: 14.17.22
+  resolution: "@types/node@npm:14.17.22"
+  checksum: e1e047cdf9a219a97c66064ef38769220d9ae7c819f3ac29170cafa4ffc8a8616bafa28326c0b02a3bf974e21c17f03f2c17c330572b84c9c51e0f62b0aecf88
+  languageName: node
+  linkType: hard
+
 "@types/node@npm:^10.1.0":
   version: 10.17.60
   resolution: "@types/node@npm:10.17.60"
@@ -3732,14 +3739,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:17.0.27":
-  version: 17.0.27
-  resolution: "@types/react@npm:17.0.27"
+"@types/react@npm:17.0.29":
+  version: 17.0.29
+  resolution: "@types/react@npm:17.0.29"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: 3a1147d963c16dc9bbea5afb20c4be94f2389cf4eca4c5fbe9b02f3406bd9957602c0459ea017c95f8c3d523221f572e8bd842f94654835776d4c2923357f9dc
+  checksum: 39280743f6fec1bbc5c8e705976c1738a5526aaa0e693052badf5cd2dd599b6536dd815b651017737a533bf1c03db6a5738498796ff44f806e55324dc7867723
   languageName: node
   linkType: hard
 
@@ -6062,7 +6069,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"commander@npm:7, commander@npm:^7.0.0":
+"commander@npm:7, commander@npm:^7.0.0, commander@npm:^7.2.0":
   version: 7.2.0
   resolution: "commander@npm:7.2.0"
   checksum: 53501cbeee61d5157546c0bef0fedb6cdfc763a882136284bed9a07225f09a14b82d2a84e7637edfd1a679fb35ed9502fd58ef1d091e6287f60d790147f68ddc
@@ -6073,13 +6080,6 @@ __metadata:
   version: 2.20.3
   resolution: "commander@npm:2.20.3"
   checksum: ab8c07884e42c3a8dbc5dd9592c606176c7eb5c1ca5ff274bcf907039b2c41de3626f684ea75ccf4d361ba004bbaff1f577d5384c155f3871e456bdf27becf9e
-  languageName: node
-  linkType: hard
-
-"commander@npm:^6.2.0":
-  version: 6.2.1
-  resolution: "commander@npm:6.2.1"
-  checksum: d7090410c0de6bc5c67d3ca41c41760d6d268f3c799e530aafb73b7437d1826bbf0d2a3edac33f8b57cc9887b4a986dce307fa5557e109be40eadb7c43b21742
   languageName: node
   linkType: hard
 
@@ -7828,11 +7828,11 @@ __metadata:
   dependencies:
     "@jujulego/janus-gate": ^1.1.0
     "@types/express": 4.17.13
-    "@types/node": 14.17.21
+    "@types/node": 14.17.22
     express: 4.17.1
     nodemon: 2.0.13
     ts-node: 10.3.0
-    typescript: 4.4.3
+    typescript: 4.4.4
   languageName: unknown
   linkType: soft
 
@@ -10214,7 +10214,7 @@ fsevents@^1.2.7:
     eslint: 7.32.0
     eslint-plugin-jest: 25.0.5
     jest: 27.2.5
-    typescript: 4.4.3
+    typescript: 4.4.4
   languageName: unknown
   linkType: soft
 
@@ -15216,13 +15216,13 @@ typescript@4.3.5:
   languageName: node
   linkType: hard
 
-typescript@4.4.3:
-  version: 4.4.3
-  resolution: "typescript@npm:4.4.3"
+typescript@4.4.4:
+  version: 4.4.4
+  resolution: "typescript@npm:4.4.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 05823f21796d450531a7e4ab299715d38fd9ded0e4ce7400876053f4b5166ca3dde7a68cecfe72d9086039f03c0b6edba36516fb10ed83c5837d9600532ea4c2
+  checksum: 89ecb8436bb48ef5594d49289f5f89103071716b6e4844278f4fb3362856e31203e187a9c76d205c3f0b674d221a058fd28310dbcbcf5d95e9a57229bb5203f1
   languageName: node
   linkType: hard
 
@@ -15236,13 +15236,13 @@ typescript@4.4.3:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.4.3#~builtin<compat/typescript>":
-  version: 4.4.3
-  resolution: "typescript@patch:typescript@npm%3A4.4.3#~builtin<compat/typescript>::version=4.4.3&hash=32657b"
+"typescript@patch:typescript@4.4.4#~builtin<compat/typescript>":
+  version: 4.4.4
+  resolution: "typescript@patch:typescript@npm%3A4.4.4#~builtin<compat/typescript>::version=4.4.4&hash=32657b"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 28ab98313afab46788ff41014fdb5932430ada6e03cf9e92ac47f406526a2cac1ae2894834e7da61e46b7429318e9c47f45ba8de323332f0cb9af99b72ebae74
+  checksum: c97c33903f1eb4f9e178649befdfc859d93157db1eccd1e521e84976ec6861db53412d8018e5e4c5d09268771c65498d42caa64bd881878346c3644f6b7cd202
   languageName: node
   linkType: hard
 
@@ -15738,14 +15738,14 @@ typescript@4.4.3:
   languageName: node
   linkType: hard
 
-"webpack-bundle-analyzer@npm:4.4.2":
-  version: 4.4.2
-  resolution: "webpack-bundle-analyzer@npm:4.4.2"
+"webpack-bundle-analyzer@npm:4.5.0":
+  version: 4.5.0
+  resolution: "webpack-bundle-analyzer@npm:4.5.0"
   dependencies:
     acorn: ^8.0.4
     acorn-walk: ^8.0.0
     chalk: ^4.1.0
-    commander: ^6.2.0
+    commander: ^7.2.0
     gzip-size: ^6.0.0
     lodash: ^4.17.20
     opener: ^1.5.2
@@ -15753,7 +15753,7 @@ typescript@4.4.3:
     ws: ^7.3.1
   bin:
     webpack-bundle-analyzer: lib/bin/analyzer.js
-  checksum: 6d7957a87ee16f6b87e65f85e8b9a40998aefcddf3e15215fd4bc1ddf8c332ab4706f2f4deb0b3a0483eb27d0dae381db1b82b2ec34136e2ad0e651714b260fb
+  checksum: 158e96810ec213d5665ca1c0b257097db44e1f11c4befefab8352b9e5b10890fcb3e3fc1f7bb400dd58762a8edce5621c92afeca86eb4687d2eb64e93186bfcb
   languageName: node
   linkType: hard
 

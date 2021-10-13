@@ -1,4 +1,4 @@
-import { ILog } from '@jujulego/janus-types';
+import { ILogMetadata } from '@jujulego/janus-types';
 import { fork } from 'child_process';
 import path from 'path';
 
@@ -6,8 +6,14 @@ import { logger } from '../logger';
 import { CommandHandler } from '../wrapper';
 
 // Types
-interface StartArgs {
+export interface StartArgs {
   daemon: boolean;
+}
+
+type ILog = ILogMetadata & {
+  // Attributes
+  level: string;
+  message: string;
 }
 
 // Handler

@@ -1,5 +1,4 @@
-import { JanusConfig } from '@jujulego/janus-core';
-import { ILog, LogFragment } from '@jujulego/janus-types';
+import { ILog, loadJanusConfigFile, LogFragment } from '@jujulego/janus-types';
 import { lastValueFrom } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { gql } from 'graphql.macro';
@@ -29,7 +28,7 @@ export const logsCommand: CommandHandler<LogsArgs> = async (args) => {
   try {
     // Load config
     logger.spin('Connecting to proxy server ...');
-    const config = await JanusConfig.loadFile(args.config);
+    const config = await loadJanusConfigFile(args.config, logger);
 
     // Existing logs
     const client = new JanusClient(config);

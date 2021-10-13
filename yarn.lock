@@ -2146,7 +2146,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/alma-api@npm:1.1.5, @jujulego/alma-api@npm:^1.1.5":
+"@jujulego/alma-api@npm:1.1.6":
+  version: 1.1.6
+  resolution: "@jujulego/alma-api@npm:1.1.6"
+  dependencies:
+    "@jujulego/alma-utils": ^1.0.6
+  peerDependencies:
+    axios: ^0.23.0
+    react: ^17.0.0
+    react-dom: ^17.0.0
+  checksum: a805f75e5f3c0effb1a8950fb66010d65ab0a5995dbe98387bb79e492c4618d477a26a3d74b8f684b675b1c2dd1c8c2540cab68e0a6ad3e35c7b3632bc276e56
+  languageName: node
+  linkType: hard
+
+"@jujulego/alma-api@npm:^1.1.5":
   version: 1.1.5
   resolution: "@jujulego/alma-api@npm:1.1.5"
   dependencies:
@@ -2297,7 +2310,7 @@ __metadata:
     "@babel/runtime": 7.15.4
     "@emotion/react": 11.4.1
     "@emotion/styled": 11.3.0
-    "@jujulego/alma-api": 1.1.5
+    "@jujulego/alma-api": 1.1.6
     "@jujulego/alma-graphql": 1.0.12
     "@jujulego/janus-core": 1.1.0
     "@jujulego/janus-types": 1.1.0

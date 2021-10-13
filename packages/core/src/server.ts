@@ -1,3 +1,4 @@
+import { IJanusConfig, loadJanusConfigFile } from '@jujulego/janus-types';
 import { NestFactory } from '@nestjs/core';
 import { INestApplication } from '@nestjs/common';
 import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphql';
@@ -7,7 +8,7 @@ import { exhaustMap, filter } from 'rxjs/operators';
 import morgan from 'morgan';
 
 import { AppModule } from './app.module';
-import { ConfigService, JanusConfig } from './config';
+import { ConfigService } from './config';
 import { ControlService, ServerResolver } from './control';
 import { JsonObjScalar } from './json-obj.scalar';
 import { Logger } from './logger';
@@ -53,22 +54,22 @@ export class JanusServer {
   // Methods
   private async handleShutdown(): Promise<void> {
     // Shutdown app
-    this._logger.log('Shutdown requested');
+    this._logger.info('Shutdown requested');
     await this.app.close();
 
     // Delete pidfile
     await this._pidfile?.delete();
 
     // Emit shutdown event
-    this._logger.log('Server stopped');
+    this._logger.info('Server stopped');
     this._shutdown.next();
     this._shutdown.complete();
   }
 
-  async start(config: string | JanusConfig): Promise<boolean> {
+  async start(config: string | IJanusConfig): Promise<boolean> {
     // Load configuration
     if (typeof config === 'string') {
-      config = await JanusConfig.loadFile(config);
+      config = await loadJanusConfigFile(config, new Logger('JanusConfig'));
     }
 
     this.config.config = config;
@@ -94,7 +95,7 @@ export class JanusServer {
     try {
       // Start server
       await this.app.listen(this.config.control.port, () => {
-        this._logger.log(`Server listening at http://localhost:${this.config.control.port}`);
+        this._logger.info(`Server listening at http://localhost:${this.config.control.port}`);
         this._started.next();
 
         // Listen for shutdown events

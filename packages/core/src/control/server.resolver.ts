@@ -21,7 +21,12 @@ export class ServerResolver {
   @Query(() => [Log])
   logs(): Promise<Log[]> {
     return new Promise<Log[]>((resolve, reject) => {
-      Logger.root.query({ fields: null }, (err, results: { file: Record<string, unknown>[] }) => {
+      Logger.root.query({
+        start: -1,
+        rows: Infinity,
+        order: 'asc',
+        fields: null
+      }, (err, results: { file: Record<string, unknown>[] }) => {
         if (err) reject(err);
 
         // Format logs

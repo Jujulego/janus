@@ -16,7 +16,7 @@ export class Logger implements ILogger, LoggerService {
   static readonly root = winston.createLogger({
     level: 'debug',
     format: format.combine(
-      format.timestamp({ format: () => new Date().toLocaleString() }),
+      format.timestamp(),
       { transform: (info) => Object.assign(info, { pid: process.pid }) },
       format.json(),
     ),

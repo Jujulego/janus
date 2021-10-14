@@ -51,6 +51,10 @@
     }
   },
   "properties": {
+    "logfile": {
+      "type": "string",
+      "default": ".janus.log"
+    },
     "pidfile": {
       "type": "string",
       "default": ".janus.pid"

@@ -7,6 +7,7 @@
       <sourceFolder url="file://$MODULE_DIR$/packages/front/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/packages/gate/tests" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/packages/types/tests" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/packages/common/tests" isTestSource="true" />
       <excludeFolder url="file://$MODULE_DIR$/.yarn" />
       <excludeFolder url="file://$MODULE_DIR$/packages/front/dist" />
       <excludeFolder url="file://$MODULE_DIR$/packages/cli/coverage" />

@@ -1,0 +1,12 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="All Tests (janus-types)" type="JavaScriptTestRunnerJest">
+    <config-file value="$PROJECT_DIR$/packages/types/jest.config.js" />
+    <node-interpreter value="project" />
+    <node-options value="" />
+    <jest-package value="yarn:packages/types/package.json:jest" />
+    <working-dir value="$PROJECT_DIR$/packages/types" />
+    <envs />
+    <scope-kind value="ALL" />
+    <method v="2" />
+  </configuration>
+</component>

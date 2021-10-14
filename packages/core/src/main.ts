@@ -10,7 +10,6 @@ import { Logger } from './logger';
     // Logger
     Logger.root.add(new winston.transports.Console({
       format: format.combine(
-        format.timestamp({ format: () => new Date().toLocaleString() }),
         format.printf(({ context, pid, message, timestamp }) => context
           ? chalk`[Nest] ${pid} - {white ${timestamp}} {grey [${context}]} ${message}`
           : chalk`[Nest] ${pid} - {white ${timestamp}} ${message}`

@@ -15,6 +15,7 @@ import { JsonObjScalar } from './json-obj.scalar';
 import { Logger } from './logger';
 import { GateResolver, ServiceResolver } from './services';
 import { PidFile } from './pidfile';
+import winston from 'winston';
 
 // Server
 export class JanusServer {
@@ -75,9 +76,15 @@ export class JanusServer {
 
     this.config.config = config;
 
-    // Lockfile
+    // pid file
     this._pidfile = new PidFile(config, this._logger);
     if (!await this._pidfile.create()) return false;
+
+    // logfile
+    Logger.root.add(new winston.transports.File({
+      filename: config.logfile,
+      options: { flag: 'w' }
+    }));
 
     // Setup
     this.app.enableShutdownHooks();

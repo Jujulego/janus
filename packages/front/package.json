@@ -25,7 +25,7 @@
     "@emotion/react": "11.4.1",
     "@emotion/styled": "11.3.0",
     "@jujulego/alma-api": "1.1.6",
-    "@jujulego/alma-graphql": "1.0.13",
+    "@jujulego/alma-graphql": "1.0.14",
     "@jujulego/janus-core": "1.1.1",
     "@jujulego/janus-types": "1.1.1",
     "@mui/icons-material": "5.0.4",

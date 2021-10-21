@@ -9,7 +9,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.5
       - run: git fetch origin ${{ github.base_ref }}
 
       - name: Use Node.js 14.x
@@ -37,7 +37,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.5
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2.4.1
@@ -66,7 +66,7 @@ jobs:
         include: ${{ fromJson(needs.setup.outputs.matrix-lint) }}
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.5
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2.4.1
@@ -90,7 +90,7 @@ jobs:
         include: ${{ fromJson(needs.setup.outputs.matrix-test) }}
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.5
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2.4.1
@@ -120,7 +120,7 @@ jobs:
     needs: [ lint, tests ]
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.5
         with:
           fetch-depth: 0
 
@@ -137,7 +137,7 @@ jobs:
         include: ${{ fromJson(needs.setup.outputs.matrix-test) }}
 
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.5
         with:
           fetch-depth: 0
 

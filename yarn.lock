@@ -2253,7 +2253,7 @@ __metadata:
     "@nestjs/core": ^8.0.9
     "@nestjs/graphql": ^9.0.5
     "@nestjs/platform-express": ^8.0.9
-    "@nestjs/schematics": 8.0.3
+    "@nestjs/schematics": 8.0.4
     "@nestjs/serve-static": ^2.2.2
     "@nestjs/testing": 8.1.1
     "@types/express": 4.17.13
@@ -2834,7 +2834,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/schematics@npm:8.0.3, @nestjs/schematics@npm:^8.0.3":
+"@nestjs/schematics@npm:8.0.4":
+  version: 8.0.4
+  resolution: "@nestjs/schematics@npm:8.0.4"
+  dependencies:
+    "@angular-devkit/core": 12.2.10
+    "@angular-devkit/schematics": 12.2.10
+    fs-extra: 10.0.0
+    jsonc-parser: 3.0.0
+    pluralize: 8.0.0
+  peerDependencies:
+    typescript: ^3.4.5 || ^4.3.5
+  checksum: 4791539c47fab896b3128d9aa1f1620e4942cc61275078edf66c8d0f506ed28b55a4589559dfc7c3931afcb4886917df4e1d22c272d9329ee3b0624bd3efcd41
+  languageName: node
+  linkType: hard
+
+"@nestjs/schematics@npm:^8.0.3":
   version: 8.0.3
   resolution: "@nestjs/schematics@npm:8.0.3"
   dependencies:

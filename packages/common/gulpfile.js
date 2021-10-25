@@ -6,7 +6,7 @@ const ts = require('gulp-typescript');
 // Config
 const paths = {
   src: 'src/**/*.ts',
-  assets: 'src/config.schema.json',
+  assets: 'config.schema.json',
 };
 
 const tsProject = ts.createProject('tsconfig.json', {

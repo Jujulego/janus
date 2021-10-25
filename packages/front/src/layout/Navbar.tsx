@@ -1,4 +1,4 @@
-import { gqlResource } from '@jujulego/alma-graphql';
+import { gqlResource, useGqlHttp } from '@jujulego/alma-graphql';
 import { IService } from '@jujulego/janus-types';
 import {
   AppBar,
@@ -24,7 +24,7 @@ interface NavbarData {
 }
 
 // Api
-const useNavbarData = gqlResource<NavbarData>('/graphql', gql`
+const useNavbarData = gqlResource<NavbarData>(useGqlHttp, '/graphql', gql`
     query Navbar {
         services {
             name

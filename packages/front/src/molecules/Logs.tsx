@@ -1,4 +1,4 @@
-import { gqlDoc, gqlResource } from '@jujulego/alma-graphql';
+import { gqlDoc, gqlResource, useGqlHttp, useGqlWs } from '@jujulego/alma-graphql';
 import { ILog, LogFragment } from '@jujulego/janus-types';
 import { Box, Chip, Paper, Stack, Toolbar, Typography } from '@mui/material';
 import TollIcon from '@mui/icons-material/Toll';
@@ -20,7 +20,7 @@ export interface LogsProps {
 }
 
 // Api
-const useLogsData = gqlResource<LogsData>('/graphql', gql`
+const useLogsData = gqlResource<LogsData>(useGqlHttp, '/graphql', gql`
     query Logs {
         logs {
             ...Log
@@ -29,7 +29,7 @@ const useLogsData = gqlResource<LogsData>('/graphql', gql`
 
     ${LogFragment}
 `)
-  .subscription('subscribe', gqlDoc<{ logs: ILog }>(gql`
+  .subscribe('subscribe', useGqlWs, gqlDoc<{ logs: ILog }>(gql`
       subscription Logs {
           logs {
               ...Log
@@ -37,7 +37,7 @@ const useLogsData = gqlResource<LogsData>('/graphql', gql`
       }
   
       ${LogFragment}
-  `), (state, event) => state && { logs: [...state.logs, event.logs] });
+  `), ({ logs } = { logs: [] }, event) => ({ logs: event ? [...logs, event.logs] : logs }));
 
 // Component
 export const Logs: FC<LogsProps> = ({ title, filter }) => {

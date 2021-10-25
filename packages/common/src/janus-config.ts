@@ -11,7 +11,7 @@ import {
   IProxyConfig,
   IServiceConfig
 } from '@jujulego/janus-types';
-import configSchema from './config.schema.json';
+import configSchema from '../config.schema.json';
 
 // Constants
 export const DEFAULT_CONTROL_PORT = 5000;

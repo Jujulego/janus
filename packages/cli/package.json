@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "MIT",
   "bin": "./bin/janus.js",
   "main": "./dist/index.js",
@@ -21,8 +21,8 @@
     "node": "^14"
   },
   "dependencies": {
-    "@jujulego/janus-common": "^1.1.0",
-    "@jujulego/janus-core": "^1.1.1",
+    "@jujulego/janus-common": "^1.1.1",
+    "@jujulego/janus-core": "^1.1.2",
     "@jujulego/janus-types": "^1.1.1",
     "chalk": "^4.1.2",
     "graphql": "^15.6.0",

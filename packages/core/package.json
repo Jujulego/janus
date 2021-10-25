@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus-core",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
     "node": "^14"
   },
   "dependencies": {
-    "@jujulego/janus-common": "^1.1.0",
+    "@jujulego/janus-common": "^1.1.1",
     "@jujulego/janus-types": "^1.1.1",
     "@nestjs/common": "^8.0.9",
     "@nestjs/core": "^8.0.9",
@@ -73,7 +73,7 @@
     "webpack-pnp-externals": "1.1.0"
   },
   "peerDependencies": {
-    "@jujulego/janus-front": "^1.1.0"
+    "@jujulego/janus-front": "^1.1.1"
   },
   "peerDependenciesMeta": {
     "@jujulego/janus-front": {

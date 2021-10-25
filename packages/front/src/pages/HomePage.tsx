@@ -1,4 +1,4 @@
-import { gqlResource } from '@jujulego/alma-graphql';
+import { gqlResource, useGqlHttp } from '@jujulego/alma-graphql';
 import { IService } from '@jujulego/janus-types';
 import { Box, Card, CardHeader, Grid, IconButton, Typography } from '@mui/material';
 import ShareIcon from '@mui/icons-material/Share';
@@ -14,7 +14,7 @@ interface HomeData {
 }
 
 // Api
-const useHomeData = gqlResource<HomeData>('/graphql', gql`
+const useHomeData = gqlResource<HomeData>(useGqlHttp, '/graphql', gql`
     query Home {
         services {
             name

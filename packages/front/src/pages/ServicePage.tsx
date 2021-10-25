@@ -1,4 +1,4 @@
-import { gqlResource, gqlDoc } from '@jujulego/alma-graphql';
+import { gqlResource, gqlDoc, useGqlHttp, useGqlWs } from '@jujulego/alma-graphql';
 import { GateFragment, IGate, ILog, IService, ServiceFragment } from '@jujulego/janus-types';
 import { Box, Grid } from '@mui/material';
 import { gql } from 'graphql.macro';
@@ -16,15 +16,15 @@ export interface ServicePageData {
 }
 
 // Utils
-function mergeGate(service: IService, gate: IGate): IService {
+function mergeGate(service: IService, gate?: IGate): IService {
   return {
     ...service,
-    gates: service.gates.map((g) => g.name === gate.name ? gate : g)
+    gates: service.gates.map((g) => g.name === gate?.name ? gate : g)
   };
 }
 
 // Api
-const useServicePageData = gqlResource<ServicePageData, { name: string }>('/graphql', gql`
+const useServicePageData = gqlResource<ServicePageData, { name: string }>(useGqlHttp, '/graphql', gql`
     query ServiceGraph($name: String!) {
         service(name: $name) {
             ...Service
@@ -33,7 +33,7 @@ const useServicePageData = gqlResource<ServicePageData, { name: string }>('/grap
 
     ${ServiceFragment}
 `)
-  .mutation('enableGate', gqlDoc<{ enableGate: IGate }, { service: string, gate: string }>(gql`
+  .query('enableGate', useGqlHttp, gqlDoc<{ enableGate: IGate }, { service: string, gate: string }>(gql`
       mutation EnableGate($service: String!, $gate: String!) {
           enableGate(service: $service, gate: $gate) {
               ...Gate
@@ -41,8 +41,8 @@ const useServicePageData = gqlResource<ServicePageData, { name: string }>('/grap
       }
   
       ${GateFragment}
-  `), (data, res) => data && ({ service: mergeGate(data.service, res.enableGate) }))
-  .mutation('disableGate', gqlDoc<{ disableGate: IGate }, { service: string, gate: string }>(gql`
+  `), (data, res) => data && ({ service: mergeGate(data.service, res?.enableGate) }))
+  .query('disableGate', useGqlHttp, gqlDoc<{ disableGate: IGate }, { service: string, gate: string }>(gql`
       mutation DisableGate($service: String!, $gate: String!) {
           disableGate(service: $service, gate: $gate) {
               ...Gate
@@ -50,8 +50,8 @@ const useServicePageData = gqlResource<ServicePageData, { name: string }>('/grap
       }
   
       ${GateFragment}
-  `), (data, res) => data && ({ service: mergeGate(data.service, res.disableGate) }))
-  .subscription('subscribe', gqlDoc<ServicePageData, { name: string }>(gql`
+  `), (data, res) => data && ({ service: mergeGate(data.service, res?.disableGate) }))
+  .subscribe('subscribe', useGqlWs, gqlDoc<ServicePageData, { name: string }>(gql`
       subscription ServiceGraph($name: String!) {
           service(name: $name) {
               ...Service

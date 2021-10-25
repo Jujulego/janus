@@ -1,5 +1,5 @@
 import { SwrCache } from '@jujulego/alma-api';
-import { GqlSubscriptionClient } from '@jujulego/alma-graphql';
+import { GqlWsClient } from '@jujulego/alma-graphql';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { lazy, Suspense } from 'react';
@@ -17,7 +17,7 @@ ReactDOM.render(
   <ThemeProvider theme={theme}>
     <CssBaseline />
 
-    <GqlSubscriptionClient endpoint="ws://localhost:5000/graphql">
+    <GqlWsClient endpoint="ws://localhost:5000/graphql">
       <SwrCache>
         <BrowserRouter>
           <Navbar>
@@ -30,7 +30,7 @@ ReactDOM.render(
           </Navbar>
         </BrowserRouter>
       </SwrCache>
-    </GqlSubscriptionClient>
+    </GqlWsClient>
   </ThemeProvider>,
   document.getElementById('root')
 );

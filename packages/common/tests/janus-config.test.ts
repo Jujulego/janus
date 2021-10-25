@@ -5,7 +5,7 @@ import path from 'path';
 import yaml from 'yaml';
 
 import { loadJanusConfigFile } from '../src';
-import configSchema from '../src/config.schema.json';
+import configSchema from '../config.schema.json';
 import { testLogger } from './test-logger';
 
 // Constants

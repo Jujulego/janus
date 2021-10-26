@@ -2166,7 +2166,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/alma-api@npm:2.1.2":
+"@jujulego/alma-api@npm:2.1.2, @jujulego/alma-api@npm:^2.1.1":
   version: 2.1.2
   resolution: "@jujulego/alma-api@npm:2.1.2"
   dependencies:
@@ -2179,44 +2179,19 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/alma-api@npm:^2.1.0":
-  version: 2.1.0
-  resolution: "@jujulego/alma-api@npm:2.1.0"
+"@jujulego/alma-graphql@npm:2.0.3":
+  version: 2.0.3
+  resolution: "@jujulego/alma-graphql@npm:2.0.3"
   dependencies:
-    "@jujulego/alma-utils": ^1.0.6
-  peerDependencies:
-    axios: ^0.23.0
-    react: ^17.0.0
-    react-dom: ^17.0.0
-  checksum: 643525ac7a0964aa016f9313de06ed26239d3252eeb1d27d528d007ae14ca6da954b636d9bac60185544f0f7805dccd6835130b635da40bffb2c774f00b1f2ee
-  languageName: node
-  linkType: hard
-
-"@jujulego/alma-graphql@npm:2.0.1":
-  version: 2.0.1
-  resolution: "@jujulego/alma-graphql@npm:2.0.1"
-  dependencies:
-    "@jujulego/alma-api": ^2.1.0
-    "@jujulego/alma-utils": ^1.0.6
+    "@jujulego/alma-api": ^2.1.1
+    "@jujulego/alma-utils": ^1.0.7
     graphql-ws: ^5.5.0
   peerDependencies:
-    axios: ^0.23.0
+    axios: ^0.23.0 || ^0.24.0
     graphql: ^15.6.0
     react: ^17.0.0
     react-dom: ^17.0.0
-  checksum: 95a9662b881da4041907beba7c287f0842fb1b5499ed4d7ee05e618398cd510d221cac178672d3035cf289045d4508fec5a46113ab9046d11f132dbdd9bd1bc3
-  languageName: node
-  linkType: hard
-
-"@jujulego/alma-utils@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "@jujulego/alma-utils@npm:1.0.6"
-  dependencies:
-    dequal: ^2.0.2
-  peerDependencies:
-    react: ^17.0.0
-    react-dom: ^17.0.0
-  checksum: 5f6bad171f5a175d711b8f72e61327060b623eea117ae53b60cac546adc93666fa8d0129cbce05f9a7ebe6097a1675efd9d6ac4d3d5b2721771546fc55cfcd5b
+  checksum: b223aac1e6a45421b3ef38d05fe70b93fd4690f864d4da3d7b39b79786c3fe457dca8102911f6a0b7ac44747a4aff50217322733e2358373b251c1fe23baa1a8
   languageName: node
   linkType: hard
 
@@ -2343,7 +2318,7 @@ __metadata:
     "@emotion/react": 11.5.0
     "@emotion/styled": 11.3.0
     "@jujulego/alma-api": 2.1.2
-    "@jujulego/alma-graphql": 2.0.1
+    "@jujulego/alma-graphql": 2.0.3
     "@jujulego/janus-core": 1.1.2
     "@jujulego/janus-types": 1.1.1
     "@mui/icons-material": 5.0.4

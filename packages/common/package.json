@@ -33,7 +33,7 @@
     "@babel/preset-typescript": "7.15.0",
     "@babel/runtime": "7.15.4",
     "@types/jest": "27.0.2",
-    "@types/node": "14.17.30",
+    "@types/node": "14.17.32",
     "@types/yaml": "1.9.7",
     "@typescript-eslint/eslint-plugin": "5.2.0",
     "@typescript-eslint/parser": "5.2.0",

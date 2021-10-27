@@ -1,11 +1,9 @@
 {
   "extends": "../../tsconfig.base.json",
   "compilerOptions": {
-    "module": "esnext",
     "incremental": true,
     "rootDir": ".",
     "tsBuildInfoFile": "./dist/.tsbuildinfo",
-    "noEmit": true,
     "resolveJsonModule": true
   },
   "ts-node": {

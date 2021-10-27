@@ -11,6 +11,9 @@
     "packages/*",
     "samples/*"
   ],
+  "browserslist": [
+    "maintained node versions and node >= 14"
+  ],
   "devDependencies": {
     "@jujulego/jill": "1.1.5",
     "@typescript-eslint/eslint-plugin": "5.2.0",

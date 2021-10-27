@@ -2,6 +2,7 @@
   "env": {
     "esm": {
       "presets": [
+        "@babel/preset-env",
         "@babel/preset-typescript"
       ],
       "plugins": [
@@ -13,10 +14,7 @@
     "cjs": {
       "presets": [
         ["@babel/preset-env", {
-          "modules": "cjs",
-          "targets": {
-            "node": "14"
-          }
+          "modules": "cjs"
         }],
         "@babel/preset-typescript"
       ],

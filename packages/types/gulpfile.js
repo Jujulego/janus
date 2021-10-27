@@ -10,7 +10,6 @@ const paths = {
 
 const tsProject = ts.createProject('tsconfig.json', {
   isolatedModules: false,
-  noEmit: false,
   emitDeclarationOnly: true
 });
 

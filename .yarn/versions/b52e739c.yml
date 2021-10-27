@@ -1,0 +1,7 @@
+releases:
+  "@jujulego/janus": minor
+  "@jujulego/janus-common": minor
+  "@jujulego/janus-core": minor
+  "@jujulego/janus-front": patch
+  "@jujulego/janus-gate": minor
+  "@jujulego/janus-types": minor

@@ -1,9 +1,12 @@
-import { Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
+import { Args, Mutation, Query, Resolver, Subscription } from '@nestjs/graphql';
+import { plainToClass } from 'class-transformer';
 import { PubSub } from 'graphql-subscriptions';
 
 import { ControlService } from './control.service';
 import { LoggerTransport } from './logger.transport';
 import { Log } from './log.model';
+import { Logger } from '../logger';
+import { LogsArgs } from './logs.args';
 
 // Resolver
 @Resolver()
@@ -17,8 +20,27 @@ export class ServerResolver {
 
   // Queries
   @Query(() => [Log])
-  logs(): Log[] {
-    return this._transport.history;
+  logs(@Args() args: LogsArgs): Promise<Log[]> {
+    return new Promise<Log[]>((resolve, reject) => {
+      Logger.root.query({
+        start: args.start,
+        limit: args.limit,
+        from: args.from,
+        until: args.until,
+        order: 'asc',
+        fields: null
+      }, (err, results: { file: Record<string, unknown>[] }) => {
+        if (err) reject(err);
+
+        // Format logs
+        const logs: Log[] = [];
+        for (const { message, level, timestamp, ...metadata } of results.file) {
+          logs.push(plainToClass(Log, { message, level, timestamp, metadata }));
+        }
+
+        resolve(logs);
+      });
+    });
   }
 
   // Mutations

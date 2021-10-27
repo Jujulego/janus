@@ -1,0 +1,7 @@
+declined:
+  - "@jujulego/janus"
+  - "@jujulego/janus-common"
+  - "@jujulego/janus-core"
+  - "@jujulego/janus-front"
+  - "@jujulego/janus-gate"
+  - "@jujulego/janus-types"

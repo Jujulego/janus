@@ -21,6 +21,7 @@ export const DEFAULT_PROXY_PORT = 3000;
 interface ILoadedJanusConfig {
   // Attributes
   pidfile: string;
+  logfile: string;
   proxy?: IProxyConfig;
   control?: IControlServerConfig;
   services: Record<string, IServiceConfig>;
@@ -73,6 +74,7 @@ export async function loadJanusConfigFile(file: string, logger: ILogger = new Co
   // Processing and defaults
   const config: IJanusConfig = {
     ...data,
+    logfile: path.resolve(path.dirname(file), data.logfile),
     pidfile: path.resolve(path.dirname(file), data.pidfile),
     control: data.control ?? { port: DEFAULT_CONTROL_PORT },
     proxy: data.proxy ?? { port: DEFAULT_PROXY_PORT },

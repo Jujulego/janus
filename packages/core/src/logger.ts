@@ -16,6 +16,7 @@ export class Logger implements ILogger, LoggerService {
   static readonly root = winston.createLogger({
     level: 'debug',
     format: format.combine(
+      format.timestamp(),
       { transform: (info) => Object.assign(info, { pid: process.pid }) },
       format.json(),
     ),
@@ -63,7 +64,13 @@ export class Logger implements ILogger, LoggerService {
   }
 
   // Methods
-  log(level: string, message: string, metadata?: string | ILogMetadata): void {
+  log(message: string, metadata?: string | ILogMetadata): void;
+  log(level: string, message: string, metadata: string | ILogMetadata): void;
+  log(arg1: string, arg2?: string, arg3?: string | ILogMetadata): void {
+    const level = arg3 === undefined ? 'info' : arg1;
+    const message = arg3 === undefined ? arg1 : arg2;
+    let metadata = arg3 ?? arg2;
+
     if (typeof metadata === 'string') {
       metadata = { context: metadata };
     }

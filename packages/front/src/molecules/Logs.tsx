@@ -42,7 +42,7 @@ const useLogsData = gqlResource<LogsData>(useGqlHttp, '/graphql', gql`
 // Component
 export const Logs: FC<LogsProps> = ({ title, filter }) => {
   // Query logs
-  const { data, subscribe } = useLogsData({});
+  const { data, loading, subscribe } = useLogsData({});
 
   // State
   const [levels, setLevels] = useState<string[]>(['error', 'warn', 'info', 'verbose', 'debug']);
@@ -95,8 +95,10 @@ export const Logs: FC<LogsProps> = ({ title, filter }) => {
   }, []);
 
   useEffect(() => {
-    return subscribe({});
-  }, [subscribe]);
+    if (!loading) {
+      return subscribe({});
+    }
+  }, [loading, subscribe]);
 
   useEffect(() => {
     if (logs.length > 0) {

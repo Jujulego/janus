@@ -10,6 +10,7 @@ import { testLogger } from './test-logger';
 
 // Constants
 const MOCK_CONFIG: IJanusConfig = {
+  logfile: '.janus.log',
   pidfile: '.janus.pid',
   control: { port: 10000 },
   proxy: { port: 80 },
@@ -54,6 +55,7 @@ describe('loadJanusConfigFile', () => {
   it('should return a valid config', async () => {
     const config = {
       ...MOCK_CONFIG,
+      logfile: path.resolve('/project/.janus.log'),
       pidfile: path.resolve('/project/.janus.pid'),
     };
 
@@ -83,6 +85,7 @@ describe('loadJanusConfigFile', () => {
       .resolves.toEqual({
         ...mock,
         control: { port: 5000 },
+        logfile: path.resolve('/project/.janus.log'),
         pidfile: path.resolve('/project/.janus.pid'),
       });
   });
@@ -99,6 +102,7 @@ describe('loadJanusConfigFile', () => {
       .resolves.toEqual({
         ...mock,
         proxy: { port: 3000 },
+        logfile: path.resolve('/project/.janus.log'),
         pidfile: path.resolve('/project/.janus.pid'),
       });
   });

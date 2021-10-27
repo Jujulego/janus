@@ -2228,7 +2228,7 @@ __metadata:
     del: 6.0.0
     eslint: 7.32.0
     eslint-plugin-jest: 25.2.2
-    graphql: 15.6.1
+    graphql: 15.7.1
     gulp: 4.0.2
     gulp-babel: 8.0.0
     gulp-cli: 2.3.0
@@ -2343,7 +2343,7 @@ __metadata:
     eslint-plugin-react: 7.26.1
     eslint-plugin-react-hooks: 4.2.0
     fork-ts-checker-webpack-plugin: 6.4.0
-    graphql: 15.6.1
+    graphql: 15.7.1
     graphql.macro: 1.4.2
     html-webpack-plugin: 5.5.0
     jest: 27.3.1
@@ -2420,7 +2420,7 @@ __metadata:
     del: 6.0.0
     eslint: 7.32.0
     eslint-plugin-jest: 25.2.2
-    graphql: 15.6.1
+    graphql: 15.7.1
     graphql.macro: 1.4.2
     gulp: 4.0.2
     gulp-babel: 8.0.0
@@ -9013,10 +9013,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"graphql@npm:15.6.1":
-  version: 15.6.1
-  resolution: "graphql@npm:15.6.1"
-  checksum: 4c6dcf385f7a87a5103fcb7640394244ae8d1d4ede521085192a1cf1e60115c4f6285d783961575d908709f7ee3e4cdd16b3f7c54eb37499c0420c6301e98968
+"graphql@npm:15.7.1":
+  version: 15.7.1
+  resolution: "graphql@npm:15.7.1"
+  checksum: e30a498f4155f6d80fecbad5e81db2606d2d607574f042a4e2b4d32ca3dec84a2913f87b52ec985dc58849efb6c3a215b705baec0582a5702a01cad03b612dcc
   languageName: node
   linkType: hard
 

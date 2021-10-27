@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus-gate",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "license": "MIT",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -21,8 +21,8 @@
     "node": "^14"
   },
   "dependencies": {
-    "@jujulego/janus-common": "^1.1.1",
-    "@jujulego/janus-types": "^1.1.1",
+    "@jujulego/janus-common": "^1.2.0",
+    "@jujulego/janus-types": "^1.2.0",
     "graphql": "^15.6.0",
     "graphql-request": "^3.5.0",
     "graphql-ws": "^5.5.0",

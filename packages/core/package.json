@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus-core",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "license": "MIT",
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -19,7 +19,7 @@
     "node": "^14"
   },
   "dependencies": {
-    "@jujulego/janus-common": "^1.2.0",
+    "@jujulego/janus-common": "^1.2.1",
     "@jujulego/janus-types": "^1.2.0",
     "@nestjs/common": "^8.0.9",
     "@nestjs/core": "^8.0.9",

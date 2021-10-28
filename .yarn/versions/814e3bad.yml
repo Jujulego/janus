@@ -1,8 +1,0 @@
-releases:
-  "@jujulego/janus": patch
-  "@jujulego/janus-common": patch
-  "@jujulego/janus-core": patch
-  "@jujulego/janus-gate": patch
-
-declined:
-  - "@jujulego/janus-front"

@@ -18,6 +18,8 @@ export function commandHandler<A = Record<string, never>>(handler: CommandHandle
       logger.level = 'verbose';
     } else if (argv.verbose >= 2) {
       logger.level = 'debug';
+    } else {
+      logger.level = 'info';
     }
 
     // Run command

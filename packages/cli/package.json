@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "license": "MIT",
   "bin": "./bin/janus.js",
   "main": "./dist/index.js",

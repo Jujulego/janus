@@ -2509,9 +2509,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/jill@npm:1.1.5":
-  version: 1.1.5
-  resolution: "@jujulego/jill@npm:1.1.5"
+"@jujulego/jill@npm:1.1.6":
+  version: 1.1.6
+  resolution: "@jujulego/jill@npm:1.1.6"
   dependencies:
     "@jujulego/jill-core": ^1.1.4
     "@repeaterjs/repeater": ^3.0.4
@@ -2523,7 +2523,7 @@ __metadata:
     yargs: ^17.0.1
   bin:
     jill: ./bin/jill.js
-  checksum: be07915ad0ef1ce035d1eb888e63337ed77400e0a3d451f0ea9a26717a7b6de58bbce9d2aaf26d0f5c263f1e4e8bd4ee2ec0eb5f980a614f7ccfc669d067ad7b
+  checksum: 40016d55a2ceb72b5dedba6df5c673af03509920edc08cf048615ff676a70fe21e1d10ab1285576dd4e691dc7da3bac01d002e0ef66993c544509a6befc4f868
   languageName: node
   linkType: hard
 
@@ -10423,7 +10423,7 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "janus@workspace:."
   dependencies:
-    "@jujulego/jill": 1.1.5
+    "@jujulego/jill": 1.1.6
     "@typescript-eslint/eslint-plugin": 5.2.0
     "@typescript-eslint/parser": 5.2.0
     eslint: 7.32.0

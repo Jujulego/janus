@@ -49,7 +49,7 @@ jobs:
         run: yarn install --immutable
 
       - name: Build
-        run: yarn jill each build
+        run: yarn jill each build --affected origin/${{ github.base_ref }}
 
       - uses: actions/upload-artifact@v2
         with:

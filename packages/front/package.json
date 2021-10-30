@@ -55,7 +55,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-workspaces": "0.7.0",
     "fork-ts-checker-webpack-plugin": "6.4.0",
-    "graphql": "15.7.2",
+    "graphql": "16.0.0",
     "graphql.macro": "1.4.2",
     "html-webpack-plugin": "5.5.0",
     "jest": "27.3.1",

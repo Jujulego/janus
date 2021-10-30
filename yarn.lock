@@ -2217,7 +2217,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/janus-common@^1.2.1, @jujulego/janus-common@workspace:packages/common":
+"@jujulego/janus-common@^1.2.2, @jujulego/janus-common@workspace:packages/common":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-common@workspace:packages/common"
   dependencies:
@@ -2227,7 +2227,7 @@ __metadata:
     "@babel/preset-env": 7.15.8
     "@babel/preset-typescript": 7.15.0
     "@babel/runtime": 7.15.4
-    "@jujulego/janus-types": ^1.2.0
+    "@jujulego/janus-types": ^1.2.1
     "@types/jest": 27.0.2
     "@types/node": 14.17.32
     "@types/yaml": 1.9.7
@@ -2253,12 +2253,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-core@1.2.1, @jujulego/janus-core@^1.2.1, @jujulego/janus-core@workspace:packages/core":
+"@jujulego/janus-core@1.2.2, @jujulego/janus-core@^1.2.2, @jujulego/janus-core@workspace:packages/core":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-core@workspace:packages/core"
   dependencies:
-    "@jujulego/janus-common": ^1.2.1
-    "@jujulego/janus-types": ^1.2.0
+    "@jujulego/janus-common": ^1.2.2
+    "@jujulego/janus-types": ^1.2.1
     "@nestjs/cli": 8.1.4
     "@nestjs/common": ^8.0.9
     "@nestjs/core": ^8.0.9
@@ -2309,7 +2309,7 @@ __metadata:
     winston-transport: ^4.4.0
     yaml: ^1.10.2
   peerDependencies:
-    "@jujulego/janus-front": ^1.2.0
+    "@jujulego/janus-front": ^1.2.1
   peerDependenciesMeta:
     "@jujulego/janus-front":
       optional: true
@@ -2331,8 +2331,8 @@ __metadata:
     "@emotion/styled": 11.3.0
     "@jujulego/alma-api": 2.1.2
     "@jujulego/alma-graphql": 2.0.3
-    "@jujulego/janus-core": 1.2.1
-    "@jujulego/janus-types": 1.2.0
+    "@jujulego/janus-core": 1.2.2
+    "@jujulego/janus-types": 1.2.1
     "@mui/icons-material": 5.0.4
     "@mui/material": 5.0.4
     "@types/d3": 7.1.0
@@ -2373,11 +2373,11 @@ __metadata:
     webpack-dev-server: 4.4.0
     webpack-merge: 5.8.0
   peerDependencies:
-    "@jujulego/janus-core": ^1.2.1
+    "@jujulego/janus-core": ^1.2.2
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-gate@^1.2.1, @jujulego/janus-gate@workspace:packages/gate":
+"@jujulego/janus-gate@^1.2.2, @jujulego/janus-gate@workspace:packages/gate":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-gate@workspace:packages/gate"
   dependencies:
@@ -2387,8 +2387,8 @@ __metadata:
     "@babel/preset-env": 7.15.8
     "@babel/preset-typescript": 7.15.0
     "@babel/runtime": 7.15.4
-    "@jujulego/janus-common": ^1.2.1
-    "@jujulego/janus-types": ^1.2.0
+    "@jujulego/janus-common": ^1.2.2
+    "@jujulego/janus-types": ^1.2.1
     "@types/node": 14.17.32
     "@types/ws": 8.2.0
     "@typescript-eslint/eslint-plugin": 5.2.0
@@ -2414,7 +2414,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-types@1.2.0, @jujulego/janus-types@^1.2.0, @jujulego/janus-types@workspace:packages/types":
+"@jujulego/janus-types@1.2.1, @jujulego/janus-types@^1.2.1, @jujulego/janus-types@workspace:packages/types":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-types@workspace:packages/types"
   dependencies:
@@ -2460,9 +2460,9 @@ __metadata:
     "@babel/preset-env": 7.15.8
     "@babel/preset-typescript": 7.15.0
     "@babel/runtime": 7.15.4
-    "@jujulego/janus-common": ^1.2.1
-    "@jujulego/janus-core": ^1.2.1
-    "@jujulego/janus-types": ^1.2.0
+    "@jujulego/janus-common": ^1.2.2
+    "@jujulego/janus-core": ^1.2.2
+    "@jujulego/janus-types": ^1.2.1
     "@types/node": 14.17.32
     "@types/ws": 8.2.0
     "@types/yargs": 17.0.4
@@ -8010,7 +8010,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "express-api@workspace:samples/express-api"
   dependencies:
-    "@jujulego/janus-gate": ^1.2.1
+    "@jujulego/janus-gate": ^1.2.2
     "@types/express": 4.17.13
     "@types/node": 14.17.32
     express: 4.17.1

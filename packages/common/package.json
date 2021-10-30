@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus-common",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "license": "MIT",
   "main": "./dist/cjs/index.js",
   "module": "./dist/esm/index.js",
@@ -21,7 +21,7 @@
     "node": "^14"
   },
   "dependencies": {
-    "@jujulego/janus-types": "^1.2.0",
+    "@jujulego/janus-types": "^1.2.1",
     "ajv": "^8.6.3",
     "yaml": "^1.10.2"
   },

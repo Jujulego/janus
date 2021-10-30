@@ -1,6 +1,7 @@
 {
   "presets": [
     ["@babel/preset-env", {
+      "bugfixes": true,
       "modules": "cjs"
     }],
     "@babel/preset-typescript"

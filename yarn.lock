@@ -2497,23 +2497,23 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/jill-core@npm:^1.1.4":
-  version: 1.1.4
-  resolution: "@jujulego/jill-core@npm:1.1.4"
+"@jujulego/jill-core@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "@jujulego/jill-core@npm:1.1.6"
   dependencies:
     "@repeaterjs/repeater": ^3.0.4
     semver: ^7.3.5
     tiny-glob: ^0.2.9
     winston: ^3.3.3
-  checksum: 4d01d2e2e13f61599d41664ccea24181e641c333ce2857b9542c2b509a960a9cf59e47afea9879dd1fc9c49bd7149e56a525a6d53be19f36bae01d2b195d8be5
+  checksum: a03f9a57d2cf904d36dce05fad9151dd5606c5b4eeb25dd4084c29d7e5f8d90c8c227caa4358f6cd0cb904ec4c340ad8518ab76fe599be0d5de6029b42a5635f
   languageName: node
   linkType: hard
 
-"@jujulego/jill@npm:1.1.6":
-  version: 1.1.6
-  resolution: "@jujulego/jill@npm:1.1.6"
+"@jujulego/jill@npm:1.1.8":
+  version: 1.1.8
+  resolution: "@jujulego/jill@npm:1.1.8"
   dependencies:
-    "@jujulego/jill-core": ^1.1.4
+    "@jujulego/jill-core": ^1.1.6
     "@repeaterjs/repeater": ^3.0.4
     chalk: ^4.1.1
     ora: ^5.4.1
@@ -2523,7 +2523,7 @@ __metadata:
     yargs: ^17.0.1
   bin:
     jill: ./bin/jill.js
-  checksum: 40016d55a2ceb72b5dedba6df5c673af03509920edc08cf048615ff676a70fe21e1d10ab1285576dd4e691dc7da3bac01d002e0ef66993c544509a6befc4f868
+  checksum: 1ceea4905c5e49b2079691d0cac8737cc19a8b1a018058422f8a06d73a57b7407e80317a2740764c4d4a50943f633923f7687fe5ed72c57d574df2a11737a03c
   languageName: node
   linkType: hard
 
@@ -10423,7 +10423,7 @@ fsevents@^1.2.7:
   version: 0.0.0-use.local
   resolution: "janus@workspace:."
   dependencies:
-    "@jujulego/jill": 1.1.6
+    "@jujulego/jill": 1.1.8
     "@typescript-eslint/eslint-plugin": 5.2.0
     "@typescript-eslint/parser": 5.2.0
     eslint: 7.32.0

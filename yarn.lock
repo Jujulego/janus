@@ -2239,7 +2239,7 @@ __metadata:
     eslint: 7.32.0
     eslint-plugin-jest: 25.2.2
     eslint-plugin-workspaces: 0.7.0
-    graphql: 15.7.2
+    graphql: 16.0.0
     gulp: 4.0.2
     gulp-babel: 8.0.0
     gulp-cli: 2.3.0
@@ -2249,7 +2249,7 @@ __metadata:
     typescript: 4.4.4
     yaml: ^1.10.2
   peerDependencies:
-    graphql: ^15.6.0
+    graphql: ^15.6.0 || ^16.0.0
   languageName: unknown
   linkType: soft
 
@@ -2287,7 +2287,7 @@ __metadata:
     eslint-plugin-jest: 25.2.2
     eslint-plugin-workspaces: 0.7.0
     express: ^4.17.1
-    graphql: ^15.6.0
+    graphql: ^16.0.0
     graphql-subscriptions: ^1.2.1
     graphql-tools: ^8.2.0
     graphql-ws: ^5.5.0
@@ -2356,7 +2356,7 @@ __metadata:
     eslint-plugin-react-hooks: 4.2.0
     eslint-plugin-workspaces: 0.7.0
     fork-ts-checker-webpack-plugin: 6.4.0
-    graphql: 15.7.2
+    graphql: 16.0.0
     graphql.macro: 1.4.2
     html-webpack-plugin: 5.5.0
     jest: 27.3.1
@@ -2398,7 +2398,7 @@ __metadata:
     eslint: 7.32.0
     eslint-plugin-jest: 25.2.2
     eslint-plugin-workspaces: 0.7.0
-    graphql: ^15.6.0
+    graphql: ^16.0.0
     graphql-request: ^3.5.0
     graphql-ws: ^5.5.0
     graphql.macro: 1.4.2
@@ -2435,7 +2435,7 @@ __metadata:
     eslint: 7.32.0
     eslint-plugin-jest: 25.2.2
     eslint-plugin-workspaces: 0.7.0
-    graphql: 15.7.2
+    graphql: 16.0.0
     graphql.macro: 1.4.2
     gulp: 4.0.2
     gulp-babel: 8.0.0
@@ -2446,7 +2446,7 @@ __metadata:
     typescript: 4.4.4
     yaml: ^1.10.2
   peerDependencies:
-    graphql: ^15.6.0
+    graphql: ^15.6.0 || ^16.0.0
   languageName: unknown
   linkType: soft
 
@@ -2474,7 +2474,7 @@ __metadata:
     eslint: 7.32.0
     eslint-plugin-jest: 25.2.2
     eslint-plugin-workspaces: 0.7.0
-    graphql: ^15.6.0
+    graphql: ^16.0.0
     graphql-request: ^3.5.0
     graphql-ws: ^5.5.0
     graphql.macro: 1.4.2
@@ -9077,17 +9077,10 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"graphql@npm:15.7.2":
-  version: 15.7.2
-  resolution: "graphql@npm:15.7.2"
-  checksum: eacb746e2981d0c346ef7365601873963af5356f64ce4d890ab89d213c67bf5bc1ae957b93c3902198798774c842b55dff219f38bad858691765e4debc265750
-  languageName: node
-  linkType: hard
-
-"graphql@npm:^15.6.0":
-  version: 15.6.0
-  resolution: "graphql@npm:15.6.0"
-  checksum: 439959514665bc03ba86d6e55d8fb81d4c1e8ba3fc7f5114878b0ba794147e7ef57f368e40dadbb3f94d7c5f6685d15599bebb3a124cee2a1a8871a797d5ae81
+"graphql@npm:16.0.0, graphql@npm:^16.0.0":
+  version: 16.0.0
+  resolution: "graphql@npm:16.0.0"
+  checksum: 6b7c09cbafdcafde7bf69e84fb35abc5641bd923cd3b4894f12bbb6ee412478a959906937a63c8ad7cf37b3e5b980c26001f89be90ac9bcf4cefade3a4efd21f
   languageName: node
   linkType: hard
 

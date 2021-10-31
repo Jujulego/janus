@@ -29,7 +29,7 @@
     "@emotion/react": "11.5.0",
     "@emotion/styled": "11.3.0",
     "@jujulego/alma-api": "2.1.3",
-    "@jujulego/alma-graphql": "2.0.3",
+    "@jujulego/alma-graphql": "2.0.4",
     "@jujulego/janus-core": "1.2.2",
     "@jujulego/janus-types": "1.2.1",
     "@mui/icons-material": "5.0.4",

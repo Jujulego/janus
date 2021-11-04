@@ -42,7 +42,6 @@
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.3.0",
     "winston": "^3.3.3",
-    "winston-transport": "^4.4.0",
     "yaml": "^1.10.2"
   },
   "devDependencies": {
@@ -71,7 +70,8 @@
     "ts-node": "10.4.0",
     "typescript": "4.4.4",
     "webpack": "5.61.0",
-    "webpack-pnp-externals": "1.1.0"
+    "webpack-pnp-externals": "1.1.0",
+    "winston-transport": "4.4.0"
   },
   "peerDependencies": {
     "@jujulego/janus-front": "^1.2.1"

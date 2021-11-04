@@ -1,4 +1,4 @@
-import { IJanusConfig } from '@jujulego/janus-types';
+import { IJanusConfig, ILogger } from '@jujulego/janus-types';
 import { promises as fs } from 'fs';
 import { lock } from 'proper-lockfile';
 
@@ -9,7 +9,7 @@ export class PidFile {
   // Constructor
   constructor(
     private readonly _config: IJanusConfig,
-    private readonly _logger: Logger
+    private readonly _logger: ILogger = Logger.root
   ) {}
 
   // Statics

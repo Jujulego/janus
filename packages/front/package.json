@@ -18,6 +18,9 @@
     "start": "webpack serve --open --config webpack.dev.js",
     "test": "jest --passWithNoTests"
   },
+  "peerDependencies": {
+    "@jujulego/janus-core": "^1.2.2"
+  },
   "devDependencies": {
     "@babel/core": "7.16.0",
     "@babel/plugin-proposal-class-properties": "7.16.0",
@@ -55,7 +58,7 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "eslint-plugin-workspaces": "0.7.0",
     "fork-ts-checker-webpack-plugin": "6.4.0",
-    "graphql": "16.0.1",
+    "graphql": "15.7.2",
     "graphql.macro": "1.4.2",
     "html-webpack-plugin": "5.5.0",
     "jest": "27.3.1",
@@ -71,8 +74,5 @@
     "webpack-cli": "4.9.1",
     "webpack-dev-server": "4.4.0",
     "webpack-merge": "5.8.0"
-  },
-  "peerDependencies": {
-    "@jujulego/janus-core": "^1.2.2"
   }
 }

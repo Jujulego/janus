@@ -18,6 +18,14 @@
   "engines": {
     "node": "^14"
   },
+  "peerDependencies": {
+    "@jujulego/janus-front": "^1.2.1"
+  },
+  "peerDependenciesMeta": {
+    "@jujulego/janus-front": {
+      "optional": true
+    }
+  },
   "dependencies": {
     "@jujulego/janus-common": "^1.2.2",
     "@jujulego/janus-types": "^1.2.1",
@@ -32,8 +40,8 @@
     "class-transformer": "^0.4.0",
     "class-validator": "^0.13.1",
     "express": "^4.17.1",
-    "graphql": "^16.0.0",
-    "graphql-subscriptions": "^2.0.0",
+    "graphql": "^15.7.2",
+    "graphql-subscriptions": "^1.2.1",
     "graphql-tools": "^8.2.0",
     "graphql-ws": "^5.5.0",
     "http-proxy": "^1.18.1",
@@ -72,13 +80,5 @@
     "webpack": "5.62.1",
     "webpack-pnp-externals": "1.1.0",
     "winston-transport": "4.4.0"
-  },
-  "peerDependencies": {
-    "@jujulego/janus-front": "^1.2.1"
-  },
-  "peerDependenciesMeta": {
-    "@jujulego/janus-front": {
-      "optional": true
-    }
   }
 }

@@ -7,6 +7,7 @@ import { GraphQLSchema } from 'graphql';
 import { Subject } from 'rxjs';
 import { exhaustMap, filter } from 'rxjs/operators';
 import morgan from 'morgan';
+import winston from 'winston';
 
 import { AppModule } from './app.module';
 import { ConfigService } from './config';
@@ -15,7 +16,6 @@ import { JsonObjScalar } from './json-obj.scalar';
 import { Logger } from './logger';
 import { GateResolver, ServiceResolver } from './services';
 import { PidFile } from './pidfile';
-import winston from 'winston';
 
 // Server
 export class JanusServer {

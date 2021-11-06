@@ -61,7 +61,7 @@ export const startCommand: CommandHandler<StartArgs> = async (args) => {
         resolve(code || 0);
       });
 
-      child.send(args.config);
+      child.send({ config: args.config, daemon: args.daemon });
     });
   } catch (error) {
     logger.error(error);

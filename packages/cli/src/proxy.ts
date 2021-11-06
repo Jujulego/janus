@@ -3,24 +3,34 @@ import winston, { format } from 'winston';
 
 process.env.NODE_ENV = 'production';
 
+// Types
+interface IMessage {
+  config: string;
+  daemon: boolean;
+}
+
 // Setup logger
-CoreLogger.root.add(new winston.transports.Console({
+const trans = new winston.transports.Console({
   format: format.combine(
     format.timestamp({ format: () => new Date().toLocaleString() }),
     format.errors(),
     format.json()
   )
-}));
+});
+CoreLogger.root.add(trans);
 
 // Start server when config is received
-process.once('message', async (config: string) => {
+process.once('message', async ({ config, daemon }: IMessage) => {
   try {
     // Create server
     const server = await JanusServer.createServer();
 
     // Prepare shutdown
     server.$shutdown.subscribe(() => process.exit(0));
-    server.$started.subscribe(() => process.send?.('started'));
+    server.$started.subscribe(() => {
+      if (daemon) CoreLogger.root.remove(trans);
+      process.send?.('started');
+    });
 
     await server.start(config);
   } catch (error) {

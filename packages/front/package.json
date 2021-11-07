@@ -16,6 +16,7 @@
     "lint": "eslint {src,tests}/**/*.*",
     "build": "webpack --config webpack.prod.js",
     "start": "webpack serve --open --config webpack.dev.js",
+    "stats": "webpack --config webpack.stats.js",
     "test": "jest --passWithNoTests"
   },
   "peerDependencies": {

@@ -2669,7 +2669,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/janus-gate@^1.2.3, @jujulego/janus-gate@workspace:packages/gate":
+"@jujulego/janus-gate@^1.2.4, @jujulego/janus-gate@workspace:packages/gate":
   version: 0.0.0-use.local
   resolution: "@jujulego/janus-gate@workspace:packages/gate"
   dependencies:
@@ -8358,7 +8358,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "express-api@workspace:samples/express-api"
   dependencies:
-    "@jujulego/janus-gate": ^1.2.3
+    "@jujulego/janus-gate": ^1.2.4
     "@types/express": 4.17.13
     "@types/node": 14.17.32
     express: 4.17.1

@@ -8,6 +8,8 @@ import { Observable, Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import WebSocket from 'ws';
 
+import { makeLogger } from './logger';
+
 // Class
 export class JanusGate {
   // Attributes
@@ -23,7 +25,7 @@ export class JanusGate {
   ) {}
 
   // Statics
-  static async fromConfigFile(service: string, name: string, config: string, logger?: ILogger): Promise<JanusGate> {
+  static async fromConfigFile(service: string, name: string, config: string, logger: ILogger = makeLogger(console)): Promise<JanusGate> {
     return new JanusGate(service, name, await loadJanusConfigFile(config, logger));
   }
 

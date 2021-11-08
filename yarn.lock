@@ -2529,7 +2529,7 @@ __metadata:
     babel-plugin-macros: 3.1.0
     del: 6.0.0
     eslint: 7.32.0
-    eslint-plugin-jest: 25.2.3
+    eslint-plugin-jest: 25.2.4
     eslint-plugin-workspaces: 0.7.0
     graphql: 15.7.2
     gulp: 4.0.2
@@ -2576,7 +2576,7 @@ __metadata:
     class-transformer: ^0.4.0
     class-validator: ^0.13.1
     eslint: 7.32.0
-    eslint-plugin-jest: 25.2.3
+    eslint-plugin-jest: 25.2.4
     eslint-plugin-workspaces: 0.7.0
     express: ^4.17.1
     graphql: ^15.7.2
@@ -2643,7 +2643,7 @@ __metadata:
     copy-webpack-plugin: 9.0.1
     d3: 7.1.1
     eslint: 7.32.0
-    eslint-plugin-jest: 25.2.3
+    eslint-plugin-jest: 25.2.4
     eslint-plugin-react: 7.26.1
     eslint-plugin-react-hooks: 4.2.0
     eslint-plugin-workspaces: 0.7.0
@@ -2688,7 +2688,7 @@ __metadata:
     babel-plugin-macros: 3.1.0
     del: 6.0.0
     eslint: 7.32.0
-    eslint-plugin-jest: 25.2.3
+    eslint-plugin-jest: 25.2.4
     eslint-plugin-workspaces: 0.7.0
     graphql: ^15.7.2
     graphql-request: ^3.5.0
@@ -2725,7 +2725,7 @@ __metadata:
     babel-plugin-macros: 3.1.0
     del: 6.0.0
     eslint: 7.32.0
-    eslint-plugin-jest: 25.2.3
+    eslint-plugin-jest: 25.2.4
     eslint-plugin-workspaces: 0.7.0
     graphql: 15.7.2
     graphql.macro: 1.4.2
@@ -2764,7 +2764,7 @@ __metadata:
     chalk: ^4.1.2
     del: 6.0.0
     eslint: 7.32.0
-    eslint-plugin-jest: 25.2.3
+    eslint-plugin-jest: 25.2.4
     eslint-plugin-workspaces: 0.7.0
     graphql: ^15.7.2
     graphql-request: ^3.5.0
@@ -8025,9 +8025,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-jest@npm:25.2.3":
-  version: 25.2.3
-  resolution: "eslint-plugin-jest@npm:25.2.3"
+"eslint-plugin-jest@npm:25.2.4":
+  version: 25.2.4
+  resolution: "eslint-plugin-jest@npm:25.2.4"
   dependencies:
     "@typescript-eslint/experimental-utils": ^5.0.0
   peerDependencies:
@@ -8038,7 +8038,7 @@ __metadata:
       optional: true
     jest:
       optional: true
-  checksum: eb6ed233348c735bfb3933947d75f982a0884825b2269518048a236bee49a913b67b7788986b8d4679687658cc4f7cd3d2ef32b128cb3d65b422ddec92c770ab
+  checksum: d263c5564e5ce573759fa06b94011855780e79b0407888a5ac0e80303af2aa249d9d089bcd2f0fc108eb58ef6f367544217b1be2b561216e92fc830e9a924a63
   languageName: node
   linkType: hard
 
@@ -10815,7 +10815,7 @@ fsevents@^1.2.7:
     "@typescript-eslint/eslint-plugin": 5.3.0
     "@typescript-eslint/parser": 5.3.0
     eslint: 7.32.0
-    eslint-plugin-jest: 25.2.3
+    eslint-plugin-jest: 25.2.4
     eslint-plugin-workspaces: 0.7.0
     jest: 27.3.1
     typescript: 4.4.4

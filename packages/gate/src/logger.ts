@@ -16,33 +16,33 @@ export function makeLogger(logger: IWrappableLogger, level = 'info'): ILogger {
     log(lvl: string, message: string): void {
       switch (lvl) {
         case 'error':
-          (logger.error || logger.log)(message);
+          (logger.error || logger.log).call(logger, message);
           break;
 
         case 'warn':
           if (['debug', 'verbose', 'info', 'warn'].includes(level)) {
-            (logger.warn || logger.log)(message);
+            (logger.warn || logger.log).call(logger, message);
           }
 
           break;
 
         case 'info':
           if (['debug', 'verbose', 'info'].includes(level)) {
-            (logger.info || logger.log)(message);
+            (logger.info || logger.log).call(logger, message);
           }
 
           break;
 
         case 'debug':
           if ('debug' === level) {
-            (logger.debug || logger.log)(message);
+            (logger.debug || logger.log).call(logger, message);
           }
 
           break;
 
         case 'verbose':
           if (['debug', 'verbose'].includes(level)) {
-            (logger.verbose || logger.log)(message);
+            (logger.verbose || logger.log).call(logger, message);
           }
 
           break;

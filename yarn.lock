@@ -2931,7 +2931,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mui/system@npm:^5.1.0":
+"@mui/system@npm:*, @mui/system@npm:^5.1.0":
   version: 5.1.0
   resolution: "@mui/system@npm:5.1.0"
   dependencies:

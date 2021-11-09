@@ -3,7 +3,7 @@ import { GqlWsClient } from '@jujulego/alma-graphql';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { lazy, Suspense } from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 
 import { Navbar } from './layout/Navbar';
@@ -11,6 +11,10 @@ import { theme } from './theme';
 
 // Polyfills
 import 'regenerator-runtime/runtime';
+
+// Lazy components
+const ServicePage = lazy(() => import(/* webpackChunkName: "service" */'./pages/ServicePage'));
+const HomePage = lazy(() => import(/* webpackChunkName: "home" */'./pages/HomePage'));
 
 // Start App
 ReactDOM.render(
@@ -22,10 +26,10 @@ ReactDOM.render(
         <BrowserRouter>
           <Navbar>
             <Suspense fallback={<div>Loading ...</div>}>
-              <Switch>
-                <Route path="/service/:name" component={lazy(() => import(/* webpackChunkName: "service" */'./pages/ServicePage'))} />
-                <Route component={lazy(() => import(/* webpackChunkName: "home" */'./pages/HomePage'))} />
-              </Switch>
+              <Routes>
+                <Route path="/service/:name" element={<ServicePage />} />
+                <Route element={<HomePage />} />
+              </Routes>
             </Suspense>
           </Navbar>
         </BrowserRouter>

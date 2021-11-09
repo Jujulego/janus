@@ -64,7 +64,7 @@ const useServicePageData = gqlResource<ServicePageData, { name: string }>(useGql
 // Component
 const ServicePage: FC = () => {
   // Router
-  const { name } = useParams<{ name: string }>();
+  const { name = '' } = useParams<'name' | 'toto'>();
 
   // State
   const [selected, setSelected] = useState<string>(name);

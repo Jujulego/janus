@@ -28,7 +28,7 @@ ReactDOM.render(
             <Suspense fallback={<div>Loading ...</div>}>
               <Routes>
                 <Route path="/service/:name" element={<ServicePage />} />
-                <Route element={<HomePage />} />
+                <Route path="/" element={<HomePage />} />
               </Routes>
             </Suspense>
           </Navbar>

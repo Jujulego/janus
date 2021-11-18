@@ -58,7 +58,7 @@
     "@nestjs/testing": "8.2.2",
     "@types/express": "4.17.13",
     "@types/http-proxy": "1.17.7",
-    "@types/jest": "27.0.2",
+    "@types/jest": "27.0.3",
     "@types/morgan": "1.9.3",
     "@types/node": "14.17.33",
     "@types/proper-lockfile": "4.1.2",

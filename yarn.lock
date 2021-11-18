@@ -2591,7 +2591,7 @@ __metadata:
     "@babel/preset-typescript": 7.16.0
     "@babel/runtime": 7.16.3
     "@jujulego/janus-types": ^1.2.1
-    "@types/jest": 27.0.2
+    "@types/jest": 27.0.3
     "@types/node": 14.17.33
     "@types/yaml": 1.9.7
     "@typescript-eslint/eslint-plugin": 5.4.0
@@ -2632,7 +2632,7 @@ __metadata:
     "@nestjs/testing": 8.2.2
     "@types/express": 4.17.13
     "@types/http-proxy": 1.17.7
-    "@types/jest": 27.0.2
+    "@types/jest": 27.0.3
     "@types/morgan": 1.9.3
     "@types/node": 14.17.33
     "@types/proper-lockfile": 4.1.2
@@ -2751,7 +2751,7 @@ __metadata:
     "@babel/runtime": 7.16.3
     "@jujulego/janus-common": ^1.2.2
     "@jujulego/janus-types": ^1.2.1
-    "@types/jest": 27.0.2
+    "@types/jest": 27.0.3
     "@types/node": 14.17.33
     "@types/ws": 8.2.0
     "@typescript-eslint/eslint-plugin": 5.4.0
@@ -2787,7 +2787,7 @@ __metadata:
     "@babel/preset-env": 7.16.4
     "@babel/preset-typescript": 7.16.0
     "@babel/runtime": 7.16.3
-    "@types/jest": 27.0.2
+    "@types/jest": 27.0.3
     "@types/node": 14.17.33
     "@types/yaml": 1.9.7
     "@typescript-eslint/eslint-plugin": 5.4.0
@@ -4005,13 +4005,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/jest@npm:27.0.2":
-  version: 27.0.2
-  resolution: "@types/jest@npm:27.0.2"
+"@types/jest@npm:27.0.3":
+  version: 27.0.3
+  resolution: "@types/jest@npm:27.0.3"
   dependencies:
     jest-diff: ^27.0.0
     pretty-format: ^27.0.0
-  checksum: 814ad5f5d2f277849f47e52906da4b745758e555630fc8cb46a071bde648eefeffb1b35710c530a8cea7fc4ea7c1d813812c120484bf7902ab6c5e473cdd49c9
+  checksum: 3683a9945821966f6dccddf337219a5d682633687c9d30df859223db553589f63e9b2c34e69f0cc845c86ffcf115742f25c12ea03c8d33d2244890fdc0af61e2
   languageName: node
   linkType: hard
 

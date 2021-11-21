@@ -1,5 +1,6 @@
 import { loadJanusConfigFile } from '@jujulego/janus-common';
 import { IJanusConfig } from '@jujulego/janus-types';
+import { PidFile } from '@jujulego/pid-file';
 import { NestFactory } from '@nestjs/core';
 import { INestApplication } from '@nestjs/common';
 import { GraphQLSchemaBuilderModule, GraphQLSchemaFactory } from '@nestjs/graphql';
@@ -15,7 +16,6 @@ import { ControlService, ServerResolver } from './control';
 import { JsonObjScalar } from './json-obj.scalar';
 import { Logger } from './logger';
 import { GateResolver, ServiceResolver } from './services';
-import { PidFile } from './pidfile';
 
 // Server
 export class JanusServer {
@@ -77,7 +77,7 @@ export class JanusServer {
     this.config.config = config;
 
     // pid file
-    this._pidfile = new PidFile(config, this._logger);
+    this._pidfile = new PidFile(config.pidfile, this._logger);
     if (!await this._pidfile.create()) return false;
 
     // logfile

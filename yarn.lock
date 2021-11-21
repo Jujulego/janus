@@ -2592,7 +2592,7 @@ __metadata:
     "@babel/runtime": 7.16.3
     "@jujulego/janus-types": ^1.2.1
     "@types/jest": 27.0.3
-    "@types/node": 14.17.33
+    "@types/node": 14.17.34
     "@types/yaml": 1.9.7
     "@typescript-eslint/eslint-plugin": 5.4.0
     "@typescript-eslint/parser": 5.4.0
@@ -2635,7 +2635,7 @@ __metadata:
     "@types/http-proxy": 1.17.7
     "@types/jest": 27.0.3
     "@types/morgan": 1.9.3
-    "@types/node": 14.17.33
+    "@types/node": 14.17.34
     "@types/proper-lockfile": 4.1.2
     "@types/supertest": 2.0.11
     "@types/yaml": 1.9.7
@@ -2753,7 +2753,7 @@ __metadata:
     "@jujulego/janus-common": ^1.2.2
     "@jujulego/janus-types": ^1.2.1
     "@types/jest": 27.0.3
-    "@types/node": 14.17.33
+    "@types/node": 14.17.34
     "@types/ws": 8.2.0
     "@typescript-eslint/eslint-plugin": 5.4.0
     "@typescript-eslint/parser": 5.4.0
@@ -2789,7 +2789,7 @@ __metadata:
     "@babel/preset-typescript": 7.16.0
     "@babel/runtime": 7.16.3
     "@types/jest": 27.0.3
-    "@types/node": 14.17.33
+    "@types/node": 14.17.34
     "@types/yaml": 1.9.7
     "@typescript-eslint/eslint-plugin": 5.4.0
     "@typescript-eslint/parser": 5.4.0
@@ -2827,7 +2827,7 @@ __metadata:
     "@jujulego/janus-common": ^1.2.2
     "@jujulego/janus-core": ^1.2.2
     "@jujulego/janus-types": ^1.2.1
-    "@types/node": 14.17.33
+    "@types/node": 14.17.34
     "@types/ws": 8.2.0
     "@types/yargs": 17.0.7
     "@typescript-eslint/eslint-plugin": 5.4.0
@@ -4086,10 +4086,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:14.17.33":
-  version: 14.17.33
-  resolution: "@types/node@npm:14.17.33"
-  checksum: 47ee8d5a398f84b376023f03b83e43a71f1bf617d1014d34c0af24b0332b42e7b392c967c20bfb907fb37971993035e3b25c47a1678c745c5d122d8205ba5a19
+"@types/node@npm:14.17.34":
+  version: 14.17.34
+  resolution: "@types/node@npm:14.17.34"
+  checksum: 803a7532b6998aca6aa1b3e6239f280e82612d4f641d38fbf08962c905ea9d1b278b2f09d396beac5120a4e68f33d7467298b197f2f00150ec1dcd546de02a89
   languageName: node
   linkType: hard
 
@@ -8495,7 +8495,7 @@ __metadata:
   dependencies:
     "@jujulego/janus-gate": ^1.2.4
     "@types/express": 4.17.13
-    "@types/node": 14.17.33
+    "@types/node": 14.17.34
     express: 4.17.1
     nodemon: 2.0.15
     ts-node: 10.4.0

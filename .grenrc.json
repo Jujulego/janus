@@ -1,5 +1,5 @@
 {
-  "dataSources": "prs",
+  "dataSource": "prs",
   "ignoreLabels": ["cli", "common", "core", "front", "gate", "samples", "types"],
   "groupBy": {
     "Enhancements:": ["enhancement"],

@@ -1,6 +1,0 @@
-releases:
-  "@jujulego/janus-core": patch
-
-declined:
-  - "@jujulego/janus"
-  - "@jujulego/janus-front"

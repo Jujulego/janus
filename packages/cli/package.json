@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@jujulego/janus-common": "^1.2.2",
-    "@jujulego/janus-core": "^1.2.2",
+    "@jujulego/janus-core": "^1.2.3",
     "@jujulego/janus-types": "^1.2.1",
     "chalk": "^4.1.2",
     "graphql": "^15.7.2",

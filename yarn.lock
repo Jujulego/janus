@@ -2630,7 +2630,7 @@ __metadata:
     "@nestjs/platform-express": ^8.0.9
     "@nestjs/schematics": 8.0.5
     "@nestjs/serve-static": ^2.2.2
-    "@nestjs/testing": 8.2.2
+    "@nestjs/testing": 8.2.3
     "@types/express": 4.17.13
     "@types/http-proxy": 1.17.7
     "@types/jest": 27.0.3
@@ -3293,9 +3293,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/testing@npm:8.2.2":
-  version: 8.2.2
-  resolution: "@nestjs/testing@npm:8.2.2"
+"@nestjs/testing@npm:8.2.3":
+  version: 8.2.3
+  resolution: "@nestjs/testing@npm:8.2.3"
   dependencies:
     optional: 0.1.4
     tslib: 2.3.1
@@ -3309,7 +3309,7 @@ __metadata:
       optional: true
     "@nestjs/platform-express":
       optional: true
-  checksum: 0491d5212f7a26e16db3394cf1ac7c7165d484e50e0496471461745dc7716319e54e6d9e39a21a149b9f155bea5878b351f985ca092282cf2e7e6f8f28c79d70
+  checksum: da18f96227083aea175a41c9fd753d6f606c1b66d4ec2a6cf6b47d371bbeb69305aff0a5238794861e87fe8e7bc987c40205ddd82e6bcf8dc462fc9b6c16ed99
   languageName: node
   linkType: hard
 

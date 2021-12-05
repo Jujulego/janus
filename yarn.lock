@@ -2712,7 +2712,7 @@ __metadata:
     babel-plugin-macros: 3.1.0
     clsx: 1.1.1
     copy-webpack-plugin: 9.1.0
-    d3: 7.1.1
+    d3: 7.2.0
     eslint: 7.32.0
     eslint-plugin-jest: 25.3.0
     eslint-plugin-react: 7.27.1
@@ -7334,9 +7334,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"d3@npm:7.1.1":
-  version: 7.1.1
-  resolution: "d3@npm:7.1.1"
+"d3@npm:7.2.0":
+  version: 7.2.0
+  resolution: "d3@npm:7.2.0"
   dependencies:
     d3-array: 3
     d3-axis: 3
@@ -7368,7 +7368,7 @@ __metadata:
     d3-timer: 3
     d3-transition: 3
     d3-zoom: 3
-  checksum: 1b0e03baa8ad325965b6360613dfaf33b3ac298e57ea63aa8128957ef4a01bda9eed186a5fc5ec3ab59361367b7285a1f6e2baee273fd34977e8ab9c2148783a
+  checksum: fc1529477b2c7c659c01d6a41c70b6aad7dc7669d7155e55ce857c1e7f18cbc4824feeaa9ce6031d7de8fb10fb46d178e9e03401a08aa46245e79804942d055b
   languageName: node
   linkType: hard
 

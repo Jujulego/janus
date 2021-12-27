@@ -33,7 +33,7 @@
     "@emotion/react": "11.7.0",
     "@emotion/styled": "11.6.0",
     "@jujulego/alma-api": "2.1.4",
-    "@jujulego/alma-graphql": "2.0.4",
+    "@jujulego/alma-graphql": "2.0.5",
     "@jujulego/janus-core": "1.2.3",
     "@jujulego/janus-types": "1.2.1",
     "@mui/icons-material": "5.2.1",

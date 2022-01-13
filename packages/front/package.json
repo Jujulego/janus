@@ -30,7 +30,7 @@
     "@babel/preset-react": "7.16.7",
     "@babel/preset-typescript": "7.16.7",
     "@babel/runtime": "7.16.7",
-    "@emotion/react": "11.7.0",
+    "@emotion/react": "11.7.1",
     "@emotion/styled": "11.6.0",
     "@jujulego/alma-api": "2.1.4",
     "@jujulego/alma-graphql": "2.0.5",

@@ -2828,7 +2828,7 @@ __metadata:
     "@jujulego/janus-types": ^1.2.1
     "@types/jest": 27.0.3
     "@types/node": 14.18.12
-    "@types/ws": 8.2.2
+    "@types/ws": 8.5.1
     "@typescript-eslint/eslint-plugin": 5.6.0
     "@typescript-eslint/parser": 5.6.0
     babel-plugin-macros: 3.1.0
@@ -2902,7 +2902,7 @@ __metadata:
     "@jujulego/janus-core": ^1.2.3
     "@jujulego/janus-types": ^1.2.1
     "@types/node": 14.18.12
-    "@types/ws": 8.2.2
+    "@types/ws": 8.5.1
     "@types/yargs": 17.0.8
     "@typescript-eslint/eslint-plugin": 5.6.0
     "@typescript-eslint/parser": 5.6.0
@@ -4396,12 +4396,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/ws@npm:8.2.2":
-  version: 8.2.2
-  resolution: "@types/ws@npm:8.2.2"
+"@types/ws@npm:8.5.1":
+  version: 8.5.1
+  resolution: "@types/ws@npm:8.5.1"
   dependencies:
     "@types/node": "*"
-  checksum: 308957864b9a5a0378ac82f1b084fa31b1bbe85106fb0d84ed2b392e4829404f21ab6ab2c1eb782d556e59cd33d57c75ad2d0cedc4b9b9d0ca3b2311bc915578
+  checksum: 4f06ff8b9e61201b28e7f4bbd0b30c5eeb32ed4d2c091554efc3b3b63ab56b4630c316a394be6bd6cc36bab87d0e5225ba55d0f7b170767175c26f7c14086bf9
   languageName: node
   linkType: hard
 

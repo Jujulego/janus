@@ -80,6 +80,6 @@
     "typescript": "4.5.5",
     "webpack": "5.65.0",
     "webpack-pnp-externals": "1.1.0",
-    "winston-transport": "4.4.2"
+    "winston-transport": "4.5.0"
   }
 }

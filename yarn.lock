@@ -2739,7 +2739,7 @@ __metadata:
     supertest: 6.1.6
     ts-jest: 27.1.3
     ts-loader: 9.2.6
-    ts-node: 10.4.0
+    ts-node: 10.6.0
     typescript: 4.5.5
     webpack: 5.65.0
     webpack-pnp-externals: 1.1.0
@@ -2924,7 +2924,7 @@ __metadata:
     ora: ^5.4.1
     rxjs: ^7.3.0
     ts-jest: 27.1.3
-    ts-node: 10.4.0
+    ts-node: 10.6.0
     typescript: 4.5.5
     winston: ^3.3.3
     winston-transport: ^4.4.0
@@ -8663,7 +8663,7 @@ __metadata:
     "@types/node": 14.18.12
     express: 4.17.3
     nodemon: 2.0.15
-    ts-node: 10.4.0
+    ts-node: 10.6.0
     typescript: 4.5.5
   languageName: unknown
   linkType: soft
@@ -16086,9 +16086,9 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"ts-node@npm:10.4.0":
-  version: 10.4.0
-  resolution: "ts-node@npm:10.4.0"
+"ts-node@npm:10.6.0":
+  version: 10.6.0
+  resolution: "ts-node@npm:10.6.0"
   dependencies:
     "@cspotcode/source-map-support": 0.7.0
     "@tsconfig/node10": ^1.0.7
@@ -16101,6 +16101,7 @@ resolve@^2.0.0-next.3:
     create-require: ^1.1.0
     diff: ^4.0.1
     make-error: ^1.1.1
+    v8-compile-cache-lib: ^3.0.0
     yn: 3.1.1
   peerDependencies:
     "@swc/core": ">=1.2.50"
@@ -16118,7 +16119,7 @@ resolve@^2.0.0-next.3:
     ts-node-script: dist/bin-script.js
     ts-node-transpile-only: dist/bin-transpile.js
     ts-script: dist/bin-script-deprecated.js
-  checksum: 3933ac0a937d33c45e04a6750fcdd3e765eb2897d1da1307cd97ac52af093bcfb632ec0453a75000a65c8b5b7bdb32b1077050a186dcc556e62657cb592e6d49
+  checksum: bc7589d8c38dc75a2a6f832ac43faaac7edd3d0ef4643f46a9deeaabcdd35722e8c89e729fcd39a16069b30d09e297c2fb3eec917a82dd3f1e7da8b352bbd447
   languageName: node
   linkType: hard
 
@@ -16579,6 +16580,13 @@ typescript@4.3.5:
   bin:
     uuid: ./bin/uuid
   checksum: 58de2feed61c59060b40f8203c0e4ed7fd6f99d42534a499f1741218a1dd0c129f4aa1de797bcf822c8ea5da7e4137aa3673431a96dae729047f7aca7b27866f
+  languageName: node
+  linkType: hard
+
+"v8-compile-cache-lib@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "v8-compile-cache-lib@npm:3.0.0"
+  checksum: 674e312bbca796584b61dc915f33c7e7dc4e06d196e0048cb772c8964493a1ec723f1dd014d9419fd55c24a6eae148f60769da23f622e05cd13268063fa1ed6b
   languageName: node
   linkType: hard
 

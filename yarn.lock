@@ -2613,7 +2613,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/alma-api@npm:2.1.4, @jujulego/alma-api@npm:^2.1.4":
+"@jujulego/alma-api@npm:2.1.4":
   version: 2.1.4
   resolution: "@jujulego/alma-api@npm:2.1.4"
   dependencies:
@@ -2626,19 +2626,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/alma-graphql@npm:2.0.5":
-  version: 2.0.5
-  resolution: "@jujulego/alma-graphql@npm:2.0.5"
+"@jujulego/alma-api@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "@jujulego/alma-api@npm:2.3.0"
   dependencies:
-    "@jujulego/alma-api": ^2.1.4
-    "@jujulego/alma-utils": ^1.0.10
+    "@jujulego/alma-utils": ^1.1.1
+  peerDependencies:
+    react: ^17.0.0
+    react-dom: ^17.0.0
+  checksum: 3ec3648416f71996f77e914e32d5426439231ed9ffd2cbfb431327f0b277d465aae3288e3cf9c0711cf8b9e97f7dfcafeccf26c965d6beb53dff63fcef3725e8
+  languageName: node
+  linkType: hard
+
+"@jujulego/alma-graphql@npm:2.1.0":
+  version: 2.1.0
+  resolution: "@jujulego/alma-graphql@npm:2.1.0"
+  dependencies:
+    "@jujulego/alma-api": ^2.3.0
+    "@jujulego/alma-utils": ^1.1.1
     graphql-ws: ^5.5.0
   peerDependencies:
-    axios: ^0.23.0 || ^0.24.0
     graphql: ^15.6.0 || ^16.0.0
     react: ^17.0.0
     react-dom: ^17.0.0
-  checksum: d6f903c65c90dcb229e909e0b2cdd940536269b0f31dc074d260e3a77072a828007bbdc784bc66f52e4db73afcbdd60759f2906debacac3448bff6b511e9ee59
+  checksum: 73ae040e355890130f90ab67dbc7f603b89aa4d6fced04199fcab2ad7adc73f1df7a2460cec8ba93aa420a2db0d87119ae87dcb477a9fcb59ef36f89f8219bb0
   languageName: node
   linkType: hard
 
@@ -2651,6 +2662,18 @@ __metadata:
     react: ^17.0.0
     react-dom: ^17.0.0
   checksum: af8a76213442463e9bff0a093c2e3f4283dacfd28ed67d8be7dc3b1da4d441bfb3449f5b8d3ca60b8aca1d473d6d19c33b01b6564d8b7f8f2451335bf722870c
+  languageName: node
+  linkType: hard
+
+"@jujulego/alma-utils@npm:^1.1.1":
+  version: 1.1.1
+  resolution: "@jujulego/alma-utils@npm:1.1.1"
+  dependencies:
+    dequal: ^2.0.2
+  peerDependencies:
+    react: ^17.0.0
+    react-dom: ^17.0.0
+  checksum: 6ff51ec5b652accbbe6e68f48a2d072f523a28d90dae5052ef96c899d83483502accdfd2e4313527fd4142bd2401dc2ca803abf418ab953743c6116ec1c57261
   languageName: node
   linkType: hard
 
@@ -2768,7 +2791,7 @@ __metadata:
     "@emotion/react": 11.7.1
     "@emotion/styled": 11.6.0
     "@jujulego/alma-api": 2.1.4
-    "@jujulego/alma-graphql": 2.0.5
+    "@jujulego/alma-graphql": 2.1.0
     "@jujulego/janus-core": 1.2.3
     "@jujulego/janus-types": 1.2.1
     "@mui/icons-material": 5.3.0

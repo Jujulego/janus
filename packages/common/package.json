@@ -29,12 +29,12 @@
     "yaml": "^1.10.2"
   },
   "devDependencies": {
-    "@babel/core": "7.17.5",
+    "@babel/core": "7.17.8",
     "@babel/plugin-proposal-class-properties": "7.16.7",
     "@babel/plugin-proposal-object-rest-spread": "7.17.3",
     "@babel/preset-env": "7.16.11",
     "@babel/preset-typescript": "7.16.7",
-    "@babel/runtime": "7.17.2",
+    "@babel/runtime": "7.17.8",
     "@types/jest": "27.0.3",
     "@types/node": "14.18.12",
     "@types/yaml": "1.9.7",

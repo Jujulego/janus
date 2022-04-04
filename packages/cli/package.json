@@ -24,7 +24,7 @@
     "@jujulego/janus-common": "^1.2.2",
     "@jujulego/janus-core": "^1.2.3",
     "@jujulego/janus-types": "^1.2.1",
-    "chalk": "^4.1.2",
+    "chalk": "^5.0.0",
     "graphql": "^15.7.2",
     "graphql-request": "^3.5.0",
     "graphql-ws": "^5.5.0",

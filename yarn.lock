@@ -2812,7 +2812,7 @@ __metadata:
     gulp-typescript: 6.0.0-alpha.1
     jest: 27.5.1
     ts-jest: 27.1.4
-    typescript: 4.5.5
+    typescript: 4.7.4
     yaml: ^1.10.2
   peerDependencies:
     graphql: ^15.0.0
@@ -2869,7 +2869,7 @@ __metadata:
     ts-jest: 27.1.4
     ts-loader: 9.2.8
     ts-node: 10.7.0
-    typescript: 4.5.5
+    typescript: 4.7.4
     webpack: 5.71.0
     webpack-pnp-externals: 1.1.0
     winston: ^3.3.3
@@ -2931,7 +2931,7 @@ __metadata:
     react-window: 1.8.6
     regenerator-runtime: 0.13.9
     ts-jest: 27.1.4
-    typescript: 4.5.5
+    typescript: 4.7.4
     webpack: 5.71.0
     webpack-bundle-analyzer: 4.5.0
     webpack-cli: 4.9.2
@@ -2975,7 +2975,7 @@ __metadata:
     jest: 27.5.1
     rxjs: ^7.3.0
     ts-jest: 27.1.4
-    typescript: 4.5.5
+    typescript: 4.7.4
     ws: ^8.2.2
   languageName: unknown
   linkType: soft
@@ -3009,7 +3009,7 @@ __metadata:
     gulp-typescript: 6.0.0-alpha.1
     jest: 27.5.1
     ts-jest: 27.1.4
-    typescript: 4.5.5
+    typescript: 4.7.4
     yaml: ^1.10.2
   peerDependencies:
     graphql: ^15.0.0
@@ -3053,7 +3053,7 @@ __metadata:
     rxjs: ^7.3.0
     ts-jest: 27.1.4
     ts-node: 10.7.0
-    typescript: 4.5.5
+    typescript: 4.7.4
     winston: ^3.3.3
     winston-transport: ^4.4.0
     ws: ^8.2.2
@@ -8841,7 +8841,7 @@ __metadata:
     express: 4.17.3
     nodemon: 2.0.15
     ts-node: 10.7.0
-    typescript: 4.5.5
+    typescript: 4.7.4
   languageName: unknown
   linkType: soft
 
@@ -11353,7 +11353,7 @@ fsevents@^1.2.7:
     eslint-plugin-jest: 25.7.0
     eslint-plugin-workspaces: 0.7.0
     jest: 27.5.1
-    typescript: 4.5.5
+    typescript: 4.7.4
   languageName: unknown
   linkType: soft
 
@@ -16479,16 +16479,6 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"typescript@npm:4.5.5":
-  version: 4.5.5
-  resolution: "typescript@npm:4.5.5"
-  bin:
-    tsc: bin/tsc
-    tsserver: bin/tsserver
-  checksum: 506f4c919dc8aeaafa92068c997f1d213b9df4d9756d0fae1a1e7ab66b585ab3498050e236113a1c9e57ee08c21ec6814ca7a7f61378c058d79af50a4b1f5a5e
-  languageName: node
-  linkType: hard
-
 "typescript@npm:4.6.2":
   version: 4.6.2
   resolution: "typescript@npm:4.6.2"
@@ -16499,13 +16489,13 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@4.5.5#~builtin<compat/typescript>":
-  version: 4.5.5
-  resolution: "typescript@patch:typescript@npm%3A4.5.5#~builtin<compat/typescript>::version=4.5.5&hash=493e53"
+"typescript@npm:4.7.4":
+  version: 4.7.4
+  resolution: "typescript@npm:4.7.4"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: c05c318d79c690f101d7ffb34cd6c7d6bbd884d3af9cefe7749ad0cd6be43c7082f098280982ca945dcba23fde34a08fed9602bb26540936baf8c0520727d3ba
+  checksum: 5750181b1cd7e6482c4195825547e70f944114fb47e58e4aa7553e62f11b3f3173766aef9c281783edfd881f7b8299cf35e3ca8caebe73d8464528c907a164df
   languageName: node
   linkType: hard
 
@@ -16516,6 +16506,16 @@ resolve@^2.0.0-next.3:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: efb83260a22ee49d4c8bdc59b3cefe54fdf51d6f563f5c3a35aa3d5e46fb12f3f1d33a36d6f9f64171e567ead1847e99cb612d0a9a74e7d44e16cad9d0bbc937
+  languageName: node
+  linkType: hard
+
+"typescript@patch:typescript@4.7.4#~builtin<compat/typescript>":
+  version: 4.7.4
+  resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=493e53"
+  bin:
+    tsc: bin/tsc
+    tsserver: bin/tsserver
+  checksum: 96d3030cb01143570567cb4f3a616b10df65f658f0e74e853e77a089a6a954e35c800be7db8b9bfe9a1ae05d9c2897e281359f65e4caa1caf266368e1c4febd3
   languageName: node
   linkType: hard
 

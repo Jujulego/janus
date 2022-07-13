@@ -21,7 +21,7 @@ jobs:
           all_but_latest: true
           access_token: ${{ github.token }}
 
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v2.4.2
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2.5.1
@@ -48,7 +48,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v2.4.2
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2.5.1
@@ -77,7 +77,7 @@ jobs:
         include: ${{ fromJson(needs.setup.outputs.matrix-lint) }}
 
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v2.4.2
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2.5.1
@@ -101,7 +101,7 @@ jobs:
         include: ${{ fromJson(needs.setup.outputs.matrix-test) }}
 
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v2.4.2
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2.5.1
@@ -134,7 +134,7 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v2.4.2
 
       - name: Use Node.js 14.x
         uses: actions/setup-node@v2.5.1
@@ -201,7 +201,7 @@ jobs:
         include: ${{ fromJson(needs.setup.outputs.matrix-test) }}
 
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v2.4.2
         with:
           ref: master
           fetch-depth: 0
@@ -236,7 +236,7 @@ jobs:
       contents: write
 
     steps:
-      - uses: actions/checkout@v2.4.0
+      - uses: actions/checkout@v2.4.2
         with:
           ref: master
 

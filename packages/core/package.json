@@ -16,7 +16,7 @@
     "test": "jest --passWithNoTests"
   },
   "engines": {
-    "node": "^14"
+    "node": "^16.0.0"
   },
   "peerDependencies": {
     "@jujulego/janus-front": "^1.2.1"
@@ -61,7 +61,7 @@
     "@types/http-proxy": "1.17.9",
     "@types/jest": "27.4.1",
     "@types/morgan": "1.9.3",
-    "@types/node": "14.18.23",
+    "@types/node": "16.11.65",
     "@types/proper-lockfile": "4.1.2",
     "@types/supertest": "2.0.12",
     "@types/yaml": "1.9.7",

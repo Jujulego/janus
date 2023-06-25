@@ -32,7 +32,7 @@
     "@babel/runtime": "7.18.6",
     "@emotion/react": "11.9.0",
     "@emotion/styled": "11.8.1",
-    "@jujulego/alma-api": "2.3.2",
+    "@jujulego/alma-api": "2.4.1",
     "@jujulego/alma-graphql": "2.1.2",
     "@jujulego/janus-core": "1.2.3",
     "@jujulego/janus-types": "1.2.1",

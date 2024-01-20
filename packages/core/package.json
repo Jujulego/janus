@@ -31,7 +31,7 @@
     "@jujulego/janus-types": "^1.2.1",
     "@jujulego/pid-file": "^1.0.3",
     "@nestjs/common": "^8.0.9",
-    "@nestjs/core": "^8.0.9",
+    "@nestjs/core": "^9.0.0",
     "@nestjs/graphql": "^9.0.5",
     "@nestjs/platform-express": "^8.0.9",
     "@nestjs/serve-static": "^2.2.2",

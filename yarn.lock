@@ -2937,7 +2937,7 @@ __metadata:
     "@jujulego/pid-file": ^1.0.3
     "@nestjs/cli": 8.2.5
     "@nestjs/common": ^8.0.9
-    "@nestjs/core": ^8.0.9
+    "@nestjs/core": ^9.0.0
     "@nestjs/graphql": ^9.0.5
     "@nestjs/platform-express": ^8.0.9
     "@nestjs/schematics": 8.0.10
@@ -3242,6 +3242,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@lukeed/csprng@npm:^1.0.0":
+  version: 1.1.0
+  resolution: "@lukeed/csprng@npm:1.1.0"
+  checksum: 926f5f7fc629470ca9a8af355bfcd0271d34535f7be3890f69902432bddc3262029bb5dbe9025542cf6c9883d878692eef2815fc2f3ba5b92e9da1f9eba2e51b
+  languageName: node
+  linkType: hard
+
 "@mui/base@npm:5.0.0-alpha.106":
   version: 5.0.0-alpha.106
   resolution: "@mui/base@npm:5.0.0-alpha.106"
@@ -3471,22 +3478,21 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@nestjs/core@npm:^8.0.9":
-  version: 8.0.9
-  resolution: "@nestjs/core@npm:8.0.9"
+"@nestjs/core@npm:^9.0.0":
+  version: 9.4.3
+  resolution: "@nestjs/core@npm:9.4.3"
   dependencies:
     "@nuxtjs/opencollective": 0.3.2
     fast-safe-stringify: 2.1.1
     iterare: 1.2.1
-    object-hash: 2.2.0
     path-to-regexp: 3.2.0
-    tslib: 2.3.1
-    uuid: 8.3.2
+    tslib: 2.5.3
+    uid: 2.0.2
   peerDependencies:
-    "@nestjs/common": ^8.0.0
-    "@nestjs/microservices": ^8.0.0
-    "@nestjs/platform-express": ^8.0.0
-    "@nestjs/websockets": ^8.0.0
+    "@nestjs/common": ^9.0.0
+    "@nestjs/microservices": ^9.0.0
+    "@nestjs/platform-express": ^9.0.0
+    "@nestjs/websockets": ^9.0.0
     reflect-metadata: ^0.1.12
     rxjs: ^7.1.0
   peerDependenciesMeta:
@@ -3496,7 +3502,7 @@ __metadata:
       optional: true
     "@nestjs/websockets":
       optional: true
-  checksum: 65f481ef03b0432c89d0905b459084cb9839ea88e6ff56bf5b4f9e5a70823d681e8aebdeddcb19bebde71ace557123734fa7e884ed27814b433cb93318591a1e
+  checksum: 5c556c43fc4bce5001c9fa1190630031e60db5678d47c1266f6aca957d862fc8aa7168414cf7938852976ee52086395bd05d4a4daaa0915d12e47c4f644dc263
   languageName: node
   linkType: hard
 
@@ -13371,13 +13377,6 @@ fsevents@^1.2.7:
   languageName: node
   linkType: hard
 
-"object-hash@npm:2.2.0":
-  version: 2.2.0
-  resolution: "object-hash@npm:2.2.0"
-  checksum: 55ba841e3adce9c4f1b9b46b41983eda40f854e0d01af2802d3ae18a7085a17168d6b81731d43fdf1d6bcbb3c9f9c56d22c8fea992203ad90a38d7d919bc28f1
-  languageName: node
-  linkType: hard
-
 "object-inspect@npm:^1.11.0, object-inspect@npm:^1.9.0":
   version: 1.11.0
   resolution: "object-inspect@npm:1.11.0"
@@ -16560,6 +16559,13 @@ resolve@^2.0.0-next.3:
   languageName: node
   linkType: hard
 
+"tslib@npm:2.5.3":
+  version: 2.5.3
+  resolution: "tslib@npm:2.5.3"
+  checksum: 88902b309afaf83259131c1e13da1dceb0ad1682a213143a1346a649143924d78cf3760c448b84d796938fd76127183894f8d85cbb3bf9c4fddbfcc140c0003c
+  languageName: node
+  linkType: hard
+
 "tslib@npm:^1.8.1, tslib@npm:^1.9.0":
   version: 1.14.1
   resolution: "tslib@npm:1.14.1"
@@ -16715,6 +16721,15 @@ resolve@^2.0.0-next.3:
     tsc: bin/tsc
     tsserver: bin/tsserver
   checksum: efb83260a22ee49d4c8bdc59b3cefe54fdf51d6f563f5c3a35aa3d5e46fb12f3f1d33a36d6f9f64171e567ead1847e99cb612d0a9a74e7d44e16cad9d0bbc937
+  languageName: node
+  linkType: hard
+
+"uid@npm:2.0.2":
+  version: 2.0.2
+  resolution: "uid@npm:2.0.2"
+  dependencies:
+    "@lukeed/csprng": ^1.0.0
+  checksum: 98aabddcd6fe46f9b331b0378a93ee9cc51474348ada02006df9d10b4abc783ed596748ed9f20d7f6c5ff395dbcd1e764a65a68db6f39a31c95ae85ef13fe979
   languageName: node
   linkType: hard
 
